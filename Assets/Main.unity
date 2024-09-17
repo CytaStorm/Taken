@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 94754713}
   - component: {fileID: 94754712}
   - component: {fileID: 94754711}
+  - component: {fileID: 94754714}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -182,7 +183,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -208,12 +209,28 @@ Transform:
   m_GameObject: {fileID: 94754710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: -7.7, y: 13.35, z: -35.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &94754714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94754710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfe6e2658b35bf4aa9d46d0a0d92767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1817774278}
+  offset: {x: 0, y: -1, z: -1.2}
+  zoom: 10
+  pitch: 2
 --- !u!1 &427031295
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,8 +352,8 @@ GameObject:
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &796200090
 BoxCollider:
@@ -530,7 +547,7 @@ GameObject:
   - component: {fileID: 1696933194}
   - component: {fileID: 1696933193}
   - component: {fileID: 1696933192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,6 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817774278}
   - component: {fileID: 1817774277}
+  - component: {fileID: 1817774279}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -679,6 +697,24 @@ Transform:
   - {fileID: 427031296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1817774279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817774276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0283e180c20d9409506e6c241aed86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 94754712}
+  agent: {fileID: 1817774277}
+  movementMask:
+    serializedVersion: 2
+    m_Bits: 64
+  raycastRange: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
