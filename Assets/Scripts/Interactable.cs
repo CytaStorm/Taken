@@ -14,23 +14,34 @@ public class Interactable : MonoBehaviour
 		Debug.Log("Interacting with " + transform.name);
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		if (isFocus && !hasInteracted) 
-		{
-			float distance = Vector3.Distance(
-				PlayerController.PlayerControl.gameObject.transform.position,
-				interactionTransform.position);
-			if (distance <= radius)
-			{
-				Debug.Log("INTERACT");
-				hasInteracted = true;
-			}
-		}
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        if (isFocus)
+        {
+            float distance = Vector3.Distance(
+                PlayerController.PlayerControl.gameObject.transform.position,
+                interactionTransform.position);
 
-	public void OnDefocused()
+            if (distance <= radius)
+            {
+                // Only interact if it hasn't interacted before
+                if (!hasInteracted)
+                {
+                    Debug.Log("INTERACT");
+                    Interact();
+                    hasInteracted = true;
+                }
+            }
+            else
+            {
+                // Allow additional interactions
+                hasInteracted = false;
+            }
+        }
+    }
+
+    public void OnDefocused()
 	{
 		isFocus = false;
 		hasInteracted = false;
