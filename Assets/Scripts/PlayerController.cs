@@ -17,8 +17,18 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private int raycastRange = 100;
 	[SerializeField] private LayerMask movementMask;
 	[SerializeField] private LayerMask interactableMask;
+	[SerializeField] private bool inDialogue = false;
 
 	private Interactable focus;
+
+	//PROPERTIES
+	/// <summary>
+	/// Get only property saying whether the player is in dialogue or not
+	/// </summary>
+	public bool InDialogue
+	{
+		get { return inDialogue; }
+	}
 
 	//Singleton stuff
 	public static PlayerController PlayerControl

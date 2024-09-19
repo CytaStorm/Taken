@@ -231,6 +231,9 @@ MonoBehaviour:
   offset: {x: 0, y: -1, z: -1.2}
   zoom: 10
   pitch: 2
+  cam: {fileID: 94754712}
+  zoomInDuration: 1
+  zoomInMagnitude: 3
 --- !u!1 &427031295
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +873,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 128
+  inDialogue: 0
 --- !u!114 &1817774280
 MonoBehaviour:
   m_ObjectHideFlags: 0
