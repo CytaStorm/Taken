@@ -25,6 +25,7 @@ public class Interactable : MonoBehaviour
 			if (distance <= radius)
 			{
 				Debug.Log("INTERACT");
+				UIController.UI.ChangeToDialogue();
 				hasInteracted = true;
 			}
 		}
