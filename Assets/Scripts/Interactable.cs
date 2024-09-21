@@ -1,42 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.AI;  // Import the AI Navigation namespace
 
 public class Interactable : MonoBehaviour
 {
-	[SerializeField] private float radius = 3f;
-	[SerializeField] private Transform interactionTransform;
-	private bool isFocus = false;
-	private bool hasInteracted = false;
-	public virtual void Interact()
-	{
-		Debug.Log("Interacting with " + transform.name);
-	}
+    [SerializeField] private float radius = 3f;           
+    [SerializeField] private Transform interactionTransform;  
+    [SerializeField] private Vector3 destinationPosition;  
 
-    // Update is called once per frame
+    private bool isFocus = false;       
+    private bool hasInteracted = false; 
+    private bool isMoving = false;      
+    private bool canInteract = true;    
+    private int interactionCount = 0;   
+    private NavMeshAgent agent;         
+
+
+    void Start()
+    {
+        // Get the NavMeshAgent component attached to the NPC
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    public virtual void Interact()
+    {
+        Debug.Log("Interacting with " + transform.name);
+        MoveToPosition(destinationPosition);
+    }
+
+    // Moves the NPC to the destination
+    private void MoveToPosition(Vector3 destination)
+    {
+        if (agent != null)
+        {
+            agent.SetDestination(destination); // Sets the destination for the NavMeshAgent
+            isMoving = true; // Sets the NPC to moving state
+        }
+    }
+
+    
     void Update()
     {
-        if (isFocus)
+        // Checks if NPC is focused by the player
+        if (isFocus && canInteract)
         {
             float distance = Vector3.Distance(
                 PlayerController.PlayerControl.gameObject.transform.position,
                 interactionTransform.position);
-
-            if (distance <= radius)
+            // If its able to be interacted with, Interact
+            if (distance <= radius && !hasInteracted && !isMoving)
             {
-                // Only interact if it hasn't interacted before
-                if (!hasInteracted)
+                Debug.Log("INTERACT");
+                Interact();
+                hasInteracted = true;
+                interactionCount++;
+
+                // Disables further interactions after the second interaction
+                if (interactionCount >= 2)
                 {
-                    Debug.Log("INTERACT");
-                    Interact();
-                    hasInteracted = true;
+                    canInteract = false;
+                    Debug.Log("Interaction disabled after second interaction.");
                 }
             }
-            else
+            else if (distance > radius && !isMoving)
             {
-                // Allow additional interactions
                 hasInteracted = false;
+            }
+        }
+
+        // Checks if NPC has arrived at the destination
+        if (isMoving && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                isMoving = false;  // NPC has finished moving
+                Debug.Log("NPC has arrived at the destination.");
             }
         }
     }
