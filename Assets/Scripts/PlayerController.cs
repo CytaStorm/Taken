@@ -26,11 +26,6 @@ public class PlayerController : MonoBehaviour
 		get; private set;
 	}
 
-	public NavMeshAgent NavMeshAgent
-	{
-		get { return _agent; }
-	}
-
 	private void Awake()
 	{
 		if (PlayerControl != null && PlayerControl != this)
@@ -53,15 +48,6 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-	}
-
-	/// <summary>
-	/// Unlocks player after dialogue.
-	/// </summary>
-	public void UnlockPlayer()
-	{
-		_agent.isStopped = false;
-		SetFocus(null);
 	}
 
 	public void OnMoveInteract()
@@ -97,12 +83,7 @@ public class PlayerController : MonoBehaviour
 		if (newFocus == _focus) return;
 
 		//New focus object
-		if (_focus != null)
-		{
-			_focus.OnDefocused();
-		}
-		
-		if (newFocus == null) return;
+		if (_focus != null) _focus.OnDefocused();
 		_focus = newFocus;
 		newFocus.OnFocused();
 	}

@@ -24,8 +24,7 @@ public class Interactable : MonoBehaviour
 				interactionTransform.position);
 			if (distance <= radius)
 			{
-				Interact();
-				PlayerController.PlayerControl.NavMeshAgent.isStopped = true;
+				Debug.Log("INTERACT");
 				UIController.UI.ChangeToDialogue();
 				hasInteracted = true;
 			}
