@@ -10,15 +10,15 @@ using UnityEngine.InputSystem.HID;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private PlayerInput playerInput; 
+	[SerializeField] private PlayerInput _playerInput; 
 
-	[SerializeField] private Camera cam;
-	[SerializeField] private NavMeshAgent agent;
-	[SerializeField] private int raycastRange = 100;
-	[SerializeField] private LayerMask movementMask;
-	[SerializeField] private LayerMask interactableMask;
+	[SerializeField] private Camera _cam;
+	[SerializeField] private NavMeshAgent _agent;
+	[SerializeField] private int _raycastRange = 100;
+	[SerializeField] private LayerMask _movementMask;
+	[SerializeField] private LayerMask _interactableMask;
 
-	private Interactable focus;
+	private Interactable _focus;
 
 	//Singleton stuff
 	public static PlayerController PlayerControl
@@ -53,40 +53,44 @@ public class PlayerController : MonoBehaviour
 	public void OnMoveInteract()
 	{
 		Vector3 mousePos = Mouse.current.position.ReadValue();
-		Ray ray = cam.ScreenPointToRay(mousePos);
+		Ray ray = _cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;
 
+		//Only interact with UI objects
+		if (UIController.UI.CurrentUIMode == UIMode.Dialogue) return;
+
+		//Player clicks in game
 		// if ray hits interactable
-		if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
+		if (Physics.Raycast(ray, out hit, _raycastRange, _interactableMask))
 		{
 			Interactable interactable = hit.collider.GetComponent<Interactable>();
 			if (interactable != null)
 			{
 				SetFocus(interactable);
-				agent.SetDestination(hit.point);
+				_agent.SetDestination(hit.point);
 			}
 		}
 
 		// if the ray hits something walkable move the player towards it
-		else if (Physics.Raycast(ray, out hit, raycastRange, movementMask))
+		else if (Physics.Raycast(ray, out hit, _raycastRange, _movementMask))
 		{
-			agent.SetDestination(hit.point);
+			_agent.SetDestination(hit.point);
 		}
 	}
 
 	private void SetFocus(Interactable newFocus)
 	{
-		if (newFocus == focus) return;
+		if (newFocus == _focus) return;
 
 		//New focus object
-		if (focus != null) focus.OnDefocused();
-		focus = newFocus;
+		if (_focus != null) _focus.OnDefocused();
+		_focus = newFocus;
 		newFocus.OnFocused();
 	}
 	
 	private void RemoveFocus()
 	{
-		if (focus != null) focus.OnDefocused();
-		focus = null;
+		if (_focus != null) _focus.OnDefocused();
+		_focus = null;
 	}
 }

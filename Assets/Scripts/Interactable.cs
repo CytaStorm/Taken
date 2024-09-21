@@ -9,12 +9,14 @@ public class Interactable : MonoBehaviour
     [SerializeField] private Transform interactionTransform;  
     [SerializeField] private Vector3 destinationPosition;  
 
+
     private bool isFocus = false;       
     private bool hasInteracted = false; 
     private bool isMoving = false;      
     private bool canInteract = true;    
     private int interactionCount = 0;   
     private NavMeshAgent agent;         
+
 
 
     void Start()
@@ -52,6 +54,7 @@ public class Interactable : MonoBehaviour
             if (distance <= radius && !hasInteracted && !isMoving)
             {
                 Debug.Log("INTERACT");
+                UIController.UI.ChangeToDialogue();
                 Interact();
                 hasInteracted = true;
                 interactionCount++;
