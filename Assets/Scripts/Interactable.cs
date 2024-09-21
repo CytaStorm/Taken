@@ -9,31 +9,14 @@ public class Interactable : MonoBehaviour
     [SerializeField] private Transform interactionTransform;  
     [SerializeField] private Vector3 destinationPosition;  
 
-<<<<<<< HEAD
+
     private bool isFocus = false;       
     private bool hasInteracted = false; 
     private bool isMoving = false;      
     private bool canInteract = true;    
     private int interactionCount = 0;   
     private NavMeshAgent agent;         
-=======
-	// Update is called once per frame
-	void Update()
-	{
-		if (isFocus && !hasInteracted) 
-		{
-			float distance = Vector3.Distance(
-				PlayerController.PlayerControl.gameObject.transform.position,
-				interactionTransform.position);
-			if (distance <= radius)
-			{
-				Debug.Log("INTERACT");
-				UIController.UI.ChangeToDialogue();
-				hasInteracted = true;
-			}
-		}
-	}
->>>>>>> UI
+
 
 
     void Start()
