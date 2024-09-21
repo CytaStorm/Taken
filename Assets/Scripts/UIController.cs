@@ -19,7 +19,12 @@ public class UIController : MonoBehaviour
 		get; private set;
 	}
 
-	private void Awake()
+    private void Update()
+    {
+		Debug.Log(CurrentUIMode);
+    }
+
+    private void Awake()
 	{
 		if (UI != null && UI != this)
 		{
@@ -48,6 +53,7 @@ public class UIController : MonoBehaviour
 
 	public void ChangeToGameplay()
 	{
+		Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
 		_gameplayUI.SetActive(true);

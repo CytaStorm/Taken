@@ -845,6 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   interactionTransform: {fileID: 1295160137}
+  destinationPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &992491460
 GameObject:
   m_ObjectHideFlags: 0
