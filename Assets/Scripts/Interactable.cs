@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
 
 
 
-    void Start()
+    protected void Start()
     {
         // Get the NavMeshAgent component attached to the NPC
         agent = GetComponent<NavMeshAgent>();
@@ -32,7 +32,7 @@ public class Interactable : MonoBehaviour
     }
 
     // Moves the NPC to the destination
-    private void MoveToPosition(Vector3 destination)
+    protected void MoveToPosition(Vector3 destination)
     {
         if (agent != null)
         {
@@ -41,8 +41,8 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    
-    void Update()
+
+    protected void Update()
     {
         // Checks if NPC is focused by the player
         if (isFocus && canInteract)

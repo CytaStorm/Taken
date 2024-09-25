@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChestController : Interactable
 {
@@ -10,18 +11,33 @@ public class ChestController : Interactable
     void Start()
     {
         isEmpty = false;
+        base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        base.Update();
     }
 
     public override void Interact()
     {
         GiveItem();
         base.Interact();
+    }
+
+    private void MoveToPosition(Vector3 destination)
+    {
+        base.MoveToPosition(destination);
+    }
+
+    public void OnDefocused()
+    {
+        base.OnDefocused();
+    }
+
+    public void OnFocused()
+    {
+        base.OnFocused();
     }
 
     /// <summary>
