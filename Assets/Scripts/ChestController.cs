@@ -5,18 +5,39 @@ using UnityEngine.AI;
 
 public class ChestController : Interactable
 {
-    private bool isEmpty;
-
     // Start is called before the first frame update
     void Start()
     {
-        isEmpty = false;
         base.Start();
     }
 
     private void Update()
     {
-        base.Update();
+        // Checks if NPC is focused by the player
+        if (isFocus && canInteract)
+        {
+            float distance = Vector3.Distance(
+                PlayerController.PlayerControl.gameObject.transform.position,
+                interactionTransform.position);
+
+            // If its able to be interacted with, Interact
+            if (distance <= radius && !hasInteracted && !isMoving)
+            {
+                Debug.Log("INTERACT");
+                UIController.UI.ChangeToDialogue(); // Chest uses dialogue interface
+                Interact();
+
+                // Disables further interactions once chest is open
+                hasInteracted = true;                
+                canInteract = false;
+                Debug.Log("Interaction disabled after initial interaction.");
+                
+            }
+            else if (distance > radius && !isMoving)
+            {
+                hasInteracted = false;
+            }
+        }
     }
 
     public override void Interact()
@@ -45,7 +66,7 @@ public class ChestController : Interactable
     /// </summary>
     private void GiveItem()
     {
-        if (!isEmpty)
+        if (!hasInteracted)
         {
             Debug.Log("Gave item to player.");
             // add code here to put item in player inventory

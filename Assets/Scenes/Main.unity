@@ -645,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 491421486}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Interaction Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,11 +661,11 @@ Transform:
   m_GameObject: {fileID: 491421485}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.47114253, y: 0.59104854, z: 0.47114253}
+  m_LocalPosition: {x: 5.647947, y: 0.77, z: 4.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1549279812}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692680568
 GameObject:
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 1549279809}
   - component: {fileID: 1549279813}
   - component: {fileID: 1549279814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1424,8 +1424,7 @@ Transform:
   m_LocalPosition: {x: 5.647947, y: 0.77, z: 4.37}
   m_LocalScale: {x: 2.1225, y: 1.6919084, z: 2.1225}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 491421486}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!208 &1549279813
@@ -1738,6 +1737,7 @@ SceneRoots:
   - {fileID: 1817774278}
   - {fileID: 1696933195}
   - {fileID: 1549279812}
+  - {fileID: 491421486}
   - {fileID: 796200093}
   - {fileID: 1362345378}
   - {fileID: 203542762}

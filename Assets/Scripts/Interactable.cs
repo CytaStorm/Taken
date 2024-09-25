@@ -5,17 +5,17 @@ using UnityEngine.AI;  // Import the AI Navigation namespace
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private float radius = 3f;           
-    [SerializeField] private Transform interactionTransform;  
-    [SerializeField] private Vector3 destinationPosition;  
+    [SerializeField] protected float radius = 3f;           
+    [SerializeField] protected Transform interactionTransform;  
+    [SerializeField] protected Vector3 destinationPosition;  
 
 
-    private bool isFocus = false;       
-    private bool hasInteracted = false; 
-    private bool isMoving = false;      
-    private bool canInteract = true;    
-    private int interactionCount = 0;   
-    private NavMeshAgent agent;         
+    protected bool isFocus = false;       
+    protected bool hasInteracted = false; 
+    protected bool isMoving = false;      
+    protected bool canInteract = true;    
+    protected int interactionCount = 0;   
+    protected NavMeshAgent agent;         
 
 
 
