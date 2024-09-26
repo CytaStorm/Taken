@@ -7,6 +7,7 @@ public class DialogueNode : MonoBehaviour
 {
     //FIELDS
     private string data;
+    private string buttonName;
 
     //PROPERTIES
     public string Data
@@ -14,9 +15,15 @@ public class DialogueNode : MonoBehaviour
         get { return data; }
     }
 
+    public string ButtonName
+    {
+        get { return buttonName; }
+    }
+
     //CONSTRUCTOR
-    public DialogueNode(string data)
+    public DialogueNode(string data, string buttonName)
     {
         this.data = data;
+        this.buttonName = buttonName;
     }
 }
