@@ -7,13 +7,13 @@ using System.IO;
 
 class DialogueTreeParser
 {
-    public static void ParseFile(string filePath)
+    public static List<DialogueNode> ParseFile(string filePath)
     {
         // Makes sure the file exists
         if (!File.Exists(filePath))
         {
             Debug.LogError("File not found at the path: " + filePath);
-            return;
+            return null;
         }
 
         // Makes a list for the dialogue nodes
@@ -68,5 +68,7 @@ class DialogueTreeParser
         {
             Debug.Log(node);
         }
+
+        return dialogueNodes;
     }
 }

@@ -20,6 +20,12 @@ public class DialogueGraph : MonoBehaviour
     Dictionary<string, List<DialogueNode>> adjList;
     bool[,] adjMatrix = null;
 
+    // Constructor
+    public DialogueGraph()
+    {
+        nodes = DialogueTreeParser.ParseFile(filePath);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
