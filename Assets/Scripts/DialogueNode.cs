@@ -21,3 +21,4 @@ class DialogueNode
         return $"Node: {NodeName}\nInfo: {Info}\nLinks: {string.Join(", ", Links)}\n";
     }
 }
+

@@ -12,13 +12,23 @@ public class PlayerController : MonoBehaviour
 {
 	[SerializeField] private PlayerInput _playerInput; 
 
-	[SerializeField] private Camera _cam;
-	[SerializeField] private NavMeshAgent _agent;
-	[SerializeField] private int _raycastRange = 100;
-	[SerializeField] private LayerMask _movementMask;
-	[SerializeField] private LayerMask _interactableMask;
+	[SerializeField] private Camera cam;
+	[SerializeField] private NavMeshAgent agent;
+	[SerializeField] private int raycastRange = 100;
+	[SerializeField] private LayerMask movementMask;
+	[SerializeField] private LayerMask interactableMask;
+	[SerializeField] private bool inDialogue = false;
 
 	private Interactable _focus;
+
+	//PROPERTIES
+	/// <summary>
+	/// Get only property saying whether the player is in dialogue or not
+	/// </summary>
+	public bool InDialogue
+	{
+		get { return inDialogue; }
+	}
 
 	//Singleton stuff
 	public static PlayerController PlayerControl
