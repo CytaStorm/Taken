@@ -18,12 +18,13 @@ public class DialogueGraph : MonoBehaviour
     //Graph stuff
     List<DialogueNode> nodes;
     Dictionary<string, List<DialogueNode>> adjList;
-    bool[,] adjMatrix = null;
+    bool[,] adjMatrix;
 
     // Constructor
     public DialogueGraph()
     {
         nodes = DialogueTreeParser.ParseFile(filePath);
+        CreateAdjacencies();
     }
 
     // Start is called before the first frame update
@@ -56,6 +57,59 @@ public class DialogueGraph : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// Create adjacency list and matrix
+    /// </summary>
+    private void CreateAdjacencies()
+    {
+        // Create adjacency list
+        adjList = new Dictionary<string, List<DialogueNode>>();
+
+        foreach (DialogueNode node in nodes) 
+        { 
+            // Create a list to store all adjacent nodes to current node
+            List<DialogueNode> adjNodes = new List<DialogueNode>();
+            // Iterate through current node's list of names to get references to all
+            // adjacent nodes
+            foreach (string name in node.Links)
+            {
+                foreach (DialogueNode adjNode in nodes)
+                {
+                    if (adjNode.NodeName == name) 
+                    { 
+                        adjNodes.Add(adjNode);
+                    }                    
+                }
+            }
+
+            adjList.Add(node.NodeName, adjNodes);
+        }
+
+        // Create adjacency matrix
+        adjMatrix = new bool[nodes.Count, nodes.Count];
+
+        // For each node in the list, iterate through every other node. If the
+        // second node is linked to the first, mark the corresponding element in
+        // the adjacency matrix as true. Otherwise, mark it as false
+        
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            DialogueNode node = nodes[i];
+            
+            for (int j = 0; j < nodes.Count; j++)
+            {
+                DialogueNode adjNode = nodes[j];
+                if (adjList[node.NodeName].Contains(nodes[j]))
+                {
+                    adjMatrix[i,j] = true;
+                }
+                else
+                {
+                    adjMatrix[i, j] = false;
+                }
+            }
+        }
+    }
 
     private void HardcodeAdjacencies()
     {
