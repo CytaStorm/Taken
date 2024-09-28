@@ -1,0 +1,46 @@
+:: StoryTitle
+Untitled Story
+
+
+:: StoryData
+{
+  "ifid": "CE8ECD75-A0F2-47CC-87B7-A6A467DDF927",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: Forgive {"position":"1175,675","size":"100,100"}
+Guy forgives you
+
+
+:: Happy {"position":"775,550","size":"100,100"}
+Guy is happy
+[[Heaven]]
+[[Sleep]]
+
+
+:: Heaven {"position":"675,675","size":"100,100"}
+Guy goes to heaven
+
+
+:: Mad {"position":"1050,550","size":"100,100"}
+Guy gets mad
+[[Murder]]
+[[Forgive]]
+
+
+:: Murder {"position":"1000,675","size":"100,100"}
+Guy murders you
+
+
+:: Sleep {"position":"850,675","size":"100,100"}
+Guy happily goes to sleep
+
+
+:: Start {"position":"900,400","size":"100,100"}
+Starting dialogue
+[[Mad]]
+[[Happy]]

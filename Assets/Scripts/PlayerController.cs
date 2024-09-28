@@ -10,15 +10,25 @@ using UnityEngine.InputSystem.HID;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private PlayerInput _playerInput; 
+	[SerializeField] private PlayerInput playerInput; 
 
-	[SerializeField] private Camera _cam;
-	[SerializeField] private NavMeshAgent _agent;
-	[SerializeField] private int _raycastRange = 100;
-	[SerializeField] private LayerMask _movementMask;
-	[SerializeField] private LayerMask _interactableMask;
+	[SerializeField] private Camera cam;
+	[SerializeField] private NavMeshAgent agent;
+	[SerializeField] private int raycastRange = 100;
+	[SerializeField] private LayerMask movementMask;
+	[SerializeField] private LayerMask interactableMask;
+	[SerializeField] private bool inDialogue = false;
 
-	private Interactable _focus;
+	private Interactable focus;
+
+	//PROPERTIES
+	/// <summary>
+	/// Get only property saying whether the player is in dialogue or not
+	/// </summary>
+	public bool InDialogue
+	{
+		get { return inDialogue; }
+	}
 
 	// Start is called before the first frame update
 	void Start()
@@ -34,7 +44,7 @@ public class PlayerController : MonoBehaviour
 	public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{
 		Vector3 mousePos = Mouse.current.position.ReadValue();
-		Ray ray = _cam.ScreenPointToRay(mousePos);
+		Ray ray = cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;
 
 		//Only interact with UI objects
@@ -42,36 +52,36 @@ public class PlayerController : MonoBehaviour
 
 		//Player clicks in game
 		// if ray hits interactable
-		if (Physics.Raycast(ray, out hit, _raycastRange, _interactableMask))
+		if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
 		{
 			Interactable interactable = hit.collider.GetComponent<Interactable>();
 			if (interactable != null)
 			{
 				SetFocus(interactable);
-				_agent.SetDestination(hit.point);
+				agent.SetDestination(hit.point);
 			}
 		}
 
 		// if the ray hits something walkable move the player towards it
-		else if (Physics.Raycast(ray, out hit, _raycastRange, _movementMask))
+		else if (Physics.Raycast(ray, out hit, raycastRange, movementMask))
 		{
-			_agent.SetDestination(hit.point);
+			agent.SetDestination(hit.point);
 		}
 	}
 
 	private void SetFocus(Interactable newFocus)
 	{
-		if (newFocus == _focus) return;
+		if (newFocus == focus) return;
 
 		//New focus object
-		if (_focus != null) _focus.OnDefocused();
-		_focus = newFocus;
+		if (focus != null) focus.OnDefocused();
+		focus = newFocus;
 		newFocus.OnFocused();
 	}
 	
 	private void RemoveFocus()
 	{
-		if (_focus != null) _focus.OnDefocused();
-		_focus = null;
+		if (focus != null) focus.OnDefocused();
+		focus = null;
 	}
 }
