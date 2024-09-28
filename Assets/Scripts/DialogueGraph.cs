@@ -86,7 +86,7 @@ public class DialogueGraph : MonoBehaviour
             experienceBliss
         };
 
-        //Hardcode adjList (a dictionary) with string identifier being the "Data" property of each node
+        /* //Hardcode adjList (a dictionary) with string identifier being the "Data" property of each node
         adjList = new Dictionary<string, List<DialogueNode>>();
         adjList.Add(start.Data, new List<DialogueNode> { suicide, walk, yap});
         adjList.Add(suicide.Data, new List<DialogueNode> { suicideEnd });
@@ -101,6 +101,7 @@ public class DialogueGraph : MonoBehaviour
         adjList.Add(yapAboutTalkTuah.Data, new List<DialogueNode> { experienceBliss });
         adjList.Add(yapAboutAids.Data, new List<DialogueNode>());
         adjList.Add(experienceBliss.Data, new List<DialogueNode> ());
+        */
 
 
     }
