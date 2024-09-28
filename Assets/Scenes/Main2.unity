@@ -231,6 +231,9 @@ MonoBehaviour:
   offset: {x: 0, y: -1, z: -1.2}
   zoom: 10
   pitch: 2
+  cam: {fileID: 94754712}
+  zoomInDuration: 0
+  zoomInMagnitude: 0
 --- !u!1 &211879727
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,11 +259,11 @@ Transform:
   m_GameObject: {fileID: 211879727}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.647947, y: 0.77, z: 4.37}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.47114253, y: 0.59104854, z: 0.47114253}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 903088703}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &259665996
 GameObject:
@@ -846,7 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   interactionTransform: {fileID: 1295160137}
-  destinationPosition: {x: -10, y: 0, z: -6}
+  destinationPosition: {x: 0, y: 0, z: 0}
 --- !u!195 &796200097
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1125,7 +1128,8 @@ Transform:
   m_LocalPosition: {x: 5.647947, y: 0.77, z: 4.37}
   m_LocalScale: {x: 2.1225, y: 1.6919084, z: 2.1225}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 211879728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &983799531
@@ -1631,16 +1635,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0283e180c20d9409506e6c241aed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1817774280}
-  _cam: {fileID: 94754712}
-  _agent: {fileID: 1817774277}
-  _raycastRange: 100
-  _movementMask:
+  playerInput: {fileID: 1817774280}
+  cam: {fileID: 94754712}
+  agent: {fileID: 1817774277}
+  raycastRange: 100
+  movementMask:
     serializedVersion: 2
     m_Bits: 64
-  _interactableMask:
+  interactableMask:
     serializedVersion: 2
     m_Bits: 128
+  inDialogue: 0
 --- !u!114 &1817774280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,5 +1794,4 @@ SceneRoots:
   - {fileID: 2042571504}
   - {fileID: 259665999}
   - {fileID: 903088703}
-  - {fileID: 211879728}
   - {fileID: 1291823044}
