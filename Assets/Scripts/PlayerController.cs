@@ -20,25 +20,6 @@ public class PlayerController : MonoBehaviour
 
 	private Interactable _focus;
 
-	//Singleton stuff
-	public static PlayerController PlayerControl
-	{
-		get; private set;
-	}
-
-	private void Awake()
-	{
-		if (PlayerControl != null && PlayerControl != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			PlayerControl = this;
-		}
-	}
-
-
 	// Start is called before the first frame update
 	void Start()
 	{

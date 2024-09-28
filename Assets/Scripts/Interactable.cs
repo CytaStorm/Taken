@@ -48,7 +48,7 @@ public class Interactable : MonoBehaviour
         if (isFocus && canInteract)
         {
             float distance = Vector3.Distance(
-                PlayerController.PlayerControl.gameObject.transform.position,
+                PlayerScript.Player.PlayerController.transform.position,
                 interactionTransform.position);
             // If its able to be interacted with, Interact
             if (distance <= radius && !hasInteracted && !isMoving)
