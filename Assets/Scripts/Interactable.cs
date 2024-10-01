@@ -9,15 +9,12 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected Transform interactionTransform;  
     [SerializeField] protected Vector3 destinationPosition;  
 
-
     protected bool isFocus = false;       
     protected bool hasInteracted = false; 
     protected bool isMoving = false;      
     protected bool canInteract = true;    
     protected int interactionCount = 0;   
     protected NavMeshAgent agent;         
-
-
 
     protected void Start()
     {
@@ -29,6 +26,7 @@ public class Interactable : MonoBehaviour
     {
         Debug.Log("Interacting with " + transform.name);
         MoveToPosition(destinationPosition);
+		PlayerScript.Player.PlayerController.StopMoving();
     }
 
     // Moves the NPC to the destination

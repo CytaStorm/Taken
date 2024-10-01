@@ -25,6 +25,7 @@ public class ChestController : Interactable
             {
                 Debug.Log("INTERACT");
                 UIController.UI.ChangeToDialogue(); // Chest uses dialogue interface
+
                 Interact();
 
                 // Disables further interactions once chest is open

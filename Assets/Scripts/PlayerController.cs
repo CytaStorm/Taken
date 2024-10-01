@@ -69,6 +69,10 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Sets focus to an interactable object.
+	/// </summary>
+	/// <param name="newFocus">Interactable to focus on.</param>
 	private void SetFocus(Interactable newFocus)
 	{
 		if (newFocus == focus) return;
@@ -79,9 +83,29 @@ public class PlayerController : MonoBehaviour
 		newFocus.OnFocused();
 	}
 	
+	/// <summary>
+	/// Removes focus.
+	/// </summary>
 	private void RemoveFocus()
 	{
 		if (focus != null) focus.OnDefocused();
 		focus = null;
+	}
+
+	/// <summary>
+	/// Stops the player from moving and resets the player's destination.
+	/// </summary>
+	public void StopMoving()
+	{
+		agent.isStopped = true;
+		agent.destination = transform.position;
+	}
+
+	/// <summary>
+	/// Unfreezes the player agent.
+	/// </summary>
+	public void StartMoving()
+	{
+		agent.isStopped = false;
 	}
 }

@@ -45,17 +45,20 @@ public class UIController : MonoBehaviour
 	public void ChangeToDialogue()
 	{
 		CurrentUIMode = UIMode.Dialogue;
-
 		//Draw Dialogue box
 		_dialogueUI.SetActive(true);
 		_gameplayUI.SetActive(false);
+
+		PlayerScript.Player.PlayerController.StopMoving();
 	}
 
 	public void ChangeToGameplay()
 	{
-		Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
+		//Hide dialogue UI, show gameplay UI
 		_dialogueUI.SetActive(false);
 		_gameplayUI.SetActive(true);
+
+		PlayerScript.Player.PlayerController.StartMoving();
 	}
 }
