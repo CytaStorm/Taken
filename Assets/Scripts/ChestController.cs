@@ -17,7 +17,7 @@ public class ChestController : Interactable
         if (isFocus && canInteract)
         {
             float distance = Vector3.Distance(
-                PlayerController.PlayerControl.gameObject.transform.position,
+                PlayerScript.Player.PlayerController.gameObject.transform.position,
                 interactionTransform.position);
 
             // If its able to be interacted with, Interact

@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 	{
 	}
 
-	public void OnMoveInteract(InputAction.CallbackContext ctx)
+	public void OnMoveInteract (InputAction.CallbackContext ctx)
 	{
 		Vector3 mousePos = Mouse.current.position.ReadValue();
 		Ray ray = cam.ScreenPointToRay(mousePos);

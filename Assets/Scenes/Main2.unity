@@ -231,6 +231,9 @@ MonoBehaviour:
   offset: {x: 0, y: -1, z: -1.2}
   zoom: 10
   pitch: 2
+  cam: {fileID: 94754712}
+  zoomInDuration: 0
+  zoomInMagnitude: 0
 --- !u!1 &211879727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1577,7 @@ GameObject:
   - component: {fileID: 1817774277}
   - component: {fileID: 1817774279}
   - component: {fileID: 1817774280}
+  - component: {fileID: 1817774281}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1631,16 +1635,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0283e180c20d9409506e6c241aed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1817774280}
-  _cam: {fileID: 94754712}
-  _agent: {fileID: 1817774277}
-  _raycastRange: 100
-  _movementMask:
+  playerInput: {fileID: 0}
+  cam: {fileID: 0}
+  agent: {fileID: 0}
+  raycastRange: 100
+  movementMask:
     serializedVersion: 2
-    m_Bits: 64
-  _interactableMask:
+    m_Bits: 0
+  interactableMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
+  inDialogue: 0
 --- !u!114 &1817774280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1671,6 +1676,22 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1817774281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817774276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c674fc9133f3462429b4dddc56668761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 1817774279}
+  _health: 10
+  _inventorySize: 5
+  _inventory: []
 --- !u!1 &2042571500
 GameObject:
   m_ObjectHideFlags: 0

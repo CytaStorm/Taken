@@ -22,8 +22,8 @@ public class PlayerScript : MonoBehaviour
 	#region Properties
 	public PlayerController PlayerController
 	{
-		get;
-		private set;
+		get => _playerController;
+		private set => _playerController = value;
 	}
 	#endregion
 
@@ -52,6 +52,5 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

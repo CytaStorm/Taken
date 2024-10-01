@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -49,8 +48,8 @@ public class CameraController : MonoBehaviour
         {
             //MOVEMENT STATE during typical gameplay - ie moving around 
             case CameraState.Movement:
-                //Change to ZoomingIn --> Dialogue
-                if (PlayerController.PlayerControl.InDialogue)
+				//Change to ZoomingIn --> Dialogue
+                if (PlayerScript.Player.PlayerController.InDialogue)
                 {
                     //Switch the camera state
                     camState = CameraState.ZoomingIn;
@@ -60,7 +59,7 @@ public class CameraController : MonoBehaviour
 
             //DIALOGUE STATE (be ready to switch back to zoom out)
             case CameraState.Dialogue:
-                if (PlayerController.PlayerControl.InDialogue == false)
+                if (PlayerScript.Player.PlayerController.InDialogue == false)
                 {
                     //Vector3 newPos = target.position - (offset * zoom);
                     //distanceToNewPos = newPos - transform.position;
