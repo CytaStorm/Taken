@@ -26,7 +26,6 @@ public class Interactable : MonoBehaviour
     {
         Debug.Log("Interacting with " + transform.name);
         MoveToPosition(destinationPosition);
-		PlayerScript.Player.PlayerController.StopMoving();
     }
 
     // Moves the NPC to the destination
