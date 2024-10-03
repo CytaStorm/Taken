@@ -13,17 +13,35 @@ public class DialogueGraph : MonoBehaviour
 
     [SerializeField, Description("Path after Assets/")] 
     private string localPath;
-    string filePath;
+    private string filePath;
 
     //Graph stuff
-    List<DialogueNode> nodes;
-    Dictionary<string, List<DialogueNode>> adjList;
-    bool[,] adjMatrix;
+    private List<DialogueNode> nodes;
+    private DialogueNode start;
+    private Dictionary<string, List<DialogueNode>> adjList;
+    private bool[,] adjMatrix;
+
+    // Properties
+    public DialogueNode Start {  get { return start; } }
 
     // Constructor
-    public DialogueGraph()
+    public DialogueGraph(string filePath)
     {
         nodes = DialogueTreeParser.ParseFile(filePath);
+
+        // Find refernece to starting node
+        foreach (DialogueNode node in nodes) 
+        { 
+            if (node.NodeName.Trim().ToLower().Equals("start"))
+            {
+                start = node;
+            }
+        }
+
+        // In case there isn't a node named start, set start to the first
+        // node in the list 
+        if (start == null) { start = nodes[0]; }
+
         CreateAdjacencies();
     }
 

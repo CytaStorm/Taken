@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-class DialogueNode
+public class DialogueNode
 {
     public string NodeName { get; set; }
     public string Info { get; set; }

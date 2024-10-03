@@ -31,7 +31,7 @@ class DialogueTreeParser
             // Checks if the line starts with :: meaning its a new node
             if (trimmedLine.StartsWith("::"))
             {
-                // If a node is open, add it to the nopde
+                // If a node is open, add it to the node
                 if (currentNode != null)
                 {
                     dialogueNodes.Add(currentNode);
