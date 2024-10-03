@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
 {
 	[SerializeField] private GameObject _dialogueUI;
 	[SerializeField] private GameObject _gameplayUI;
+	[SerializeField] private DialogueTraverser dialogueTraverser;
     public UIMode CurrentUIMode;
 	public static UIController UI
 	{
@@ -45,6 +46,9 @@ public class UIController : MonoBehaviour
 	public void ChangeToDialogue()
 	{
 		CurrentUIMode = UIMode.Dialogue;
+
+		//Start the dialogue traversing in DialogueTraverser
+		dialogueTraverser.StartDialogue();
 
 		//Draw Dialogue box
 		_dialogueUI.SetActive(true);
