@@ -22,7 +22,7 @@ public class DialogueGraph : MonoBehaviour
     private bool[,] adjMatrix;
 
     // Properties
-    public DialogueNode Start {  get { return start; } }
+    public DialogueNode StartNode {  get { return start; } }
 
     // Constructor
     public DialogueGraph(string filePath)
@@ -126,6 +126,17 @@ public class DialogueGraph : MonoBehaviour
                     adjMatrix[i, j] = false;
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Print out all nodes for debugging purposes
+    /// </summary>
+    public void PrintNodes()
+    {
+        for (int i = 0;i < nodes.Count;i++) 
+        {
+            print($"Index {i}:" + nodes[i].ToString());
         }
     }
 

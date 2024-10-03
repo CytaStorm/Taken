@@ -41,8 +41,12 @@ class DialogueTreeParser
                 int braceIndex = trimmedLine.IndexOf("{");
                 string nodeName = (braceIndex > 0) ? trimmedLine.Substring(2, braceIndex - 2).Trim() : trimmedLine.Substring(2).Trim();
 
-                // Start a new node
-                currentNode = new DialogueNode(nodeName, "");
+                // Start a new node 
+                // Make sure node isn't the story title or story data
+                if ((nodeName != "StoryTitle") && (nodeName != "StoryData"))
+                {
+                    currentNode = new DialogueNode(nodeName, "");
+                }                
             }
             else if (trimmedLine.StartsWith("[[") && trimmedLine.EndsWith("]]"))
             {

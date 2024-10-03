@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class DialogueTester : MonoBehaviour
 {
+    DialogueGraph graph;
+
     void Start()
     {
         TestDialogueGraph();
+        graph.PrintNodes();
     }
 
     void TestDialogueParsing()
@@ -17,7 +20,6 @@ public class DialogueTester : MonoBehaviour
 
     void TestDialogueGraph()
     {
-
-        DialogueGraph graph = new DialogueGraph("/Scripts/Story.twee");
+        graph = new DialogueGraph(Application.dataPath + "/Scripts/Story.twee");
     }
 }
