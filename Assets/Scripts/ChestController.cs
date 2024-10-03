@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class ChestController : Interactable
 {
+	private List<string> _inventory = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class ChestController : Interactable
             if (distance <= radius && !hasInteracted && !isMoving)
             {
                 Debug.Log("INTERACT");
-                UIController.UI.ChangeToDialogue(); // Chest uses dialogue interface
+                UIController.UI.OpenDialogue(); // Chest uses dialogue interface
 
                 Interact();
 
@@ -43,23 +45,10 @@ public class ChestController : Interactable
 
     public override void Interact()
     {
-        GiveItem();
-        base.Interact();
-    }
+		//Open Inventory UI
 
-    private void MoveToPosition(Vector3 destination)
-    {
-        base.MoveToPosition(destination);
-    }
-
-    public void OnDefocused()
-    {
-        base.OnDefocused();
-    }
-
-    public void OnFocused()
-    {
-        base.OnFocused();
+        //GiveItem();
+        //base.Interact();
     }
 
     /// <summary>

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public enum UIMode
@@ -42,9 +44,17 @@ public class UIController : MonoBehaviour
 		_dialogueUI.SetActive(false);
 	}
 
-	public void ChangeToDialogue()
+	public void OpenDialogue(List<string> inventory)
 	{
 		CurrentUIMode = UIMode.Dialogue;
+
+		//Draw Dialog box with inventory options
+	}
+
+	public void OpenDialogue()
+	{
+		CurrentUIMode = UIMode.Dialogue;
+
 		//Draw Dialogue box
 		_dialogueUI.SetActive(true);
 		_gameplayUI.SetActive(false);
