@@ -49,6 +49,10 @@ public class UIController : MonoBehaviour
 		CurrentUIMode = UIMode.Dialogue;
 
 		//Draw Dialog box with inventory options
+
+		//Foreach item in inventory
+		//Create list 
+
 	}
 
 	public void OpenDialogue()

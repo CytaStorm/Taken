@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.gilzoide.flex-ui": {
+      "version": "https://github.com/gilzoide/unity-flex-ui.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c7cdad2a313055540cca0ac83191998c6e2551c8"
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.5",
       "depth": 0,
