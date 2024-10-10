@@ -24,14 +24,26 @@ public class DialogueGraph : MonoBehaviour
     // Properties
     public DialogueNode StartNode {  get { return start; } }
 
-    // Constructor
-    public DialogueGraph(string filePath)
+    //I DELETED THE CONSTRUCTOR
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Start by parsing shit, then construct itself with that data
+        string filePath = Application.dataPath + "/Scripts/Story.twee";
+        DialogueTreeParser.ParseFile(filePath);
+
+        //Parse the jawns that used to be in the constructor
+        Parse(filePath);
+    }
+
+    private void Parse(string filePath)
     {
         nodes = DialogueTreeParser.ParseFile(filePath);
 
         // Find refernece to starting node
-        foreach (DialogueNode node in nodes) 
-        { 
+        foreach (DialogueNode node in nodes)
+        {
             if (node.NodeName.Trim().ToLower().Equals("start"))
             {
                 start = node;
@@ -43,16 +55,7 @@ public class DialogueGraph : MonoBehaviour
         if (start == null) { start = nodes[0]; }
 
         CreateAdjacencies();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //For now, just load data on start
-
-        //For now, instantiate hardcoded nodes and a hardcoded adjacency matrix
-
-    }      
+    } 
 
     /// <summary>
     /// Create adjacency list and matrix
