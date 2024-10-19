@@ -26,7 +26,7 @@ public class ChestController : Interactable
             if (distance <= radius && !hasInteracted && !isMoving)
             {
                 Debug.Log("INTERACT");
-                UIController.UI.OpenDialogue(); // Chest uses dialogue interface
+                UIController.UI.OpenDialogue(1); // Chest uses dialogue interface
 
                 Interact();
 
