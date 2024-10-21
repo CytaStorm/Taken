@@ -14,7 +14,9 @@ public class Interactable : MonoBehaviour
     protected bool isMoving = false;      
     protected bool canInteract = true;    
     protected int interactionCount = 0;   
-    protected NavMeshAgent agent;         
+    protected NavMeshAgent agent;
+
+	protected InteractionTree _interactTree;
 
     protected void Start()
     {

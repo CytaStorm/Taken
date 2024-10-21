@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-class DialogueNode
+public class DialogueNode
 {
-    public string NodeName { get; set; }
-    public string Info { get; set; }
-    public List<string> Links { get; set; }
+    public string Name { get; set; }
 
-    public DialogueNode(string nodeName, string info)
-    {
-        NodeName = nodeName;
-        Info = info;
-        Links = new List<string>();
-    }
+	public string NodeText { get; set; }
 
-    public override string ToString()
+	//Rewrite
+	/// <summary>
+	/// List of tuples that contain the connecting node as well as the link to it.
+	/// </summary>
+	public List<(DialogueNode nextNode, DialogueLink link)> Links;
+
+    public DialogueNode(string nodeName, string nodeText)
     {
-        return $"Node: {NodeName}\nInfo: {Info}\nLinks: {string.Join(", ", Links)}\n";
+        Name = nodeName;
+		NodeText = nodeText;
     }
 }
 
