@@ -1,3 +1,4 @@
+using Gilzoide.FlexUi.Yoga;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class InteractionTree
 {
-	public List<DialogueNode> Nodes;
+	public List<DialogueNode> Nodes = new List<DialogueNode>();
 
 	public DialogueNode CurrentNode;
 

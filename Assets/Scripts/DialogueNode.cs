@@ -13,7 +13,8 @@ public class DialogueNode
 	/// <summary>
 	/// List of tuples that contain the connecting node as well as the link to it.
 	/// </summary>
-	public List<(DialogueNode nextNode, DialogueLink link)> Links;
+	public List<(DialogueNode nextNode, DialogueLink link)> Links = 
+		new List<(DialogueNode nextNode, DialogueLink link)>();
 
     public DialogueNode(string nodeName, string nodeText)
     {

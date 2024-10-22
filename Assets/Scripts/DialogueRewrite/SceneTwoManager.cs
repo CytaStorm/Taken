@@ -11,14 +11,20 @@ public class SceneTwoManager: MonoBehaviour
 	private void Start()
 	{
 		_sallosInteraction = new InteractionTree("sallos");
-		//Set up _sallos interactions
-		_conditions.Add(new DialogueCondition("hasPot"));
-		_conditions.Add(new DialogueCondition("talkedToSallos"));
+		DialogueCondition hasPot = new DialogueCondition("hasPot");
+		DialogueCondition talkedToSallos = new DialogueCondition("talkedToSallos");
+		_conditions.Add(hasPot);
+		_conditions.Add(talkedToSallos);
 
 		foreach (DialogueCondition condition in _conditions)
 		{
 			_conditionNamesList.Add(condition.Name);
 		}
+
+		SetUpSallosTree();
+		print(_sallosInteraction.CurrentNode.Name);
+		_sallosInteraction.TraverseTree(2, _conditions);
+		print(_sallosInteraction.CurrentNode.NodeText);
 	}
 
 	private void Update()
