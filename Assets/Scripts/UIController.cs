@@ -21,7 +21,7 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-		Debug.Log(CurrentUIMode);
+		//Debug.Log(CurrentUIMode);
     }
 
     private void Awake()
