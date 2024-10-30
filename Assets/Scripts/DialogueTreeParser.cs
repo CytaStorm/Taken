@@ -49,10 +49,6 @@ class DialogueTreeParser
                     currentNode = new DialogueNode(nodeName, "");
                 }                
             }
-            else if (trimmedLine.StartsWith("[[") && trimmedLine.EndsWith("]]"))
-            {
-                // DO NOTHING
-            }
             else if (currentNode != null)
             {
                 // Adds the info under the node
@@ -72,62 +68,19 @@ class DialogueTreeParser
             Debug.Log(node);
         }
 
-        // SECOND TIME THROUGH -- assign references to adjacent nodes
-        currentNode = null;
-        foreach (string line in fileLines)
+        // Parses special text in each node
+        foreach (DialogueNode node in dialogueNodes)
         {
-            // Trims whitespace from the line
-            string trimmedLine = line.Trim();
+            // Look through info of each node
 
-            // Checks if the line starts with :: meaning its a new node
-            if (trimmedLine.StartsWith("::"))
-            {
-                // Parses the node name, removes the :: and any other info in the braces
-                int braceIndex = trimmedLine.IndexOf("{");
-                string nodeName = (braceIndex > 0) ? trimmedLine.Substring(2, braceIndex - 2).Trim() : trimmedLine.Substring(2).Trim();
+            int startIndex = 
 
-                // Start a new node 
-                // Make sure node isn't the story title or story data
-                if ((nodeName != "StoryTitle") && (nodeName != "StoryData"))
-                {
-                    // Before starting a new node, we update the list of links of the node in
-                    // dialogueNodes that matches currentNode
 
-                    // Finds the node in the node list that is identical to currentNode
-                    // Set this node's links to be that of currentNode
-                    foreach (DialogueNode node in dialogueNodes)
-                    {
-                        if (node.NodeName == currentNode.NodeName)
-                        {
-                            node.Links = currentNode.Links;
-                        }
-                    }
+            string adjNames = node.Info.Substring();
 
-                    currentNode = new DialogueNode(nodeName, "");
-                }
-            }
-            else if (trimmedLine.StartsWith("[[") && trimmedLine.EndsWith("]]"))
-            {
-                // Gets the name of the link node from the hard brackets
-                string link = trimmedLine.Substring(2, trimmedLine.Length - 4);
+            // Remove portions in square brackets
 
-                // Finds the reference to the node with the same name as the link
-                // Add this node to the currentNode's links
-                DialogueNode linkNode = null;
-                foreach (DialogueNode node in dialogueNodes)
-                {
-                    if (node.NodeName == link)
-                    {
-                        linkNode = node;
-                    }
-                }
-                currentNode?.Links.Add(linkNode);
-            }
-            else if (currentNode != null)
-            {
-                // Adds the info under the node
-                currentNode.Info += trimmedLine + " ";
-            }
+            // Delete unnecessary portions of node info
         }
 
         return dialogueNodes;
