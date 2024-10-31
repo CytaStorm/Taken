@@ -12,15 +12,15 @@ public class DialogueNode
     public List<string> RequiredChoices { get; private set; }
     
 
-    public DialogueNode(string nodeName, string info, List<string> requiredChoices)
+    public DialogueNode(string nodeName, string info)
     {
         NodeName = nodeName;
         Info = info;
-        RequiredChoices = requiredChoices;
 
         // Can't be a parameter because parser needs to run twice to get references for
         // the node links
         Links = new List<DialogueNode>(); 
+        RequiredChoices = new List<string>(); 
     }
 
     public override string ToString()

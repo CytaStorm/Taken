@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Unity.VisualScripting.FullSerializer;
 
 
-class DialogueTreeParser
+class DialogueTreeParser : MonoBehaviour
 {
-    public static List<DialogueNode> ParseFile(string filePath)
+	private void Start()
+	{
+		
+	}
+	public static List<DialogueNode> ParseFile(string filePath)
     {
         // Makes sure the file exists
         if (!File.Exists(filePath))
@@ -65,18 +70,37 @@ class DialogueTreeParser
         // Prints out the parsed nodes for testing
         foreach (var node in dialogueNodes)
         {
-            Debug.Log(node);
+            //Debug.Log(node);
         }
 
         // Parses special text in each node
         foreach (DialogueNode node in dialogueNodes)
         {
-            // Look through info of each node
+			// Look through info of each node
+			//0123456789
+			//foobar[[alksjdjflkjalkdsflkasdfjklasjdflkaslkdfjaslkdfj]]
+			// 012345678901234567890123
+			//"Guy is happy [[heaven]] [[sleep]] "
+			List<string> linkedNodeNames = new List<string>();
+			while (node.Info.IndexOf("[[") != -1)
+			{
+				//Find first set of delimiters
+				int linkNameStartIndex = node.Info.IndexOf("[[") + 2;
+				int linkNameEndIndex = node.Info.IndexOf("]]");
+				int linkedNodeNameLength = linkNameEndIndex - linkNameStartIndex;
 
-            int startIndex = 
+				string linkedNodeName = node.Info.Substring(linkNameStartIndex, linkedNodeNameLength);
+				linkedNodeNames.Add(linkedNodeName);
 
+				//Chop the link out of node.info
+				node.Info = node.Info.Remove(linkNameStartIndex - 1, linkedNodeName.Length + 2);
+			}
+			foreach (string linkedNodeName in linkedNodeNames)
+			{
+				print(linkedNodeName);
+			}
 
-            string adjNames = node.Info.Substring();
+            //string adjNames = node.Info.Substring();
 
             // Remove portions in square brackets
 

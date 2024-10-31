@@ -5,7 +5,7 @@ using System.IO;
 using UnityEditor;
 using System.ComponentModel;
 
-public class DialogueGraph : MonoBehaviour
+public class DialogueGraph
 {
     //FIELDS
     //Streamreader stuff
@@ -27,14 +27,14 @@ public class DialogueGraph : MonoBehaviour
     //I DELETED THE CONSTRUCTOR
 
     // Start is called before the first frame update
-    void Start()
+    public DialogueGraph()
     {
         //Start by parsing shit, then construct itself with that data
         string filePath = Application.dataPath + "/Scripts/Story.twee";
         DialogueTreeParser.ParseFile(filePath);
 
         //Parse the jawns that used to be in the constructor
-        Parse(filePath);
+        //Parse(filePath);
     }
 
     private void Parse(string filePath)
@@ -114,11 +114,11 @@ public class DialogueGraph : MonoBehaviour
     /// <summary>
     /// Print out all nodes for debugging purposes
     /// </summary>
-    public void PrintNodes()
-    {
-        for (int i = 0;i < nodes.Count;i++) 
-        {
-            print($"Index {i}:" + nodes[i].ToString());
-        }
-    }
+    //public void PrintNodes()
+    //{
+    //    for (int i = 0;i < nodes.Count;i++) 
+    //    {
+    //        print($"Index {i}:" + nodes[i].ToString());
+    //    }
+    //}
 }
