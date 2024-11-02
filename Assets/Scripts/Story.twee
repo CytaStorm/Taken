@@ -1,46 +1,93 @@
 :: StoryTitle
-Untitled Story
+Scene 2
 
 
 :: StoryData
 {
-  "ifid": "CE8ECD75-A0F2-47CC-87B7-A6A467DDF927",
+  "ifid": "58A17CB2-6B2D-4B16-8242-114FDACB8282",
   "format": "Harlowe",
   "format-version": "3.3.9",
-  "start": "Start",
+  "start": "Tent",
   "zoom": 1
 }
 
 
-:: Forgive {"position":"1175,675","size":"100,100"}
-Guy forgives you
+:: Bag interaction {"position":"125,450","size":"100,100"}
+(if: $talkedToSallos is true and $hasPot is false) [ Sallos said this bag had the pot in it. 
+[[Grab pot]] ] 
+(else-if: $hasPot is true)[ The bag is empty. 
+[[Tent]] ]
+(else:) [ The bag has a pot in it. 
+[[Grab pot]] ]
 
 
-:: Happy {"position":"775,550","size":"100,100"}
-Guy is happy
-[[Heaven]]
-[[Sleep]]
+
+:: Grab pot {"position":"400,300","size":"100,100"}
+ (set: $hasPot to true)
+You grab the pot.
+[[Tent]]
 
 
-:: Heaven {"position":"675,675","size":"100,100"}
-Guy goes to heaven
+:: Quest Complete {"position":"975,325","size":"100,100"}
+yum
 
 
-:: Mad {"position":"1050,550","size":"100,100"}
-Guy gets mad
-[[Murder]]
-[[Forgive]]
+:: Tent {"position":"175,850","size":"100,100"}
+You are in the tent
+
+[[campfire interaciton]] 
+
+[[sallosTalkHub]] 
+
+[[Bag interaction]] 
+
+(if: $hasPot is not true)[(set: $hasPot to false)]
+(if: $talkedToSallos is not true)[(set: $talkedToSallos to false)]
 
 
-:: Murder {"position":"1000,675","size":"100,100"}
-Guy murders you
+:: You're getting hungry. You should put the pot on the campfire. {"position":"725,575","size":"100,100"}
+[[Tent]]
 
 
-:: Sleep {"position":"850,675","size":"100,100"}
-Guy happily goes to sleep
+:: campfire interaciton {"position":"525,475","size":"100,100"}
+It's a campfire.
+(if: $talkedToSallos is true)[ [[You're getting hungry. You should put the pot on the campfire.]] ]
+(if: $hasPot is true)[ [[put pot on campfire]] ]
+[[Tent]]
 
 
-:: Start {"position":"900,400","size":"100,100"}
-Starting dialogue
-[[Mad]]
-[[Happy]]
+:: put pot on campfire {"position":"725,325","size":"100,100"}
+You put the pot on the campfire.
+
+[[Quest Complete]] 
+
+
+:: sallosTalk1 {"position":"900,675","size":"100,100"}
+"Did you put the pot on the campfire?"
+[[sallosTalkHub]] 
+
+
+:: sallosTalk2 {"position":"950,850","size":"100,100"}
+"put the pot on the campfire"
+[[sallosTalkHub]] 
+
+
+:: sallosTalk3 {"position":"825,975","size":"100,100"}
+Grab the pot from the bag and put it on the campfire
+[[sallosTalkHub]] 
+
+
+:: sallosTalk4 {"position":"600,1025","size":"100,100"}
+"You already got the pot? Put it on the campfire"
+[[sallosTalkHub]] 
+
+
+:: sallosTalkHub {"position":"575,825","size":"100,100"}
+(if: $hasPot is false and $talkedToSallos is true)[ [[sallosTalk1]] ] 
+(else-if: $hasPot is true and $talkedToSallos is true )[ [[sallosTalk2]] ]
+(else-if: $hasPot is false and $talkedToSallos is false)[ [[sallosTalk3]] ]
+(else-if: $hasPot is true and $talkedToSallos is false)[ [[sallosTalk4]] ] 
+(set: $talkedToSallos to true)
+[[Tent]] 
+
+<<hasPot>><<talkedToSallos>>

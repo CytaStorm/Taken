@@ -9,7 +9,9 @@ public class DialogueNode
     public string NodeName { get; set; }
     public string Info { get; set; }
     public List<DialogueNode> Links { get; set; }
-    public List<string> RequiredChoices { get; private set; }
+	//Debug, might remove later
+    public List<string> LinkNames { get; set; }
+    public List<string> RequiredChoices { get; set; }
     
 
     public DialogueNode(string nodeName, string info)
