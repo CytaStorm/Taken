@@ -23,6 +23,7 @@ public class DialogueGraph
 
     // Properties
     public DialogueNode StartNode {  get { return start; } }
+    public List<DialogueNode> Nodes {  get { return nodes; } }
         
     
     public DialogueGraph()
@@ -30,6 +31,12 @@ public class DialogueGraph
         //Start by parsing shit, then construct itself with that data
         string filePath = Application.dataPath + "/Scripts/Story.twee";
         DialogueTreeParser.ParseFile(filePath);
+    }
+
+    public DialogueGraph(string filePath)
+    {
+        //Start by parsing shit, then construct itself with that data
+        DialogueTreeParser.ParseFile(Application.dataPath + filePath);
     }
 
     private void Parse(string filePath)

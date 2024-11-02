@@ -27,6 +27,11 @@ public class DialogueTraverser
     {
     }
 
+    /// <summary>
+    /// Given a graph in a gameobject, sets it as the current graph and
+    /// sets the graph's starting node to be the current node
+    /// </summary>
+    /// <param name="graph"></param>
     public void SetNewGraph(DialogueGraph graph)
     {
         this.graph = graph;
