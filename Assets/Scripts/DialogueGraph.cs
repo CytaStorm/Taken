@@ -23,18 +23,13 @@ public class DialogueGraph
 
     // Properties
     public DialogueNode StartNode {  get { return start; } }
-
-    //I DELETED THE CONSTRUCTOR
-
-    // Start is called before the first frame update
+        
+    
     public DialogueGraph()
     {
         //Start by parsing shit, then construct itself with that data
         string filePath = Application.dataPath + "/Scripts/Story.twee";
         DialogueTreeParser.ParseFile(filePath);
-
-        //Parse the jawns that used to be in the constructor
-        //Parse(filePath);
     }
 
     private void Parse(string filePath)
