@@ -36,6 +36,14 @@ public class DialogueTraverser
     {
         this.graph = graph;
         currentNode = graph.StartNode;
+        if (graph.WasTraversed == false)
+        {
+            graph.WasTraversed = true;
+        }
+        else
+        {
+            graph.ReassignStart();
+        }
     }
 
     /// <summary>

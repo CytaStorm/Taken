@@ -12,6 +12,8 @@ public class DialogueTester : MonoBehaviour
         DialogueTraverser traverser = new DialogueTraverser();
         traverser.SetNewGraph(graph);
         Debug.Log(traverser.currentNode);
+        traverser.GoToNode(0);
+        Debug.Log(traverser.currentNode);
     }
 
     void TestDialogueParsing()

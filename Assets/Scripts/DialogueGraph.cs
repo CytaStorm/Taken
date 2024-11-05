@@ -24,6 +24,7 @@ public class DialogueGraph
     // Properties
     public DialogueNode StartNode {  get { return start; } }
     public List<DialogueNode> Nodes {  get { return nodes; } }
+    public bool WasTraversed { get; set; }
         
     
     public DialogueGraph()
@@ -59,6 +60,19 @@ public class DialogueGraph
 
         //CreateAdjacencies();
     } 
+
+    public void ReassignStart()
+    {
+        DialogueNode newStart;
+
+        // find the next viable start node by acessing the first start's link
+        newStart = start.Links[0];
+
+        // reassign start
+        Nodes.RemoveAt(0);
+        newStart.NodeName = "start";
+        start = newStart;
+    }
 
     /// <summary>
     /// Create adjacency list and matrix
