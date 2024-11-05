@@ -6,8 +6,8 @@ using UnityEngine;
 /// </summary>
 public class DialogueFlag
 {
-    public bool isTrue;
-    public string conditionName;
+    public bool IsTrue;
+    public string Name;
 
     /// <summary>
     /// Creates a new DialogueFlag that is set to false
@@ -15,18 +15,23 @@ public class DialogueFlag
     /// <param name="conditionName"></param>
     public DialogueFlag(string conditionName)
     {
-        isTrue = false;
-        this.conditionName = conditionName;
+        IsTrue = false;
+        this.Name = conditionName;
     }
 
-    /// <summary>
-    /// Creates a new DialogueFlag
-    /// </summary>
-    /// <param name="isTrue"></param>
-    /// <param name="conditionName"></param>
-    public DialogueFlag(bool isTrue, string conditionName)
+	/// <summary>
+	/// Creates a new DialogueFlag
+	/// </summary>
+	/// <param name="conditionName"></param>
+	/// <param name="isTrue"></param>
+	public DialogueFlag(string conditionName, bool isTrue)
     {
-        this.isTrue = isTrue;
-        this.conditionName = conditionName;
+        this.IsTrue = isTrue;
+        this.Name = conditionName;
     }
+
+	public override string ToString()
+	{
+		return $"{Name} must be {IsTrue}";
+	}
 }
