@@ -107,7 +107,7 @@ class DialogueTreeParser : MonoBehaviour
 			if (innerNode.NodeName == linkName)
 			{
 				node.Links.Add(innerNode);
-				print("matching node name: " + node.Links[node.Links.Count - 1].NodeName);
+				//print("matching node name: " + node.Links[node.Links.Count - 1].NodeName);
 				break;
 			}
 		}

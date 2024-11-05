@@ -9,7 +9,9 @@ public class DialogueTester : MonoBehaviour
     void Start()
     {
         TestDialogueGraph();
-        //graph.PrintNodes();
+        DialogueTraverser traverser = new DialogueTraverser();
+        traverser.SetNewGraph(graph);
+        Debug.Log(traverser.currentNode);
     }
 
     void TestDialogueParsing()

@@ -30,18 +30,18 @@ public class DialogueGraph
     {
         //Start by parsing shit, then construct itself with that data
         string filePath = Application.dataPath + "/Scripts/Story.twee";
-        DialogueTreeParser.ParseFile(filePath);
+        Parse(filePath);
     }
 
     public DialogueGraph(string filePath)
     {
         //Start by parsing shit, then construct itself with that data
-        DialogueTreeParser.ParseFile(Application.dataPath + filePath);
+        Parse(filePath);
     }
 
     private void Parse(string filePath)
     {
-        nodes = DialogueTreeParser.ParseFile(filePath);
+        nodes = DialogueTreeParser.ParseFile(filePath);        
 
         // Find refernece to starting node
         foreach (DialogueNode node in nodes)
@@ -49,6 +49,7 @@ public class DialogueGraph
             if (node.NodeName.Trim().ToLower().Equals("start"))
             {
                 start = node;
+                break;
             }
         }
 
@@ -56,7 +57,7 @@ public class DialogueGraph
         // node in the list 
         if (start == null) { start = nodes[0]; }
 
-        CreateAdjacencies();
+        //CreateAdjacencies();
     } 
 
     /// <summary>

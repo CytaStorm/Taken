@@ -27,7 +27,17 @@ public class DialogueNode
 
     public override string ToString()
     {
-        return $"Node: {NodeName}\nInfo: {Info}\nLinks: {string.Join(", ", Links)}\n";
+        return $"Node: {NodeName} || Info: {Info} || Links: {PrintLinks()}";
+    }
+
+    private string PrintLinks()
+    {
+        string output = "";
+        foreach (DialogueNode node in Links) 
+        {
+            output += node.NodeName + "\n";
+        }
+        return output ;
     }
 }
 
