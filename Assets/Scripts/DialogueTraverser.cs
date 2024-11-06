@@ -63,11 +63,29 @@ public class DialogueTraverser
     /// <returns>True if all conditionals are met, false otheriwse</returns>
     public bool CheckTraversal(DialogueNode destinationNode, List<DialogueFlag> flags)
     {
+        List<DialogueFlag> matches = new List<DialogueFlag>();
+
         // First, find every conditional in the scene's list of dialogueFlags that corresponds
         // to a conditional in the distination node
+        foreach (DialogueFlag destinationFlag in destinationNode.Flags) 
+        {
+            foreach (DialogueFlag flag in flags) 
+            {
+                if (flag.Name == destinationFlag.Name)
+                { 
+                    matches.Add(flag);
+                }
+            }
+        }
 
         // Then, check if any of these nodes are flase. Return false if so.
-        return false;
+        foreach (DialogueFlag flag in matches)
+        {
+            if (!flag.IsTrue) { return false; }
+        }
+
+        // Otherwise return true
+        return true;
     }
 
     /*
