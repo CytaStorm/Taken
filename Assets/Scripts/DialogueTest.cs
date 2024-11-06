@@ -14,6 +14,8 @@ public class DialogueTester : MonoBehaviour
         Debug.Log(traverser.currentNode);
         traverser.GoToNode(0);
         Debug.Log(traverser.currentNode);
+        traverser.GoToNode(0);
+        Debug.Log(traverser.currentNode);
     }
 
     void TestDialogueParsing()
