@@ -11,7 +11,7 @@ public class DialogueNode
     public List<DialogueNode> Links { get; set; }
 	//Debug, might remove later
     public List<string> LinkNames { get; set; }
-    public List<string> RequiredChoices { get; set; }
+    public List<DialogueFlag> Flags { get; set; }
     
 
     public DialogueNode(string nodeName, string info)
@@ -22,7 +22,7 @@ public class DialogueNode
         // Can't be a parameter because parser needs to run twice to get references for
         // the node links
         Links = new List<DialogueNode>(); 
-        RequiredChoices = new List<string>(); 
+        Flags = new List<DialogueFlag>(); 
     }
 
     public override string ToString()

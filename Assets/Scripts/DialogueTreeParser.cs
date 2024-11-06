@@ -54,7 +54,7 @@ class DialogueTreeParser : MonoBehaviour
 			{
 				prevNode = currentNode;
 				prevNode.LinkNames = RemoveSpecialText(prevNode, "[[", "]]");
-				prevNode.RequiredChoices = RemoveSpecialText(prevNode, "<<", ">>");
+				AddFlags(currentNode);
 			}
 
 			//Start new node
@@ -67,23 +67,17 @@ class DialogueTreeParser : MonoBehaviour
         {
             dialogueNodes.Add(currentNode);
 			currentNode.LinkNames = RemoveSpecialText(currentNode, "[[", "]]");
-			currentNode.RequiredChoices = RemoveSpecialText(currentNode, "<<", ">>");
+			AddFlags(currentNode);
         }
 
 		//Create the links between nodes
 		foreach (DialogueNode node in dialogueNodes)
 		{
-			if (node.LinkNames == null)
-			{
-				continue;
-			}
+			print(node.Info);
+			if (node.LinkNames == null) continue;
 
 			foreach (string linkName in node.LinkNames)
 			{
-				//print(linkName);
-				//Find node with that name
-				//var foundItem = myArray.SingleOrDefault(item => item.intProperty == someValue);
-
 				FindMatchingNode(dialogueNodes, node, linkName);
 			}
 		}
@@ -130,5 +124,20 @@ class DialogueTreeParser : MonoBehaviour
 			node.Info = node.Info.Remove(linkNameStartIndex - 2, linkedNodeName.Length + 4);
 		}
 		return results;
+	}
+
+	private static void AddFlags(DialogueNode node)
+	{
+		//Trues
+		foreach (string trues in RemoveSpecialText(node, "<<", ">>"))
+		{
+			node.Flags.Add(new DialogueFlag(trues, true));
+		}
+
+		//Falses
+		foreach (string falses in RemoveSpecialText(node, "~~", "``"))
+		{
+			node.Flags.Add(new DialogueFlag(falses, false));
+		}
 	}
 }

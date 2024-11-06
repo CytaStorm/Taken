@@ -12,20 +12,17 @@ Scene 2
 }
 
 
-:: Bag interaction {"position":"125,450","size":"100,100"}
-(if: $talkedToSallos is true and $hasPot is false) [ Sallos said this bag had the pot in it. 
-[[Grab pot]] ] 
-(else-if: $hasPot is true)[ The bag is empty. 
-[[Tent]] ]
-(else:) [ The bag has a pot in it. 
-[[Grab pot]] ]
+:: Bag interaction {"position":"0,375","size":"100,100"}
+(if: $talkedToSallos is true and $hasPot is false) [ Sallos said this bag had the pot in it. [[Grab pot]] ] 
+(else-if: $hasPot is true)[ [[The bag is empty.]] ]
+(else:) [ The bag has a pot in it. [[Grab pot]] ]
 
 
-
-:: Grab pot {"position":"400,300","size":"100,100"}
- (set: $hasPot to true)
+:: Grab pot {"position":"425,250","size":"100,100"}
+(set: $hasPot to true)
 You grab the pot.
 [[Tent]]
+<<talkedToSallos>> ~~hasPot``
 
 
 :: Quest Complete {"position":"975,325","size":"100,100"}
@@ -45,13 +42,20 @@ You are in the tent
 (if: $talkedToSallos is not true)[(set: $talkedToSallos to false)]
 
 
-:: You're getting hungry. You should put the pot on the campfire. {"position":"725,575","size":"100,100"}
+:: The bag is empty. {"position":"225,375","size":"100,100"}
+The bag is empty. 
 [[Tent]]
+<<hasPot>>
+
+
+:: You're getting hungry. You should put the pot on the campfire. {"position":"775,525","size":"100,100"}
+[[Tent]]
+<<talkedToSallos>>
 
 
 :: campfire interaciton {"position":"525,475","size":"100,100"}
 It's a campfire.
-(if: $talkedToSallos is true)[ [[You're getting hungry. You should put the pot on the campfire.]] ]
+(if: $talkedToSallos is true and $hasPot is false)[ [[You're getting hungry. You should put the pot on the campfire.]] ]
 (if: $hasPot is true)[ [[put pot on campfire]] ]
 [[Tent]]
 
@@ -59,30 +63,35 @@ It's a campfire.
 :: put pot on campfire {"position":"725,325","size":"100,100"}
 You put the pot on the campfire.
 
-[[Quest Complete]] 
+[[Quest Complete]]
+~~hasPot``<<talkedToSallos>>
 
 
-:: sallosTalk1 {"position":"900,675","size":"100,100"}
+:: sallosTalk1 {"position":"1275,425","size":"100,100"}
 "Did you put the pot on the campfire?"
-[[sallosTalkHub]] 
+[[sallosTalkHub]]
+<<talkedToSallos>>~~falseFlag``
 
 
-:: sallosTalk2 {"position":"950,850","size":"100,100"}
+:: sallosTalk2 {"position":"1400,550","size":"100,100"}
 "put the pot on the campfire"
-[[sallosTalkHub]] 
+[[sallosTalkHub]]
+<<talkedToSallos>><<hasPot>>
 
 
-:: sallosTalk3 {"position":"825,975","size":"100,100"}
+:: sallosTalk3 {"position":"1400,775","size":"100,100"}
 Grab the pot from the bag and put it on the campfire
-[[sallosTalkHub]] 
+[[sallosTalkHub]]
+~~hasPot``~~talkedToSallos``
 
 
-:: sallosTalk4 {"position":"600,1025","size":"100,100"}
+:: sallosTalk4 {"position":"1275,925","size":"100,100"}
 "You already got the pot? Put it on the campfire"
-[[sallosTalkHub]] 
+[[sallosTalkHub]]
+<<hasPot>>~~talkedToSallos``
 
 
-:: sallosTalkHub {"position":"575,825","size":"100,100"}
+:: sallosTalkHub {"position":"1100,725","size":"100,100"}
 (if: $hasPot is false and $talkedToSallos is true)[ [[sallosTalk1]] ] 
 (else-if: $hasPot is true and $talkedToSallos is true )[ [[sallosTalk2]] ]
 (else-if: $hasPot is false and $talkedToSallos is false)[ [[sallosTalk3]] ]
@@ -90,4 +99,4 @@ Grab the pot from the bag and put it on the campfire
 (set: $talkedToSallos to true)
 [[Tent]] 
 
-<<hasPot>><<talkedToSallos>>
+
