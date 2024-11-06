@@ -55,6 +55,21 @@ public class DialogueTraverser
         currentNode = currentNode.Links[choice];
     }
 
+    /// <summary>
+    /// Checks if the destination node has a conditional that would stop traversal
+    /// </summary>
+    /// <param name="destinationNode">Node that is to be traveled to</param>
+    /// <param name="flags">List of all possible conditionals in the scene</param>
+    /// <returns>True if all conditionals are met, false otheriwse</returns>
+    public bool CheckTraversal(DialogueNode destinationNode, List<DialogueFlag> flags)
+    {
+        // First, find every conditional in the scene's list of dialogueFlags that corresponds
+        // to a conditional in the distination node
+
+        // Then, check if any of these nodes are flase. Return false if so.
+        return false;
+    }
+
     /*
     /// <summary>
     /// Sets up the first dialogue options in the encounter
