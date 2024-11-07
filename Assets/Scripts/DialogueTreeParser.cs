@@ -73,7 +73,7 @@ class DialogueTreeParser : MonoBehaviour
 		//Create the links between nodes
 		foreach (DialogueNode node in dialogueNodes)
 		{
-			print(node.Info);
+			//print(node.Info);
 			if (node.LinkNames == null) continue;
 
 			foreach (string linkName in node.LinkNames)

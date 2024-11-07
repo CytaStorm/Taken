@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,9 +51,13 @@ public class DialogueTraverser
     /// Sets currentNode to a new node based on player input
     /// </summary>
     /// <param name="choice"></param>
-    public void GoToNode(int choice)
+    public void GoToNode(int choice, List<DialogueFlag> flags)
     {
-        currentNode = currentNode.Links[choice];
+        // If traversal is possible, reassign currentNode
+        if (CheckTraversal(currentNode.Links[choice], flags))
+        {
+            currentNode = currentNode.Links[choice];
+        }        
     }
 
     /// <summary>
@@ -62,30 +67,30 @@ public class DialogueTraverser
     /// <param name="flags">List of all possible conditionals in the scene</param>
     /// <returns>True if all conditionals are met, false otheriwse</returns>
     public bool CheckTraversal(DialogueNode destinationNode, List<DialogueFlag> flags)
-    {
-        List<DialogueFlag> matches = new List<DialogueFlag>();
-
+    {        
         // First, find every conditional in the scene's list of dialogueFlags that corresponds
         // to a conditional in the distination node
+        // Then, check if any of these nodes don't match. Return false if so.
         foreach (DialogueFlag destinationFlag in destinationNode.Flags) 
         {
             foreach (DialogueFlag flag in flags) 
             {
                 if (flag.Name == destinationFlag.Name)
                 { 
-                    matches.Add(flag);
+                    if (flag.IsTrue != destinationFlag.IsTrue)
+                    {
+                        // Print error message to console
+                        Debug.Log($"Unable to traverse because condition {flag.Name} wasn't met");
+
+                        return false;                        
+                    }
                 }
             }
         }
 
-        // Then, check if any of these nodes are flase. Return false if so.
-        foreach (DialogueFlag flag in matches)
-        {
-            if (!flag.IsTrue) { return false; }
-        }
-
         // Otherwise return true
-        return true;
+        Debug.Log("Successful traversal!");
+        return true;        
     }
 
     /*
