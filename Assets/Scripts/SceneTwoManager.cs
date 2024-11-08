@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SceneTwoManager : MonoBehaviour
@@ -13,6 +14,11 @@ public class SceneTwoManager : MonoBehaviour
     void Start()
     {
         traverser = new DialogueTraverser();
+        foreach (GameObject npc in NPCs) 
+        {
+            npc.GetComponent<NPCScript>();
+            // ADD MANAGER AS A LISTENER TO EVERY NPC'S EVENT
+        }
         CreateAllDialogueFlags();
     }
 
@@ -21,7 +27,6 @@ public class SceneTwoManager : MonoBehaviour
     {
         
     }
-
     
     /// <summary>
     /// Populates list of dialogue flags with every flag in every dialogue graph
