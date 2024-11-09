@@ -69,6 +69,7 @@ public class SceneTwoManager : MonoBehaviour
     private void UpdateCurrentGraph(NPCScript npcScript)
     {
         currentGraph = npcScript.Graph;
+        traverser.SetNewGraph(currentGraph);
     }
     
 }
