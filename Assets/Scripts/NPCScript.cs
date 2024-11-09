@@ -7,7 +7,7 @@ public class NPCScript : Interactable
 {
     public string filePath;
     public DialogueGraph Graph { get; private set; }
-    public UnityEvent updateSceneGraph;
+    public UnityEvent<NPCScript> UpdateSceneGraph { get; private set; }
 
 
     // Start is called before the first frame update
@@ -15,13 +15,13 @@ public class NPCScript : Interactable
     {
         base.Start();
         Graph = new DialogueGraph(filePath);
-        updateSceneGraph = new UnityEvent();
+        UpdateSceneGraph = new UnityEvent<NPCScript>();
     }
 
     public override void Interact()
     {
         base.Interact();
-        // ADD UNITY EVENT HERE TO CALL METHOD IN SCENEMANAGER THAT UPDATES currentGraph
-        updateSceneGraph.Invoke();        
+        // Event to call method in sceneManager that updates currentGraph upon interaction
+        UpdateSceneGraph.Invoke(this);        
     }
 }

@@ -14,11 +14,14 @@ public class SceneTwoManager : MonoBehaviour
     void Start()
     {
         traverser = new DialogueTraverser();
+
+        // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
         foreach (GameObject npc in NPCs) 
         {
-            npc.GetComponent<NPCScript>();
-            // ADD MANAGER AS A LISTENER TO EVERY NPC'S EVENT
+            NPCScript npcScript = npc.GetComponent<NPCScript>();
+            npcScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);            
         }
+
         CreateAllDialogueFlags();
     }
 
@@ -56,6 +59,16 @@ public class SceneTwoManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Update the currentGraph variable based on the npcScript the sceneManager gets an
+    /// UpdateSceneGraph call from
+    /// </summary>
+    /// <param name="npcScript">Script that the sceneManager recieved an event call from</param>
+    private void UpdateCurrentGraph(NPCScript npcScript)
+    {
+        currentGraph = npcScript.Graph;
     }
     
 }
