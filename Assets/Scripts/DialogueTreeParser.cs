@@ -45,30 +45,22 @@ class DialogueTreeParser : MonoBehaviour
 				continue;
 			}
 
-			//Filter out metadata
+			//Filter out metadata/bad lines
 			string nodeName = ParseNodeName(trimmedLine);
 			if (nodeName == "StoryTitle" || nodeName == "StoryData") continue;
 
-			//Clean data of prev node
+
 			if (currentNode != null)
 			{
-				prevNode = currentNode;
-				prevNode.LinkNames = RemoveSpecialText(prevNode, "[[", "]]");
-				AddFlags(currentNode);
+				ParseSpecialText(currentNode);
 			}
 
 			//Start new node
 			currentNode = new DialogueNode(nodeName, "");
 			dialogueNodes.Add(currentNode);
 		}
-
-		// Adds the last node if it exists
-		if (currentNode != null)
-        {
-            dialogueNodes.Add(currentNode);
-			currentNode.LinkNames = RemoveSpecialText(currentNode, "[[", "]]");
-			AddFlags(currentNode);
-        }
+		//Parse specialText in lastNode 
+		ParseSpecialText(currentNode);
 
 		//Create the links between nodes
 		foreach (DialogueNode node in dialogueNodes)
@@ -84,6 +76,16 @@ class DialogueTreeParser : MonoBehaviour
 
 		return dialogueNodes;
     }
+
+	private static void ParseSpecialText(DialogueNode currentNode)
+	{
+		currentNode.LinkNames = RemoveSpecialText(currentNode, "[[", "]]");
+		AddFlags(currentNode);
+		RemoveSpecialText(currentNode, "(if:", "]\n");
+		RemoveSpecialText(currentNode, "(else-if:", "]\n");
+		RemoveSpecialText(currentNode, "(else:", "]\n");
+		ParseChangeFlags(currentNode);
+	}
 
 	private static string ParseNodeName(string trimmedLine)
 	{
@@ -107,13 +109,14 @@ class DialogueTreeParser : MonoBehaviour
 		}
 	}
 
-	private static List<string> RemoveSpecialText(DialogueNode node, string startDelimiter, string endDelimiter)
+	private static List<string> RemoveSpecialText(
+		DialogueNode node, string startDelimiter, string endDelimiter)
 	{
 		List<string> results = new List<string>();
 		while (node.Info.IndexOf(startDelimiter) != -1)
 		{
 			//Find first set of delimiters
-			int linkNameStartIndex = node.Info.IndexOf(startDelimiter) + 2;
+			int linkNameStartIndex = node.Info.IndexOf(startDelimiter) + startDelimiter.Length;
 			int linkNameEndIndex = node.Info.IndexOf(endDelimiter);
 			int linkedNodeNameLength = linkNameEndIndex - linkNameStartIndex;
 
@@ -121,9 +124,32 @@ class DialogueTreeParser : MonoBehaviour
 			results.Add(linkedNodeName);
 
 			//Chop the link out of node.info
-			node.Info = node.Info.Remove(linkNameStartIndex - 2, linkedNodeName.Length + 4);
+			node.Info = node.Info.Remove(
+				linkNameStartIndex - startDelimiter.Length,
+				linkedNodeName.Length + startDelimiter.Length + endDelimiter.Length);
 		}
 		return results;
+	}
+
+	private static void ParseChangeFlags(DialogueNode node)
+	{
+		//Get the string to parse
+		List<string> stringToParse = RemoveSpecialText(node, "(set: ", ")\n");
+		//If it doesn't have (set:) return
+		if (stringToParse.Count == 0) return;
+
+		//Parse it
+		string[] splitStringToParse = stringToParse[0].Split(' ');
+		bool changeFlagTo;
+		if (splitStringToParse[2] == "true") 
+		{
+			changeFlagTo = true; 
+		} 
+		else 
+		{
+			changeFlagTo = false; 
+		}
+		node.FlagsToChange.Add(new DialogueFlag(splitStringToParse[0], changeFlagTo));
 	}
 
 	private static void AddFlags(DialogueNode node)
