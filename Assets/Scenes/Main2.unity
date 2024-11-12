@@ -886,12 +886,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  interactionTransform: {fileID: 0}
+  interactionTransform: {fileID: 1295160137}
   destinationPosition: {x: 0, y: 0, z: 0}
   filePath: /Scripts/Story.twee
-  updateSceneGraph:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &872893787
 GameObject:
   m_ObjectHideFlags: 0
