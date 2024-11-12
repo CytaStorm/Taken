@@ -94,9 +94,9 @@ public class Interactable : MonoBehaviour
 		isFocus = true;
 	}
 
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere(interactionTransform.position, radius);
-	}
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.yellow;
+	//	Gizmos.DrawWireSphere(interactionTransform.position, radius);
+	//}
 }

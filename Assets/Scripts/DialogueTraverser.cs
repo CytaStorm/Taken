@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +58,9 @@ public class DialogueTraverser
         if (CheckTraversal(currentNode.Links[choice], flags))
         {
             currentNode = currentNode.Links[choice];
+
+			//Send currentNode info to UI Manager
+			UIController.UI.NewDialogueNode(currentNode);
         }        
     }
 
