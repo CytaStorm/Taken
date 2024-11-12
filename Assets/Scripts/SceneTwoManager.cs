@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SceneTwoManager : MonoBehaviour
 {
-    [SerializeField] public List<DialogueFlag> dialogueFlags;
+    public List<DialogueFlag> dialogueFlags;
     [SerializeField] public List<GameObject> NPCs;
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
@@ -13,6 +13,7 @@ public class SceneTwoManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dialogueFlags = new List<DialogueFlag>();
         traverser = new DialogueTraverser();
 
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
