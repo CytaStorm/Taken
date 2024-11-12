@@ -63,6 +63,15 @@ public class SceneTwoManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Advance node according to choice
+    /// </summary>
+    /// <param name="choice">Index of destinationNode in current node</param>
+    public void GoToNode(int choice)
+    {
+        traverser.GoToNode(choice, dialogueFlags);
+    }
+
+    /// <summary>
     /// Update the currentGraph variable based on the npcScript the sceneManager gets an
     /// UpdateSceneGraph call from
     /// </summary>
