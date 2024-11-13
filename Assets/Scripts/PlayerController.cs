@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private bool inDialogue = false;
 
 	private Interactable focus;
+	private Transform target;
 
 	//PROPERTIES
 	/// <summary>
@@ -58,7 +59,11 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-	}
+        if (target != null)
+        {
+			agent.SetDestination(target.position);
+        }
+    }
 
 	public void OnMoveInteract()
 	{
@@ -77,7 +82,7 @@ public class PlayerController : MonoBehaviour
 			if (interactable != null)
 			{
 				SetFocus(interactable);
-				agent.SetDestination(hit.point);
+				//agent.SetDestination(hit.point);
 			}
 		}
 
@@ -85,6 +90,7 @@ public class PlayerController : MonoBehaviour
 		else if (Physics.Raycast(ray, out hit, raycastRange, movementMask))
 		{
 			agent.SetDestination(hit.point);
+			RemoveFocus();
 		}
 	}
 
@@ -96,11 +102,28 @@ public class PlayerController : MonoBehaviour
 		if (focus != null) focus.OnDefocused();
 		focus = newFocus;
 		newFocus.OnFocused();
+
+		// Follow target
+		FollowTarget(newFocus);
 	}
 	
 	private void RemoveFocus()
 	{
 		if (focus != null) focus.OnDefocused();
 		focus = null;
+
+		// Stop moving
+		StopFollowTarget();
+	}
+
+	public void FollowTarget (Interactable newTarget)
+	{
+		agent.stoppingDistance = newTarget.radius * 0.8f; // stop just inside radius
+		target = newTarget.transform;
+	}
+
+	public void StopFollowTarget()
+	{
+		target = null;
 	}
 }

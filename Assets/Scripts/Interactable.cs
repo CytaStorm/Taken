@@ -5,10 +5,11 @@ using UnityEngine.AI;  // Import the AI Navigation namespace
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] protected float radius = 3f;           
+              
     [SerializeField] protected Transform interactionTransform;
     [SerializeField] protected Vector3 destinationPosition;
 
+    public float radius = 3f;
     public bool hasLimitedInteractions = true;
     public bool canMove = true;
 
