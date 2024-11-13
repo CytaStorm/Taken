@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -80,6 +81,9 @@ public class SceneTwoManager : MonoBehaviour
     {
         currentGraph = npcScript.Graph;
         traverser.SetNewGraph(currentGraph);
+
+		//Send new node info to UI Manager
+		UIManager.UI.NewDialogueNode(traverser.currentNode);
     }
     
 }

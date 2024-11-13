@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class DialogueNode
 {
-
     public string NodeName { get; set; }
     public string Info { get; set; }
     public List<DialogueNode> Links { get; set; }
-	//Debug, might remove later
+
+	//Used to create links
     public List<string> LinkNames { get; set; }
+
     public List<DialogueFlag> Flags { get; set; }
     public List<DialogueFlag> FlagsToChange { get; set; }
     

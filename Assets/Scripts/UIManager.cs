@@ -10,7 +10,7 @@ public enum UIMode
     Dialogue
 }
 
-public class UIController : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
 
@@ -20,9 +20,10 @@ public class UIController : MonoBehaviour
 
 	//Stuff we directly change
 	[SerializeField] private TextMeshProUGUI _textDisplay;
+	[SerializeField] private GameObject _dialogueChoices;
 	[SerializeField] private GameObject _dialogueChoiceButton;
 
-	public static UIController UI
+	public static UIManager UI
 	{
 		get; private set;
 	}
@@ -48,6 +49,7 @@ public class UIController : MonoBehaviour
 	{
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
+
 	}
 
 	public void ChangeToDialogue()
@@ -68,15 +70,20 @@ public class UIController : MonoBehaviour
 		//Add new node text to text display
 		_textDisplay.text += dialogueNode.Info;
 
-		//Check links
-
-		//Create buttons
-		CreateButton();
+		_dialogueChoices.SetActive(true);
+		CreateButtons(dialogueNode);
 	}
 
-	private void CreateButton()
+	private void CreateButtons(DialogueNode dialogueNode)
 	{
-			
+		//Check links
+		foreach (DialogueNode linkedNode in dialogueNode.Links)
+		{
+			//create button for each link
+			GameObject newestButton = 
+				Instantiate(_dialogueChoiceButton, _dialogueChoices.transform, true);
+			newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.NodeName;
+		}	
 	}
 
 	//Create text for dialogue to display on screen

@@ -60,7 +60,7 @@ public class DialogueTraverser
             currentNode = currentNode.Links[choice];
 
 			//Send currentNode info to UI Manager
-			UIController.UI.NewDialogueNode(currentNode);
+			UIManager.UI.NewDialogueNode(currentNode);
         }        
     }
 
