@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 447882607}
   - component: {fileID: 447882606}
   - component: {fileID: 447882605}
+  - component: {fileID: 447882611}
   m_Layer: 7
   m_Name: Campfire
   m_TagString: Untagged
@@ -474,6 +475,8 @@ MonoBehaviour:
   radius: 3
   interactionTransform: {fileID: 677083082}
   destinationPosition: {x: 0, y: 0, z: 0}
+  hasLimitedInteractions: 1
+  canMove: 0
 --- !u!114 &447882606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +492,8 @@ MonoBehaviour:
   radius: 3
   interactionTransform: {fileID: 677083082}
   destinationPosition: {x: 0, y: 0, z: 0}
+  hasLimitedInteractions: 1
+  canMove: 0
   filePath: Assets/Scripts/Scene 2 Campfire Tree.twee
 --- !u!65 &447882607
 BoxCollider:
@@ -577,6 +582,22 @@ Transform:
   - {fileID: 677083082}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &447882611
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447882603}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &611307646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1042,8 @@ MonoBehaviour:
   radius: 3
   interactionTransform: {fileID: 1295160137}
   destinationPosition: {x: 0, y: 0, z: 0}
+  hasLimitedInteractions: 1
+  canMove: 1
 --- !u!195 &796200097
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1058,6 +1081,8 @@ MonoBehaviour:
   radius: 3
   interactionTransform: {fileID: 1295160137}
   destinationPosition: {x: 0, y: 0, z: 0}
+  hasLimitedInteractions: 1
+  canMove: 1
   filePath: Assets/Scripts/Scene 2 Sallos Tree.twee
 --- !u!1 &872893787
 GameObject:
@@ -1216,6 +1241,8 @@ MonoBehaviour:
   radius: 3
   interactionTransform: {fileID: 211879728}
   destinationPosition: {x: 0, y: 0, z: 0}
+  hasLimitedInteractions: 1
+  canMove: 1
 --- !u!208 &903088699
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1855,6 +1882,8 @@ MonoBehaviour:
   radius: 3
   interactionTransform: {fileID: 1378200449}
   destinationPosition: {x: 0, y: 0, z: 0}
+  hasLimitedInteractions: 0
+  canMove: 0
 --- !u!114 &1814189579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,6 +1899,8 @@ MonoBehaviour:
   radius: 3
   interactionTransform: {fileID: 1378200449}
   destinationPosition: {x: 0, y: 0, z: 0}
+  hasLimitedInteractions: 0
+  canMove: 0
   filePath: Assets/Scripts/Scene 2 Backpack Tree.twee
 --- !u!65 &1814189580
 BoxCollider:
