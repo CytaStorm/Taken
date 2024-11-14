@@ -472,9 +472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   interactionTransform: {fileID: 677083082}
   destinationPosition: {x: 0, y: 0, z: 0}
+  radius: 3
   hasLimitedInteractions: 1
   canMove: 0
 --- !u!114 &447882606
@@ -489,9 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   interactionTransform: {fileID: 677083082}
   destinationPosition: {x: 0, y: 0, z: 0}
+  radius: 3
   hasLimitedInteractions: 1
   canMove: 0
   filePath: Assets/Scripts/Scene 2 Campfire Tree.twee
@@ -1039,9 +1039,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   interactionTransform: {fileID: 1295160137}
   destinationPosition: {x: 0, y: 0, z: 0}
+  radius: 3
   hasLimitedInteractions: 1
   canMove: 1
 --- !u!195 &796200097
@@ -1078,9 +1078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   interactionTransform: {fileID: 1295160137}
   destinationPosition: {x: 0, y: 0, z: 0}
+  radius: 3
   hasLimitedInteractions: 1
   canMove: 1
   filePath: Assets/Scripts/Scene 2 Sallos Tree.twee
@@ -1238,9 +1238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6438e9d2942564e829adc68dcc033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   interactionTransform: {fileID: 211879728}
   destinationPosition: {x: 0, y: 0, z: 0}
+  radius: 3
   hasLimitedInteractions: 1
   canMove: 1
 --- !u!208 &903088699
@@ -1879,9 +1879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   interactionTransform: {fileID: 1378200449}
   destinationPosition: {x: 0, y: 0, z: 0}
+  radius: 3
   hasLimitedInteractions: 0
   canMove: 0
 --- !u!114 &1814189579
@@ -1896,9 +1896,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
   interactionTransform: {fileID: 1378200449}
   destinationPosition: {x: 0, y: 0, z: 0}
+  radius: 3
   hasLimitedInteractions: 0
   canMove: 0
   filePath: Assets/Scripts/Scene 2 Backpack Tree.twee
