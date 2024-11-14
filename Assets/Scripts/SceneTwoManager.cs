@@ -11,8 +11,8 @@ public class SceneTwoManager : MonoBehaviour
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
 		dialogueFlags = new List<DialogueFlag>();
         traverser = new DialogueTraverser();
@@ -69,6 +69,7 @@ public class SceneTwoManager : MonoBehaviour
     /// <param name="choice">Index of destinationNode in current node</param>
     public void GoToNode(int choice)
     {
+		print("go to node");
         traverser.GoToNode(choice, dialogueFlags);
     }
 

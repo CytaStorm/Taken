@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum UIMode
 {
@@ -13,6 +14,7 @@ public enum UIMode
 public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
+	[SerializeField] private SceneTwoManager _sceneManager;
 
 	//Parent gameobjects
 	[SerializeField] private GameObject _dialogueUI;
@@ -22,6 +24,9 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _textDisplay;
 	[SerializeField] private GameObject _dialogueChoices;
 	[SerializeField] private GameObject _dialogueChoiceButton;
+
+	//Dialogue Choice Buttons
+	public List<GameObject> _buttons;
 
 	public static UIManager UI
 	{
@@ -77,13 +82,30 @@ public class UIManager : MonoBehaviour
 	private void CreateButtons(DialogueNode dialogueNode)
 	{
 		//Check links
-		foreach (DialogueNode linkedNode in dialogueNode.Links)
+		for (int i = 0; i < dialogueNode.Links.Count; i++)
 		{
+			DialogueNode linkedNode = dialogueNode.Links[i];
 			//create button for each link
 			GameObject newestButton = 
-				Instantiate(_dialogueChoiceButton, _dialogueChoices.transform, true);
+				Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
+			_buttons.Add(newestButton);
 			newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.NodeName;
-		}	
+
+			int choiceIndex = i;
+			Button buttonComponent = newestButton.GetComponent<Button>();
+			buttonComponent.onClick.AddListener(ClearButtons);
+			buttonComponent.onClick.AddListener( delegate { _sceneManager.GoToNode(choiceIndex); });
+		}
+	}
+
+	private void ClearButtons() 
+	{
+		print("clear!");
+		while (_buttons.Count > 0)
+		{
+			Destroy(_buttons[0]);
+			_buttons.RemoveAt(0);
+		}
 	}
 
 	//Create text for dialogue to display on screen
