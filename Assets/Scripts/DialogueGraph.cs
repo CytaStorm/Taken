@@ -65,6 +65,9 @@ public class DialogueGraph
     {
         DialogueNode newStart;
 
+        // If there are no links, don't reassign start
+        if (start.Links.Count == 0) { return; }
+
         // find the next viable start node by acessing the first start's link
         newStart = start.Links[0];
 
