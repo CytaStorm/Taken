@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,10 +11,10 @@ public class SceneTwoManager : MonoBehaviour
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
-        dialogueFlags = new List<DialogueFlag>();
+		dialogueFlags = new List<DialogueFlag>();
         traverser = new DialogueTraverser();
 
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
@@ -68,6 +69,7 @@ public class SceneTwoManager : MonoBehaviour
     /// <param name="choice">Index of destinationNode in current node</param>
     public void GoToNode(int choice)
     {
+		print("go to node");
         traverser.GoToNode(choice, dialogueFlags);
     }
 
@@ -80,7 +82,9 @@ public class SceneTwoManager : MonoBehaviour
     {
         currentGraph = npcScript.Graph;
         traverser.SetNewGraph(currentGraph);
-        Debug.Log("Updated current graph");
+
+		//Send new node info to UI Manager
+		UIManager.UI.NewDialogueNode(traverser.currentNode);
     }
     
 }

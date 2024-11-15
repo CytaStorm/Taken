@@ -63,7 +63,7 @@ public class Interactable : MonoBehaviour
             if (distance <= radius && !hasInteracted && !isMoving)
             {
                 Debug.Log("INTERACT");
-                UIController.UI.ChangeToDialogue();
+                UIManager.UI.ChangeToDialogue();
                 Interact();
                 hasInteracted = true;
                 interactionCount++;
@@ -103,9 +103,9 @@ public class Interactable : MonoBehaviour
 		isFocus = true;
 	}
 
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere(interactionTransform.position, radius);
-	}
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.yellow;
+	//	Gizmos.DrawWireSphere(interactionTransform.position, radius);
+	//}
 }
