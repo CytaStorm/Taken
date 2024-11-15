@@ -10,13 +10,12 @@ public class NPCScript : Interactable
     public UnityEvent<NPCScript> UpdateSceneGraph { get; private set; }
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        base.Start();
         Graph = new DialogueGraph(filePath);
         UpdateSceneGraph = new UnityEvent<NPCScript>();
-    }
+        Debug.Log(gameObject.name + " " + UpdateSceneGraph);
+    }    
 
     public override void Interact()
     {

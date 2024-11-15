@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
 
 	//Stuff we directly change
 	[SerializeField] private TextMeshProUGUI _textDisplay;
-	[SerializeField] private GameObject _dialogueChoices;
 	[SerializeField] private GameObject _dialogueChoiceButton;
 
 	//Dialogue Choice Buttons
@@ -75,7 +74,7 @@ public class UIManager : MonoBehaviour
 		//Add new node text to text display
 		_textDisplay.text += dialogueNode.Info;
 
-		_dialogueChoices.SetActive(true);
+		_dialogueUI.SetActive(true);
 		CreateButtons(dialogueNode);
 	}
 

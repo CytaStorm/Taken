@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
               
     [SerializeField] protected Transform interactionTransform;
     [SerializeField] protected Vector3 destinationPosition;
+    [SerializeField] protected NavMeshAgent agent;
 
     public float radius = 3f;
     public bool hasLimitedInteractions = true;
@@ -17,26 +18,16 @@ public class Interactable : MonoBehaviour
     protected bool hasInteracted = false; 
     protected bool isMoving = false;      
     protected bool canInteract = true;    
-    protected int interactionCount = 0;   
-    protected NavMeshAgent agent;         
-
-
+    protected int interactionCount = 0;
 
     protected void Start()
     {
-        // Get the NavMeshAgent component attached to the NPC
-        agent = GetComponent<NavMeshAgent>();
+        
     }
 
     public virtual void Interact()
     {
-        Debug.Log("Interacting with " + transform.name);
-
-        // Only move if it is a moving interactable
-        if (canMove)
-        {
-            MoveToPosition(destinationPosition);
-        }        
+        Debug.Log("Interacting with " + transform.name);    
     }
 
     // Moves the NPC to the destination
