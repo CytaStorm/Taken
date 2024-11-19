@@ -23,9 +23,10 @@ public class UIManager : MonoBehaviour
 	//Stuff we directly change
 	[SerializeField] private TextMeshProUGUI _textDisplay;
 	[SerializeField] private GameObject _dialogueChoiceButton;
+    [SerializeField] private GameObject _exitButton;
 
-	//Dialogue Choice Buttons
-	public List<GameObject> _buttons;
+    //Dialogue Choice Buttons
+    public List<GameObject> _buttons;
 
 	public static UIManager UI
 	{
@@ -95,6 +96,19 @@ public class UIManager : MonoBehaviour
 			buttonComponent.onClick.AddListener(ClearButtons);
 			buttonComponent.onClick.AddListener( delegate { _sceneManager.GoToNode(choiceIndex); });
 		}
+
+		//Add exit button
+		if (_buttons.Count == 0) 
+		{
+            GameObject exitButton =
+                Instantiate(_exitButton, _dialogueUI.transform, true);
+            _buttons.Add(exitButton);
+
+            Button buttonComponent = exitButton.GetComponent<Button>();
+            buttonComponent.onClick.AddListener(ClearButtons);
+            buttonComponent.onClick.AddListener(ClearText);
+            buttonComponent.onClick.AddListener(ChangeToGameplay);
+        }
 	}
 
 	private void ClearButtons() 
@@ -105,6 +119,11 @@ public class UIManager : MonoBehaviour
 			Destroy(_buttons[0]);
 			_buttons.RemoveAt(0);
 		}
+	}
+
+	private void ClearText()
+	{
+		_textDisplay.text = string.Empty;
 	}
 
 	//Create text for dialogue to display on screen
