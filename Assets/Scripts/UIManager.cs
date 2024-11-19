@@ -85,17 +85,21 @@ public class UIManager : MonoBehaviour
 		for (int i = 0; i < dialogueNode.Links.Count; i++)
 		{
 			DialogueNode linkedNode = dialogueNode.Links[i];
-			//create button for each link
-			GameObject newestButton = 
-				Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
-			_buttons.Add(newestButton);
-			newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.NodeName;
 
-			int choiceIndex = i;
-			Button buttonComponent = newestButton.GetComponent<Button>();
-			buttonComponent.onClick.AddListener(ClearButtons);
-			buttonComponent.onClick.AddListener( delegate { _sceneManager.GoToNode(choiceIndex); });
-		}
+			if (SceneTwoManager.Scene.CheckTraversal(linkedNode))
+			{
+                //create button for each link
+                GameObject newestButton =
+                    Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
+                _buttons.Add(newestButton);
+                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.NodeName;
+
+                int choiceIndex = i;
+                Button buttonComponent = newestButton.GetComponent<Button>();
+                buttonComponent.onClick.AddListener(ClearButtons);
+                buttonComponent.onClick.AddListener(delegate { _sceneManager.GoToNode(choiceIndex); });
+            }			
+        }
 
 		//Add exit button
 		if (_buttons.Count == 0) 
