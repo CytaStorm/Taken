@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;  // Import the AI Navigation namespace
+using UnityEngine.AI;
+using UnityEngine.Events;  // Import the AI Navigation namespace
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
               
     [SerializeField] protected Transform interactionTransform;
@@ -20,29 +21,21 @@ public class Interactable : MonoBehaviour
     protected bool canInteract = true;    
     protected int interactionCount = 0;
 
-    protected void Start()
+    [SerializeField] private TextAsset twineFile;
+    public DialogueGraph Graph { get; protected set; }
+    public UnityEvent<Interactable> UpdateSceneGraph { get; private set; }
+
+    protected void Awake()
     {
-        
+		print(twineFile);
+        Graph = new DialogueGraph(twineFile);
+        UpdateSceneGraph = new UnityEvent<Interactable>();
+        Debug.Log(gameObject.name + " " + UpdateSceneGraph);
     }
 
-    public virtual void Interact()
-    {
-        Debug.Log("Interacting with " + transform.name);    
-    }
+	public abstract void Interact();
 
-    // Moves the NPC to the destination
-    protected void MoveToPosition(Vector3 destination)
-    {
-        // Only move if the interactable has an agent AND a destination
-        if ((agent != null) && (destination != null))
-        {
-            agent.SetDestination(destination); // Sets the destination for the NavMeshAgent
-            isMoving = true; // Sets the NPC to moving state
-        }
-    }
-
-
-    protected void Update()
+    protected virtual void Update()
     {
         // Checks if NPC is focused by the player
         if (isFocus && canInteract)
@@ -58,27 +51,10 @@ public class Interactable : MonoBehaviour
                 Interact();
                 hasInteracted = true;
                 interactionCount++;
-
-                // Disables further interactions after the second interaction
-                if (interactionCount >= 2)
-                {
-                    canInteract = false;
-                    Debug.Log("Interaction disabled after second interaction.");
-                }
             }
             else if (distance > radius && !isMoving)
             {
                 hasInteracted = false;
-            }
-        }
-
-        // Checks if NPC has arrived at the destination
-        if (isMoving && agent.remainingDistance <= agent.stoppingDistance)
-        {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-            {
-                isMoving = false;  // NPC has finished moving
-                Debug.Log("NPC has arrived at the destination.");
             }
         }
     }
