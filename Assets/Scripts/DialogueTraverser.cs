@@ -54,6 +54,7 @@ public class DialogueTraverser
     /// <param name="choice"></param>
     public void GoToNode(int choice, List<DialogueFlag> flags)
     {
+        /*
         // If traversal is possible, reassign currentNode
         if (CheckTraversal(currentNode.Links[choice], flags))
         {
@@ -61,7 +62,13 @@ public class DialogueTraverser
 
 			//Send currentNode info to UI Manager
 			UIManager.UI.NewDialogueNode(currentNode);
-        }        
+        } 
+        */
+
+        currentNode = currentNode.Links[choice];
+
+        //Send currentNode info to UI Manager
+        UIManager.UI.NewDialogueNode(currentNode);
     }
 
     /// <summary>

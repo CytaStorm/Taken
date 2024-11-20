@@ -782,6 +782,7 @@ MonoBehaviour:
   _gameplayUI: {fileID: 609792763}
   _textDisplay: {fileID: 609792764}
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
+  _exitButton: {fileID: 6694033511536594137, guid: f70c5a92133e3b5469d528ad12a41a64, type: 3}
   _buttons: []
 --- !u!4 &611307648
 Transform:
