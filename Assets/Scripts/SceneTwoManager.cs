@@ -11,8 +11,25 @@ public class SceneTwoManager : MonoBehaviour
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
-	// Start is called before the first frame update
-	void Start()
+    public static SceneTwoManager Scene
+    {
+        get; private set;
+    }
+
+    private void Awake()
+    {
+        if (Scene != null && Scene != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Scene = this;
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
     {
 		dialogueFlags = new List<DialogueFlag>();
         traverser = new DialogueTraverser();
@@ -54,9 +71,9 @@ public class SceneTwoManager : MonoBehaviour
             {
                 foreach (DialogueFlag flag in node.Flags)
                 {
-                    if (!dialogueFlags.Contains(flag))
-                    {
-                        dialogueFlags.Add(flag);
+                    if (!FlagListContainsMatch(flag))
+                    {                        
+                        dialogueFlags.Add(new DialogueFlag(flag.Name));                        
                     }
                 }
             }
@@ -73,6 +90,28 @@ public class SceneTwoManager : MonoBehaviour
         traverser.GoToNode(choice, dialogueFlags);
     }
 
+    public bool CheckTraversal(DialogueNode destinationNode)
+    {
+        return traverser.CheckTraversal(destinationNode, dialogueFlags);
+    }
+
+    /// <summary>
+    /// Checks if there is already a flag in the scene's internal list with the same name
+    /// </summary>
+    /// <param name="flag">Flag to check against list</param>
+    /// <returns></returns>
+    private bool FlagListContainsMatch(DialogueFlag flag)
+    {
+        foreach(DialogueFlag listFlag in dialogueFlags)
+        {
+            if (flag.Name == listFlag.Name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /// <summary>
     /// Update the currentGraph variable based on the npcScript the sceneManager gets an
     /// UpdateSceneGraph call from
@@ -85,6 +124,6 @@ public class SceneTwoManager : MonoBehaviour
 
 		//Send new node info to UI Manager
 		UIManager.UI.NewDialogueNode(traverser.currentNode);
-    }
+    }   
     
 }

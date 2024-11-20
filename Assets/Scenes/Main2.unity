@@ -574,13 +574,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6438e9d2942564e829adc68dcc033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 0}
+  interactionTransform: {fileID: 677083082}
   destinationPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   radius: 3
   hasLimitedInteractions: 1
   canMove: 0
-  twineFile: {fileID: 4900000, guid: cae5fa90a964c3342af86531f3c67670, type: 3}
+  twineFile: {fileID: 4900000, guid: cddae4c944052fb4b9df31249b52513e, type: 3}
 --- !u!1001 &609792762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -978,7 +978,7 @@ MonoBehaviour:
   radius: 3
   hasLimitedInteractions: 1
   canMove: 1
-  twineFile: {fileID: 4900000, guid: b548429fe76aae7499769de4010f7588, type: 3}
+  twineFile: {fileID: 4900000, guid: 9700b095161428b4fa0383b7d1dcd026, type: 3}
 --- !u!1 &903088697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,13 +1632,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6438e9d2942564e829adc68dcc033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 0}
+  interactionTransform: {fileID: 1378200449}
   destinationPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   radius: 3
   hasLimitedInteractions: 1
   canMove: 1
-  twineFile: {fileID: 4900000, guid: 5c5cbcdef49ad9a4eab055e9b07f40e1, type: 3}
+  twineFile: {fileID: 4900000, guid: ff32eb1cd86ba30429a7a139b7b7f2c0, type: 3}
 --- !u!1 &1817774276
 GameObject:
   m_ObjectHideFlags: 0
