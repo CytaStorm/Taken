@@ -72,8 +72,8 @@ public class SceneTwoManager : MonoBehaviour
                 foreach (DialogueFlag flag in node.Flags)
                 {
                     if (!FlagListContainsMatch(flag))
-                    {
-                        dialogueFlags.Add(flag);
+                    {                        
+                        dialogueFlags.Add(new DialogueFlag(flag.Name));                        
                     }
                 }
             }
@@ -95,6 +95,11 @@ public class SceneTwoManager : MonoBehaviour
         return traverser.CheckTraversal(destinationNode, dialogueFlags);
     }
 
+    /// <summary>
+    /// Checks if there is already a flag in the scene's internal list with the same name
+    /// </summary>
+    /// <param name="flag">Flag to check against list</param>
+    /// <returns></returns>
     private bool FlagListContainsMatch(DialogueFlag flag)
     {
         foreach(DialogueFlag listFlag in dialogueFlags)
