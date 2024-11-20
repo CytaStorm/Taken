@@ -3,15 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ChestController : Interactable
+public class ObstacleScript : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        base.Start();
-    }
-
-    private void Update()
+    protected override void Update()
     {
         // Checks if NPC is focused by the player
         if (isFocus && canInteract)
@@ -43,22 +37,6 @@ public class ChestController : Interactable
     public override void Interact()
     {
         GiveItem();
-        base.Interact();
-    }
-
-    private void MoveToPosition(Vector3 destination)
-    {
-        base.MoveToPosition(destination);
-    }
-
-    public void OnDefocused()
-    {
-        base.OnDefocused();
-    }
-
-    public void OnFocused()
-    {
-        base.OnFocused();
     }
 
     /// <summary>

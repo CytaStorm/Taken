@@ -26,23 +26,15 @@ public class DialogueGraph
     public List<DialogueNode> Nodes {  get { return nodes; } }
     public bool WasTraversed { get; set; }
         
-    
-    public DialogueGraph()
+    public DialogueGraph(TextAsset textFile)
     {
         //Start by parsing shit, then construct itself with that data
-        string filePath = Application.dataPath + "/Scripts/Story.twee";
-        Parse(filePath);
+        Parse(textFile);
     }
 
-    public DialogueGraph(string filePath)
+    private void Parse(TextAsset textFile)
     {
-        //Start by parsing shit, then construct itself with that data
-        Parse(filePath);
-    }
-
-    private void Parse(string filePath)
-    {
-        nodes = DialogueTreeParser.ParseFile(filePath);        
+        nodes = DialogueTreeParser.ParseFile(textFile);        
 
         // Find refernece to starting node
         foreach (DialogueNode node in nodes)

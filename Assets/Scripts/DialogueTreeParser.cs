@@ -13,21 +13,15 @@ class DialogueTreeParser : MonoBehaviour
 	{
 		
 	}
-	public static List<DialogueNode> ParseFile(string filePath)
+
+	public static List<DialogueNode> ParseFile(TextAsset textFile)
     {
         // Makes sure the file exists
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError("File not found at the path: " + filePath);
-            return null;
-        }
-
         // Makes a list for the dialogue nodes
         List<DialogueNode> dialogueNodes = new List<DialogueNode>();
-        string[] fileLines = File.ReadAllLines(filePath);
+        string[] fileLines = textFile.text.Split('\n');
 
 		// FIRST TIME THROUGH -- create nodes and their data
-		DialogueNode prevNode = null;
         DialogueNode currentNode = null;
 		foreach (string line in fileLines)
 		{

@@ -25,29 +25,21 @@ Sallos sits at by the campfire, tending to it.
 [[Continue]] 
 
 
-:: Leave {"position":"1000,225","size":"100,100"}
-exit
-
-
-:: SallosTalk1 {"position":"600,75","size":"100,100"}
+:: SallosTalk1 {"position":"625,100","size":"100,100"}
 "Did you put the pot on the campfire?"
-[[Leave]] 
 <<talkedToSallos>>~~falseFlag``
 
 
 :: sallosTalk2 {"position":"625,225","size":"100,100"}
 "put the pot on the campfire"
-[[Leave]]
 <<talkedToSallos>><<hasPot>>
 
 
-:: sallosTalk3 {"position":"675,375","size":"100,100"}
+:: sallosTalk3 {"position":"625,375","size":"100,100"}
 Grab the pot from the bag and put it on the campfire
-[[Leave]]
 ~~hasPot``~~talkedToSallos``
 
 
-:: sallosTalk4 {"position":"675,550","size":"100,100"}
+:: sallosTalk4 {"position":"625,550","size":"100,100"}
 "You already got the pot? Put it on the campfire"
-[[Leave]]
 <<hasPot>>~~talkedToSallos``

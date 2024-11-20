@@ -20,7 +20,7 @@ public class SceneTwoManager : MonoBehaviour
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
         foreach (GameObject npc in NPCs) 
         {
-            NPCScript npcScript = npc.GetComponent<NPCScript>();
+            Interactable npcScript = npc.GetComponent<Interactable>();
             npcScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);            
         }
 
@@ -78,9 +78,9 @@ public class SceneTwoManager : MonoBehaviour
     /// UpdateSceneGraph call from
     /// </summary>
     /// <param name="npcScript">Script that the sceneManager recieved an event call from</param>
-    private void UpdateCurrentGraph(NPCScript npcScript)
+    private void UpdateCurrentGraph(Interactable interactScript)
     {
-        currentGraph = npcScript.Graph;
+        currentGraph = interactScript.Graph;
         traverser.SetNewGraph(currentGraph);
 
 		//Send new node info to UI Manager
