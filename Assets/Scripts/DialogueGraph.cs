@@ -39,7 +39,7 @@ public class DialogueGraph
         // Find refernece to starting node
         foreach (DialogueNode node in nodes)
         {
-            if (node.NodeName.Trim().ToLower().Equals("start"))
+            if (node.NodeName.Trim().ToLower().Equals("intro"))
             {
                 start = node;
                 break;
@@ -65,7 +65,7 @@ public class DialogueGraph
 
         // reassign start
         Nodes.RemoveAt(0);
-        newStart.NodeName = "start";
+        newStart.NodeName = "intro";
         start = newStart;
     }
 

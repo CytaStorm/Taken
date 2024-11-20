@@ -27,10 +27,10 @@ public abstract class Interactable : MonoBehaviour
 
     protected void Awake()
     {
-		print(twineFile);
+		//print(twineFile);
         Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<Interactable>();
-        Debug.Log(gameObject.name + " " + UpdateSceneGraph);
+        //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
     }
 
 	public abstract void Interact();
