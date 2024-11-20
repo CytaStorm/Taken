@@ -19,7 +19,7 @@ exit
 :: sallosTalk1 {"position":"1275,425","size":"100,100"}
 "Did you put the pot on the campfire?"
 [[sallosTalkHub]]
-<<talkedToSallos>>~~falseFlag``
+<<talkedToSallos>>
 
 
 :: sallosTalk2 {"position":"1400,550","size":"100,100"}

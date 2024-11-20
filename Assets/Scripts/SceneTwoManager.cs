@@ -71,7 +71,7 @@ public class SceneTwoManager : MonoBehaviour
             {
                 foreach (DialogueFlag flag in node.Flags)
                 {
-                    if (!dialogueFlags.Contains(flag))
+                    if (!FlagListContainsMatch(flag))
                     {
                         dialogueFlags.Add(flag);
                     }
@@ -93,6 +93,18 @@ public class SceneTwoManager : MonoBehaviour
     public bool CheckTraversal(DialogueNode destinationNode)
     {
         return traverser.CheckTraversal(destinationNode, dialogueFlags);
+    }
+
+    private bool FlagListContainsMatch(DialogueFlag flag)
+    {
+        foreach(DialogueFlag listFlag in dialogueFlags)
+        {
+            if (flag.Name == listFlag.Name)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
