@@ -40,7 +40,6 @@ public class DialogueTraverser
     public void SetNewGraph(DialogueGraph graph)
     {
         this.graph = graph;
-        currentNode = graph.StartNode;
         if (graph.WasTraversed == false)
         {
             graph.WasTraversed = true;
@@ -49,6 +48,7 @@ public class DialogueTraverser
         {
             graph.ReassignStart();
         }
+        currentNode = graph.StartNode;
 		GoToSelf();
     }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 using System.IO;
 using UnityEditor;
 using System.ComponentModel;
-
 public class DialogueGraph
 {
     //FIELDS
@@ -13,13 +12,10 @@ public class DialogueGraph
 
     [SerializeField, Description("Path after Assets/")] 
     private string localPath;
-    private string filePath;
 
     //Graph stuff
     private List<DialogueNode> nodes;
     private DialogueNode start;
-    private Dictionary<string, List<DialogueNode>> adjList;
-    private bool[,] adjMatrix;
 
     // Properties
     public DialogueNode StartNode {  get { return start; } }
@@ -58,14 +54,14 @@ public class DialogueGraph
         DialogueNode newStart;
 
         // If there are no links, don't reassign start
-        if (start.Links.Count == 0) { return; }
+        if (start.Links.Count == 0 || start.NodeName == "newIntro") { return; }
 
         // find the next viable start node by acessing the first start's link
         newStart = start.Links[0];
 
         // reassign start
-        Nodes.RemoveAt(0);
-        newStart.NodeName = "intro";
+        Nodes.Remove(start);
+        newStart.NodeName = "newIntro";
         start = newStart;
     }
 

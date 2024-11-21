@@ -124,6 +124,7 @@ public class SceneTwoManager : MonoBehaviour
 
 		//Send new node info to UI Manager
 		UIManager.UI.NewDialogueNode(traverser.currentNode);
+		print(currentGraph.StartNode.Info);
     }
 
 	public void ChangeDialogueFlag (DialogueFlag newFlag)
