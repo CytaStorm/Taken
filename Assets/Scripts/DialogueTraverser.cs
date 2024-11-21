@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.AI.Navigation.Editor;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,29 +49,36 @@ public class DialogueTraverser
         {
             graph.ReassignStart();
         }
+		GoToSelf();
     }
 
+	/// <summary>
+	/// Used to check flags to change on starting node of graph.
+	/// </summary>
+	private void GoToSelf()
+	{
+		foreach (DialogueFlag newFlag in currentNode.FlagsToChange) 
+		{
+			SceneTwoManager.Scene.ChangeDialogueFlag(newFlag);
+		}
+	}
+
     /// <summary>
-    /// Sets currentNode to a new node based on player input
+    /// Sets currentNode to a new node based on player input. If choice is -1,
+	/// go to current node.
     /// </summary>
     /// <param name="choice"></param>
-    public void GoToNode(int choice, List<DialogueFlag> flags)
+    public void GoToNode(int choice)
     {
-        /*
-        // If traversal is possible, reassign currentNode
-        if (CheckTraversal(currentNode.Links[choice], flags))
-        {
-            currentNode = currentNode.Links[choice];
+		currentNode = currentNode.Links[choice];
 
-			//Send currentNode info to UI Manager
-			UIManager.UI.NewDialogueNode(currentNode);
-        } 
-        */
-
-        currentNode = currentNode.Links[choice];
+		foreach (DialogueFlag newFlag in currentNode.FlagsToChange) 
+		{
+			SceneTwoManager.Scene.ChangeDialogueFlag(newFlag);
+		}
 
         //Send currentNode info to UI Manager
-        UIManager.UI.NewDialogueNode(currentNode);
+		UIManager.UI.NewDialogueNode(currentNode);
     }
 
     /// <summary>
@@ -87,12 +96,12 @@ public class DialogueTraverser
         {
             foreach (DialogueFlag flag in flags) 
             {
-                if (flag.Name == destinationFlag.Name)
+                if (flag.MatchName(destinationFlag))
                 { 
-                    if (flag.IsTrue != destinationFlag.IsTrue)
+                    if (flag != destinationFlag)
                     {
                         // Print error message to console
-                        Debug.Log($"Unable to traverse because condition {flag.Name} wasn't met");
+                        //Debug.Log($"Unable to traverse because condition {flag.Name} wasn't met");
 
                         return false;                        
                     }
@@ -101,7 +110,7 @@ public class DialogueTraverser
         }
 
         // Otherwise return true
-        Debug.Log("Successful traversal!");
+        //Debug.Log("Successful traversal!");
         return true;        
     }
 

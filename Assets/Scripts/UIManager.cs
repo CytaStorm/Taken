@@ -117,7 +117,7 @@ public class UIManager : MonoBehaviour
 
 	private void ClearButtons() 
 	{
-		print("clear!");
+		//print("clear!");
 		while (_buttons.Count > 0)
 		{
 			Destroy(_buttons[0]);
@@ -137,7 +137,7 @@ public class UIManager : MonoBehaviour
 
 	public void ChangeToGameplay()
 	{
-		Debug.Log("Changed to gameplay buton");
+		//Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
 		_gameplayUI.SetActive(true);

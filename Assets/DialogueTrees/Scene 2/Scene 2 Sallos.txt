@@ -12,7 +12,7 @@ Scene 2 Sallos Tree
 }
 
 
-:: Continue {"position":"375,350","size":"100,100"}
+:: Continue {"position":"350,350","size":"100,100"}
 "Hi, Eulyss."
 [[SallosTalk1]]
 [[sallosTalk2]] 
@@ -25,9 +25,10 @@ Sallos sits at by the campfire, tending to it.
 [[Continue]] 
 
 
+
 :: SallosTalk1 {"position":"625,100","size":"100,100"}
 "Did you put the pot on the campfire?"
-<<talkedToSallos>>~~falseFlag``
+<<talkedToSallos>>
 
 
 :: sallosTalk2 {"position":"625,225","size":"100,100"}
@@ -38,6 +39,7 @@ Sallos sits at by the campfire, tending to it.
 :: sallosTalk3 {"position":"625,375","size":"100,100"}
 Grab the pot from the bag and put it on the campfire
 ~~hasPot``~~talkedToSallos``
+(set: talkedToSallos to true)
 
 
 :: sallosTalk4 {"position":"625,550","size":"100,100"}

@@ -86,8 +86,8 @@ public class SceneTwoManager : MonoBehaviour
     /// <param name="choice">Index of destinationNode in current node</param>
     public void GoToNode(int choice)
     {
-		print("go to node");
-        traverser.GoToNode(choice, dialogueFlags);
+		//print("go to node");
+        traverser.GoToNode(choice);
     }
 
     public bool CheckTraversal(DialogueNode destinationNode)
@@ -124,6 +124,17 @@ public class SceneTwoManager : MonoBehaviour
 
 		//Send new node info to UI Manager
 		UIManager.UI.NewDialogueNode(traverser.currentNode);
-    }   
-    
+    }
+
+	public void ChangeDialogueFlag (DialogueFlag newFlag)
+	{
+		foreach (DialogueFlag flag in dialogueFlags)
+		{
+			if (flag.MatchName(newFlag))
+			{
+				flag.IsTrue = newFlag.IsTrue;
+				print(flag);
+			}
+		}	
+	}
 }
