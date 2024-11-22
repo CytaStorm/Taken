@@ -71,16 +71,29 @@ class DialogueTreeParser : MonoBehaviour
 		return dialogueNodes;
     }
 
+	/// <summary>
+	/// Parses special delimiters in the node.
+	/// </summary>
+	/// <param name="currentNode">Node to parse.</param>
 	private static void ParseSpecialText(DialogueNode currentNode)
 	{
+		//Links
 		currentNode.LinkNames = RemoveSpecialText(currentNode, "[[", "]]");
+
+		//Add flags
 		AddFlags(currentNode);
+		//Remove flag Delimiters
 		RemoveSpecialText(currentNode, "(if:", "]\n");
 		RemoveSpecialText(currentNode, "(else-if:", "]\n");
 		RemoveSpecialText(currentNode, "(else:", "]\n");
 		ParseChangeFlags(currentNode);
 	}
 
+	/// <summary>
+	/// Parse the Node Name.
+	/// </summary>
+	/// <param name="trimmedLine">Line to trim the name of the node from.</param>
+	/// <returns>The name of the node.</returns>
 	private static string ParseNodeName(string trimmedLine)
 	{
 		int braceIndex = trimmedLine.IndexOf("{");
@@ -90,7 +103,14 @@ class DialogueTreeParser : MonoBehaviour
 		return nodeName;
 	}
 
-	private static void FindMatchingNode(List<DialogueNode> dialogueNodes, DialogueNode node, string linkName)
+	/// <summary>
+	/// Adds node with matching name to a specified node's links list.
+	/// </summary>
+	/// <param name="dialogueNodes">List of nodes to look through.</param>
+	/// <param name="node">The node you want to add the link to.</param>
+	/// <param name="linkName">The name of the node you want to add.</param>
+	private static void FindMatchingNode(
+		List<DialogueNode> dialogueNodes, DialogueNode node, string linkName)
 	{
 		foreach (DialogueNode innerNode in dialogueNodes)
 		{
