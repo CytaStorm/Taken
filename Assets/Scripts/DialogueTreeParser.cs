@@ -123,6 +123,13 @@ class DialogueTreeParser : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Removes text between two specified delimiters, along with the delimiters.
+	/// </summary>
+	/// <param name="node">Node you want to edit on.</param>
+	/// <param name="startDelimiter">Start delimiter to start deleting at.</param>
+	/// <param name="endDelimiter">End delimiter to end deletion at.</param>
+	/// <returns>List of contained removed text (excluding delimiters)</returns>
 	private static List<string> RemoveSpecialText(
 		DialogueNode node, string startDelimiter, string endDelimiter)
 	{
