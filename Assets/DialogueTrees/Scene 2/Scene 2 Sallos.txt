@@ -22,8 +22,7 @@ Scene 2 Sallos Tree
 
 :: Intro {"position":"100,475","size":"100,100"}
 Sallos sits at by the campfire, tending to it.
-[[Continue]] 
-
+[[Continue]]
 
 
 :: SallosTalk1 {"position":"850,175","size":"100,100"}
@@ -33,15 +32,18 @@ Sallos sits at by the campfire, tending to it.
 
 :: sallosTalk2 {"position":"800,350","size":"100,100"}
 ''SALLOS'': "put the pot on the campfire"
-<<talkedToSallos>><<hasPot>>
+<<talkedToSallos>>
+<<hasPot>>
 
 
 :: sallosTalk3 {"position":"750,500","size":"100,100"}
 ''SALLOS'': "Grab the pot from the bag and put it on the campfire"
-~~hasPot``~~talkedToSallos``
+``hasPot``
+``talkedToSallos``
 (set: talkedToSallos to true)
 
 
 :: sallosTalk4 {"position":"700,675","size":"100,100"}
 ''SALLOS'': "You already got the pot? Put it on the campfire"
-<<hasPot>>~~talkedToSallos``
+<<hasPot>>
+``talkedToSallos``
