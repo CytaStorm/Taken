@@ -224,6 +224,10 @@ class DialogueTreeParser : MonoBehaviour
 		return result;
 	}
 
+	/// <summary>
+	/// Parses the flags to change in upon node entry.
+	/// </summary>
+	/// <param name="node">Node to edit.</param>
 	private static void ParseChangeFlags(DialogueNode node)
 	{
 		//Get the string to parse
@@ -245,6 +249,10 @@ class DialogueTreeParser : MonoBehaviour
 		node.FlagsToChange.Add(new DialogueFlag(splitStringToParse[0], changeFlagTo));
 	}
 
+	/// <summary>
+	/// Adds condition requirements to enter node to node.
+	/// </summary>
+	/// <param name="node">Node to edit.</param>
 	private static void AddFlags(DialogueNode node)
 	{
 		//Trues
@@ -260,6 +268,11 @@ class DialogueTreeParser : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Replaces all bolded text in twee file with Unity compatible bold markup
+	/// and fancy font.
+	/// </summary>
+	/// <param name="node">Node to edit.</param>
 	private static void ParseSpeaker(DialogueNode node)
 	{
 		foreach ((string text, int index) removedTextTuple in
