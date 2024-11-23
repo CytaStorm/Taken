@@ -418,7 +418,7 @@ MonoBehaviour:
   offset: {x: -0.75, y: -1, z: -1.2}
   zoom: 10
   pitch: 2
-  cam: {fileID: 0}
+  cam: {fileID: 94754712}
   zoomInDuration: 0
   zoomInMagnitude: 0
 --- !u!1001 &179685827
@@ -1467,6 +1467,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a1b895b5931b3a248b22f3a092b97095, type: 3}
   m_PrefabInstance: {fileID: 1411427090}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &545669518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5442511681268446978, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+  m_PrefabInstance: {fileID: 226062380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &596764552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4767,7 +4778,7 @@ MonoBehaviour:
   _sceneManager: {fileID: 1770832731}
   _dialogueUI: {fileID: 226062382}
   _gameplayUI: {fileID: 226062381}
-  _textDisplay: {fileID: 0}
+  _textDisplay: {fileID: 545669518}
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
   _exitButton: {fileID: 6694033511536594137, guid: f70c5a92133e3b5469d528ad12a41a64, type: 3}
   _buttons: []
