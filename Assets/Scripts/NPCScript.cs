@@ -6,6 +6,14 @@ using UnityEngine.Events;
 
 public class NPCScript : Interactable
 {
+    private Transform transform;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        transform = GetComponent<Transform>();
+    }
+
 	protected override void Update()
 	{
 		// Checks if NPC is focused by the player
@@ -54,6 +62,13 @@ public class NPCScript : Interactable
     public override void Interact()
     {
         // Event to call method in sceneManager that updates currentGraph upon interaction
-        UpdateSceneGraph.Invoke(this);        
+        UpdateSceneGraph.Invoke(this);
+
+        // Face player destination
+        Vector3 destination = PlayerController.PlayerControl.GetDestination();
+        if (destination != null) 
+        {
+            transform.LookAt(destination);
+        }
     }
 }

@@ -126,4 +126,9 @@ public class PlayerController : MonoBehaviour
 	{
 		target = null;
 	}
+
+	public Vector3 GetDestination()
+	{
+		return agent.destination;
+	}
 }

@@ -25,7 +25,7 @@ public abstract class Interactable : MonoBehaviour
     public DialogueGraph Graph { get; protected set; }
     public UnityEvent<Interactable> UpdateSceneGraph { get; private set; }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
 		//print(twineFile);
         Graph = new DialogueGraph(twineFile);
