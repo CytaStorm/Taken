@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;  // Import the AI Navigation namespace
 
-public abstract class Interactable : MonoBehaviour
+public abstract class InteractableScript : MonoBehaviour
 {
               
     [SerializeField] protected Transform interactionTransform;
@@ -23,13 +23,13 @@ public abstract class Interactable : MonoBehaviour
 
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
-    public UnityEvent<Interactable> UpdateSceneGraph { get; private set; }
+    public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
     protected void Awake()
     {
 		//print(twineFile);
         Graph = new DialogueGraph(twineFile);
-        UpdateSceneGraph = new UnityEvent<Interactable>();
+        UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
     }
 
