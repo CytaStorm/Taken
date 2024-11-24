@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 82582167}
   destinationPosition: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
+  agent: {fileID: 796200095}
   radius: 3
   hasLimitedInteractions: 1
   canMove: 1

@@ -28,6 +28,7 @@ public class NPCScript : Interactable
                 //Debug.Log("INTERACT");
                 UIManager.UI.ChangeToDialogue();
                 Interact();
+                LookAtPlayer();
                 hasInteracted = true;
                 interactionCount++;
             }
@@ -46,9 +47,30 @@ public class NPCScript : Interactable
                 Debug.Log("NPC has arrived at the destination.");
             }
         }
-	}
+        
+    }
 
-	// Moves the NPC to the destination
+    protected void LookAtPlayer()
+    {
+        // Face player position
+        Vector3 destination = PlayerController.PlayerControl.transform.position;
+        if (destination != null)
+        {
+            transform.LookAt(destination);
+        }
+    }
+
+    protected void LookAtPlayerDestination()
+    {
+        // Face player destination
+        Vector3 destination = PlayerController.PlayerControl.GetDestination();
+        if (destination != null)
+        {
+            transform.LookAt(destination);
+        }
+    }
+
+    // Moves the NPC to the destination
     protected void MoveToPosition(Vector3 destination)
     {
         // Only move if the interactable has an agent AND a destination
@@ -63,12 +85,5 @@ public class NPCScript : Interactable
     {
         // Event to call method in sceneManager that updates currentGraph upon interaction
         UpdateSceneGraph.Invoke(this);
-
-        // Face player destination
-        Vector3 destination = PlayerController.PlayerControl.GetDestination();
-        if (destination != null) 
-        {
-            transform.LookAt(destination);
-        }
     }
 }
