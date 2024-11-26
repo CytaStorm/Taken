@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ObstacleScript : Interactable
+public class ObstacleScript : InteractableScript
 {
     protected override void Update()
     {
@@ -36,22 +36,6 @@ public class ObstacleScript : Interactable
 
     public override void Interact()
     {
-        GiveItem();
-    }
-
-    /// <summary>
-    /// If the chest hasn't been emptied, give the item to the player
-    /// </summary>
-    private void GiveItem()
-    {
-        if (!hasInteracted)
-        {
-            Debug.Log("Gave item to player.");
-            // add code here to put item in player inventory
-        }
-        else
-        {
-            Debug.Log("Cannot give item. Chest is empty.");
-        }
+        UpdateSceneGraph.Invoke(this);        
     }
 }

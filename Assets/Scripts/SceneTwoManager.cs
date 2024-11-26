@@ -7,7 +7,7 @@ using UnityEngine;
 public class SceneTwoManager : MonoBehaviour
 {
     public List<DialogueFlag> dialogueFlags;
-    [SerializeField] public List<GameObject> NPCs;
+    [SerializeField] public List<GameObject> Interactables;
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
@@ -35,9 +35,9 @@ public class SceneTwoManager : MonoBehaviour
         traverser = new DialogueTraverser();
 
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
-        foreach (GameObject npc in NPCs) 
+        foreach (GameObject npc in Interactables) 
         {
-            Interactable npcScript = npc.GetComponent<Interactable>();
+            InteractableScript npcScript = npc.GetComponent<InteractableScript>();
             npcScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);            
         }
 
@@ -58,10 +58,10 @@ public class SceneTwoManager : MonoBehaviour
     {
         // NOTE: there's way too much iteration in this, might try optimizing later
 
-        foreach (GameObject npc in NPCs) 
+        foreach (GameObject interactable in Interactables) 
         { 
-            NPCScript npcScript = npc.GetComponent<NPCScript>();
-            DialogueGraph graph = npcScript.Graph;
+            InteractableScript interactScript = interactable.GetComponent<InteractableScript>();
+            DialogueGraph graph = interactScript.Graph;
 
             if (graph == null) { break; } // crash prevention
 
@@ -117,14 +117,14 @@ public class SceneTwoManager : MonoBehaviour
     /// UpdateSceneGraph call from
     /// </summary>
     /// <param name="npcScript">Script that the sceneManager recieved an event call from</param>
-    private void UpdateCurrentGraph(Interactable interactScript)
+    private void UpdateCurrentGraph(InteractableScript interactScript)
     {
         currentGraph = interactScript.Graph;
         traverser.SetNewGraph(currentGraph);
 
 		//Send new node info to UI Manager
 		UIManager.UI.NewDialogueNode(traverser.currentNode);
-		print(currentGraph.StartNode.Info);
+		//print(currentGraph.StartNode.Info);
     }
 
 	public void ChangeDialogueFlag (DialogueFlag newFlag)
@@ -134,7 +134,7 @@ public class SceneTwoManager : MonoBehaviour
 			if (flag.MatchName(newFlag))
 			{
 				flag.IsTrue = newFlag.IsTrue;
-				print(flag);
+				//print(flag);
 			}
 		}	
 	}

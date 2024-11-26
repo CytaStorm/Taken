@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class NPCScript : Interactable
+public class NPCScript : InteractableScript
 {
     private Transform transform;
 

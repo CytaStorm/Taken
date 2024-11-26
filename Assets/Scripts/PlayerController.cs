@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private LayerMask interactableMask;
 	[SerializeField] private bool inDialogue = false;
 
-	private Interactable focus;
+	private InteractableScript focus;
 	private Transform target;
 
 	//PROPERTIES
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 		// if ray hits interactable
 		if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
 		{
-			Interactable interactable = hit.collider.GetComponent<Interactable>();
+			InteractableScript interactable = hit.collider.GetComponent<InteractableScript>();
 			if (interactable != null)
 			{
 				SetFocus(interactable);
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void SetFocus(Interactable newFocus)
+	private void SetFocus(InteractableScript newFocus)
 	{
 		if (newFocus == focus) return;
 
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 		StopFollowTarget();
 	}
 
-	public void FollowTarget (Interactable newTarget)
+	public void FollowTarget (InteractableScript newTarget)
 	{
 		agent.stoppingDistance = newTarget.radius * 0.8f; // stop just inside radius
 		target = newTarget.transform;
