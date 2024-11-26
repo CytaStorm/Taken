@@ -60,14 +60,18 @@ public class NPCScript : Interactable
         }
     }
 
-    protected void LookAtPlayerDestination()
+    protected void TurnToFacePlayer()
     {
-        // Face player destination
-        Vector3 destination = PlayerController.PlayerControl.GetDestination();
+        // Get current angle
+        Vector3 oldAngle = transform.rotation.eulerAngles; 
+        // Face player position
+        Vector3 destination = PlayerController.PlayerControl.transform.position;
         if (destination != null)
         {
             transform.LookAt(destination);
         }
+        // Set angle to halfway between
+        Vector3 angleDifference = transform.rotation.eulerAngles - oldAngle;
     }
 
     // Moves the NPC to the destination
