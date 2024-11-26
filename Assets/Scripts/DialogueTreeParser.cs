@@ -5,15 +5,17 @@ using UnityEngine;
 using System.IO;
 using Unity.VisualScripting.FullSerializer;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
+using System.Xml.Linq;
 
 
 class DialogueTreeParser : MonoBehaviour
 {
-	private void Start()
-	{
-		
-	}
-
+	/// <summary>
+	/// Parse twine file.
+	/// </summary>
+	/// <param name="textFile">File to parse.</param>
+	/// <returns>List of nodes parsed from the twine file.</returns>
 	public static List<DialogueNode> ParseFile(TextAsset textFile)
     {
         // Makes sure the file exists
@@ -71,26 +73,59 @@ class DialogueTreeParser : MonoBehaviour
 		return dialogueNodes;
     }
 
+	/// <summary>
+	/// Parses special delimiters in the node.
+	/// </summary>
+	/// <param name="currentNode">Node to parse.</param>
 	private static void ParseSpecialText(DialogueNode currentNode)
 	{
-		currentNode.LinkNames = RemoveSpecialText(currentNode, "[[", "]]");
+		//Links
+		currentNode.LinkNames = GetRemovedSpecialText(currentNode, "[[", "]]");
+
+		//Add flags (for conditions required to enter node)
 		AddFlags(currentNode);
+		
+		//Remove flag delimiters (for conditions required to enter node)
+		//These are used in twinery, but not here
 		RemoveSpecialText(currentNode, "(if:", "]\n");
 		RemoveSpecialText(currentNode, "(else-if:", "]\n");
 		RemoveSpecialText(currentNode, "(else:", "]\n");
+
+		//Parse flags that entry to this node causes
 		ParseChangeFlags(currentNode);
+
+		//Parse speaker of dialogue
+		ParseSpeaker(currentNode);
 	}
 
+	/// <summary>
+	/// Parse the Node Name.
+	/// </summary>
+	/// <param name="trimmedLine">Line to trim the name of the node from.</param>
+	/// <returns>The name of the node.</returns>
 	private static string ParseNodeName(string trimmedLine)
 	{
 		int braceIndex = trimmedLine.IndexOf("{");
-		string nodeName =
-			(braceIndex > -1) ? trimmedLine.Substring(2, braceIndex - 2)
-			.Trim() : trimmedLine.Substring(2).Trim();
+		string nodeName;
+		if (braceIndex > -1)
+		{
+			nodeName = trimmedLine.Substring(2, braceIndex - 2).Trim();
+		} 
+		else
+		{
+			nodeName = trimmedLine.Substring(2).Trim();
+		}
 		return nodeName;
 	}
 
-	private static void FindMatchingNode(List<DialogueNode> dialogueNodes, DialogueNode node, string linkName)
+	/// <summary>
+	/// Adds node with matching name to a specified node's links list.
+	/// </summary>
+	/// <param name="dialogueNodes">List of nodes to look through.</param>
+	/// <param name="node">The node you want to add the link to.</param>
+	/// <param name="linkName">The name of the node you want to add.</param>
+	private static void FindMatchingNode(
+		List<DialogueNode> dialogueNodes, DialogueNode node, string linkName)
 	{
 		foreach (DialogueNode innerNode in dialogueNodes)
 		{
@@ -103,32 +138,100 @@ class DialogueTreeParser : MonoBehaviour
 		}
 	}
 
-	private static List<string> RemoveSpecialText(
+	/// <summary>
+	/// Removes text between two specified delimiters, along with the delimiters.
+	/// </summary>
+	/// <param name="node">Node you want to edit on.</param>
+	/// <param name="startDelimiter">Start delimiter to start deleting at.</param>
+	/// <param name="endDelimiter">End delimiter to end deletion at.</param>
+	/// <returns>List of tuples, containing the removed text (excluding delimiters)
+	/// and the starting index of that removed text (including delimiters)</returns>
+	private static List<(string specialText, int removedStartIndex)> RemoveSpecialText(
 		DialogueNode node, string startDelimiter, string endDelimiter)
 	{
-		List<string> results = new List<string>();
+		List<(string specialText, int removedStartIndex)> results = 
+			new List<(string specialText, int removedStartIndex)>();
+		int startDelimiterStartIndex = node.Info.IndexOf(startDelimiter);
 		while (node.Info.IndexOf(startDelimiter) != -1)
 		{
 			//Find first set of delimiters
-			int linkNameStartIndex = node.Info.IndexOf(startDelimiter) + startDelimiter.Length;
-			int linkNameEndIndex = node.Info.IndexOf(endDelimiter);
+			int linkNameStartIndex = startDelimiterStartIndex + startDelimiter.Length;
+			int linkNameEndIndex = -1000;
+
+			//In case they are the same, search for next instance of delimiter
+			if (startDelimiter == endDelimiter)
+			{
+				linkNameEndIndex = node.Info.IndexOf(
+				endDelimiter, node.Info.IndexOf(endDelimiter) + 1);
+			}
+			else
+			{
+				linkNameEndIndex = node.Info.IndexOf(endDelimiter);
+			}
+
 			int linkedNodeNameLength = linkNameEndIndex - linkNameStartIndex;
 
 			string linkedNodeName = node.Info.Substring(linkNameStartIndex, linkedNodeNameLength);
-			results.Add(linkedNodeName);
+			results.Add((linkedNodeName, startDelimiterStartIndex));
 
-			//Chop the link out of node.info
+
+			//Chop the link out of node.info, including dangling newlines
+			int newlineOffset = 0;
+			try
+			{
+				string substring =
+					node.Info.Substring(linkNameEndIndex + endDelimiter.Length, 1);
+				//print(node.Info.Substring(linkNameEndIndex + endDelimiter.Length, 1));
+				if (node.Info.Substring(linkNameEndIndex + endDelimiter.Length, 1) == "\n")
+				{
+					newlineOffset = 1;
+				}
+			}
+			catch (Exception e)
+			{
+
+			}
+
 			node.Info = node.Info.Remove(
 				linkNameStartIndex - startDelimiter.Length,
-				linkedNodeName.Length + startDelimiter.Length + endDelimiter.Length);
+				linkedNodeName.Length + 
+				startDelimiter.Length + 
+				endDelimiter.Length + 
+				newlineOffset);
+
+			startDelimiterStartIndex = node.Info.IndexOf(startDelimiter);
 		}
 		return results;
 	}
 
+	/// <summary>
+	/// Returns list of removed text in node between delimiters.
+	/// </summary>
+	/// <param name="node">Node to edit on.</param>
+	/// <param name="startDelimiter">Start delimiter to look for.</param>
+	/// <param name="endDelimiter">End delimiter to look for.</param>
+	/// <returns>Returns list of removed text in node between delimiters.</returns>
+	private static List<string> GetRemovedSpecialText(
+		DialogueNode node, string startDelimiter, string endDelimiter)
+	{
+		List<string> result = new List<string>();
+		foreach (
+			(string text, int) removedTextTuple in 
+			RemoveSpecialText(node, startDelimiter, endDelimiter))
+		{
+			result.Add(removedTextTuple.text);
+		};
+		return result;
+	}
+
+	/// <summary>
+	/// Parses the flags to change in upon node entry.
+	/// </summary>
+	/// <param name="node">Node to edit.</param>
 	private static void ParseChangeFlags(DialogueNode node)
 	{
 		//Get the string to parse
-		List<string> stringToParse = RemoveSpecialText(node, "(set: ", ")\n");
+		List<string> stringToParse = GetRemovedSpecialText(node, "(set: ", ")\n");
 		//If it doesn't have (set:) return
 		if (stringToParse.Count == 0) return;
 
@@ -146,18 +249,39 @@ class DialogueTreeParser : MonoBehaviour
 		node.FlagsToChange.Add(new DialogueFlag(splitStringToParse[0], changeFlagTo));
 	}
 
+	/// <summary>
+	/// Adds condition requirements to enter node to node.
+	/// </summary>
+	/// <param name="node">Node to edit.</param>
 	private static void AddFlags(DialogueNode node)
 	{
 		//Trues
-		foreach (string trues in RemoveSpecialText(node, "<<", ">>"))
+		foreach (string trues in GetRemovedSpecialText(node, "<<", ">>"))
 		{
 			node.Flags.Add(new DialogueFlag(trues, true));
 		}
 
 		//Falses
-		foreach (string falses in RemoveSpecialText(node, "~~", "``"))
+		foreach (string falses in GetRemovedSpecialText(node, "``", "``"))
 		{
 			node.Flags.Add(new DialogueFlag(falses, false));
+		}
+	}
+
+	/// <summary>
+	/// Replaces all bolded text in twee file with Unity compatible bold markup
+	/// and fancy font.
+	/// </summary>
+	/// <param name="node">Node to edit.</param>
+	private static void ParseSpeaker(DialogueNode node)
+	{
+		foreach ((string text, int index) removedTextTuple in
+			RemoveSpecialText(node, "\'\'", "\'\'"))
+		{
+			node.Info = 
+				node.Info.Insert(
+					removedTextTuple.index, 
+					"<b><font=SpeakerFont>" + removedTextTuple.text + "</font></b>");
 		}
 	}
 }

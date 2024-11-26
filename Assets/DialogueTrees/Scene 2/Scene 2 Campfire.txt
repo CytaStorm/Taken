@@ -30,4 +30,5 @@ yum
 You put the pot on the campfire.
 
 [[Quest Complete]]
-~~hasPot``<<talkedToSallos>>
+``hasPot``
+<<talkedToSallos>>
