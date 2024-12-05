@@ -52,6 +52,9 @@ public class NPCScript : InteractableScript
 
     protected void LookAtPlayer()
     {
+        // If stationary, don't run method
+        if (!canMove) { return; }
+
         // Face player position
         Vector3 destination = PlayerController.PlayerControl.transform.position;
         if (destination != null)
@@ -62,6 +65,9 @@ public class NPCScript : InteractableScript
 
     protected void TurnToFacePlayer()
     {
+        // If stationary, don't run method
+        if (!canMove) { return; }
+
         // Get current angle
         Vector3 oldAngle = transform.rotation.eulerAngles; 
         // Face player position
