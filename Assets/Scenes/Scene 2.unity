@@ -2611,7 +2611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 1817774281}
   cam: {fileID: 94754712}
-  agent: {fileID: 1817774277}
+  _agent: {fileID: 1817774277}
   raycastRange: 100
   movementMask:
     serializedVersion: 2
@@ -2620,6 +2620,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   inDialogue: 0
+  _animator: {fileID: 284236760}
 --- !u!114 &1817774281
 MonoBehaviour:
   m_ObjectHideFlags: 0

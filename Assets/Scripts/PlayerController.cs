@@ -13,11 +13,12 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private PlayerInput playerInput; 
 
 	[SerializeField] private Camera cam;
-	[SerializeField] private NavMeshAgent agent;
+	[SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private int raycastRange = 100;
 	[SerializeField] private LayerMask movementMask;
 	[SerializeField] private LayerMask interactableMask;
 	[SerializeField] private bool inDialogue = false;
+	[SerializeField] private Animator _animator;
 
 	private InteractableScript focus;
 	private Transform target;
@@ -61,8 +62,10 @@ public class PlayerController : MonoBehaviour
 	{
         if (target != null)
         {
-			agent.SetDestination(target.position);
+			_agent.SetDestination(target.position);
         }
+		//Control eulyss walking anim
+		_animator.SetBool("Walking", _agent.velocity.magnitude > 0);
     }
 
 	public void OnMoveInteract(InputAction.CallbackContext ctx)
@@ -89,7 +92,7 @@ public class PlayerController : MonoBehaviour
 		// if the ray hits something walkable move the player towards it
 		else if (Physics.Raycast(ray, out hit, raycastRange, movementMask))
 		{
-			agent.SetDestination(hit.point);
+			_agent.SetDestination(hit.point);
 			RemoveFocus();
 		}
 	}
@@ -118,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
 	public void FollowTarget (InteractableScript newTarget)
 	{
-		agent.stoppingDistance = newTarget.radius * 0.8f; // stop just inside radius
+		_agent.stoppingDistance = newTarget.radius * 0.8f; // stop just inside radius
 		target = newTarget.transform;
 	}
 
@@ -129,6 +132,6 @@ public class PlayerController : MonoBehaviour
 
 	public Vector3 GetDestination()
 	{
-		return agent.destination;
+		return _agent.destination;
 	}
 }
