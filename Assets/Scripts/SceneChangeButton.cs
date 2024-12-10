@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class SceneChangeButton : MonoBehaviour
 {
-    public bool hasTimeLimit = true;
-    public float timeLimit;
     public string destinationScene;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (timeLimit == null)
-        {
-            hasTimeLimit = false;
-        }
     }
 
     // Update is called once per frame
@@ -24,12 +18,7 @@ public class SceneChanger : MonoBehaviour
 
     }
 
-    void UpdateTimer() 
-    {
-
-    }
-
-    void LoadNextScene()
+    public void LoadNextScene()
     {
         // Change current scene to that with the specified name
         if (destinationScene != null)
