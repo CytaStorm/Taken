@@ -36,30 +36,32 @@ public abstract class InteractableScript : MonoBehaviour
 	public abstract void Interact();
 
     protected virtual void Update()
-    {
-        // Checks if NPC is focused by the player
-        if (isFocus && canInteract)
-        {
-            float distance = Vector3.Distance(
-                PlayerController.PlayerControl.gameObject.transform.position,
-                interactionTransform.position);
-            // If its able to be interacted with, Interact
-            if (distance <= radius && !hasInteracted && !isMoving)
-            {
-                Debug.Log("INTERACT");
-                UIManager.UI.ChangeToDialogue();
-                Interact();
-                hasInteracted = true;
-                interactionCount++;
-            }
-            else if (distance > radius && !isMoving)
-            {
-                hasInteracted = false;
-            }
-        }
-    }
+	{
+		//Interaction filter
+		if (!isFocus || !canInteract)
+		{
+			return;
+		}
 
-    public void OnDefocused()
+		float distance = Vector3.Distance(
+			PlayerController.PlayerControl.gameObject.transform.position,
+			interactionTransform.position);
+		// If its able to be interacted with, Interact
+		if (distance <= radius && !hasInteracted && !isMoving)
+		{
+			Debug.Log("INTERACT");
+			UIManager.UI.ChangeToDialogue();
+			Interact();
+			hasInteracted = true;
+			interactionCount++;
+		}
+		else if (distance > radius && !isMoving)
+		{
+			hasInteracted = false;
+		}
+	}
+
+	public void OnDefocused()
 	{
 		isFocus = false;
 		hasInteracted = false;
