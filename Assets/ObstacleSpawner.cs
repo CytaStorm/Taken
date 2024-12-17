@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnObstacles : MonoBehaviour
@@ -14,18 +15,25 @@ public class SpawnObstacles : MonoBehaviour
     public float zRange;
 
     private Vector3 position;
+    private float timer;
 
     void Awake()
     {
         position = transform.position;
+        timer = 0f;
+
         AssignParameters();
     }
 
     void Update()
     {
+        timer += Time.deltaTime;
+
         // Spawn in obstacles from prefabs list
-        for (int i = 0; i < spawnRate; i++)
+        if (timer >= spawnRate)
         {
+            timer = 0f;
+
             int n = Random.Range(0, obstacles.Count - 1);
             Vector3 offset = new Vector3
                 (Random.Range(-xRange, xRange), // x offset
