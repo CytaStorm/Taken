@@ -12,38 +12,30 @@ Scene 2 Sallos Tree
 }
 
 
+:: "I didn't get the wood." {"position":"875,475","size":"100,100"}
+''SALLOS'': "Could you do that, then? We need to fire stronger to cook food."<<talkedToSallos>>
+
+
+:: "I grabbed the wood." {"position":"1000,200","size":"100,100"}
+''SALLOS'': "Perfect. Put it in the fire!"<<talkedToSallos>><<hasWood>>
+
+
+:: "Is there anything I should do?" {"position":"875,300","size":"100,100"}
+''SALLOS'': "You should find some wood to fuel the fire. We need it a little strong before we can start cooking."``hasWood````talkedToSallos``(set: talkedToSallos to true)
+
+
+:: "What should I do with this wood?" {"position":"1000,400","size":"100,100"}
+''SALLOS'': "You already got wood? Perfect! Go put it on the fire, and we can start cooking!<<hasWood>>``talkedToSallos``
+
+
 :: Continue {"position":"350,350","size":"100,100"}
 ''SALLOS'': "Hi, Eulyss."
-[[SallosTalk1]]
-[[sallosTalk2]] 
-[[sallosTalk3]] 
-[[sallosTalk4]] 
+[["I didn't get the wood."]]
+[["I grabbed the wood."]] 
+[["Is there anything I should do?"]] 
+[["What should I do with this wood?"]] 
 
 
 :: Intro {"position":"100,475","size":"100,100"}
 Sallos sits at by the campfire, tending to it.
 [[Continue]]
-
-
-:: SallosTalk1 {"position":"850,175","size":"100,100"}
-''SALLOS'': "Did you put the pot on the campfire?"
-<<talkedToSallos>>
-
-
-:: sallosTalk2 {"position":"800,350","size":"100,100"}
-''SALLOS'': "put the pot on the campfire"
-<<talkedToSallos>>
-<<hasPot>>
-
-
-:: sallosTalk3 {"position":"750,500","size":"100,100"}
-''SALLOS'': "Grab the pot from the bag and put it on the campfire"
-``hasPot``
-``talkedToSallos``
-(set: talkedToSallos to true)
-
-
-:: sallosTalk4 {"position":"700,675","size":"100,100"}
-''SALLOS'': "You already got the pot? Put it on the campfire"
-<<hasPot>>
-``talkedToSallos``

@@ -12,23 +12,15 @@ Scene 2 Campfire Tree
 }
 
 
-:: Intro {"position":"175,525","size":"100,100"}
-The campfire crackles.
-[[put pot on campfire]] 
-[[You're getting hungry. You should put the pot on the campfire.]] 
+:: Continue {"position":"325,525","size":"100,100"}
+The campfire crackles weakly.
+[[Feed the fire with wood.]] 
 
 
-:: Quest Complete {"position":"675,350","size":"100,100"}
-yum
+:: Feed the fire with wood. {"position":"700,450","size":"100,100"}
+You feed the flame, and it roars to life!<<hasWood>><<talkedToSallos>>
 
 
-:: You're getting hungry. You should put the pot on the campfire. {"position":"525,575","size":"100,100"}
-<<talkedToSallos>>
-
-
-:: put pot on campfire {"position":"425,400","size":"100,100"}
-You put the pot on the campfire.
-
-[[Quest Complete]]
-``hasPot``
-<<talkedToSallos>>
+:: Intro {"position":"50,500","size":"100,100"}
+Sallos has set up a campfire to cook some food with.
+[[Continue]]

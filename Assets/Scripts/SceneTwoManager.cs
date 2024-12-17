@@ -47,7 +47,10 @@ public class SceneTwoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+		foreach (DialogueFlag flag in dialogueFlags)
+		{
+			print(flag);
+		}
     }
     
     /// <summary>
