@@ -30,7 +30,7 @@ public class SpawnObstacles : MonoBehaviour
         timer += Time.deltaTime;
 
         // Spawn in obstacles from prefabs list
-        if (timer >= spawnRate)
+        if (timer >= 1/spawnRate)
         {
             timer = 0f;
 
