@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428c21b1d0f2edf4cb2098634ec9b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scroll: {x: -2, y: 0}
+  scroll: {x: -1, y: 0}
   scaleFactor: {x: 0, y: 0}
   tiling: {x: 0, y: 0}
 --- !u!1 &249149746
@@ -356,7 +356,7 @@ MonoBehaviour:
   - {fileID: 7915708813966320101, guid: b2b9492322720fe45af39671d9209202, type: 3}
   maxDistance: 15
   spawnRate: 1
-  velocity: {x: -2, y: 0, z: 0}
+  velocity: {x: -1, y: 0, z: 0}
   xRange: 0
   yRange: 0
   zRange: 3
@@ -5404,7 +5404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 013123887535fe04a88026633b220631, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -30.94135
+      value: -30.919
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 013123887535fe04a88026633b220631, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5552,7 +5552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9160b5bac9042fb408001e4b214452a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 1
 --- !u!1 &1589002755
 GameObject:
   m_ObjectHideFlags: 0
@@ -5601,7 +5601,7 @@ MonoBehaviour:
   - {fileID: 7915708813966320101, guid: b2b9492322720fe45af39671d9209202, type: 3}
   maxDistance: 15
   spawnRate: 1
-  velocity: {x: -2, y: 0, z: 0}
+  velocity: {x: -1, y: 0, z: 0}
   xRange: 0
   yRange: 0
   zRange: 3
