@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class NPCScript : InteractableScript
 {
     private Transform transform;
+	[SerializeField] private Animator _animator;
 
     protected override void Awake()
     {
@@ -56,6 +57,8 @@ public class NPCScript : InteractableScript
 		{
 			hasInteracted = false;
 		}
+
+		_animator.SetBool("Walking", agent.velocity.magnitude > 0);
 	}
 
 	protected void LookAtPlayer()
