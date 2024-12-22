@@ -35,9 +35,16 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-		CurrentUIMode = UIMode.Gameplay;
-		_dialogueUI.SetActive(false);
-
+        if (_sceneManager.autoImplementDialogue)
+        {
+            CurrentUIMode = UIMode.Dialogue;
+            _dialogueUI.SetActive(true);
+        }
+		else
+		{
+            CurrentUIMode = UIMode.Gameplay;
+            _dialogueUI.SetActive(false);
+        }
 	}
 
 	public void ChangeToDialogue()

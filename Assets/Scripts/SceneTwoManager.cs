@@ -6,12 +6,18 @@ using UnityEngine;
 
 public class SceneTwoManager : MonoBehaviour
 {
+    public bool autoImplementDialogue = false;
+
     public List<DialogueFlag> dialogueFlags;
     public List<GameObject> Interactables;
     public UIManager _UIManager;
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
+    public bool IsDialogueAutoImplimented()
+    {
+        return autoImplementDialogue;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +33,12 @@ public class SceneTwoManager : MonoBehaviour
         }
 
         CreateAllDialogueFlags();
+
+        // If dialogue is to be auto-implemented, set dialogue to that of first NPC
+        if (autoImplementDialogue)
+        {
+            UpdateCurrentGraph(Interactables[0].GetComponent<InteractableScript>());
+        }
     }
 
     // Update is called once per frame
