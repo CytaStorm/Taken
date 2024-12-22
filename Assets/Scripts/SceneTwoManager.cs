@@ -7,32 +7,17 @@ using UnityEngine;
 public class SceneTwoManager : MonoBehaviour
 {
     public List<DialogueFlag> dialogueFlags;
-    [SerializeField] public List<GameObject> Interactables;
+    public List<GameObject> Interactables;
+    public UIManager _UIManager;
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
-    public static SceneTwoManager Scene
-    {
-        get; private set;
-    }
-
-    private void Awake()
-    {
-        if (Scene != null && Scene != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Scene = this;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
     {
 		dialogueFlags = new List<DialogueFlag>();
-        traverser = new DialogueTraverser();
+        traverser = new DialogueTraverser(this, _UIManager);
 
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
         foreach (GameObject npc in Interactables) 
@@ -126,7 +111,7 @@ public class SceneTwoManager : MonoBehaviour
         traverser.SetNewGraph(currentGraph);
 
 		//Send new node info to UI Manager
-		UIManager.UI.NewDialogueNode(traverser.currentNode);
+		_UIManager.NewDialogueNode(traverser.currentNode);
 		//print(currentGraph.StartNode.Info);
     }
 

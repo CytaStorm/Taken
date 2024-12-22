@@ -27,27 +27,10 @@ public class UIManager : MonoBehaviour
 
     //Dialogue Choice Buttons
     public List<GameObject> _buttons;
-
-	public static UIManager UI
-	{
-		get; private set;
-	}
-
+	
 	private void Update()
 	{
 		//Debug.Log(CurrentUIMode);
-	}
-
-	private void Awake()
-	{
-		if (UI != null && UI != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			UI = this;
-		}
 	}
 
 	void Start()
@@ -86,7 +69,7 @@ public class UIManager : MonoBehaviour
 		{
 			DialogueNode linkedNode = dialogueNode.Links[i];
 
-			if (SceneTwoManager.Scene.CheckTraversal(linkedNode))
+			if (_sceneManager.CheckTraversal(linkedNode))
 			{
                 //create button for each link
                 GameObject newestButton =

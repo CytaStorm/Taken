@@ -26,7 +26,7 @@ public class NPCScript : InteractableScript
             if (distance <= radius && !hasInteracted && !isMoving)
             {
                 //Debug.Log("INTERACT");
-                UIManager.UI.ChangeToDialogue();
+                _UIManager.ChangeToDialogue();
                 Interact();
                 LookAtPlayer();
                 hasInteracted = true;

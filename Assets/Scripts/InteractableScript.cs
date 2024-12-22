@@ -6,6 +6,7 @@ using UnityEngine.Events;  // Import the AI Navigation namespace
 
 public abstract class InteractableScript : MonoBehaviour
 {
+    public UIManager _UIManager;
               
     [SerializeField] protected Transform interactionTransform;
     [SerializeField] protected Vector3 destinationPosition;
@@ -47,7 +48,7 @@ public abstract class InteractableScript : MonoBehaviour
             if (distance <= radius && !hasInteracted && !isMoving)
             {
                 Debug.Log("INTERACT");
-                UIManager.UI.ChangeToDialogue();
+                _UIManager.ChangeToDialogue();
                 Interact();
                 hasInteracted = true;
                 interactionCount++;

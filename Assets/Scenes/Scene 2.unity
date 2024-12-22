@@ -961,6 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UIManager: {fileID: 1670189594}
   interactionTransform: {fileID: 82582167}
   destinationPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 796200095}
@@ -6753,6 +6754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UIManager: {fileID: 1670189594}
   interactionTransform: {fileID: 1992602340}
   destinationPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
@@ -7002,6 +7004,7 @@ MonoBehaviour:
   - {fileID: 796200089}
   - {fileID: 1650134038}
   - {fileID: 2062478548}
+  _UIManager: {fileID: 1670189594}
 --- !u!4 &1770832732
 Transform:
   m_ObjectHideFlags: 0
@@ -7231,6 +7234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0283e180c20d9409506e6c241aed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UIManager: {fileID: 1670189594}
   playerInput: {fileID: 1817774281}
   cam: {fileID: 94754712}
   _agent: {fileID: 1817774277}
@@ -7759,6 +7763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UIManager: {fileID: 1670189594}
   interactionTransform: {fileID: 1228299694}
   destinationPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}

@@ -10,6 +10,8 @@ using UnityEngine.InputSystem.HID;
 
 public class PlayerController : MonoBehaviour
 {
+	public UIManager _UIManager;
+
 	[SerializeField] private PlayerInput playerInput; 
 
 	[SerializeField] private Camera cam;
@@ -75,7 +77,7 @@ public class PlayerController : MonoBehaviour
 		RaycastHit hit;
 
 		//Only interact with UI objects
-		if (UIManager.UI.CurrentUIMode == UIMode.Dialogue) return;
+		if (_UIManager.CurrentUIMode == UIMode.Dialogue) return;
 
 		//Player clicks in game
 		// if ray hits interactable
