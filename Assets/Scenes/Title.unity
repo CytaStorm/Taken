@@ -955,7 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6f6da070e11144093273a428441769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationScene: Scene 2
+  destinationScene: Scene 1
 --- !u!4 &1648308785
 Transform:
   m_ObjectHideFlags: 0
