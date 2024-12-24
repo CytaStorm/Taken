@@ -104,7 +104,7 @@ public class NPCScript : InteractableScript
 
 	public override void Interact()
 	{
-		UIManager.UI.ChangeToDialogue();
+		_UIManager.ChangeToDialogue();
 		LookAtPlayer();
 		hasInteracted = true;
 		interactionCount++;

@@ -967,6 +967,7 @@ MonoBehaviour:
   hasLimitedInteractions: 0
   canMove: 1
   twineFile: {fileID: 4900000, guid: 9700b095161428b4fa0383b7d1dcd026, type: 3}
+  _animator: {fileID: 1924112465}
 --- !u!195 &796200095
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6865,6 +6866,7 @@ MonoBehaviour:
   hasLimitedInteractions: 0
   canMove: 0
   twineFile: {fileID: 4900000, guid: cddae4c944052fb4b9df31249b52513e, type: 3}
+  _animator: {fileID: 0}
 --- !u!65 &1650134040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7105,6 +7107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf968b7e49c5f4449af5cd224f13050f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoImplementDialogue: 0
   Interactables:
   - {fileID: 796200089}
   - {fileID: 1650134038}
@@ -8271,6 +8274,7 @@ MonoBehaviour:
   hasLimitedInteractions: 1
   canMove: 0
   twineFile: {fileID: 4900000, guid: f5f551baa4e1a4640bd40d840507fb3c, type: 3}
+  _animator: {fileID: 0}
 --- !u!65 &2062478550
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public abstract class InteractableScript : MonoBehaviour
 		if (distance <= radius && !hasInteracted && !isMoving)
 		{
 			Debug.Log("INTERACT");
-			UIManager.UI.ChangeToDialogue();
+			_UIManager.ChangeToDialogue();
 			Interact();
 			hasInteracted = true;
 			interactionCount++;
