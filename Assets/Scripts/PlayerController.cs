@@ -68,10 +68,12 @@ public class PlayerController : MonoBehaviour
         }
 		//Control eulyss walking anim
 		_animator.SetBool("Walking", _agent.velocity.magnitude > 0);
+		print(_agent.remainingDistance);
     }
 
 	public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{
+		if (!ctx.performed) return;
 		Vector3 mousePos = Mouse.current.position.ReadValue();
 		Ray ray = cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;
@@ -130,6 +132,7 @@ public class PlayerController : MonoBehaviour
 	public void StopFollowTarget()
 	{
 		target = null;
+		_agent.stoppingDistance = 0;
 	}
 
 	public Vector3 GetDestination()
