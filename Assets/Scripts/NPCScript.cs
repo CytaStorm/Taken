@@ -43,22 +43,29 @@ public class NPCScript : InteractableScript
 		if (distance <= radius && !hasInteracted && !isMoving)
 		{
 			//Limited interaction filter
-			if (!hasLimitedInteractions) Interact();
+			if (!hasLimitedInteractions) 
+			{
+                Debug.Log("INTERACT");
+                Interact(); 
+			}
 
 			//Do not interact if too many interactions
 			if (interactionCount > 0)
 			{
 				return;
-			}
-
-			Interact();
+			}            
+            Interact();
+			
 		}
 		else if (distance > radius && !isMoving)
 		{
 			hasInteracted = false;
 		}
 
-		_animator.SetBool("Walking", agent.velocity.magnitude > 0);
+		if (_animator != null) 
+		{
+            _animator.SetBool("Walking", agent.velocity.magnitude > 0);
+        }		
 	}
 
 	protected void LookAtPlayer()
