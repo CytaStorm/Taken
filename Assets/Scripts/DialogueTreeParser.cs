@@ -95,7 +95,7 @@ class DialogueTreeParser : MonoBehaviour
 		ParseChangeFlags(currentNode);
 
 		//Parse speaker of dialogue
-		ParseSpeaker(currentNode);
+		ParseTextFormat(currentNode);
 	}
 
 	/// <summary>
@@ -269,12 +269,12 @@ class DialogueTreeParser : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Replaces all bolded text in twee file with Unity compatible bold markup
-	/// and fancy font.
+	/// Parses text formatting for names and italics and such.
 	/// </summary>
 	/// <param name="node">Node to edit.</param>
-	private static void ParseSpeaker(DialogueNode node)
+	private static void ParseTextFormat(DialogueNode node)
 	{
+		//Bold and fancy text name
 		foreach ((string text, int index) removedTextTuple in
 			RemoveSpecialText(node, "\'\'", "\'\'"))
 		{
@@ -282,6 +282,16 @@ class DialogueTreeParser : MonoBehaviour
 				node.Info.Insert(
 					removedTextTuple.index, 
 					"<b><font=SpeakerFont>" + removedTextTuple.text + "</font></b>");
+		}
+
+		//Italics
+		foreach ((string text, int index) removedTextTuple in
+			RemoveSpecialText(node, "//", "//"))
+		{
+			node.Info = 
+				node.Info.Insert(
+					removedTextTuple.index, 
+					"<i>" + removedTextTuple.text + "</i>");
 		}
 	}
 }

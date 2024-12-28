@@ -45,7 +45,6 @@ public class NPCScript : InteractableScript
 			//Limited interaction filter
 			if (!hasLimitedInteractions) 
 			{
-                Debug.Log("INTERACT");
                 Interact(); 
 			}
 

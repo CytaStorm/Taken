@@ -14,6 +14,8 @@ public class SceneTwoManager : MonoBehaviour
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
+    [Header("DEBUG")] public bool DEBUG;
+
     public bool IsDialogueAutoImplimented()
     {
         return autoImplementDialogue;
@@ -44,10 +46,13 @@ public class SceneTwoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		foreach (DialogueFlag flag in dialogueFlags)
-		{
-			//print(flag);
-		}
+        if (DEBUG)
+        {
+		    foreach (DialogueFlag flag in dialogueFlags)
+		    {
+		    	print(flag);
+		    }
+        }
     }
     
     /// <summary>
@@ -73,7 +78,7 @@ public class SceneTwoManager : MonoBehaviour
                 {
                     if (!FlagListContainsMatch(flag))
                     {                        
-                        dialogueFlags.Add(new DialogueFlag(flag.Name));                        
+                        dialogueFlags.Add(new DialogueFlag(flag.Name));
                     }
                 }
             }

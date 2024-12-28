@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
         }
 		//Control eulyss walking anim
 		_animator.SetBool("Walking", _agent.velocity.magnitude > 0);
-		print(_agent.remainingDistance);
     }
 
 	public void OnMoveInteract(InputAction.CallbackContext ctx)
