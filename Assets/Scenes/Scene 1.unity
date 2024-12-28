@@ -6082,7 +6082,7 @@ MonoBehaviour:
   radius: 3
   hasLimitedInteractions: 1
   canMove: 1
-  twineFile: {fileID: 4900000, guid: 9700b095161428b4fa0383b7d1dcd026, type: 3}
+  twineFile: {fileID: 4900000, guid: ba54346f8629999468b5e2e551a8c279, type: 3}
   _animator: {fileID: 0}
 --- !u!4 &1520122983
 Transform:
@@ -6386,6 +6386,7 @@ MonoBehaviour:
   Interactables:
   - {fileID: 1520122979}
   _UIManager: {fileID: 425611738}
+  DEBUG: 0
 --- !u!4 &1923970401
 Transform:
   m_ObjectHideFlags: 0

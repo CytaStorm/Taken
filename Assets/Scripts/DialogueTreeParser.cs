@@ -152,27 +152,29 @@ class DialogueTreeParser : MonoBehaviour
 		List<(string specialText, int removedStartIndex)> results = 
 			new List<(string specialText, int removedStartIndex)>();
 		int startDelimiterStartIndex = node.Info.IndexOf(startDelimiter);
-		while (node.Info.IndexOf(startDelimiter) != -1)
+		while (startDelimiterStartIndex != -1)
 		{
 			//Find first set of delimiters
-			int linkNameStartIndex = startDelimiterStartIndex + startDelimiter.Length;
-			int linkNameEndIndex = -1000;
+			int specialTextStartIndex = 
+				startDelimiterStartIndex + startDelimiter.Length;
+			int specialTextEndIndex = -1000;
 
 			//In case they are the same, search for next instance of delimiter
 			if (startDelimiter == endDelimiter)
 			{
-				linkNameEndIndex = node.Info.IndexOf(
+				specialTextEndIndex = node.Info.IndexOf(
 				endDelimiter, node.Info.IndexOf(endDelimiter) + 1);
 			}
 			else
 			{
-				linkNameEndIndex = node.Info.IndexOf(endDelimiter);
+				specialTextEndIndex = node.Info.IndexOf(endDelimiter);
 			}
 
-			int linkedNodeNameLength = linkNameEndIndex - linkNameStartIndex;
+			int specialTextLength = specialTextEndIndex - specialTextStartIndex;
 
-			string linkedNodeName = node.Info.Substring(linkNameStartIndex, linkedNodeNameLength);
-			results.Add((linkedNodeName, startDelimiterStartIndex));
+			string specialText = node.Info.Substring(
+				specialTextStartIndex, specialTextLength);
+			results.Add((specialText, startDelimiterStartIndex));
 
 
 			//Chop the link out of node.info, including dangling newlines
@@ -180,9 +182,11 @@ class DialogueTreeParser : MonoBehaviour
 			try
 			{
 				string substring =
-					node.Info.Substring(linkNameEndIndex + endDelimiter.Length, 1);
-				//print(node.Info.Substring(linkNameEndIndex + endDelimiter.Length, 1));
-				if (node.Info.Substring(linkNameEndIndex + endDelimiter.Length, 1) == "\n")
+					node.Info.Substring(
+						specialTextEndIndex + endDelimiter.Length, 1);
+				//print(node.Info.Substring(specialTextEndIndex + endDelimiter.Length, 1));
+				if (node.Info.Substring(
+					specialTextEndIndex + endDelimiter.Length, 1) == "\n")
 				{
 					newlineOffset = 1;
 				}
@@ -193,8 +197,8 @@ class DialogueTreeParser : MonoBehaviour
 			}
 
 			node.Info = node.Info.Remove(
-				linkNameStartIndex - startDelimiter.Length,
-				linkedNodeName.Length + 
+				specialTextStartIndex - startDelimiter.Length,
+				specialText.Length + 
 				startDelimiter.Length + 
 				endDelimiter.Length + 
 				newlineOffset);
@@ -210,7 +214,8 @@ class DialogueTreeParser : MonoBehaviour
 	/// <param name="node">Node to edit on.</param>
 	/// <param name="startDelimiter">Start delimiter to look for.</param>
 	/// <param name="endDelimiter">End delimiter to look for.</param>
-	/// <returns>Returns list of removed text in node between delimiters.</returns>
+	/// <returns>Returns list of removed text in node between 
+	/// delimiters.</returns>
 	private static List<string> GetRemovedSpecialText(
 		DialogueNode node, string startDelimiter, string endDelimiter)
 	{
@@ -231,7 +236,8 @@ class DialogueTreeParser : MonoBehaviour
 	private static void ParseChangeFlags(DialogueNode node)
 	{
 		//Get the string to parse
-		List<string> stringToParse = GetRemovedSpecialText(node, "(set: ", ")\n");
+		List<string> stringToParse = 
+			GetRemovedSpecialText(node, "(set: ", ")\n");
 		//If it doesn't have (set:) return
 		if (stringToParse.Count == 0) return;
 
@@ -246,7 +252,8 @@ class DialogueTreeParser : MonoBehaviour
 		{
 			changeFlagTo = false; 
 		}
-		node.FlagsToChange.Add(new DialogueFlag(splitStringToParse[0], changeFlagTo));
+		node.FlagsToChange.Add(
+			new DialogueFlag(splitStringToParse[0], changeFlagTo));
 	}
 
 	/// <summary>
@@ -256,13 +263,15 @@ class DialogueTreeParser : MonoBehaviour
 	private static void AddFlags(DialogueNode node)
 	{
 		//Trues
-		foreach (string trues in GetRemovedSpecialText(node, "<<", ">>"))
+		foreach (string trues in 
+			GetRemovedSpecialText(node, "<<", ">>"))
 		{
 			node.Flags.Add(new DialogueFlag(trues, true));
 		}
 
 		//Falses
-		foreach (string falses in GetRemovedSpecialText(node, "``", "``"))
+		foreach (string falses in 
+			GetRemovedSpecialText(node, "``", "``"))
 		{
 			node.Flags.Add(new DialogueFlag(falses, false));
 		}
@@ -275,13 +284,22 @@ class DialogueTreeParser : MonoBehaviour
 	private static void ParseTextFormat(DialogueNode node)
 	{
 		//Bold and fancy text name
-		foreach ((string text, int index) removedTextTuple in
-			RemoveSpecialText(node, "\'\'", "\'\'"))
+		string speakerFormatStartDelimiter = "<b><font=SpeakerFont>";
+		string speakerFormatEndDelimiter = "</font></b>";
+		List<(string, int)> speakerSpecialTextTuple =
+			RemoveSpecialText(node, "\'\'", "\'\'");
+		for (int i = 0; i < speakerSpecialTextTuple.Count; i++)
 		{
-			node.Info = 
-				node.Info.Insert(
-					removedTextTuple.index, 
-					"<b><font=SpeakerFont>" + removedTextTuple.text + "</font></b>");
+			(string text, int index) removedTextTuple = 
+				speakerSpecialTextTuple[i];
+
+			string formattedSpeakerName = 
+				speakerFormatStartDelimiter + 
+				removedTextTuple.text + 
+				speakerFormatEndDelimiter;
+			node.Info = node.Info.Insert(
+				removedTextTuple.index + (formattedSpeakerName.Length * i),
+				formattedSpeakerName);
 		}
 
 		//Italics
