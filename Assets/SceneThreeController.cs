@@ -6,18 +6,25 @@ using UnityEngine.AI;
 
 public class SceneThreeController : MonoBehaviour
 {
+    // Actors
     public GameObject sallos;
     public GameObject eulyss;
-    public List<DialogueFlag> eventFlags;
+    public GameObject akif;
 
+    public SceneTwoManager sceneTwoManager;
+
+    // Event trigger variables
+    public List<string> flagNames;
+    private List<DialogueFlag> eventFlags;
     private double timer;
 
+    // Actor components
     private NavMeshAgent sallosAgent;
     private Animator sallosAnimator;
-
     private NavMeshAgent eulyssAgent;
     private Animator eulyssAnimator;
-
+    private NavMeshAgent akifAgent;
+    private Animator akifAnimator;
 
 
     // Start is called before the first frame update
@@ -26,6 +33,19 @@ public class SceneThreeController : MonoBehaviour
         // Initialize timer
         timer = 0f;
 
+        // Create eventFlags list based on string list flagNames
+        eventFlags = new List<DialogueFlag>();
+        foreach(string name in flagNames)
+        {
+            foreach (DialogueFlag flag in sceneTwoManager.dialogueFlags) 
+            { 
+                if (flag.Name == name)
+                {
+                    eventFlags.Add(flag);
+                }
+            }
+        }
+
         // Get component data for all actors
         sallosAgent = sallos.GetComponent<NavMeshAgent>();
         sallosAnimator = sallos.GetComponent<Animator>();
@@ -33,9 +53,13 @@ public class SceneThreeController : MonoBehaviour
         eulyssAgent = eulyss.GetComponent<NavMeshAgent>();
         eulyssAnimator = eulyss.GetComponent<Animator>();
 
-        // Set initial positions of all actors
-        sallos.transform.position = new Vector3(-1.31f, 0f, 13.3f);
+        akifAgent = akif.GetComponent<NavMeshAgent>();
+        akifAnimator = akif.GetComponent<Animator>();
 
+        // Set initial positions of all actors
+        sallos.transform.position = new Vector3(-1.45f, 0, 3.92f);
+        eulyss.transform.position = new Vector3(-0.81f, 0, 4.82f);
+        akif.transform.position = new Vector3(-2.078f, 0, -6.21f);
     }
 
     // Update is called once per frame
@@ -51,15 +75,9 @@ public class SceneThreeController : MonoBehaviour
         }
     }
 
-    void PlayEventZero()
+    private void PlayEventZero()
     {
-        // Execute event code here
-
-        // Set event flag to false once event has ended
-        // Event could be time based, so this if statement could involve the time reaching a value
-        if (true)
-        {
-
-        }
+        akif.transform.position = new Vector3(-2.078f, 0, 0);
+        eventFlags[0].IsTrue = false;
     }
 }
