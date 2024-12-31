@@ -59,7 +59,7 @@ public class SceneThreeController : MonoBehaviour
         // Set initial positions of all actors
         sallos.transform.position = new Vector3(-1.45f, 0, 3.92f);
         eulyss.transform.position = new Vector3(-0.81f, 0, 4.82f);
-        akif.transform.position = new Vector3(-2.078f, 0, -6.21f);
+        akif.transform.position = new Vector3(-2.078f, 0, -7.49f);
     }
 
     // Update is called once per frame
