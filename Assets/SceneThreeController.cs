@@ -57,9 +57,9 @@ public class SceneThreeController : MonoBehaviour
         akifAnimator = akif.GetComponent<Animator>();
 
         // Set initial positions of all actors
-        sallos.transform.position = new Vector3(-1.45f, 0, 3.92f);
-        eulyss.transform.position = new Vector3(-0.81f, 0, 4.82f);
-        akif.transform.position = new Vector3(-2.078f, 0, -7.49f);
+        sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
+        eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
+        akif.transform.position = new Vector3(-3.95f, 0, 14.34f);
     }
 
     // Update is called once per frame
@@ -77,7 +77,7 @@ public class SceneThreeController : MonoBehaviour
 
     private void PlayEventZero()
     {
-        akifAgent.destination = new Vector3(-2.078f, 0, 0);
+        akifAgent.destination = new Vector3(-0.9f, 0, 4.67f);
         akifAnimator.SetBool("Walking", true);
 
         if (akif.transform.position == akifAgent.destination)
