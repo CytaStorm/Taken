@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,8 +26,16 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private GameObject _dialogueChoiceButton;
     [SerializeField] private GameObject _exitButton;
 
+	//scrollbar
+	[SerializeField] private Scrollbar _scrollbar;
+
     //Dialogue Choice Buttons
     public List<GameObject> _buttons;
+
+	[Header("Aesthetics")]
+	//Used to change the prev text color
+	[SerializeField] private Color _prevTextColor;
+	private int endingPrevColorTagIndex = 0;
 	
 	private void Update()
 	{
@@ -63,6 +72,48 @@ public class UIManager : MonoBehaviour
 	public void NewDialogueNode(DialogueNode dialogueNode)
 	{
 		//Add new node text to text display
+
+		//Add title of node unless it is the first node
+		//because title of node is the player's response
+		if (dialogueNode.NodeName != "Intro")
+		{
+			_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
+			_textDisplay.text += dialogueNode.NodeName + "\n\n";
+		}
+
+		//change where previous text color should end
+		string prevColorTag = $"<color=#{_prevTextColor.ToHexString()}>";
+		string prevColorEndTag = "</color>";
+
+		//Add on the color tags if necessary
+		//Only add color tags if is not first node
+		if (_textDisplay.text.Length != 0)
+		{
+			//If there is no prev colored text (usually second node)
+			//Color existing text prev text color
+			if (_textDisplay.text.Substring(
+				0, prevColorTag.Length) != prevColorTag)
+			{
+				_textDisplay.text = prevColorTag + 
+									_textDisplay.text + 
+									prevColorEndTag;
+			
+			} 
+			else
+			{
+				//Remove old ending tag
+				_textDisplay.text = _textDisplay.text.Remove(
+					endingPrevColorTagIndex, prevColorEndTag.Length + 1);
+
+				//replace ending tag at end of string
+				_textDisplay.text += prevColorEndTag;
+
+			}
+
+			//Update prev color end tag position
+			endingPrevColorTagIndex = _textDisplay.text.Length - prevColorEndTag.Length - 1;
+		}
+		
 		_textDisplay.text += dialogueNode.Info;
 
 		_dialogueUI.SetActive(true);

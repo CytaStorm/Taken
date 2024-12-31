@@ -439,17 +439,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1190885631013758100, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190885631013758100, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190885631013758100, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
+    - target: {fileID: 1510006639223593198, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4003383626450644320, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Pivot.x
@@ -535,30 +527,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8313989442157834247, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -567,9 +535,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8313989442157834247, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9095627236005568842, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095627236005568842, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00024414062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -976,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c332f13018fbdc7479bb5e24ad42669c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagName: hasWood
+  flagName: litCampfire
   sceneManager: {fileID: 1770832731}
   targetObject: {fileID: 242750582}
 --- !u!4 &739092646
@@ -12117,7 +12093,7 @@ MonoBehaviour:
   - {fileID: 1650134038}
   - {fileID: 2062478548}
   _UIManager: {fileID: 1670189594}
-  DEBUG: 0
+  DEBUG: 1
 --- !u!4 &1770832732
 Transform:
   m_ObjectHideFlags: 0

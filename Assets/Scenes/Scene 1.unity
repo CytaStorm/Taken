@@ -674,7 +674,9 @@ MonoBehaviour:
   _textDisplay: {fileID: 596544256}
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
   _exitButton: {fileID: 6694033511536594137, guid: bcfca7718327bb648958016b4dd65262, type: 3}
+  _scrollbar: {fileID: 1159005045}
   _buttons: []
+  _prevTextColor: {r: 0.4575472, g: 0.4575472, b: 0.4575472, a: 1}
 --- !u!4 &425611739
 Transform:
   m_ObjectHideFlags: 0
@@ -5956,6 +5958,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b9492322720fe45af39671d9209202, type: 3}
+--- !u!114 &1159005045 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1510006639223593198, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+  m_PrefabInstance: {fileID: 1997795882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1212424493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6516,9 +6529,17 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1395216316347096354, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_ScrollSensitivity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1510006639223593198, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      propertyPath: m_Size
-      value: 0.99357504
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510006639223593198, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_NumberOfSteps
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003383626450644320, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Pivot.x
@@ -6600,9 +6621,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5442511681268446978, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 5902094164007486168, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328042399737456305, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6641,16 +6670,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9095627236005568842, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095627236005568842, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095627236005568842, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9095627236005568842, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095627236005568842, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5788925129793272718, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}

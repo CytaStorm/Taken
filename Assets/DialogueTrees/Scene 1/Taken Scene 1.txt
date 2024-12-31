@@ -47,8 +47,6 @@ Soon enough, the path leads to a flat area.
 
 ''SALLOS'': "We made it! Let's stop here for the time being, and set up for the night."
 
-[[Stop and rest.]]
-
 
 :: "No! I mean, I don't wish for us to slow down on this odyssey! Let's keep going." {"position":"650,125","size":"100,100"}
 Sallos's ears perk up, and he gives a quick glance back at you.
@@ -84,10 +82,6 @@ But you are not just any passenger. His small eyebrows are every so slightly fur
 [["Don't worry, I'm just fine!"]]
 [["You're doing an amazing job, Sallos."]]
 [["But what about //you//? Where's the concern for yourself?"]]
-
-
-:: Stop and rest. {"position":"675,1200","size":"100,100"}
-
 
 
 :: Take a breath. {"position":"650,275","size":"100,100"}

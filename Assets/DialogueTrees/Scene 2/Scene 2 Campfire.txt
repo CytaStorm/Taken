@@ -14,11 +14,11 @@ Scene 2 Campfire Tree
 
 :: Continue {"position":"325,525","size":"100,100"}
 The campfire crackles weakly.
-[[Feed the fire with wood.]] 
+[[Feed the fire with wood.]]
 
 
 :: Feed the fire with wood. {"position":"700,450","size":"100,100"}
-You feed the flame, and it roars to life!<<hasWood>><<talkedToSallos>>
+You feed the flame, and it roars to life!<<hasWood>><<talkedToSallos>>``litCampfire``(set: litCampfire to true)
 
 
 :: Intro {"position":"50,500","size":"100,100"}
