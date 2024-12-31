@@ -77,7 +77,13 @@ public class SceneThreeController : MonoBehaviour
 
     private void PlayEventZero()
     {
-        akif.transform.position = new Vector3(-2.078f, 0, 0);
-        eventFlags[0].IsTrue = false;
+        akifAgent.destination = new Vector3(-2.078f, 0, 0);
+        akifAnimator.SetBool("Walking", true);
+
+        if (akif.transform.position == akifAgent.destination)
+        {
+            eventFlags[0].IsTrue = false;
+            akifAnimator.SetBool("Walking", false);
+        }        
     }
 }
