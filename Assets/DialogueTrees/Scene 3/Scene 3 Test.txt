@@ -1,0 +1,26 @@
+:: StoryTitle
+Scene 3 Test
+
+
+:: StoryData
+{
+  "ifid": "425F063A-E7C8-472E-82C0-BE97A87B46A6",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Intro",
+  "zoom": 1
+}
+
+
+:: Continue {"position":"675,250","size":"100,100"}
+``walkTrigger``(set: walkTrigger to true)
+[[nextNode]]
+
+
+:: Intro {"position":"425,250","size":"100,100"}
+''SALLOS'': "What are you doing here?"
+[[Continue]]
+
+
+:: nextNode {"position":"875,275","size":"100,100"}
+--END--
