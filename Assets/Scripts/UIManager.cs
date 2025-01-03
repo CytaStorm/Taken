@@ -77,6 +77,7 @@ public class UIManager : MonoBehaviour
 		//because title of node is the player's response
 		if (dialogueNode.NodeName != "Intro")
 		{
+			_textDisplay.text += "\n";
 			_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
 			_textDisplay.text += dialogueNode.NodeName + "\n\n";
 		}

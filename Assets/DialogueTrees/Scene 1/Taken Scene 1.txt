@@ -12,7 +12,7 @@ Taken Scene 1
 }
 
 
-:: "But what about //you//? Where's the concern for yourself?" {"position":"1025,650","size":"100,100"}
+:: "But what about <i>you</i>? Where's the concern for yourself?" {"position":"1025,650","size":"100,100"}
 ''SALLOS'': "Look, I'm not exactly the one who needed to be rescued before, and I've done this odyssey plenty of times before. You, on the other hand..."
 
 [["Don't be scared. I trust you. In return, trust me, alright?"]] 
@@ -81,7 +81,7 @@ But you are not just any passenger. His small eyebrows are every so slightly fur
 
 [["Don't worry, I'm just fine!"]]
 [["You're doing an amazing job, Sallos."]]
-[["But what about //you//? Where's the concern for yourself?"]]
+[["But what about <i>you</i>? Where's the concern for yourself?"]]
 
 
 :: Take a breath. {"position":"650,275","size":"100,100"}

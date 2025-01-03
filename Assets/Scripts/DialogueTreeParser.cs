@@ -25,8 +25,9 @@ class DialogueTreeParser : MonoBehaviour
 
 		// FIRST TIME THROUGH -- create nodes and their data
         DialogueNode currentNode = null;
-		foreach (string line in fileLines)
+		for (int i = 0; i < fileLines.Length; i++)
 		{
+			string line = fileLines[i];
 			// Trims whitespace from the line
 			string trimmedLine = line.Trim();
 
@@ -34,7 +35,9 @@ class DialogueTreeParser : MonoBehaviour
 			if (!trimmedLine.StartsWith("::"))
 			{
 				//If no node is being made, ignore.
-				if (currentNode == null || trimmedLine == string.Empty) continue;
+				//if (currentNode == null || trimmedLine == string.Empty) continue;
+
+				if (currentNode == null) continue;
 
 				// Adds the info under the node
 				currentNode.Info += trimmedLine + "\n";
@@ -46,17 +49,23 @@ class DialogueTreeParser : MonoBehaviour
 			if (nodeName == "StoryTitle" || nodeName == "StoryData") continue;
 
 
+			//Parse special text once node is completed
 			if (currentNode != null)
 			{
 				ParseSpecialText(currentNode);
+				currentNode.Info = currentNode.Info.Substring(0, currentNode.Info.Length - 3);
 			}
 
+			//Only new nodes should be left over
 			//Start new node
 			currentNode = new DialogueNode(nodeName, "");
 			dialogueNodes.Add(currentNode);
 		}
+
 		//Parse specialText in lastNode 
 		ParseSpecialText(currentNode);
+		//Trim ending newlines in lastNode
+		currentNode.Info = currentNode.Info.Substring(0, currentNode.Info.Length - 3);
 
 		//Create the links between nodes
 		foreach (DialogueNode node in dialogueNodes)
