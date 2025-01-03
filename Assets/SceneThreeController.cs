@@ -10,7 +10,8 @@ public class SceneThreeController : MonoBehaviour
     public GameObject sallos;
     public GameObject eulyss;
     public GameObject akif;
-
+    
+    public UIManager uiManager;
     public SceneTwoManager sceneTwoManager;
 
     // Event trigger variables
@@ -28,6 +29,7 @@ public class SceneThreeController : MonoBehaviour
 
 
     // Start is called before the first frame update
+    // MAKE SURE EXECUTION ORDER IS SET TO LAST FOR THIS TO WORK
     void Start()
     {
         // Initialize timer
@@ -45,6 +47,8 @@ public class SceneThreeController : MonoBehaviour
                 }
             }
         }
+
+        // Assign all event methods to OnClick() events for all buttons
 
         // Get component data for all actors
         sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -79,11 +83,24 @@ public class SceneThreeController : MonoBehaviour
     {
         akifAgent.destination = new Vector3(-0.9f, 0, 4.67f);
         akifAnimator.SetBool("Walking", true);
+        StartCoroutine(PauseAllButtons(5f));
 
         if (akif.transform.position == akifAgent.destination)
         {
             eventFlags[0].IsTrue = false;
             akifAnimator.SetBool("Walking", false);
         }        
+    }
+
+    private IEnumerator PauseAllButtons(float seconds)
+    {
+        // disable all buttons
+        Debug.Log("started");
+        // wait for seconds amount of time
+
+        yield return new WaitForSeconds(seconds);
+
+        // enable all buttons
+        Debug.Log("ended");
     }
 }
