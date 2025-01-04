@@ -13,12 +13,14 @@ Scene 3 Test
 
 
 :: Continue {"position":"675,250","size":"100,100"}
-``walkTrigger``(set: walkTrigger to true)
+bleh``walkTrigger``(set: walkTrigger to true)
+
 [[nextNode]]
 
 
-:: Intro {"position":"425,250","size":"100,100"}
+:: Intro {"position":"275,250","size":"100,100"}
 ''SALLOS'': "What are you doing here?"
+
 [[Continue]]
 
 

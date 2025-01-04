@@ -1,12 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using Unity.VisualScripting.FullSerializer;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
-using System.Xml.Linq;
 
 
 class DialogueTreeParser : MonoBehaviour
@@ -27,33 +21,27 @@ class DialogueTreeParser : MonoBehaviour
         DialogueNode currentNode = null;
 		for (int i = 0; i < fileLines.Length; i++)
 		{
-			string line = fileLines[i];
-			// Trims whitespace from the line
-			string trimmedLine = line.Trim();
+			string line = fileLines[i].Trim();
 
 			//Line is not a node starter line
-			if (!trimmedLine.StartsWith("::"))
+			if (!line.StartsWith("::"))
 			{
 				//If no node is being made, ignore.
-				//if (currentNode == null || trimmedLine == string.Empty) continue;
-
 				if (currentNode == null) continue;
 
 				// Adds the info under the node
-				currentNode.Info += trimmedLine + "\n";
+				currentNode.Info += line + "\n";
 				continue;
 			}
 
 			//Filter out metadata/bad lines
-			string nodeName = ParseNodeName(trimmedLine);
+			string nodeName = ParseNodeName(line);
 			if (nodeName == "StoryTitle" || nodeName == "StoryData") continue;
-
 
 			//Parse special text once node is completed
 			if (currentNode != null)
 			{
 				ParseSpecialText(currentNode);
-				currentNode.Info = currentNode.Info.Substring(0, currentNode.Info.Length - 3);
 			}
 
 			//Only new nodes should be left over
@@ -64,8 +52,6 @@ class DialogueTreeParser : MonoBehaviour
 
 		//Parse specialText in lastNode 
 		ParseSpecialText(currentNode);
-		//Trim ending newlines in lastNode
-		currentNode.Info = currentNode.Info.Substring(0, currentNode.Info.Length - 3);
 
 		//Create the links between nodes
 		foreach (DialogueNode node in dialogueNodes)
@@ -105,6 +91,9 @@ class DialogueTreeParser : MonoBehaviour
 
 		//Parse speaker of dialogue
 		ParseTextFormat(currentNode);
+
+		//Trim anything leftover
+		currentNode.Info = currentNode.Info.Trim();
 	}
 
 	/// <summary>

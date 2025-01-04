@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,20 +34,20 @@ public class SceneThreeController : MonoBehaviour
         // Initialize timer
         timer = 0f;
 
-        // Create eventFlags list based on string list flagNames
+        //Create eventFlags list based on string list flagNames
         eventFlags = new List<DialogueFlag>();
         foreach(string name in flagNames)
         {
             foreach (DialogueFlag flag in sceneTwoManager.dialogueFlags) 
-            { 
-                if (flag.Name == name)
-                {
-                    eventFlags.Add(flag);
-                }
+            {
+                if (flag.Name != name) continue;
+
+                eventFlags.Add(flag);
             }
         }
 
         // Assign all event methods to OnClick() events for all buttons
+        eventFlags[0].onValueChange += delegate { PlayEventZero(); };
 
         // Get component data for all actors
         sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -66,30 +65,17 @@ public class SceneThreeController : MonoBehaviour
         akif.transform.position = new Vector3(-3.95f, 0, 14.34f);
     }
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
         // Update timer each frame
         timer += Time.deltaTime;
-
-        // Play event when the specified flag is true
-        if (eventFlags[0].IsTrue)
-        {
-            PlayEventZero();
-        }
     }
 
     private void PlayEventZero()
     {
         akifAgent.destination = new Vector3(-0.9f, 0, 4.67f);
-        akifAnimator.SetBool("Walking", true);
         StartCoroutine(PauseAllButtons(5f));
-
-        if (akif.transform.position == akifAgent.destination)
-        {
-            eventFlags[0].IsTrue = false;
-            akifAnimator.SetBool("Walking", false);
-        }        
     }
 
     private IEnumerator PauseAllButtons(float seconds)

@@ -761,6 +761,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ec9114cbe3eeff4897afc4bc237faa3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 278721997}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ec9114cbe3eeff4897afc4bc237faa3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 278721998}
   m_SourcePrefab: {fileID: 100100000, guid: 2ec9114cbe3eeff4897afc4bc237faa3, type: 3}
 --- !u!1 &278721995 stripped
 GameObject:
@@ -810,6 +813,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &278721998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278721995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 0}
+  interactionTransform: {fileID: 0}
+  destinationPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 278721997}
+  radius: 3
+  hasLimitedInteractions: 1
+  canMove: 1
+  twineFile: {fileID: 0}
+  IsPuppet: 1
+  _animator: {fileID: 278721996}
 --- !u!1 &568755719
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +847,7 @@ GameObject:
   - component: {fileID: 568755721}
   - component: {fileID: 568755720}
   m_Layer: 7
-  m_Name: NPC
+  m_Name: DialogueHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -870,6 +895,7 @@ MonoBehaviour:
   hasLimitedInteractions: 1
   canMove: 1
   twineFile: {fileID: 4900000, guid: c112f3fb6debf3741bbaec902300a15d, type: 3}
+  IsPuppet: 0
   _animator: {fileID: 0}
 --- !u!4 &568755722
 Transform:
@@ -1765,7 +1791,9 @@ MonoBehaviour:
   _textDisplay: {fileID: 1909625342}
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
   _exitButton: {fileID: 6694033511536594137, guid: bcfca7718327bb648958016b4dd65262, type: 3}
+  _scrollbar: {fileID: 0}
   _buttons: []
+  _prevTextColor: {r: 0.45882353, g: 0.45882353, b: 0.45882353, a: 1}
 --- !u!4 &1643548098
 Transform:
   m_ObjectHideFlags: 0
@@ -2165,6 +2193,7 @@ MonoBehaviour:
   sallos: {fileID: 1075811454}
   eulyss: {fileID: 36616011}
   akif: {fileID: 278721995}
+  uiManager: {fileID: 0}
   sceneTwoManager: {fileID: 693596820}
   flagNames:
   - walkTrigger

@@ -1,13 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 /// <summary>
 /// Custom data structure for representing condition checks in dialogue trees 
 /// </summary>
 public class DialogueFlag
 {
-    public bool IsTrue;
+    private bool _isTrue;
     public string Name;
+
+	public bool IsTrue { 
+		get { return _isTrue; }
+		set 
+		{ 
+			_isTrue = value;
+			if (onValueChange != null)
+			{
+				onValueChange();
+			}
+		}
+	}
+
+	/// <summary>
+	/// Delegate for onChange methods
+	/// </summary>
+	public delegate void onValueChangeHandler();
+
+	/// <summary>
+	/// Methods to call when the value changes
+	/// </summary>
+	public event onValueChangeHandler onValueChange;
 
     /// <summary>
     /// Creates a new DialogueFlag that is set to false

@@ -1,16 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 
 public class PlayerController : MonoBehaviour
 {
-	public UIManager _UIManager;
+	[SerializeField] private UIManager _UIManager;
 
 	[SerializeField] private PlayerInput playerInput; 
 
@@ -56,7 +50,6 @@ public class PlayerController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		
 	}
 
 	// Update is called once per frame
