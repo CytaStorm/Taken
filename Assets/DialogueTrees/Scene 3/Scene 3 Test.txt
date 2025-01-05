@@ -12,16 +12,32 @@ Scene 3 Test
 }
 
 
-:: Continue {"position":"675,250","size":"100,100"}
-bleh``walkTrigger``(set: walkTrigger to true)
+:: "Is something wrong, Sallos?" {"position":"450,525","size":"100,100"}
+test
 
-[[nextNode]]
+
+:: Continue {"position":"275,375","size":"100,100"}
+Sallos steps ahead of you.
+
+The path is clear and the day seems ready for you to tackle.
+
+[[Start walking.]]
 
 
 :: Intro {"position":"275,250","size":"100,100"}
-''SALLOS'': "What are you doing here?"
+''SALLOS'': "All packed up! Let's get out of here."
+
+The two of you have gotten up early to continue on your trek up The Heights. Sallos looks as bright as ever.
+
+You, on the other hand, couldn't sleep well. Sleeping outside was definitely something you weren't used to.
 
 [[Continue]]
+
+
+:: Start walking. {"position":"450,375","size":"100,100"}
+Sallos suddenly freezes. The fur on his neck stands up straight. Something's wrong.``walkLeft``(set: walkLeft to true)
+
+[["Is something wrong, Sallos?"]]
 
 
 :: nextNode {"position":"875,275","size":"100,100"}

@@ -19,12 +19,12 @@ public class SceneThreeController : MonoBehaviour
     private double timer;
 
     // Actor components
-    private NavMeshAgent sallosAgent;
-    private Animator sallosAnimator;
-    private NavMeshAgent eulyssAgent;
-    private Animator eulyssAnimator;
-    private NavMeshAgent akifAgent;
-    private Animator akifAnimator;
+    private NavMeshAgent _sallosAgent;
+    private Animator _sallosAnimator;
+    private NavMeshAgent _eulyssAgent;
+    private Animator _eulyssAnimator;
+    private NavMeshAgent _akifAgent;
+    private Animator _akifAnimator;
 
 
     // Start is called before the first frame update
@@ -50,14 +50,14 @@ public class SceneThreeController : MonoBehaviour
         eventFlags[0].onValueChange += delegate { PlayEventZero(); };
 
         // Get component data for all actors
-        sallosAgent = sallos.GetComponent<NavMeshAgent>();
-        sallosAnimator = sallos.GetComponent<Animator>();
+        _sallosAgent = sallos.GetComponent<NavMeshAgent>();
+        _sallosAnimator = sallos.GetComponent<Animator>();
 
-        eulyssAgent = eulyss.GetComponent<NavMeshAgent>();
-        eulyssAnimator = eulyss.GetComponent<Animator>();
+        _eulyssAgent = eulyss.GetComponent<NavMeshAgent>();
+        _eulyssAnimator = eulyss.GetComponent<Animator>();
 
-        akifAgent = akif.GetComponent<NavMeshAgent>();
-        akifAnimator = akif.GetComponent<Animator>();
+        _akifAgent = akif.GetComponent<NavMeshAgent>();
+        _akifAnimator = akif.GetComponent<Animator>();
 
         // Set initial positions of all actors
         sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
@@ -74,7 +74,8 @@ public class SceneThreeController : MonoBehaviour
 
     private void PlayEventZero()
     {
-        akifAgent.destination = new Vector3(-0.9f, 0, 4.67f);
+        _sallosAgent.SetDestination(new Vector3(-2.11f, 0f, 7.35f));
+        _eulyssAgent.SetDestination(new Vector3(-2.27f, 0f, 5.86f));
         StartCoroutine(PauseAllButtons(5f));
     }
 
