@@ -12,6 +12,9 @@ public class SpawnObstacles : MonoBehaviour
     public float yRange;
     public float zRange;
 
+    public Vector2 initialSpawnRange;
+    public int numInitialSpawns;
+
     private Vector3 position;
     private float timer;
 
@@ -21,6 +24,20 @@ public class SpawnObstacles : MonoBehaviour
         timer = 0f;
 
         AssignParameters();
+
+        // Create bed of trees within spawn range
+        for (int i = 0; i < numInitialSpawns; i++)
+        {
+            int n = Random.Range(0, obstacles.Count - 1);
+
+            Vector3 offset = new Vector3
+                (Random.Range(-initialSpawnRange.x, 0), // x offset
+                 Random.Range(-initialSpawnRange.y, 0), // y offset
+                 Random.Range(-zRange, zRange)  // z offset
+                );
+
+            Object.Instantiate(obstacles[n], position + offset, Quaternion.identity);
+        }
     }
 
     void Update()
