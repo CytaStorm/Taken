@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ObstacleScript : InteractableScript
 {
+    public UIManager _UIManager;
+
     protected override void Update()
     {
         // Checks if NPC is focused by the player
@@ -18,7 +17,7 @@ public class ObstacleScript : InteractableScript
             if (distance <= radius && !hasInteracted && !isMoving)
             {
                 Debug.Log("INTERACT");
-                UIManager.UI.ChangeToDialogue(); // Chest uses dialogue interface
+                _UIManager.ChangeToDialogue(); // Chest uses dialogue interface
                 Interact();
 
                 // Disables further interactions once chest is open

@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 
 public class PlayerController : MonoBehaviour
 {
+	[SerializeField] private UIManager _UIManager;
+
 	[SerializeField] private PlayerInput playerInput; 
 
 	[SerializeField] private Camera cam;
@@ -54,7 +50,6 @@ public class PlayerController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		
 	}
 
 	// Update is called once per frame
@@ -70,12 +65,13 @@ public class PlayerController : MonoBehaviour
 
 	public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{
+		if (!ctx.performed) return;
 		Vector3 mousePos = Mouse.current.position.ReadValue();
 		Ray ray = cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;
 
 		//Only interact with UI objects
-		if (UIManager.UI.CurrentUIMode == UIMode.Dialogue) return;
+		if (_UIManager.CurrentUIMode == UIMode.Dialogue) return;
 
 		//Player clicks in game
 		// if ray hits interactable
@@ -128,6 +124,7 @@ public class PlayerController : MonoBehaviour
 	public void StopFollowTarget()
 	{
 		target = null;
+		_agent.stoppingDistance = 0;
 	}
 
 	public Vector3 GetDestination()

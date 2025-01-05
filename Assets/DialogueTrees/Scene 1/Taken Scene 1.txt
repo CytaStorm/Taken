@@ -1,0 +1,102 @@
+:: StoryTitle
+Taken Scene 1
+
+
+:: StoryData
+{
+  "ifid": "E5323662-6861-4DB2-B7D7-0515B5F4A139",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Intro",
+  "zoom": 1
+}
+
+
+:: "But what about <i>you</i>? Where's the concern for yourself?" {"position":"1025,650","size":"100,100"}
+''SALLOS'': "Look, I'm not exactly the one who needed to be rescued before, and I've done this odyssey plenty of times before. You, on the other hand..."
+
+[["Don't be scared. I trust you. In return, trust me, alright?"]] 
+
+
+:: "Don't be scared. I trust you. In return, trust me, alright?" {"position":"875,850","size":"100,100"}
+''SALLOS'': "Of course." He smiles warmly. "I love you, alright?"
+
+[["I love you, too."]]
+
+
+:: "Don't worry, I'm just fine!" {"position":"650,650","size":"100,100"}
+''SALLOS'': "People say that all the time, and too often, those people really aren't. It's a dangerous odyssey, and you're so precious to me." He looks at you again, and you see a look you've never seen before cross his face: //fear//.
+
+[["Don't be scared. I trust you. In return, trust me, alright?"]]
+
+
+:: "How much further do we have to go?" {"position":"450,125","size":"100,100"}
+''SALLOS'': "We're still a ways from the top. We'll be there in a few days, but we'll get to a place to camp and stay the night soon."
+
+He is a little shorter than you, but he maintains a steady pace ahead of you. He walks with a certainty gained only from years of experience. His yellow hair makes him stand out in the stark, snowy landscape.
+
+''SALLOS'': "You too tired to continue?"
+
+Maybe you are. It has been a while since the two of you stopped...
+
+[["No! I mean, I don't wish for us to slow down on this odyssey! Let's keep going."]]
+
+
+:: "I love you, too." {"position":"650,975","size":"100,100"}
+Soon enough, the path leads to a flat area.
+
+''SALLOS'': "We made it! Let's stop here for the time being, and set up for the night."
+
+
+:: "No! I mean, I don't wish for us to slow down on this odyssey! Let's keep going." {"position":"650,125","size":"100,100"}
+Sallos's ears perk up, and he gives a quick glance back at you.
+
+''SALLOS'': "You sure? It's dangerous to push yourself too hard on a..."
+
+He pauses.
+
+''SALLOS'':  "...an //odyssey// like this. Yeah."
+
+He's learned a new word.
+
+[[Take a breath.]]
+
+
+:: "You're doing an amazing job, Sallos." {"position":"850,650","size":"100,100"}
+''SALLOS'': "I'd better hope I am!" He pouts and puffs his chest. "What kind of a mountaineer would I be if I can't even take one person on an odyssey to the top?"
+
+His anxiety doesn't completely fade, but his expression lights up a little bit.
+
+[["Don't be scared. I trust you. In return, trust me, alright?"]]
+
+
+:: Intro {"position":"275,125","size":"100,100"}
+You trudge beside Sallos along the path, up to the top of The Heights.
+
+[["How much further do we have to go?"]]
+
+
+:: Keep walking, the best you can. {"position":"850,450","size":"100,100"}
+But you are not just any passenger. His small eyebrows are every so slightly furled, betraying the anxiety under the professionalism. After all, it was on these mountains he had rescued you on years ago.
+
+[["Don't worry, I'm just fine!"]]
+[["You're doing an amazing job, Sallos."]]
+[["But what about <i>you</i>? Where's the concern for yourself?"]]
+
+
+:: Take a breath. {"position":"650,275","size":"100,100"}
+Cold air fills your lungs, but not enough. The air is thinner up here, and each breath gives you less and less oxygen.
+
+[[Take another breath.]]
+
+
+:: Take another breath. {"position":"850,275","size":"100,100"}
+Your breathing is ragged as you try to get as much air as possible with each inhale, trying to keep up with Sallos.
+
+''SALLOS'': "Let's slow down, alright?" His pace slackens. "No rush. The mountain won't run away."
+
+As much as you want to stay the original speed, you know he's right. Listen to the expert here. He's done the route many times before. 
+
+He's been accomodating and professional up till now, almost business-like in his manner. Taking slower steps for you, smaller steps, and constantly checking on you. For now, you are one of his customers that he needs to get over The Heights.
+
+[[Keep walking, the best you can.]]

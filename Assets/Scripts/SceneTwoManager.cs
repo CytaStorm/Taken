@@ -1,38 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SceneTwoManager : MonoBehaviour
 {
+    public bool autoImplementDialogue = false;
+
     public List<DialogueFlag> dialogueFlags;
-    [SerializeField] public List<GameObject> Interactables;
+    public List<GameObject> Interactables;
+    public UIManager _UIManager;
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
 
-    public static SceneTwoManager Scene
-    {
-        get; private set;
-    }
+    [Header("DEBUG")] public bool DEBUG;
 
-    private void Awake()
+    public bool IsDialogueAutoImplimented()
     {
-        if (Scene != null && Scene != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Scene = this;
-        }
+        return autoImplementDialogue;
     }
 
     // Start is called before the first frame update
     void Start()
     {
 		dialogueFlags = new List<DialogueFlag>();
-        traverser = new DialogueTraverser();
+        traverser = new DialogueTraverser(this, _UIManager);
 
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
         foreach (GameObject npc in Interactables) 
@@ -42,15 +32,24 @@ public class SceneTwoManager : MonoBehaviour
         }
 
         CreateAllDialogueFlags();
+
+        // If dialogue is to be auto-implemented, set dialogue to that of first NPC
+        if (autoImplementDialogue)
+        {
+            UpdateCurrentGraph(Interactables[0].GetComponent<InteractableScript>());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-		foreach (DialogueFlag flag in dialogueFlags)
-		{
-			print(flag);
-		}
+        if (DEBUG)
+        {
+		    foreach (DialogueFlag flag in dialogueFlags)
+		    {
+		    	print(flag);
+		    }
+        }
     }
     
     /// <summary>
@@ -76,7 +75,7 @@ public class SceneTwoManager : MonoBehaviour
                 {
                     if (!FlagListContainsMatch(flag))
                     {                        
-                        dialogueFlags.Add(new DialogueFlag(flag.Name));                        
+                        dialogueFlags.Add(new DialogueFlag(flag.Name));
                     }
                 }
             }
@@ -126,7 +125,7 @@ public class SceneTwoManager : MonoBehaviour
         traverser.SetNewGraph(currentGraph);
 
 		//Send new node info to UI Manager
-		UIManager.UI.NewDialogueNode(traverser.currentNode);
+		_UIManager.NewDialogueNode(traverser.currentNode);
 		//print(currentGraph.StartNode.Info);
     }
 

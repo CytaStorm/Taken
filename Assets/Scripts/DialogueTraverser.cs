@@ -1,17 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.AI.Navigation.Editor;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DialogueTraverser
 {
     //FIELDS
     //objects
+    public SceneTwoManager sceneManager;
+    public UIManager _UIManager;
     [SerializeField] DialogueGraph graph;
     public DialogueNode currentNode;
     /*
@@ -28,8 +23,10 @@ public class DialogueTraverser
     /// Creates a new DialogueGraph
     /// </summary>
     /// <param name="graph"></param>
-    public DialogueTraverser ()
+    public DialogueTraverser (SceneTwoManager sceneManager, UIManager _UIManager)
     {
+        this.sceneManager = sceneManager;
+        this._UIManager = _UIManager;
     }
 
     /// <summary>
@@ -59,7 +56,7 @@ public class DialogueTraverser
 	{
 		foreach (DialogueFlag newFlag in currentNode.FlagsToChange) 
 		{
-			SceneTwoManager.Scene.ChangeDialogueFlag(newFlag);
+			sceneManager.ChangeDialogueFlag(newFlag);
 		}
 	}
 
@@ -74,11 +71,11 @@ public class DialogueTraverser
 
 		foreach (DialogueFlag newFlag in currentNode.FlagsToChange) 
 		{
-			SceneTwoManager.Scene.ChangeDialogueFlag(newFlag);
+			sceneManager.ChangeDialogueFlag(newFlag);
 		}
 
         //Send currentNode info to UI Manager
-		UIManager.UI.NewDialogueNode(currentNode);
+		_UIManager.NewDialogueNode(currentNode);
     }
 
     /// <summary>

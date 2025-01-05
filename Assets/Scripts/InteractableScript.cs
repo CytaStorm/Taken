@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;  // Import the AI Navigation namespace
 
 public abstract class InteractableScript : MonoBehaviour
 {
+    public UIManager _UIManager;
               
     [SerializeField] protected Transform interactionTransform;
     [SerializeField] protected Vector3 destinationPosition;
@@ -25,9 +24,12 @@ public abstract class InteractableScript : MonoBehaviour
     public DialogueGraph Graph { get; protected set; }
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
+	[SerializeField] protected bool IsPuppet;
+
     protected virtual void Awake()
     {
 		//print(twineFile);
+		if (IsPuppet) return;
         Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
@@ -50,7 +52,7 @@ public abstract class InteractableScript : MonoBehaviour
 		if (distance <= radius && !hasInteracted && !isMoving)
 		{
 			Debug.Log("INTERACT");
-			UIManager.UI.ChangeToDialogue();
+			_UIManager.ChangeToDialogue();
 			Interact();
 			hasInteracted = true;
 			interactionCount++;

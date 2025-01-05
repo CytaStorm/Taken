@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class NPCScript : InteractableScript
 {
-    private Transform transform;
+	[SerializeField] private Animator _animator;
 
     protected override void Awake()
     {
         base.Awake();
-        transform = GetComponent<Transform>();
     }
 
 	protected override void Update()
@@ -27,8 +21,13 @@ public class NPCScript : InteractableScript
 			}
 		}
 
+		if (_animator != null) 
+		{
+            _animator.SetBool("Walking", agent.velocity.magnitude > 0);
+        }		
+
 		//INTERACTION FILTER
-		if (!isFocus || !canInteract)
+		if (!isFocus || !canInteract || IsPuppet)
 		{
 			return;
 		}
@@ -42,20 +41,24 @@ public class NPCScript : InteractableScript
 		if (distance <= radius && !hasInteracted && !isMoving)
 		{
 			//Limited interaction filter
-			if (!hasLimitedInteractions) Interact();
+			if (!hasLimitedInteractions) 
+			{
+                Interact(); 
+			}
 
 			//Do not interact if too many interactions
 			if (interactionCount > 0)
 			{
 				return;
-			}
-
-			Interact();
+			}            
+            Interact();
+			
 		}
 		else if (distance > radius && !isMoving)
 		{
 			hasInteracted = false;
 		}
+
 	}
 
 	protected void LookAtPlayer()
@@ -101,7 +104,7 @@ public class NPCScript : InteractableScript
 
 	public override void Interact()
 	{
-		UIManager.UI.ChangeToDialogue();
+		_UIManager.ChangeToDialogue();
 		LookAtPlayer();
 		hasInteracted = true;
 		interactionCount++;
