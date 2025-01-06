@@ -402,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec9114cbe3eeff4897afc4bc237faa3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.95
+      value: -2.69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec9114cbe3eeff4897afc4bc237faa3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -410,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec9114cbe3eeff4897afc4bc237faa3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.34
+      value: 9.15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec9114cbe3eeff4897afc4bc237faa3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1963,6 +1963,12 @@ MonoBehaviour:
   sceneTwoManager: {fileID: 693596820}
   flagNames:
   - walkLeft
+  - enterAkif
+  - enterGoon
+  - walkCloser
+  - lookForEscape
+  - stab
+  - disappear
 --- !u!4 &2047368480
 Transform:
   m_ObjectHideFlags: 0

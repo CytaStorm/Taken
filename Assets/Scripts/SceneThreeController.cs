@@ -48,12 +48,12 @@ public class SceneThreeController : MonoBehaviour
 
         // Assign all event methods to OnClick() events for all buttons
         eventFlags[0].onValueChange += delegate { WalkLeft(); };
-        eventFlags[1].onValueChange += delegate { WalkLeft(); };
-        eventFlags[2].onValueChange += delegate { WalkLeft(); };
-        eventFlags[3].onValueChange += delegate { WalkLeft(); };
-        eventFlags[4].onValueChange += delegate { WalkLeft(); };
-        eventFlags[5].onValueChange += delegate { WalkLeft(); };
-        eventFlags[6].onValueChange += delegate { WalkLeft(); };
+        eventFlags[1].onValueChange += delegate { EnterAkif(); };
+        eventFlags[2].onValueChange += delegate { EnterGoon(); };
+        eventFlags[3].onValueChange += delegate { WalkCloser(); };
+        eventFlags[4].onValueChange += delegate { LookForEscape(); };
+        eventFlags[5].onValueChange += delegate { Stab(); };
+        eventFlags[6].onValueChange += delegate { Disappear(); };
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -68,7 +68,7 @@ public class SceneThreeController : MonoBehaviour
         // Set initial positions of all actors
         sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
         eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
-        akif.transform.position = new Vector3(-3.95f, 0, 14.34f);
+        akif.transform.position = new Vector3(-4.92f, 0, 16.85f);
     }
 
 	// Update is called once per frame
@@ -89,6 +89,7 @@ public class SceneThreeController : MonoBehaviour
     private void EnterAkif()
     {
         // Move akif towards sallos and eulyss
+        _akifAgent.SetDestination(new Vector3(-2.990002f, 0f, 10.45f));
         StartCoroutine(PauseAllButtons(5f));
     }
 
@@ -101,6 +102,7 @@ public class SceneThreeController : MonoBehaviour
     private void WalkCloser()
     {
         // Move both akif and the goon closer to sallos and eulyss
+        _akifAgent.SetDestination(new Vector3(-2.69f, 0f, 9.15f));
         StartCoroutine(PauseAllButtons(5f));
     }
 
