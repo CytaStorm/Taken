@@ -1,0 +1,156 @@
+:: StoryTitle
+Scene 3 Test
+
+
+:: StoryData
+{
+  "ifid": "425F063A-E7C8-472E-82C0-BE97A87B46A6",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Intro",
+  "zoom": 0.6
+}
+
+
+:: "Do you know him, Sallos?" {"position":"375,400","size":"100,100"}
+''SALLOS'': "No, not at all."
+
+He looks ready for a fight.
+
+''SALLOS'': "Get behind me. There's another."
+
+[[Look to the left.]]
+
+
+:: "Is something wrong, Sallos?" {"position":"300,225","size":"100,100"}
+''SALLOS'': "There's people here."``enterAkif``(set: enterAkif to true)
+
+Suddenly someone appears on the right. A Jawni man, towering over both you and Sallos, even while hunched over. 
+
+He carries a large sword, and walks with a swagger that does not feel entirely unearned.
+
+[["Do you know him, Sallos?"]]
+
+
+:: "It doesn't look like we can get away by running..." {"position":"625,625","size":"100,100"}
+''SALLOS'': "It looks like that, alright."
+
+The two men walk closer, and the Jawni draws his sword.
+
+''SALLOS'': "Woah, woah, there's no need for that, we surr—"
+
+[[Next]]
+
+
+:: "There's someone else, too..." {"position":"550,375","size":"100,100"}
+''SALLOS'': "WHO ARE YOU?"
+
+You've never heard him raise his voice like this.
+
+The Jawni speaks in a low, ringing accent.
+
+''JAWNI'': "You are Sallos Minan?"
+
+He sounds like a deep, heavy pot.
+
+[[Stand closer to Sallos.]]
+
+
+:: "What did you do!?" {"position":"850,600","size":"100,100"}
+''SALLOS'': "I- I- All I did was take people across these mountains! But now's not the time to talk. We need to move."
+
+The two men certainly don't look the type to be able to be talked down. Especially not while armed.
+
+[[Look for somewhere to run.]]
+
+
+:: "What is he talking about?" {"position":"875,375","size":"100,100"}
+''SALLOS'': "I have no idea-"
+
+He pauses, and thinks again.
+
+[["Yes...?"]]
+
+
+:: "Yes...?" {"position":"1000,525","size":"100,100"}
+His eyes widen.
+
+''SALLOS'': "//Fuck.// Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money..."
+
+[["What did you do!?"]]
+
+
+:: Continue {"position":"200,400","size":"100,100"}
+Sallos steps ahead of you.
+
+The path is clear and the day seems ready for you to tackle.
+
+[[Start walking.]]
+
+
+:: End {"position":"175,775","size":"100,100"}
+ending
+
+
+:: Intro {"position":"125,550","size":"100,100"}
+''SALLOS'': "All packed up! Let's get out of here."
+
+The two of you have gotten up early to continue on your trek up The Heights. Sallos looks as bright as ever.
+
+You, on the other hand, couldn't sleep well. Sleeping outside was definitely something you weren't used to.
+
+[[Continue]]
+
+
+:: Look for somewhere to run. {"position":"750,775","size":"100,100"}
+But there is nowhere to go. To your back is the face of a cliff, and the two men block your way down the paths.``lookForEscape``(set: lookForEscape to false)
+
+[["It doesn't look like we can get away by running..."]]
+
+
+:: Look to the left. {"position":"450,225","size":"100,100"}
+As you do, a Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.``enterGoon``(set: enterGoon to true)
+
+[["There's someone else, too..."]]
+
+
+:: Next {"position":"500,775","size":"100,100"}
+The blade is thrust into Sallos.``stab``(set: stab to true)
+
+There is no blood on the other side of the blade. Instead, Sallos begins to glow.
+
+[[Reach for him.]]
+
+
+:: Reach for him. {"position":"325,775","size":"100,100"}
+He fades away into a pale yellow mist.``disappear``(set: disappear to true)
+
+[[End]]
+
+
+:: Stand closer to Sallos. {"position":"675,225","size":"100,100"}
+''SALLOS'': "And what business do you have with him?"``walkCloser``(set: walkCloser to true)
+
+The two men step closer.
+
+Sallos waves at you to get behind him.
+
+[[Step back.]]
+
+
+:: Start walking. {"position":"125,250","size":"100,100"}
+Sallos suddenly freezes. The fur on his neck stands up straight. Something's wrong.``walkLeft``(set: walkLeft to true)
+
+[["Is something wrong, Sallos?"]]
+
+
+:: Step back. {"position":"725,375","size":"100,100"}
+The Jawni clears his throat.
+
+''JAWNI'': "You are under arrest, for the transportation of fugitives from the lands of God."
+
+[["What is he talking about?"]]
+
+
+:: nextNode {"position":"1150,275","size":"100,100"}
+--END--

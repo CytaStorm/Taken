@@ -47,7 +47,13 @@ public class SceneThreeController : MonoBehaviour
         }
 
         // Assign all event methods to OnClick() events for all buttons
-        eventFlags[0].onValueChange += delegate { PlayEventZero(); };
+        eventFlags[0].onValueChange += delegate { WalkLeft(); };
+        eventFlags[1].onValueChange += delegate { WalkLeft(); };
+        eventFlags[2].onValueChange += delegate { WalkLeft(); };
+        eventFlags[3].onValueChange += delegate { WalkLeft(); };
+        eventFlags[4].onValueChange += delegate { WalkLeft(); };
+        eventFlags[5].onValueChange += delegate { WalkLeft(); };
+        eventFlags[6].onValueChange += delegate { WalkLeft(); };
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -72,10 +78,45 @@ public class SceneThreeController : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    private void PlayEventZero()
+    private void WalkLeft()
     {
+        // Move sallos and eulyss along forest trail
         _sallosAgent.SetDestination(new Vector3(-2.11f, 0f, 7.35f));
         _eulyssAgent.SetDestination(new Vector3(-2.27f, 0f, 5.86f));
+        StartCoroutine(PauseAllButtons(5f));
+    }
+
+    private void EnterAkif()
+    {
+        // Move akif towards sallos and eulyss
+        StartCoroutine(PauseAllButtons(5f));
+    }
+
+    private void EnterGoon()
+    {
+        // Move the goon to corner sallos and eulyss
+        StartCoroutine(PauseAllButtons(5f));
+    }
+
+    private void WalkCloser()
+    {
+        // Move both akif and the goon closer to sallos and eulyss
+        StartCoroutine(PauseAllButtons(5f));
+    }
+
+    private void LookForEscape()
+    {
+        // Make sallos and eulyss look back and forth
+        StartCoroutine(PauseAllButtons(5f));
+    }
+
+    private void Stab()
+    {
+        StartCoroutine(PauseAllButtons(5f));
+    }
+
+    private void Disappear()
+    {
         StartCoroutine(PauseAllButtons(5f));
     }
 
