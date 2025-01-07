@@ -19,8 +19,6 @@ public abstract class InteractableScript : MonoBehaviour
     protected bool isMoving = false;      
     protected bool canInteract = true;    
     protected int interactionCount = 0;
-	protected Color startColor;
-    protected Renderer renderer;
 
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
@@ -36,9 +34,7 @@ public abstract class InteractableScript : MonoBehaviour
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
 
-        // Assign default color for hover functionality
-        renderer = GetComponent<Renderer>();
-        startColor = renderer.material.color;
+
     }
 
 	public abstract void Interact();
@@ -82,12 +78,22 @@ public abstract class InteractableScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        renderer.material.color = Color.yellow;
+		Debug.Log("mouse entered");
+
+        // Find child of the interactable with a renderer
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+        {
+            renderer.material.color = Color.red;
+        }
     }
 
     private void OnMouseExit()
     {
-        renderer.material.color = startColor;
+        Debug.Log("mouse exited");
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+        {
+            renderer.material.color = Color.white;
+        }
     }
 
     //private void OnDrawGizmosSelected()
