@@ -19,6 +19,8 @@ public abstract class InteractableScript : MonoBehaviour
     protected bool isMoving = false;      
     protected bool canInteract = true;    
     protected int interactionCount = 0;
+	protected Color startColor;
+    protected Renderer renderer;
 
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
@@ -33,6 +35,10 @@ public abstract class InteractableScript : MonoBehaviour
         Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
+
+        // Assign default color for hover functionality
+        renderer = GetComponent<Renderer>();
+        startColor = renderer.material.color;
     }
 
 	public abstract void Interact();
@@ -74,9 +80,19 @@ public abstract class InteractableScript : MonoBehaviour
 		isFocus = true;
 	}
 
-	//private void OnDrawGizmosSelected()
-	//{
-	//	Gizmos.color = Color.yellow;
-	//	Gizmos.DrawWireSphere(interactionTransform.position, radius);
-	//}
+    private void OnMouseEnter()
+    {
+        renderer.material.color = Color.yellow;
+    }
+
+    private void OnMouseExit()
+    {
+        renderer.material.color = startColor;
+    }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //	Gizmos.color = Color.yellow;
+    //	Gizmos.DrawWireSphere(interactionTransform.position, radius);
+    //}
 }
