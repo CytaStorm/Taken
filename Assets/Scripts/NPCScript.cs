@@ -11,8 +11,17 @@ public class NPCScript : InteractableScript
 
 	protected override void Update()
 	{
-		// Checks if NPC has arrived at the destination
-		if (isMoving && agent.remainingDistance <= agent.stoppingDistance)
+        if (isHighlighted && !isFocus)
+        {
+            foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+            {                
+                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);                
+            }
+        }
+        highlightTimer += Time.deltaTime;
+
+        // Checks if NPC has arrived at the destination
+        if (isMoving && agent.remainingDistance <= agent.stoppingDistance)
 		{
 			if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
 			{
