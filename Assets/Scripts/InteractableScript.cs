@@ -83,7 +83,7 @@ public abstract class InteractableScript : MonoBehaviour
         // Find child of the interactable with a renderer
         foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
         {
-            renderer.material.color = Color.red;
+            renderer.material.color = Color.cyan;
         }
     }
 
