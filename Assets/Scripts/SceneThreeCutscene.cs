@@ -110,7 +110,7 @@ public class SceneThreeCutscene : MonoBehaviour
     private void WalkCloser()
     {
         // Move both akif and the goon closer to sallos and eulyss
-        _akifAgent.SetDestination(new Vector3(-2.69f, 0f, 9.15f));
+        _akifAgent.SetDestination(new Vector3(-2.978f, 0f, 9.038f));
         _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
         StartCoroutine(PauseAllButtons(5f));
     }
@@ -123,6 +123,7 @@ public class SceneThreeCutscene : MonoBehaviour
 
     private void Stab()
     {
+        _akifAnimator.SetTrigger("Stab");
         StartCoroutine(PauseAllButtons(5f));
     }
 
