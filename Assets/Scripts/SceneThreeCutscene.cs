@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneThreeController : MonoBehaviour
+public class SceneThreeCutscene : MonoBehaviour
 {
     // Actors
     public GameObject sallos;
     public GameObject eulyss;
     public GameObject akif;
+    public GameObject goon;
     
     public UIManager uiManager;
     public SceneTwoManager sceneTwoManager;
@@ -25,6 +26,8 @@ public class SceneThreeController : MonoBehaviour
     private Animator _eulyssAnimator;
     private NavMeshAgent _akifAgent;
     private Animator _akifAnimator;
+    private NavMeshAgent _goonAgent;
+    private Animator _goonAnimator;
 
 
     // Start is called before the first frame update
@@ -65,10 +68,14 @@ public class SceneThreeController : MonoBehaviour
         _akifAgent = akif.GetComponent<NavMeshAgent>();
         _akifAnimator = akif.GetComponent<Animator>();
 
+        _goonAgent = goon.GetComponent<NavMeshAgent>();
+        _goonAnimator = goon.GetComponent<Animator>();
+
         // Set initial positions of all actors
         sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
         eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
         akif.transform.position = new Vector3(-4.92f, 0, 16.85f);
+        goon.transform.position = new Vector3(-12.08f, 0, 4.37f);
     }
 
 	// Update is called once per frame
@@ -96,6 +103,7 @@ public class SceneThreeController : MonoBehaviour
     private void EnterGoon()
     {
         // Move the goon to corner sallos and eulyss
+        _goonAgent.SetDestination(new Vector3(-4.56f, 0f, 7.1f));
         StartCoroutine(PauseAllButtons(5f));
     }
 
@@ -103,6 +111,7 @@ public class SceneThreeController : MonoBehaviour
     {
         // Move both akif and the goon closer to sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.69f, 0f, 9.15f));
+        _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
         StartCoroutine(PauseAllButtons(5f));
     }
 
