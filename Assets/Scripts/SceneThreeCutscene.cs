@@ -91,21 +91,21 @@ public class SceneThreeCutscene : MonoBehaviour
         // Move sallos and eulyss along forest trail
         _sallosAgent.SetDestination(new Vector3(-2.11f, 0f, 7.35f));
         _eulyssAgent.SetDestination(new Vector3(-2.27f, 0f, 5.86f));
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(3f));
     }
 
     private void EnterAkif()
     {
         // Move akif towards sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.990002f, 0f, 10.45f));
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(2.7f));
     }
 
     private void EnterGoon()
     {
         // Move the goon to corner sallos and eulyss
         _goonAgent.SetDestination(new Vector3(-4.56f, 0f, 7.1f));
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(2.9f));
     }
 
     private void WalkCloser()
@@ -113,19 +113,19 @@ public class SceneThreeCutscene : MonoBehaviour
         // Move both akif and the goon closer to sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.978f, 0f, 9.038f));
         _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(1.3f));
     }
 
     private void LookForEscape()
     {
         // Make sallos and eulyss look back and forth
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(0.1f));
     }
 
     private void Stab()
     {
         _akifAnimator.SetTrigger("Stab");
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(0.7f));
     }
 
     private void Disappear()
