@@ -118,6 +118,8 @@ public class UIManager : MonoBehaviour
 	//Player traversed to a new Dialogue node
 	public void NewDialogueNode(DialogueNode dialogueNode)
 	{
+		ClearButtons();
+
 		//If there is a previous textBox, change its color to gray
 		if (_mostRecentTextContainer != null)
 		{
@@ -184,7 +186,7 @@ public class UIManager : MonoBehaviour
 
                 int choiceIndex = i;
                 Button buttonComponent = newestButton.GetComponent<Button>();
-                buttonComponent.onClick.AddListener(ClearButtons);
+                //buttonComponent.onClick.AddListener(ClearButtons);
                 buttonComponent.onClick.AddListener(delegate { _sceneManager.GoToNode(choiceIndex); });
             }			
         }

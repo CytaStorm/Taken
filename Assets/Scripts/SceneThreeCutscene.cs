@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -136,11 +137,21 @@ public class SceneThreeCutscene : MonoBehaviour
     {
         // disable all buttons
         Debug.Log("started");
-        // wait for seconds amount of time
+        foreach(GameObject button in uiManager._buttons)
+        {
+            print(button.GetComponentInChildren<TMP_Text>().text);
+            button.SetActive(false);
+        }
 
+
+        // wait for seconds amount of time
         yield return new WaitForSeconds(seconds);
 
         // enable all buttons
         Debug.Log("ended");
+        foreach (GameObject button in uiManager._buttons)
+        {
+            button.SetActive(true);
+        }
     }
 }

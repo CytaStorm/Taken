@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 2047368480}
   - component: {fileID: 2047368479}
   m_Layer: 0
-  m_Name: SceneThreeController
+  m_Name: CutsceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
