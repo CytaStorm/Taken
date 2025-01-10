@@ -135,6 +135,8 @@ public class SceneThreeCutscene : MonoBehaviour
 
     private IEnumerator PauseAllButtons(float seconds)
     {
+        yield return new WaitForSeconds(0.01f);
+
         // disable all buttons
         Debug.Log("started");
         foreach(GameObject button in uiManager._buttons)
