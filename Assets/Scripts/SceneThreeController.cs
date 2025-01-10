@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -46,8 +47,8 @@ public class SceneThreeController : MonoBehaviour
             }
         }
 
-        // Assign all event methods to OnClick() events for all buttons
-        eventFlags[0].onValueChange += delegate { PlayEventZero(); };
+		// Assign all event methods to OnClick() events for all buttons
+		eventFlags[0].onValueChange += delegate { PlayEventZero(); };
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();

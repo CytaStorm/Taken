@@ -2378,7 +2378,7 @@ MonoBehaviour:
   sallos: {fileID: 1075811454}
   eulyss: {fileID: 36616011}
   akif: {fileID: 278721995}
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 553045652}
   sceneTwoManager: {fileID: 693596820}
   flagNames:
   - walkLeft
