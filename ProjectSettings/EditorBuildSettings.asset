@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene 2.unity
     guid: 89e18eca59391314e9dee164ed9477b7
   - enabled: 0
-    path: Assets/Scenes/Scene 3.unity
+    path: Assets/Scenes/Scene 3 Implement Goon.unity
     guid: ecaca23a020e6224a92bd4d6ca5a0a1f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8cace2abe7388974e998206423d6d27b, type: 2}
