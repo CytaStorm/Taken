@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneThreeController : MonoBehaviour
+public class SceneThreeCutscene : MonoBehaviour
 {
     // Actors
     public GameObject sallos;
     public GameObject eulyss;
     public GameObject akif;
+    public GameObject goon;
     
     public UIManager uiManager;
     public SceneTwoManager sceneTwoManager;
@@ -25,6 +27,8 @@ public class SceneThreeController : MonoBehaviour
     private Animator _eulyssAnimator;
     private NavMeshAgent _akifAgent;
     private Animator _akifAnimator;
+    private NavMeshAgent _goonAgent;
+    private Animator _goonAnimator;
 
 
     // Start is called before the first frame update
@@ -65,10 +69,14 @@ public class SceneThreeController : MonoBehaviour
         _akifAgent = akif.GetComponent<NavMeshAgent>();
         _akifAnimator = akif.GetComponent<Animator>();
 
+        _goonAgent = goon.GetComponent<NavMeshAgent>();
+        _goonAnimator = goon.GetComponent<Animator>();
+
         // Set initial positions of all actors
         sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
         eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
         akif.transform.position = new Vector3(-4.92f, 0, 16.85f);
+        goon.transform.position = new Vector3(-12.08f, 0, 4.37f);
     }
 
 	// Update is called once per frame
@@ -83,38 +91,41 @@ public class SceneThreeController : MonoBehaviour
         // Move sallos and eulyss along forest trail
         _sallosAgent.SetDestination(new Vector3(-2.11f, 0f, 7.35f));
         _eulyssAgent.SetDestination(new Vector3(-2.27f, 0f, 5.86f));
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(3f));
     }
 
     private void EnterAkif()
     {
         // Move akif towards sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.990002f, 0f, 10.45f));
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(2.7f));
     }
 
     private void EnterGoon()
     {
         // Move the goon to corner sallos and eulyss
-        StartCoroutine(PauseAllButtons(5f));
+        _goonAgent.SetDestination(new Vector3(-4.56f, 0f, 7.1f));
+        StartCoroutine(PauseAllButtons(2.9f));
     }
 
     private void WalkCloser()
     {
         // Move both akif and the goon closer to sallos and eulyss
-        _akifAgent.SetDestination(new Vector3(-2.69f, 0f, 9.15f));
-        StartCoroutine(PauseAllButtons(5f));
+        _akifAgent.SetDestination(new Vector3(-2.798f, 0f, 8.952f));
+        _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
+        StartCoroutine(PauseAllButtons(1.3f));
     }
 
     private void LookForEscape()
     {
         // Make sallos and eulyss look back and forth
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(PauseAllButtons(0.1f));
     }
 
     private void Stab()
     {
-        StartCoroutine(PauseAllButtons(5f));
+        _akifAnimator.SetTrigger("Stab");
+        StartCoroutine(PauseAllButtons(0.7f));
     }
 
     private void Disappear()
@@ -124,13 +135,25 @@ public class SceneThreeController : MonoBehaviour
 
     private IEnumerator PauseAllButtons(float seconds)
     {
+        yield return new WaitForSeconds(0.01f);
+
         // disable all buttons
         Debug.Log("started");
-        // wait for seconds amount of time
+        foreach(GameObject button in uiManager._buttons)
+        {
+            print(button.GetComponentInChildren<TMP_Text>().text);
+            button.SetActive(false);
+        }
 
+
+        // wait for seconds amount of time
         yield return new WaitForSeconds(seconds);
 
         // enable all buttons
         Debug.Log("ended");
+        foreach (GameObject button in uiManager._buttons)
+        {
+            button.SetActive(true);
+        }
     }
 }
