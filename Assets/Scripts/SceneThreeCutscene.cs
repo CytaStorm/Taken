@@ -105,6 +105,8 @@ public class SceneThreeCutscene : MonoBehaviour
     {
         // Move the goon to corner sallos and eulyss
         _goonAgent.SetDestination(new Vector3(-4.56f, 0f, 7.1f));
+        _sallosAnimator.SetTrigger("LookLeftTrigger");
+        StartCoroutine(ChangeLookLeft(1, 0.5f));
         StartCoroutine(PauseAllButtons(2.9f));
     }
 
@@ -113,6 +115,7 @@ public class SceneThreeCutscene : MonoBehaviour
         // Move both akif and the goon closer to sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.798f, 0f, 8.952f));
         _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
+        StartCoroutine(ChangeLookLeft(0, 0.5f));
         StartCoroutine(PauseAllButtons(1.3f));
     }
 
@@ -125,6 +128,7 @@ public class SceneThreeCutscene : MonoBehaviour
     private void Stab()
     {
         _akifAnimator.SetTrigger("Stab");
+        _sallosAnimator.SetTrigger("StepBack");
         StartCoroutine(PauseAllButtons(0.7f));
     }
 
@@ -154,6 +158,39 @@ public class SceneThreeCutscene : MonoBehaviour
         foreach (GameObject button in uiManager._buttons)
         {
             button.SetActive(true);
+        }
+    }
+    
+    /// <summary>
+    /// Changes the LookLeft parameter for Sallos to linearly go to 0 or 1 over
+    /// the specified time.
+    /// </summary>
+    /// <param name="desiredValue">Desired LookLeft value.</param>
+    /// <param name="desiredDuration">Time the change should should take.</param>
+    /// <returns></returns>
+    private IEnumerator ChangeLookLeft(float desiredValue, float desiredDuration)
+    {
+        float timeElapsed = 0f;
+        //Determine which formula to use to change lookleft value
+        bool increase = _sallosAnimator.GetFloat("LookLeft") < desiredValue;
+
+        if (increase)
+        {
+            while (_sallosAnimator.GetFloat("LookLeft") < desiredValue)
+            {
+                _sallosAnimator.SetFloat("LookLeft", timeElapsed / desiredDuration);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (_sallosAnimator.GetFloat("LookLeft") > desiredValue)
+            {
+                _sallosAnimator.SetFloat("LookLeft", 1 - (timeElapsed / desiredDuration));
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }

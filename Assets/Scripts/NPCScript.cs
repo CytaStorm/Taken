@@ -24,6 +24,7 @@ public class NPCScript : InteractableScript
 		if (_animator != null) 
 		{
             _animator.SetBool("Walking", agent.velocity.magnitude > 0);
+            _animator.SetFloat("VelocityPercent", agent.velocity.magnitude / agent.speed);
         }		
 
 		//INTERACTION FILTER
