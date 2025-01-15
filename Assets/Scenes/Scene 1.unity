@@ -5361,7 +5361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9160b5bac9042fb408001e4b214452a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  animator: {fileID: 1109641034}
 --- !u!1001 &1160747147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5673,7 +5673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9160b5bac9042fb408001e4b214452a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  animator: {fileID: 1897166122}
 --- !u!1 &1923970399
 GameObject:
   m_ObjectHideFlags: 0
