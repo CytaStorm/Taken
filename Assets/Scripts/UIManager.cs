@@ -14,6 +14,9 @@ public enum UIMode
 public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip audioClip;
+
 	[SerializeField] private SceneTwoManager _sceneManager;
 
 	//Parent gameobjects
@@ -184,6 +187,7 @@ public class UIManager : MonoBehaviour
 
                 int choiceIndex = i;
                 Button buttonComponent = newestButton.GetComponent<Button>();
+                buttonComponent.onClick.AddListener(PlaySound);
                 buttonComponent.onClick.AddListener(ClearButtons);
                 buttonComponent.onClick.AddListener(delegate { _sceneManager.GoToNode(choiceIndex); });
             }			
@@ -197,10 +201,17 @@ public class UIManager : MonoBehaviour
             _buttons.Add(exitButton);
 
             Button buttonComponent = exitButton.GetComponent<Button>();
+            buttonComponent.onClick.AddListener(PlaySound);
             buttonComponent.onClick.AddListener(ClearButtons);
             buttonComponent.onClick.AddListener(ClearText);
             buttonComponent.onClick.AddListener(ChangeToGameplay);
         }
+	}
+
+	private void PlaySound()
+	{
+		audioSource.clip = audioClip;
+		audioSource.Play();
 	}
 
 	private void ClearButtons() 
