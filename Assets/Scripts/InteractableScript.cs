@@ -48,7 +48,8 @@ public abstract class InteractableScript : MonoBehaviour
         {
             foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
             {
-                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);                
+                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
+                print(renderer.material.color);
             }
         }
         highlightTimer += Time.deltaTime;
