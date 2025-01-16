@@ -18434,7 +18434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 542082624}
-  interactionTransform: {fileID: 0}
+  interactionTransform: {fileID: 2062478553}
   destinationPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   radius: 3
