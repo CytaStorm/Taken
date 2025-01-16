@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
 
 		//Add title of node unless it is the first node
 		//because title of node is the player's response
-		if (dialogueNode.NodeName != "Intro" && dialogueNode.NodeName != "Continue")
+		if (dialogueNode.NodeName != "Intro" && dialogueNode.NodeName != "Continue" && dialogueNode.NodeName != "newIntro")
 		{
 			_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
 			_textDisplay.text += dialogueNode.NodeName + "\n\n";

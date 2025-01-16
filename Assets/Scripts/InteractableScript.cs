@@ -6,9 +6,6 @@ using UnityEngine.Events;  // Import the AI Navigation namespace
 public abstract class InteractableScript : MonoBehaviour
 {
     public UIManager _UIManager;
-              
-    [SerializeField] protected Transform interactionTransform;
-    [SerializeField] protected Vector3 destinationPosition;
     [SerializeField] protected NavMeshAgent agent;
 
     public float radius = 3f;
@@ -62,7 +59,7 @@ public abstract class InteractableScript : MonoBehaviour
 
 		float distance = Vector3.Distance(
 			PlayerController.PlayerControl.gameObject.transform.position,
-			interactionTransform.position);
+			gameObject.transform.position);
 		// If its able to be interacted with, Interact
 		if (distance <= radius && !hasInteracted && !isMoving)
 		{
