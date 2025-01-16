@@ -36,7 +36,7 @@ public class NPCScript : InteractableScript
 		//Actual interaction
 		float distance = Vector3.Distance(
 			PlayerController.PlayerControl.gameObject.transform.position,
-			interactionTransform.position);
+			gameObject.transform.position);
 
 		// If its able to be interacted with, Interact
 		if (distance <= radius && !hasInteracted && !isMoving)
