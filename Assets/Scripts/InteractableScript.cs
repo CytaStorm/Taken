@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;  // Import the AI Navigation namespace
@@ -16,6 +17,8 @@ public abstract class InteractableScript : MonoBehaviour
     protected bool isMoving = false;      
     protected bool canInteract = true;    
     protected int interactionCount = 0;
+    protected bool isHighlighted = false;
+    protected float highlightTimer = 0f;
 
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
@@ -30,6 +33,8 @@ public abstract class InteractableScript : MonoBehaviour
         Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
+
+
     }
 
     protected void OnDrawGizmos()
@@ -41,8 +46,18 @@ public abstract class InteractableScript : MonoBehaviour
 
     protected virtual void Update()
 	{
-		//Interaction filter
-		if (!isFocus || !canInteract)
+        if (isHighlighted && !isFocus)
+        {
+            foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+            {
+                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
+                print(renderer.material.color);
+            }
+        }
+        highlightTimer += Time.deltaTime;
+
+        //Interaction filter
+        if (!isFocus || !canInteract)
 		{
 			return;
 		}
@@ -63,7 +78,7 @@ public abstract class InteractableScript : MonoBehaviour
 		{
 			hasInteracted = false;
 		}
-	}
+    }
 
 	public void OnDefocused()
 	{
@@ -76,9 +91,27 @@ public abstract class InteractableScript : MonoBehaviour
 		isFocus = true;
 	}
 
-	//private void OnDrawGizmosSelected()
-	//{
-	//	Gizmos.color = Color.yellow;
-	//	Gizmos.DrawWireSphere(interactionTransform.position, radius);
-	//}
+    private void OnMouseEnter()
+    {
+		Debug.Log("mouse entered");
+
+        highlightTimer = 0f;
+        isHighlighted = true;
+    }
+
+    private void OnMouseExit()
+    {
+        Debug.Log("mouse exited");
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+        {
+            renderer.material.color = Color.white;            
+        }
+        isHighlighted = false;
+    }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //	Gizmos.color = Color.yellow;
+    //	Gizmos.DrawWireSphere(interactionTransform.position, radius);
+    //}
 }
