@@ -8,7 +8,7 @@ public class NPCScript : InteractableScript
     {
         base.Awake();
     }
-
+	
 	protected override void Update()
 	{
 		// Checks if NPC has arrived at the destination

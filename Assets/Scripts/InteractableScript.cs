@@ -32,7 +32,12 @@ public abstract class InteractableScript : MonoBehaviour
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
     }
 
-	public abstract void Interact();
+    protected void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    public abstract void Interact();
 
     protected virtual void Update()
 	{
