@@ -3,7 +3,12 @@ guid: 4aa0d52c68f754e4d9c764875842a2fe
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sallos
+    second: {fileID: 2100000, guid: 20b216c502c011a4c91c38a1a678b5c5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
