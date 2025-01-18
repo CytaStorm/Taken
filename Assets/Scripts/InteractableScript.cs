@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;  // Import the AI Navigation namespace
@@ -5,9 +6,6 @@ using UnityEngine.Events;  // Import the AI Navigation namespace
 public abstract class InteractableScript : MonoBehaviour
 {
     public UIManager _UIManager;
-              
-    [SerializeField] protected Transform interactionTransform;
-    [SerializeField] protected Vector3 destinationPosition;
     [SerializeField] protected NavMeshAgent agent;
 
     public float radius = 3f;
@@ -19,6 +17,8 @@ public abstract class InteractableScript : MonoBehaviour
     protected bool isMoving = false;      
     protected bool canInteract = true;    
     protected int interactionCount = 0;
+    protected bool isHighlighted = false;
+    protected float highlightTimer = 0f;
 
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
@@ -33,21 +33,38 @@ public abstract class InteractableScript : MonoBehaviour
         Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
+
+
     }
 
-	public abstract void Interact();
+    protected void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    public abstract void Interact();
 
     protected virtual void Update()
 	{
-		//Interaction filter
-		if (!isFocus || !canInteract)
+        if (isHighlighted && !isFocus)
+        {
+            foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+            {
+                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
+                print(renderer.material.color);
+            }
+        }
+        highlightTimer += Time.deltaTime;
+
+        //Interaction filter
+        if (!isFocus || !canInteract)
 		{
 			return;
 		}
 
 		float distance = Vector3.Distance(
 			PlayerController.PlayerControl.gameObject.transform.position,
-			interactionTransform.position);
+			gameObject.transform.position);
 		// If its able to be interacted with, Interact
 		if (distance <= radius && !hasInteracted && !isMoving)
 		{
@@ -61,7 +78,7 @@ public abstract class InteractableScript : MonoBehaviour
 		{
 			hasInteracted = false;
 		}
-	}
+    }
 
 	public void OnDefocused()
 	{
@@ -74,9 +91,27 @@ public abstract class InteractableScript : MonoBehaviour
 		isFocus = true;
 	}
 
-	//private void OnDrawGizmosSelected()
-	//{
-	//	Gizmos.color = Color.yellow;
-	//	Gizmos.DrawWireSphere(interactionTransform.position, radius);
-	//}
+    private void OnMouseEnter()
+    {
+		Debug.Log("mouse entered");
+
+        highlightTimer = 0f;
+        isHighlighted = true;
+    }
+
+    private void OnMouseExit()
+    {
+        Debug.Log("mouse exited");
+        foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+        {
+            renderer.material.color = Color.white;            
+        }
+        isHighlighted = false;
+    }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //	Gizmos.color = Color.yellow;
+    //	Gizmos.DrawWireSphere(interactionTransform.position, radius);
+    //}
 }

@@ -14,6 +14,9 @@ public enum UIMode
 public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip audioClip;
+
 	[SerializeField] private SceneTwoManager _sceneManager;
 
 	//Parent gameobjects
@@ -140,7 +143,7 @@ public class UIManager : MonoBehaviour
 
 		//Add title of node unless it is the first node
 		//because title of node is the player's response
-		if (dialogueNode.NodeName != "Intro" && dialogueNode.NodeName != "Continue")
+		if (dialogueNode.NodeName != "Intro" && dialogueNode.NodeName != "Continue" && dialogueNode.NodeName != "newIntro")
 		{
 			_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
 			_textDisplay.text += dialogueNode.NodeName + "\n\n";
@@ -184,6 +187,7 @@ public class UIManager : MonoBehaviour
 
                 int choiceIndex = i;
                 Button buttonComponent = newestButton.GetComponent<Button>();
+                buttonComponent.onClick.AddListener(PlaySound);
                 buttonComponent.onClick.AddListener(ClearButtons);
                 buttonComponent.onClick.AddListener(delegate { _sceneManager.GoToNode(choiceIndex); });
             }			
@@ -197,10 +201,17 @@ public class UIManager : MonoBehaviour
             _buttons.Add(exitButton);
 
             Button buttonComponent = exitButton.GetComponent<Button>();
+            buttonComponent.onClick.AddListener(PlaySound);
             buttonComponent.onClick.AddListener(ClearButtons);
             buttonComponent.onClick.AddListener(ClearText);
             buttonComponent.onClick.AddListener(ChangeToGameplay);
         }
+	}
+
+	private void PlaySound()
+	{
+		audioSource.clip = audioClip;
+		audioSource.Play();
 	}
 
 	private void ClearButtons() 

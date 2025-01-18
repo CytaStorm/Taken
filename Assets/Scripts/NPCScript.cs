@@ -8,11 +8,21 @@ public class NPCScript : InteractableScript
     {
         base.Awake();
     }
-
+	
 	protected override void Update()
 	{
-		// Checks if NPC has arrived at the destination
-		if (isMoving && agent.remainingDistance <= agent.stoppingDistance)
+        if (isHighlighted && !isFocus)
+        {
+            foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+            {                
+                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
+                print(renderer.material.color);
+            }               
+        }
+        highlightTimer += Time.deltaTime;
+
+        // Checks if NPC has arrived at the destination
+        if (isMoving && agent.remainingDistance <= agent.stoppingDistance)
 		{
 			if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
 			{
@@ -24,6 +34,7 @@ public class NPCScript : InteractableScript
 		if (_animator != null) 
 		{
             _animator.SetBool("Walking", agent.velocity.magnitude > 0);
+            _animator.SetFloat("VelocityPercent", agent.velocity.magnitude / agent.speed);
         }		
 
 		//INTERACTION FILTER
@@ -35,7 +46,7 @@ public class NPCScript : InteractableScript
 		//Actual interaction
 		float distance = Vector3.Distance(
 			PlayerController.PlayerControl.gameObject.transform.position,
-			interactionTransform.position);
+			gameObject.transform.position);
 
 		// If its able to be interacted with, Interact
 		if (distance <= radius && !hasInteracted && !isMoving)

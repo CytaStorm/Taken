@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 			_agent.SetDestination(target.position);
         }
 		//Control eulyss walking anim
-		_animator.SetBool("Walking", _agent.velocity.magnitude > 0);
+		_animator.SetFloat("VelocityPercent", _agent.velocity.magnitude / _agent.speed);
     }
 
 	public void OnMoveInteract(InputAction.CallbackContext ctx)
