@@ -7,10 +7,11 @@ public class SceneChanger : MonoBehaviour
 {
     [SerializeField] string flagName;
     [SerializeField] string destinationScene;
-    [SerializeField] float delayTime;
+    public float delayTime;
     [SerializeField] SceneTwoManager sceneManager;
+    [SerializeField] bool dimScreen = true;
 
-    private bool sceneChangeActive = false;
+    public bool sceneChangeActive = false;
     private float sceneChangeTimer = 0f;
 
     // Start is called before the first frame update
