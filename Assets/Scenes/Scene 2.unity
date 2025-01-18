@@ -669,6 +669,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8313989442157834247, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -6072,6 +6076,7 @@ GameObject:
   - component: {fileID: 652311441}
   - component: {fileID: 652311443}
   - component: {fileID: 652311442}
+  - component: {fileID: 652311444}
   m_Layer: 5
   m_Name: ScreenDimmer
   m_TagString: Untagged
@@ -6136,6 +6141,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652311440}
   m_CullTransparentMesh: 1
+--- !u!114 &652311444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652311440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22fd0d23545359849bf81a39ecf840e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneChanger: {fileID: 1357111581}
 --- !u!1 &674475945
 GameObject:
   m_ObjectHideFlags: 0
@@ -17017,6 +17035,7 @@ MonoBehaviour:
   delayTime: 2
   sceneManager: {fileID: 1770832731}
   dimScreen: 1
+  sceneChangeActive: 0
 --- !u!4 &1357111582
 Transform:
   m_ObjectHideFlags: 0
