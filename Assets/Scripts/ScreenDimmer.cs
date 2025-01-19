@@ -13,11 +13,16 @@ public class ScreenDimmer : MonoBehaviour
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        canvasGroup.alpha += 0.1f;
+        if (sceneChanger.sceneChangeActive)
+        {
+            canvasGroup.alpha = sceneChanger.timerPercent;
+        }
+        
     }
 }
