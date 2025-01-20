@@ -46,7 +46,11 @@ Material:
   m_LockedProperties: _SmoothnessTextureChannel
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _SampleTexture2D_1b839d46e18f42a1a60da938f243d7cf_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 5721fd677c829674abd569242d07681f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _AlphaCutoffEnable: 0
