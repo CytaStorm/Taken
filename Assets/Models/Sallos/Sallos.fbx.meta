@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sallos
-    second: {fileID: 2100000, guid: eff694f1aa1ea2948820a95e6f5700bb, type: 2}
+    second: {fileID: 2100000, guid: 337dfa9015a3cd245802d630beff8c5c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

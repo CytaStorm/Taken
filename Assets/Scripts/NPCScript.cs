@@ -3,6 +3,7 @@ using UnityEngine;
 public class NPCScript : InteractableScript
 {
 	[SerializeField] private Animator _animator;
+	[SerializeField] private Material _material;
 
     protected override void Awake()
     {
@@ -13,11 +14,12 @@ public class NPCScript : InteractableScript
 	{
         if (isHighlighted && !isFocus)
         {
-            foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
-            {                
-                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
-                print(renderer.material.color);
-            }               
+            //foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
+            //{                
+            //    renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
+            //    print(renderer.material.color);
+            //}
+			_material.SetColor("_Tint", new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1));
         }
         highlightTimer += Time.deltaTime;
 
