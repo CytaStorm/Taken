@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,8 @@ public class SceneThreeCutscene : MonoBehaviour
     
     public UIManager uiManager;
     public SceneTwoManager sceneTwoManager;
+
+    public Material sallosMaterial;
 
     // Event trigger variables
     public List<string> flagNames;
@@ -134,7 +137,21 @@ public class SceneThreeCutscene : MonoBehaviour
 
     private void Disappear()
     {
+        StartCoroutine(FadeAway(5f));
         StartCoroutine(PauseAllButtons(5f));
+    }
+
+    private IEnumerator FadeAway(float seconds)
+    {
+        float time = 0f;
+
+        while (sallosMaterial.GetFloat("_Dissolve_Effect") < 1)
+        {
+            sallosMaterial.SetFloat("_Dissolve_Effect", time / seconds);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(seconds);
     }
 
     private IEnumerator PauseAllButtons(float seconds)
