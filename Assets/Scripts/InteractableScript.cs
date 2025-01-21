@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,13 +21,15 @@ public abstract class InteractableScript : MonoBehaviour
     protected bool isHighlighted = false;
     protected float highlightTimer = 0f;
 
-	[SerializeField] protected Material _material;
 
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
 	[SerializeField] protected bool IsPuppet;
+
+	[Header("Materials")]
+	[SerializeField] protected List<Material> _materialList;
 
     protected virtual void Awake()
     {
@@ -50,11 +53,10 @@ public abstract class InteractableScript : MonoBehaviour
 	{
         if (isHighlighted && !isFocus)
         {
-            foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
-            {
-                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
-                print(renderer.material.color);
-            }
+			foreach (Material mat in _materialList)
+			{
+				mat.SetColor("_Tint", new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1));
+			}
         }
         highlightTimer += Time.deltaTime;
 
@@ -104,7 +106,10 @@ public abstract class InteractableScript : MonoBehaviour
     private void OnMouseExit()
     {
         Debug.Log("mouse exited");
-		_material.SetColor("_Tint", new Color(1, 1, 1));
+		foreach (Material mat in _materialList)
+		{
+			mat.SetColor("_Tint", new Color(1, 1, 1));
+		}
         isHighlighted = false;
     }
 
