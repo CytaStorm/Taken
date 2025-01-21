@@ -1,74 +1,45 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NPCScript : InteractableScript
 {
+    [Header("Character")]
+    [SerializeField] private NavMeshAgent agent;
 	[SerializeField] private Animator _animator;
+    public bool canMove = true;
+    protected bool isMoving = false;
+
+    [Tooltip("Check this if the NPC only needs to move without interaction")] 
+    [SerializeField] private bool isPuppet;
+
+
 
     protected override void Awake()
     {
+        if (isPuppet) return;
         base.Awake();
     }
-	
-	protected override void Update()
-	{
-		if (isHighlighted && !isFocus)
-        {
-			foreach (Material mat in _materialList)
-			{
-				mat.SetColor("_Tint", new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1));
-			}
-        }
-        highlightTimer += Time.deltaTime;
 
+    protected override void Update()
+    {
         // Checks if NPC has arrived at the destination
-        if (isMoving && agent.remainingDistance <= agent.stoppingDistance)
-		{
-			if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-			{
-				isMoving = false;  // NPC has finished moving
-				Debug.Log("NPC has arrived at the destination.");
-			}
-		}
+        print(this.gameObject.name);
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                Debug.Log("NPC has arrived at the destination.");
+            }
+        }
 
-		if (_animator != null) 
-		{
+        if (_animator != null)
+        {
             _animator.SetBool("Walking", agent.velocity.magnitude > 0);
             _animator.SetFloat("VelocityPercent", agent.velocity.magnitude / agent.speed);
-        }		
+        }
 
-		//INTERACTION FILTER
-		if (!isFocus || !canInteract || IsPuppet)
-		{
-			return;
-		}
-
-		//Actual interaction
-		float distance = Vector3.Distance(
-			PlayerController.PlayerControl.gameObject.transform.position,
-			gameObject.transform.position);
-
-		// If its able to be interacted with, Interact
-		if (distance <= radius && !hasInteracted && !isMoving)
-		{
-			//Limited interaction filter
-			if (!hasLimitedInteractions) 
-			{
-                Interact(); 
-			}
-
-			//Do not interact if too many interactions
-			if (interactionCount > 0)
-			{
-				return;
-			}            
-            Interact();
-			
-		}
-		else if (distance > radius && !isMoving)
-		{
-			hasInteracted = false;
-		}
-
+        if (isPuppet) return;
+		base.Update();
 	}
 
 	protected void LookAtPlayer()
@@ -114,10 +85,7 @@ public class NPCScript : InteractableScript
 
 	public override void Interact()
 	{
-		_UIManager.ChangeToDialogue();
 		LookAtPlayer();
-		hasInteracted = true;
-		interactionCount++;
-		UpdateSceneGraph.Invoke(this);
+        base.Interact();
 	}
 }

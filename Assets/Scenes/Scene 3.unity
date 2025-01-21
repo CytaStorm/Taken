@@ -265,14 +265,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  agent: {fileID: 36616014}
+  twineFile: {fileID: 0}
   radius: 3
   hasLimitedInteractions: 1
-  canMove: 1
-  twineFile: {fileID: 0}
-  IsPuppet: 1
   _materialList: []
+  agent: {fileID: 36616014}
   _animator: {fileID: 36616013}
+  canMove: 1
+  isPuppet: 1
 --- !u!1 &144218910
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,14 +997,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  agent: {fileID: 278721997}
+  twineFile: {fileID: 0}
   radius: 3
   hasLimitedInteractions: 1
-  canMove: 1
-  twineFile: {fileID: 0}
-  IsPuppet: 1
   _materialList: []
+  agent: {fileID: 278721997}
   _animator: {fileID: 278721996}
+  canMove: 1
+  isPuppet: 1
 --- !u!1 &416187121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,8 +1074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 568755722}
-  - component: {fileID: 568755721}
-  - component: {fileID: 568755720}
+  - component: {fileID: 568755723}
   m_Layer: 7
   m_Name: DialogueHolder
   m_TagString: Untagged
@@ -1083,49 +1082,6 @@ GameObject:
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
   m_IsActive: 1
---- !u!195 &568755720
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568755719}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &568755721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568755719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
-  agent: {fileID: 568755720}
-  radius: 3
-  hasLimitedInteractions: 1
-  canMove: 1
-  twineFile: {fileID: 4900000, guid: 5d6c4e6c006d87d4f9f4d89786827186, type: 3}
-  IsPuppet: 0
-  _materialList: []
-  _animator: {fileID: 0}
 --- !u!4 &568755722
 Transform:
   m_ObjectHideFlags: 0
@@ -1141,6 +1097,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568755723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568755719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a83a48841bee204bbc1c7386e5a5d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 553045652}
+  twineFile: {fileID: 4900000, guid: 5d6c4e6c006d87d4f9f4d89786827186, type: 3}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList: []
 --- !u!1 &624461084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,14 +1851,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  agent: {fileID: 819007654}
+  twineFile: {fileID: 0}
   radius: 3
   hasLimitedInteractions: 1
-  canMove: 1
-  twineFile: {fileID: 0}
-  IsPuppet: 1
   _materialList: []
+  agent: {fileID: 819007654}
   _animator: {fileID: 819007650}
+  canMove: 1
+  isPuppet: 1
 --- !u!1001 &1021798474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2458,14 +2431,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  agent: {fileID: 1075811457}
+  twineFile: {fileID: 0}
   radius: 3
   hasLimitedInteractions: 1
-  canMove: 1
-  twineFile: {fileID: 0}
-  IsPuppet: 1
   _materialList: []
+  agent: {fileID: 1075811457}
   _animator: {fileID: 1075811456}
+  canMove: 1
+  isPuppet: 1
 --- !u!1001 &1296349314
 PrefabInstance:
   m_ObjectHideFlags: 0
