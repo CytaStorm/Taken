@@ -249,7 +249,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.09
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &36616016
@@ -981,7 +981,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.09
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &278721998
@@ -1862,7 +1862,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.09
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &819007655
@@ -2053,7 +2053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.094
+      value: 0.016
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2442,7 +2442,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.09
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1075811459
@@ -2788,7 +2788,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7fc199b335626c44f88074db241f2a1c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 146ff21351deab34bafb41d88655225c, type: 2}
   m_BuildHeightMesh: 0
 --- !u!154 &1617419224
 TerrainCollider:

@@ -21,7 +21,6 @@ public class UIManager : MonoBehaviour
 
 	//Parent gameobjects
 	[SerializeField] private GameObject _dialogueUI;
-	[SerializeField] private GameObject _gameplayUI;
 
 	[Header("Dialogue Display")]
 	//Textbox stack
@@ -115,7 +114,6 @@ public class UIManager : MonoBehaviour
 
 		//Draw Dialogue box
 		_dialogueUI.SetActive(true);
-		_gameplayUI.SetActive(false);
 	}
 
 	//Player traversed to a new Dialogue node
@@ -242,6 +240,5 @@ public class UIManager : MonoBehaviour
 		//Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
-		_gameplayUI.SetActive(true);
 	}
 }

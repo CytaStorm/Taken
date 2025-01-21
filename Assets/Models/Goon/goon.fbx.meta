@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Goon
-    second: {fileID: 2100000, guid: a701d27dc5ee47b43b23810c86d99a7d, type: 2}
+    second: {fileID: 2100000, guid: a76866bdeea5b9543a185fc9d0d3ca59, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
