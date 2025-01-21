@@ -11,13 +11,12 @@ public class NPCScript : InteractableScript
 	
 	protected override void Update()
 	{
-        if (isHighlighted && !isFocus)
+		if (isHighlighted && !isFocus)
         {
-            foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
-            {                
-                renderer.material.color = new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1);
-                print(renderer.material.color);
-            }               
+			foreach (Material mat in _materialList)
+			{
+				mat.SetColor("_Tint", new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1));
+			}
         }
         highlightTimer += Time.deltaTime;
 
