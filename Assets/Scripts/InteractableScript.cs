@@ -99,7 +99,7 @@ public class InteractableScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
-		Debug.Log("mouse entered");
+		//Debug.Log("mouse entered");
 
         highlightTimer = 0f;
         isHighlighted = true;
@@ -107,7 +107,7 @@ public class InteractableScript : MonoBehaviour
 
     private void OnMouseExit()
     {
-        Debug.Log("mouse exited");
+        //Debug.Log("mouse exited");
 		foreach (Material mat in _materialList)
 		{
 			mat.SetColor("_Tint", new Color(1, 1, 1));

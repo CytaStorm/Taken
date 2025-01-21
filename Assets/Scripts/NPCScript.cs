@@ -22,19 +22,17 @@ public class NPCScript : InteractableScript
 
     protected override void Update()
     {
-        // Checks if NPC has arrived at the destination
-        print(this.gameObject.name);
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-            {
-                Debug.Log("NPC has arrived at the destination.");
-            }
-        }
+        //// Checks if NPC has arrived at the destination
+        //if (agent.remainingDistance <= agent.stoppingDistance)
+        //{
+        //    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+        //    {
+        //        Debug.Log("NPC has arrived at the destination.");
+        //    }
+        //}
 
         if (_animator != null)
         {
-            _animator.SetBool("Walking", agent.velocity.magnitude > 0);
             _animator.SetFloat("VelocityPercent", agent.velocity.magnitude / agent.speed);
         }
 

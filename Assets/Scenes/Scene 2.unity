@@ -1429,7 +1429,8 @@ MonoBehaviour:
   twineFile: {fileID: 4900000, guid: a487cf23ab3897a48afb661a1559e7e8, type: 3}
   radius: 3
   hasLimitedInteractions: 1
-  _materialList: []
+  _materialList:
+  - {fileID: 2100000, guid: 3389aedd928cd164987a10d17d823674, type: 2}
 --- !u!1001 &315369278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6917,7 +6918,8 @@ MonoBehaviour:
   twineFile: {fileID: 4900000, guid: d5a6b3f375b393d428bf4467296cf8b0, type: 3}
   radius: 3
   hasLimitedInteractions: 1
-  _materialList: []
+  _materialList:
+  - {fileID: 2100000, guid: 0bce50383dd57cf46a318c6ebea80ebf, type: 2}
 --- !u!1 &790327362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7087,7 +7089,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!1 &855476569
 GameObject:
   m_ObjectHideFlags: 0
@@ -17659,7 +17661,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 0afb88373a0fd484f8c85dc11e7a4fb2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 213ea66b793748d48b29361d3183585c, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1430803041 stripped
 Transform:
@@ -17937,6 +17939,7 @@ GameObject:
   - component: {fileID: 1618337429}
   - component: {fileID: 1618337428}
   - component: {fileID: 1618337430}
+  - component: {fileID: 1618337431}
   m_Layer: 7
   m_Name: Tree Stump
   m_TagString: Untagged
@@ -17999,7 +18002,25 @@ MonoBehaviour:
   twineFile: {fileID: 4900000, guid: 6763765064bb0164f9c8ac67a8d55e56, type: 3}
   radius: 3
   hasLimitedInteractions: 1
-  _materialList: []
+  _materialList:
+  - {fileID: 2100000, guid: 80514aebdb672b849ba9cd3bc3e72d77, type: 2}
+  - {fileID: 2100000, guid: aad1dc0caed684141813e76ca569e24f, type: 2}
+--- !u!208 &1618337431
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618337426}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1, y: 0.1, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1624771307
 GameObject:
   m_ObjectHideFlags: 0
@@ -18084,6 +18105,7 @@ GameObject:
   - component: {fileID: 1650134040}
   - component: {fileID: 1650134044}
   - component: {fileID: 1650134045}
+  - component: {fileID: 1650134046}
   m_Layer: 7
   m_Name: Campfire
   m_TagString: Untagged
@@ -18290,7 +18312,25 @@ MonoBehaviour:
   twineFile: {fileID: 4900000, guid: cddae4c944052fb4b9df31249b52513e, type: 3}
   radius: 3
   hasLimitedInteractions: 1
-  _materialList: []
+  _materialList:
+  - {fileID: 2100000, guid: 58ddb1af998eda94ab8ad478b8e1de42, type: 2}
+  - {fileID: 2100000, guid: 8215d254a089a9548a87fb4167f809cd, type: 2}
+--- !u!208 &1650134046
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650134038}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1, y: 0.1, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1684025017
 GameObject:
   m_ObjectHideFlags: 0
@@ -18928,7 +18968,8 @@ MonoBehaviour:
   twineFile: {fileID: 4900000, guid: 5afe23d0e221f6c4c935415a6cd6dd47, type: 3}
   radius: 3
   hasLimitedInteractions: 1
-  _materialList: []
+  _materialList:
+  - {fileID: 2100000, guid: 18d2fc6302dbeff4cb452a8062904fed, type: 2}
 --- !u!1 &1865405537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 42b23f45eb445474a9c921ee15780099, type: 3}
@@ -19320,6 +19361,7 @@ GameObject:
   - component: {fileID: 2062478553}
   - component: {fileID: 2062478550}
   - component: {fileID: 2062478554}
+  - component: {fileID: 2062478555}
   m_Layer: 7
   m_Name: Wood
   m_TagString: Untagged
@@ -19380,7 +19422,24 @@ MonoBehaviour:
   twineFile: {fileID: 4900000, guid: f5f551baa4e1a4640bd40d840507fb3c, type: 3}
   radius: 3
   hasLimitedInteractions: 1
-  _materialList: []
+  _materialList:
+  - {fileID: 2100000, guid: 048a1de0c24c0e146baadc5c0cac2d8c, type: 2}
+--- !u!208 &2062478555
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062478548}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1, y: 0.1, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
