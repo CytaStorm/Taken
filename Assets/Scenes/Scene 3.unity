@@ -2989,6 +2989,7 @@ MonoBehaviour:
   goon: {fileID: 819007649}
   uiManager: {fileID: 553045652}
   sceneTwoManager: {fileID: 693596820}
+  sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
   flagNames:
   - walkLeft
   - enterAkif
