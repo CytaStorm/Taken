@@ -20,6 +20,8 @@ public abstract class InteractableScript : MonoBehaviour
     protected bool isHighlighted = false;
     protected float highlightTimer = 0f;
 
+	[SerializeField] protected Material _material;
+
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
@@ -102,10 +104,7 @@ public abstract class InteractableScript : MonoBehaviour
     private void OnMouseExit()
     {
         Debug.Log("mouse exited");
-        foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
-        {
-            renderer.material.color = Color.white;            
-        }
+		_material.SetColor("_Tint", new Color(1, 1, 1));
         isHighlighted = false;
     }
 

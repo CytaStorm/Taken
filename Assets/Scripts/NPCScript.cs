@@ -3,7 +3,6 @@ using UnityEngine;
 public class NPCScript : InteractableScript
 {
 	[SerializeField] private Animator _animator;
-	[SerializeField] private Material _material;
 
     protected override void Awake()
     {
@@ -21,6 +20,9 @@ public class NPCScript : InteractableScript
             //}
 			_material.SetColor("_Tint", new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1));
         }
+		else 
+		{ 
+		}
         highlightTimer += Time.deltaTime;
 
         // Checks if NPC has arrived at the destination
