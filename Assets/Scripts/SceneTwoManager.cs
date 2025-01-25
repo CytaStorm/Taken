@@ -47,7 +47,7 @@ public class SceneTwoManager : MonoBehaviour
         {
 		    foreach (DialogueFlag flag in dialogueFlags)
 		    {
-		    	//print(flag);
+		    	print(flag);
 		    }
         }
     }

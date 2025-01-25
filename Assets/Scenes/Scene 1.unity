@@ -5781,10 +5781,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1520122983}
-  - component: {fileID: 1520122981}
   - component: {fileID: 1520122980}
+  - component: {fileID: 1520122984}
   m_Layer: 7
-  m_Name: NPC
+  m_Name: Scene Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -5812,27 +5812,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1520122981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520122979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
-  agent: {fileID: 1520122980}
-  radius: 3
-  hasLimitedInteractions: 1
-  canMove: 1
-  twineFile: {fileID: 4900000, guid: ba54346f8629999468b5e2e551a8c279, type: 3}
-  IsPuppet: 0
-  _materialList: []
-  _animator: {fileID: 0}
 --- !u!4 &1520122983
 Transform:
   m_ObjectHideFlags: 0
@@ -5848,6 +5827,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1520122984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520122979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 1762080261}
+  twineFile: {fileID: 4900000, guid: ba54346f8629999468b5e2e551a8c279, type: 3}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList: []
 --- !u!1 &1589002755
 GameObject:
   m_ObjectHideFlags: 0

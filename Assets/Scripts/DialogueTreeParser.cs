@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 
@@ -56,7 +57,6 @@ class DialogueTreeParser : MonoBehaviour
 		//Create the links between nodes
 		foreach (DialogueNode node in dialogueNodes)
 		{
-			//print(node.Info);
 			if (node.LinkNames == null) continue;
 
 			foreach (string linkName in node.LinkNames)
@@ -127,6 +127,22 @@ class DialogueTreeParser : MonoBehaviour
 	{
 		foreach (DialogueNode innerNode in dialogueNodes)
 		{
+			//See if there's a continue button node
+			try
+			{
+				if (innerNode.NodeName == linkName.Split("->")[1])
+				{
+					node.Links.Add(innerNode);
+					innerNode.NodeName = "Continue ->";
+					break;
+				}
+			}
+			catch (IndexOutOfRangeException e)
+			{
+				//There is no continue button
+			}
+
+			// check to see if any continues are in there
 			if (innerNode.NodeName == linkName)
 			{
 				node.Links.Add(innerNode);
@@ -174,32 +190,11 @@ class DialogueTreeParser : MonoBehaviour
 				specialTextStartIndex, specialTextLength);
 			results.Add((specialText, startDelimiterStartIndex));
 
-
-			//Chop the link out of node.info, including dangling newlines
-			int newlineOffset = 0;
-			try
-			{
-				string substring =
-					node.Info.Substring(
-						specialTextEndIndex + endDelimiter.Length, 1);
-				//print(node.Info.Substring(specialTextEndIndex + endDelimiter.Length, 1));
-				if (node.Info.Substring(
-					specialTextEndIndex + endDelimiter.Length, 1) == "\n")
-				{
-					newlineOffset = 1;
-				}
-			}
-			catch (Exception e)
-			{
-
-			}
-
 			node.Info = node.Info.Remove(
 				specialTextStartIndex - startDelimiter.Length,
-				specialText.Length + 
-				startDelimiter.Length + 
-				endDelimiter.Length + 
-				newlineOffset);
+				specialText.Length +
+				startDelimiter.Length +
+				endDelimiter.Length);
 
 			startDelimiterStartIndex = node.Info.IndexOf(startDelimiter);
 		}
@@ -235,7 +230,7 @@ class DialogueTreeParser : MonoBehaviour
 	{
 		//Get the string to parse
 		List<string> stringToParse = 
-			GetRemovedSpecialText(node, "(set: ", ")\n");
+			GetRemovedSpecialText(node, "(set: ", ")");
 		//If it doesn't have (set:) return
 		if (stringToParse.Count == 0) return;
 
@@ -286,6 +281,8 @@ class DialogueTreeParser : MonoBehaviour
 		string speakerFormatEndDelimiter = "</font></b>";
 		List<(string, int)> speakerSpecialTextTuple =
 			RemoveSpecialText(node, "\'\'", "\'\'");
+
+		int formattedSpeakerNameOffset = 0;
 		for (int i = 0; i < speakerSpecialTextTuple.Count; i++)
 		{
 			(string text, int index) removedTextTuple = 
@@ -296,8 +293,9 @@ class DialogueTreeParser : MonoBehaviour
 				removedTextTuple.text + 
 				speakerFormatEndDelimiter;
 			node.Info = node.Info.Insert(
-				removedTextTuple.index + (formattedSpeakerName.Length * i),
+				removedTextTuple.index + formattedSpeakerNameOffset,
 				formattedSpeakerName);
+			formattedSpeakerNameOffset += formattedSpeakerName.Length;
 		}
 
 		//Italics

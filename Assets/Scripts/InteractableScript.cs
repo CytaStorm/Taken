@@ -4,42 +4,36 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;  // Import the AI Navigation namespace
 
-public abstract class InteractableScript : MonoBehaviour
+public class InteractableScript : MonoBehaviour
 {
+    [Header("References to other Gameobjects")]
     public UIManager _UIManager;
-    [SerializeField] protected NavMeshAgent agent;
 
-    public float radius = 3f;
-    public bool hasLimitedInteractions = true;
-    public bool canMove = true;
-
-    protected bool isFocus = false;       
-    protected bool hasInteracted = false; 
-    protected bool isMoving = false;      
-    protected bool canInteract = true;    
-    protected int interactionCount = 0;
-    protected bool isHighlighted = false;
-    protected float highlightTimer = 0f;
-
-
+    [Header("Dialogue")]
     [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
-	[SerializeField] protected bool IsPuppet;
+    [Header("Interactivity")]
+    public float radius = 3f;
+    protected bool hasInteracted = false;
+    protected bool isFocus = false;       
+
+    public bool hasLimitedInteractions = true;
+    protected bool canInteract = true;    
+    protected int interactionCount = 0;
 
 	[Header("Materials")]
 	[SerializeField] protected List<Material> _materialList;
+    protected bool isHighlighted = false;
+    protected float highlightTimer = 0f;
 
     protected virtual void Awake()
     {
 		//print(twineFile);
-		if (IsPuppet) return;
         Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
-
-
     }
 
     protected void OnDrawGizmos()
@@ -47,7 +41,13 @@ public abstract class InteractableScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-    public abstract void Interact();
+    public virtual void Interact()
+    {
+		_UIManager.ChangeToDialogue();
+		hasInteracted = true;
+		interactionCount++;
+		UpdateSceneGraph.Invoke(this);
+    }
 
     protected virtual void Update()
 	{
@@ -69,16 +69,18 @@ public abstract class InteractableScript : MonoBehaviour
 		float distance = Vector3.Distance(
 			PlayerController.PlayerControl.gameObject.transform.position,
 			gameObject.transform.position);
+
 		// If its able to be interacted with, Interact
-		if (distance <= radius && !hasInteracted && !isMoving)
+		if (distance <= radius && !hasInteracted)
 		{
-			Debug.Log("INTERACT");
-			_UIManager.ChangeToDialogue();
-			Interact();
-			hasInteracted = true;
-			interactionCount++;
+			if (hasLimitedInteractions)
+			{
+				if (interactionCount > 0) { return; }
+				else {interactionCount++; }
+			}
+            Interact();
 		}
-		else if (distance > radius && !isMoving)
+		else if (distance > radius)
 		{
 			hasInteracted = false;
 		}
@@ -97,7 +99,7 @@ public abstract class InteractableScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
-		Debug.Log("mouse entered");
+		//Debug.Log("mouse entered");
 
         highlightTimer = 0f;
         isHighlighted = true;
@@ -105,7 +107,7 @@ public abstract class InteractableScript : MonoBehaviour
 
     private void OnMouseExit()
     {
-        Debug.Log("mouse exited");
+        //Debug.Log("mouse exited");
 		foreach (Material mat in _materialList)
 		{
 			mat.SetColor("_Tint", new Color(1, 1, 1));

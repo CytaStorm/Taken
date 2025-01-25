@@ -1367,8 +1367,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 267193124}
-  - component: {fileID: 267193123}
   - component: {fileID: 267193125}
+  - component: {fileID: 267193126}
   m_Layer: 7
   m_Name: Footprints
   m_TagString: Untagged
@@ -1376,28 +1376,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &267193123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267193121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 542082624}
-  agent: {fileID: 0}
-  radius: 3
-  hasLimitedInteractions: 0
-  canMove: 0
-  twineFile: {fileID: 4900000, guid: a487cf23ab3897a48afb661a1559e7e8, type: 3}
-  IsPuppet: 0
-  _materialList:
-  - {fileID: 2100000, guid: 3389aedd928cd164987a10d17d823674, type: 2}
-  _animator: {fileID: 0}
 --- !u!4 &267193124
 Transform:
   m_ObjectHideFlags: 0
@@ -1435,6 +1413,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0110888, y: 1, z: 2.5408247}
   m_Center: {x: 0.19554418, y: 0, z: -0.024588346}
+--- !u!114 &267193126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267193121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 542082624}
+  twineFile: {fileID: 4900000, guid: a487cf23ab3897a48afb661a1559e7e8, type: 3}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList:
+  - {fileID: 2100000, guid: 3389aedd928cd164987a10d17d823674, type: 2}
 --- !u!1001 &315369278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6859,7 +6855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 757812475}
   - component: {fileID: 757812474}
-  - component: {fileID: 757812473}
+  - component: {fileID: 757812476}
   m_Layer: 7
   m_Name: Tent
   m_TagString: Untagged
@@ -6867,27 +6863,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &757812473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757812472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 542082624}
-  agent: {fileID: 0}
-  radius: 3
-  hasLimitedInteractions: 0
-  canMove: 0
-  twineFile: {fileID: 4900000, guid: d5a6b3f375b393d428bf4467296cf8b0, type: 3}
-  IsPuppet: 0
-  _materialList: []
-  _animator: {fileID: 0}
 --- !u!136 &757812474
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6927,6 +6902,24 @@ Transform:
   - {fileID: 392928246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757812476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757812472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 542082624}
+  twineFile: {fileID: 4900000, guid: d5a6b3f375b393d428bf4467296cf8b0, type: 3}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList:
+  - {fileID: 2100000, guid: 0bce50383dd57cf46a318c6ebea80ebf, type: 2}
 --- !u!1 &790327362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,15 +7059,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 542082624}
-  agent: {fileID: 796200095}
+  twineFile: {fileID: 4900000, guid: 9700b095161428b4fa0383b7d1dcd026, type: 3}
   radius: 3
   hasLimitedInteractions: 0
-  canMove: 1
-  twineFile: {fileID: 4900000, guid: 9700b095161428b4fa0383b7d1dcd026, type: 3}
-  IsPuppet: 0
   _materialList:
   - {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
+  agent: {fileID: 796200095}
   _animator: {fileID: 709694243}
+  canMove: 1
+  isPuppet: 0
 --- !u!195 &796200095
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7096,7 +7089,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!1 &855476569
 GameObject:
   m_ObjectHideFlags: 0
@@ -17668,7 +17661,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 0afb88373a0fd484f8c85dc11e7a4fb2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 213ea66b793748d48b29361d3183585c, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1430803041 stripped
 Transform:
@@ -17945,7 +17938,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1618337429}
   - component: {fileID: 1618337428}
-  - component: {fileID: 1618337427}
+  - component: {fileID: 1618337430}
+  - component: {fileID: 1618337431}
   m_Layer: 7
   m_Name: Tree Stump
   m_TagString: Untagged
@@ -17953,29 +17947,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1618337427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618337426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 542082624}
-  agent: {fileID: 0}
-  radius: 3
-  hasLimitedInteractions: 0
-  canMove: 0
-  twineFile: {fileID: 4900000, guid: 6763765064bb0164f9c8ac67a8d55e56, type: 3}
-  IsPuppet: 0
-  _materialList:
-  - {fileID: 2100000, guid: 80514aebdb672b849ba9cd3bc3e72d77, type: 2}
-  - {fileID: 2100000, guid: aad1dc0caed684141813e76ca569e24f, type: 2}
-  _animator: {fileID: 0}
 --- !u!136 &1618337428
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18015,6 +17986,41 @@ Transform:
   - {fileID: 433863391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1618337430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618337426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 542082624}
+  twineFile: {fileID: 4900000, guid: 6763765064bb0164f9c8ac67a8d55e56, type: 3}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList:
+  - {fileID: 2100000, guid: 80514aebdb672b849ba9cd3bc3e72d77, type: 2}
+  - {fileID: 2100000, guid: aad1dc0caed684141813e76ca569e24f, type: 2}
+--- !u!208 &1618337431
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618337426}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1, y: 0.1, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1624771307
 GameObject:
   m_ObjectHideFlags: 0
@@ -18097,8 +18103,9 @@ GameObject:
   - component: {fileID: 1650134042}
   - component: {fileID: 1650134041}
   - component: {fileID: 1650134040}
-  - component: {fileID: 1650134039}
   - component: {fileID: 1650134044}
+  - component: {fileID: 1650134045}
+  - component: {fileID: 1650134046}
   m_Layer: 7
   m_Name: Campfire
   m_TagString: Untagged
@@ -18106,29 +18113,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1650134039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650134038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 542082624}
-  agent: {fileID: 0}
-  radius: 3
-  hasLimitedInteractions: 0
-  canMove: 0
-  twineFile: {fileID: 4900000, guid: cddae4c944052fb4b9df31249b52513e, type: 3}
-  IsPuppet: 0
-  _materialList:
-  - {fileID: 2100000, guid: 58ddb1af998eda94ab8ad478b8e1de42, type: 2}
-  - {fileID: 2100000, guid: 8215d254a089a9548a87fb4167f809cd, type: 2}
-  _animator: {fileID: 0}
 --- !u!65 &1650134040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18312,6 +18296,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1650134045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650134038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 542082624}
+  twineFile: {fileID: 4900000, guid: cddae4c944052fb4b9df31249b52513e, type: 3}
+  radius: 3
+  hasLimitedInteractions: 0
+  _materialList:
+  - {fileID: 2100000, guid: 58ddb1af998eda94ab8ad478b8e1de42, type: 2}
+  - {fileID: 2100000, guid: 8215d254a089a9548a87fb4167f809cd, type: 2}
+--- !u!208 &1650134046
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650134038}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1, y: 0.1, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1684025017
 GameObject:
   m_ObjectHideFlags: 0
@@ -18888,7 +18907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1852868510}
   - component: {fileID: 1852868511}
-  - component: {fileID: 1852868508}
+  - component: {fileID: 1852868512}
   m_Layer: 7
   m_Name: Pinecones
   m_TagString: Untagged
@@ -18896,28 +18915,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1852868508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852868507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 542082624}
-  agent: {fileID: 0}
-  radius: 3
-  hasLimitedInteractions: 0
-  canMove: 0
-  twineFile: {fileID: 4900000, guid: 5afe23d0e221f6c4c935415a6cd6dd47, type: 3}
-  IsPuppet: 0
-  _materialList:
-  - {fileID: 2100000, guid: 18d2fc6302dbeff4cb452a8062904fed, type: 2}
-  _animator: {fileID: 0}
 --- !u!4 &1852868510
 Transform:
   m_ObjectHideFlags: 0
@@ -18955,6 +18952,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1852868512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852868507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 542082624}
+  twineFile: {fileID: 4900000, guid: 5afe23d0e221f6c4c935415a6cd6dd47, type: 3}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList:
+  - {fileID: 2100000, guid: 18d2fc6302dbeff4cb452a8062904fed, type: 2}
 --- !u!1 &1865405537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 42b23f45eb445474a9c921ee15780099, type: 3}
@@ -19345,7 +19360,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2062478553}
   - component: {fileID: 2062478550}
-  - component: {fileID: 2062478549}
+  - component: {fileID: 2062478554}
+  - component: {fileID: 2062478555}
   m_Layer: 7
   m_Name: Wood
   m_TagString: Untagged
@@ -19353,28 +19369,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2062478549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062478548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 542082624}
-  agent: {fileID: 0}
-  radius: 3
-  hasLimitedInteractions: 0
-  canMove: 0
-  twineFile: {fileID: 4900000, guid: f5f551baa4e1a4640bd40d840507fb3c, type: 3}
-  IsPuppet: 0
-  _materialList:
-  - {fileID: 2100000, guid: 048a1de0c24c0e146baadc5c0cac2d8c, type: 2}
-  _animator: {fileID: 0}
 --- !u!65 &2062478550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19412,6 +19406,40 @@ Transform:
   - {fileID: 1247967909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 28.3, y: 0, z: 0}
+--- !u!114 &2062478554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062478548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 542082624}
+  twineFile: {fileID: 4900000, guid: f5f551baa4e1a4640bd40d840507fb3c, type: 3}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList:
+  - {fileID: 2100000, guid: 048a1de0c24c0e146baadc5c0cac2d8c, type: 2}
+--- !u!208 &2062478555
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062478548}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1, y: 0.1, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
