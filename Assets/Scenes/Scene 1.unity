@@ -6133,7 +6133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneTwoManager: {fileID: 1923970400}
   speakerNames: []
-  portraitTextures: []
+  portraitMaterials: []
+  portrait: {fileID: 1886274938}
   speakerName: 
 --- !u!1 &1897166121 stripped
 GameObject:

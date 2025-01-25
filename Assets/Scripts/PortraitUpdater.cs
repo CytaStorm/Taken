@@ -38,11 +38,17 @@ public class PortraitUpdater : MonoBehaviour
         {
             // Get speaker name
             int delimiterIndex = currentNode.Info.IndexOf(':');            
-            speakerName = currentNode.Info.Substring(0, delimiterIndex);
+            speakerName = currentNode.Info.Substring(0, delimiterIndex);         
+
+            // Remove html tags
+            while (speakerName.Contains('<'))
+            {
+                int startIndex = speakerName.IndexOf('<');
+                int endIndex = speakerName.IndexOf('>');
+                int count = endIndex - startIndex;
+                speakerName.Remove(startIndex, count);
+            }
             speakerName.ToLower();
-
-            // Sanitize speaker name
-
 
             // Find index of associated portrait
             int portraitIndex = 0;
@@ -55,6 +61,8 @@ public class PortraitUpdater : MonoBehaviour
             }
 
             // Switch portraits
+            // NOTE: if this doesn't work, try having a gameobject for each character portrait
+            // that enables/disables itself when the provided character is the speaker
             portrait.material = portraitMaterials[portraitIndex];
         }
     }
