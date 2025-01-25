@@ -18311,7 +18311,7 @@ MonoBehaviour:
   _UIManager: {fileID: 542082624}
   twineFile: {fileID: 4900000, guid: cddae4c944052fb4b9df31249b52513e, type: 3}
   radius: 3
-  hasLimitedInteractions: 1
+  hasLimitedInteractions: 0
   _materialList:
   - {fileID: 2100000, guid: 58ddb1af998eda94ab8ad478b8e1de42, type: 2}
   - {fileID: 2100000, guid: 8215d254a089a9548a87fb4167f809cd, type: 2}
