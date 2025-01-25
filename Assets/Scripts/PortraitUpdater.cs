@@ -19,6 +19,12 @@ public class PortraitUpdater : MonoBehaviour
     void Start()
     {
         portrait = GetComponent<Image>();
+        // Sanitize strings
+        foreach (string name in speakerNames)
+        {
+            name.Trim();
+            name.ToLower();
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +36,23 @@ public class PortraitUpdater : MonoBehaviour
         // If current node contains a new speaker, then switch portraits
         if (currentNode.Info.Contains(':'))
         {
-            // 
+            // Get speaker name
+            int delimiterIndex = currentNode.Info.IndexOf(':');            
+            speakerName = currentNode.Info.Substring(0, delimiterIndex);
+            speakerName.ToLower();
+
+            // Find index of associated portrait
+            int portraitIndex = 0;
+            for (int i = 0; i < speakerNames.Count; i++)
+            {
+                if (speakerName == speakerNames[i])
+                {
+                    portraitIndex = i;
+                }
+            }
+
+            // Switch portraits
+            portrait.image = portraitTextures[portraitIndex];
         }
     }
 }
