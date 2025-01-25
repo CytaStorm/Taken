@@ -1,0 +1,42 @@
+:: StoryTitle
+Scene 2 Sallos Tree Variable Test
+
+
+:: StoryData
+{
+  "ifid": "e1abab2a-8eb0-462f-8809-6b36a9073871",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "zoom": 1
+}
+
+
+:: "I didn't get the wood." {"position":"450,500","size":"100,100"}
+''SALLOS'': "Could you do that, then? We need to fire stronger to cook food."(set: $talkedToSallos to true)
+
+
+:: "I grabbed the wood." {"position":"425,50","size":"100,100"}
+''SALLOS'': "Perfect. Put it in the fire!"(set: $talkedToSallos to true)
+
+
+:: "Is there anything I should do?" {"position":"550,150","size":"100,100"}
+''SALLOS'': "You should find some wood to burn. I've got some pinecones we can use to start the flame, but we'll need some actual fuel once the fire starts. That way we can actually cook!"(set: $talkedToSallos to true)
+
+
+:: "What should I do with this wood?" {"position":"625,375","size":"100,100"}
+''SALLOS'': "You already got some wood? Perfect! Go put it on the fire, and we can start cooking!(set: $talkedToSallos to true)
+
+
+:: Continue {"position":"225,300","size":"100,100"}
+''SALLOS'': "Hi, Eulyss."
+(if: $hasWood is false and $talkedToSallos is true) [["I didn't get the wood."]]
+(if: $hasWood is true and $talkedToSallos is true) [["I grabbed the wood."]] 
+(if: $hasWood is false and $talkedToSallos is false) [["Is there anything I should do?"]] 
+(if: $hasWood is true and $talkedToSallos is false) [["What should I do with this wood?"]]
+
+
+:: Intro {"position":"25,300","size":"100,100"}
+(set: $talkedToSallos to false)
+(set: $hasWood to false)
+Sallos sits at by the campfire, tending to it.
+[[Continue]]
