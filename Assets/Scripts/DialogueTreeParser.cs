@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 
@@ -126,6 +127,22 @@ class DialogueTreeParser : MonoBehaviour
 	{
 		foreach (DialogueNode innerNode in dialogueNodes)
 		{
+			//See if there's a continue button node
+			try
+			{
+				if (innerNode.NodeName == linkName.Split("->")[1])
+				{
+					node.Links.Add(innerNode);
+					innerNode.NodeName = "Continue ->";
+					break;
+				}
+			}
+			catch (IndexOutOfRangeException e)
+			{
+				//There is no continue button
+			}
+
+			// check to see if any continues are in there
 			if (innerNode.NodeName == linkName)
 			{
 				node.Links.Add(innerNode);
@@ -275,8 +292,6 @@ class DialogueTreeParser : MonoBehaviour
 				speakerFormatStartDelimiter + 
 				removedTextTuple.text + 
 				speakerFormatEndDelimiter;
-			print(formattedSpeakerName);
-			print(formattedSpeakerName.Length);
 			node.Info = node.Info.Insert(
 				removedTextTuple.index + formattedSpeakerNameOffset,
 				formattedSpeakerName);
