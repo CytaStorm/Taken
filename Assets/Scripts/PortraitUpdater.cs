@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PortraitUpdater : MonoBehaviour
 {
@@ -9,9 +9,9 @@ public class PortraitUpdater : MonoBehaviour
 
     // Treat these like a dictionary key/value pairing. One speaker per texture.   
     [SerializeField] List<string> speakerNames;
-    [SerializeField] List<Texture> portraitTextures;
+    [SerializeField] List<Material> portraitMaterials;
 
-    private Image portrait;
+    public Image portrait;
     private DialogueNode currentNode;
     public string speakerName; // public for debugging only!
 
@@ -55,7 +55,7 @@ public class PortraitUpdater : MonoBehaviour
             }
 
             // Switch portraits
-            portrait.image = portraitTextures[portraitIndex];
+            portrait.material = portraitMaterials[portraitIndex];
         }
     }
 }
