@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        print(Cursor.lockState);
     }
 
     //Updates every frame but after the logic going on in Update()

@@ -133,7 +133,7 @@ class DialogueTreeParser : MonoBehaviour
 				if (innerNode.NodeName == linkName.Split("->")[1])
 				{
 					node.Links.Add(innerNode);
-					innerNode.NodeName = "Continue ->";
+					innerNode.NodeName = "Continue";
 					break;
 				}
 			}
