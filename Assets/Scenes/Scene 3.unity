@@ -2995,7 +2995,6 @@ MonoBehaviour:
   - enterAkif
   - enterGoon
   - walkCloser
-  - lookForEscape
   - stab
   - disappear
 --- !u!4 &2047368480
