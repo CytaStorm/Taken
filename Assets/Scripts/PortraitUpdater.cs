@@ -43,10 +43,13 @@ public class PortraitUpdater : MonoBehaviour
             // Remove html tags
             while (speakerName.Contains('<'))
             {
+                // This code crashes unity!
+                /*
                 int startIndex = speakerName.IndexOf('<');
                 int endIndex = speakerName.IndexOf('>');
                 int count = endIndex - startIndex;
                 speakerName.Remove(startIndex, count);
+                */
             }
             speakerName.ToLower();
 
@@ -63,7 +66,9 @@ public class PortraitUpdater : MonoBehaviour
             // Switch portraits
             // NOTE: if this doesn't work, try having a gameobject for each character portrait
             // that enables/disables itself when the provided character is the speaker
-            portrait.material = portraitMaterials[portraitIndex];
+
+            // This code crashes unity!
+            //portrait.material = portraitMaterials[portraitIndex];
         }
     }
 }
