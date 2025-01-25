@@ -6131,9 +6131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685aac3b5216ff649bbb17c63774486e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneTwoManager: {fileID: 0}
+  sceneTwoManager: {fileID: 1923970400}
   speakerNames: []
   portraitTextures: []
+  speakerName: 
 --- !u!1 &1897166121 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}

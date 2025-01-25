@@ -13,7 +13,7 @@ public class PortraitUpdater : MonoBehaviour
 
     private Image portrait;
     private DialogueNode currentNode;
-    private string speakerName;
+    public string speakerName; // public for debugging only!
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +40,9 @@ public class PortraitUpdater : MonoBehaviour
             int delimiterIndex = currentNode.Info.IndexOf(':');            
             speakerName = currentNode.Info.Substring(0, delimiterIndex);
             speakerName.ToLower();
+
+            // Sanitize speaker name
+
 
             // Find index of associated portrait
             int portraitIndex = 0;
