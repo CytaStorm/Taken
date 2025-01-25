@@ -59,9 +59,8 @@ public class SceneThreeCutscene : MonoBehaviour
         eventFlags[1].onValueChange += delegate { EnterAkif(); };
         eventFlags[2].onValueChange += delegate { EnterGoon(); };
         eventFlags[3].onValueChange += delegate { WalkCloser(); };
-        eventFlags[4].onValueChange += delegate { LookForEscape(); };
-        eventFlags[5].onValueChange += delegate { Stab(); };
-        eventFlags[6].onValueChange += delegate { Disappear(); };
+        eventFlags[4].onValueChange += delegate { Stab(); };
+        eventFlags[5].onValueChange += delegate { Disappear(); };
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();

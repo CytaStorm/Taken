@@ -18515,7 +18515,7 @@ MonoBehaviour:
   - {fileID: 757812472}
   - {fileID: 1852868507}
   _UIManager: {fileID: 542082624}
-  DEBUG: 1
+  DEBUG: 0
 --- !u!4 &1770832732
 Transform:
   m_ObjectHideFlags: 0
