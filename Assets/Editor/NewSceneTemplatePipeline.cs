@@ -1,4 +1,5 @@
 using UnityEngine.SceneManagement;
+using UnityEditor;
 using UnityEditor.SceneTemplate;
 
 public class NewSceneTemplatePipeline : ISceneTemplatePipeline

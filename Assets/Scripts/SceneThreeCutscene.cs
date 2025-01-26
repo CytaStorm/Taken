@@ -59,9 +59,9 @@ public class SceneThreeCutscene : MonoBehaviour
         eventFlags[1].onValueChange += delegate { EnterAkif(); };
         eventFlags[2].onValueChange += delegate { EnterGoon(); };
         eventFlags[3].onValueChange += delegate { WalkCloser(); };
-        eventFlags[4].onValueChange += delegate { LookForEscape(); };
-        eventFlags[5].onValueChange += delegate { Stab(); };
-        eventFlags[6].onValueChange += delegate { Disappear(); };
+        eventFlags[4].onValueChange += delegate { Stab(); };
+        eventFlags[5].onValueChange += delegate { Disappear(); };
+		eventFlags[6].onValueChange += delegate { StepBack(); };
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -126,7 +126,7 @@ public class SceneThreeCutscene : MonoBehaviour
         StartCoroutine(PauseAllButtons(1.3f));
     }
 
-    private void LookForEscape()
+    private void StepBack()
     {
         // Make sallos and eulyss look back and forth
         StartCoroutine(PauseAllButtons(0.1f));
