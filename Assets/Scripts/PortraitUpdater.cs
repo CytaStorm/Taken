@@ -32,6 +32,7 @@ public class PortraitUpdater : MonoBehaviour
     {
         // Update current node
         currentNode = sceneTwoManager.traverser.currentNode;
+        Debug.Log(sceneTwoManager.traverser.currentNode.Info);
 
         // If current node contains a new speaker, then switch portraits
         if (currentNode.Info.Contains(':'))
@@ -40,18 +41,21 @@ public class PortraitUpdater : MonoBehaviour
             int delimiterIndex = currentNode.Info.IndexOf(':');            
             speakerName = currentNode.Info.Substring(0, delimiterIndex);         
 
+            
+
             // Remove html tags
             while (speakerName.Contains('<'))
             {
-                // This code crashes unity!
-                /*
+                
                 int startIndex = speakerName.IndexOf('<');
                 int endIndex = speakerName.IndexOf('>');
-                int count = endIndex - startIndex;
-                speakerName.Remove(startIndex, count);
-                */
+                int count = endIndex - startIndex + 1;
+                speakerName = speakerName.Remove(startIndex, count);
+                
             }
             speakerName.ToLower();
+            
+            
 
             // Find index of associated portrait
             int portraitIndex = 0;
@@ -67,8 +71,7 @@ public class PortraitUpdater : MonoBehaviour
             // NOTE: if this doesn't work, try having a gameobject for each character portrait
             // that enables/disables itself when the provided character is the speaker
 
-            // This code crashes unity!
-            //portrait.material = portraitMaterials[portraitIndex];
+            portrait.material = portraitMaterials[portraitIndex];
         }
     }
 }
