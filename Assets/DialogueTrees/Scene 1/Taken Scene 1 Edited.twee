@@ -11,38 +11,47 @@ Taken Scene 1 Edited
 }
 
 
-:: "But what about <i>you</i>? Where's the concern for yourself?" {"position":"925,475","size":"100,100"}
-''SALLOS'': "Look, I'm not exactly the one who needed to be rescued before, and I've done this odyssey plenty of times before. You, on the other hand..."
+:: "But what about <i>you</i>? Where's the concern for yourself?" {"position":"925,425","size":"100,100"}
+''YOU'': "But what about <i>you</i>? Where's the concern for yourself?"
 
-[["Don't be scared. I trust you. In return, trust me, alright?"]]
+[[Continue->No need rescue]]
+
 
 
 :: "Don't be scared. I trust you. In return, trust me, alright?" {"position":"875,850","size":"100,100"}
-''SALLOS'': "Of course." He smiles warmly. "I love you, alright?"
+''YOU'': "Don't be scared. I trust you. In return, trust me, alright?"
 
-[["I love you, too."]]
+[[Continue->ofCourse]]
+''''Bold Text''''
 
 
 :: "Don't worry, I'm just fine!" {"position":"450,650","size":"100,100"}
-''SALLOS'': "People say that all the time, and too often, those people really aren't. It's a dangerous odyssey, and you're so precious to me." He looks at you again, and you see a look you've never seen before cross his face: //fear//.
+''YOU'': "Don't worry, I'm just fine!"
 
-[["Don't be scared. I trust you. In return, trust me, alright?"]]
+[[Continue->lookFace]]
 
 
-:: "How much further do we have to go?" {"position":"25,250","size":"100,100"}
+:: "How much further do we have to go?" {"position":"100,275","size":"100,100"}
 ''YOU'': "How much further do we have to go?"
 
-[[Continue->sallosResponse1]]
+[[sallosResponse1]]
+
+
+:: "I love you, too." {"position":"625,1125","size":"100,100"}
+''YOU'': "I love you, too."
+
+[[Continue->endScene1]]
 
 
 
-:: "I love you, too." {"position":"650,975","size":"100,100"}
-Soon enough, the path leads to a flat area.
+:: "You're doing an amazing job, Sallos." {"position":"725,525","size":"100,100"}
+''YOU'': "You're doing an amazing job, Sallos."
 
-''SALLOS'': "We made it! Let's stop here for the time being, and set up for the night."
+[[Continue->Chestpuff]]
 
 
-:: "You're doing an amazing job, Sallos." {"position":"700,600","size":"100,100"}
+
+:: Chestpuff {"position":"800,650","size":"100,100"}
 ''SALLOS'': "I'd better hope I am!" He pouts and puffs his chest. "What kind of a mountaineer would I be if I can't even take one person on an odyssey to the top?"
 
 His anxiety doesn't completely fade, but his expression lights up a little bit.
@@ -64,18 +73,24 @@ But you are not just any passenger. His small eyebrows are every so slightly fur
 [["But what about <i>you</i>? Where's the concern for yourself?"]]
 
 
+:: No need rescue {"position":"1075,575","size":"100,100"}
+''SALLOS'': "Look, I'm not exactly the one who needed to be rescued before, and I've done this odyssey plenty of times before. You, on the other hand..."
+
+[["Don't be scared. I trust you. In return, trust me, alright?"]]
+
+
 :: Take a breath. {"position":"650,50","size":"100,100"}
 ''YOU'': Take a breath.
 
-[[Continue->peepe]]
-
+[[Continue->lungs]]
 
 
 :: Take another breath. {"position":"850,200","size":"100,100"}
+''YOU'': Take another breath.
+
 Your breathing is ragged as you try to get as much air as possible with each inhale, trying to keep up with Sallos. The backpack you carry feels ever heavier...
 
 [[Continue->continue 2]]
-
 
 
 :: continue 1 {"position":"425,0","size":"100,100"}
@@ -89,11 +104,9 @@ You look nothing like him—you are an elf with long blue hair, and absolutely s
 
 
 :: continue 2 {"position":"625,250","size":"100,100"}
-''SALLOS'': "Let's slow down, alright?" 
-
+''SALLOS'': "Hey, let's slow down, alright?" 
 
 [[Continue->continue plus]]
-
 
 
 :: continue 3 {"position":"375,450","size":"100,100"}
@@ -101,7 +114,7 @@ As much as you want to stay the original speed, you know he's right. Listen to t
 
 He's been accomodating and professional up till now, almost business-like in his manner. Taking slower steps for you, smaller steps, and constantly checking on you. For now, you are one of his customers that he needs to get over The Heights.
 
-[[Keep walking, the best you can.]]
+[[Continue->Keep walking, the best you can.]]
 
 
 :: continue plus {"position":"425,275","size":"100,100"}
@@ -112,10 +125,28 @@ His pace drags.
 [[Continue->continue 3]]
 
 
-:: peepe {"position":"850,50","size":"100,100"}
+:: endScene1 {"position":"625,1250","size":"100,100"}
+Soon enough, the path leads to a flat area.
+
+''SALLOS'': "We made it! Let's stop here for the time being, and set up for the night."
+
+
+:: lookFace {"position":"450,775","size":"100,100"}
+''SALLOS'': "People say that all the time, and too often, those people really aren't. It's a dangerous odyssey, and you're so precious to me." He looks at you again, and you see a look you've never seen before cross his face: //fear//.
+
+[["Don't be scared. I trust you. In return, trust me, alright?"]]
+
+
+:: lungs {"position":"850,50","size":"100,100"}
 Cold air fills your lungs, but not enough. The air is thinner up here, and each breath gives you less and less oxygen.
 
 [[Take another breath.]]
+
+
+:: ofCourse {"position":"875,975","size":"100,100"}
+''SALLOS'': "Of course." He smiles warmly. "I love you, alright?"
+
+[["I love you, too."]]
 
 
 :: sallosResponse1 {"position":"200,75","size":"100,100"}

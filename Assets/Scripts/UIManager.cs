@@ -139,16 +139,16 @@ public class UIManager : MonoBehaviour
 		TextMeshProUGUI _textDisplay = 
 			_textBox.GetComponent<TextMeshProUGUI>();
 
-		//Add title of node unless it is the first node
-		//because title of node is the player's response
-		if (dialogueNode.NodeName != "Intro" && 
-			dialogueNode.NodeName != "Continue" && 
-			dialogueNode.NodeName != "newIntro" &&
-			dialogueNode.NodeName != "Continue ->")
-		{
-			_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
-			_textDisplay.text += dialogueNode.NodeName + "\n\n";
-		}
+		////Add title of node unless it is the first node
+		////because title of node is the player's response
+		//if (dialogueNode.NodeName != "Intro" && 
+		//	dialogueNode.NodeName != "Continue" && 
+		//	dialogueNode.NodeName != "newIntro" &&
+		//	dialogueNode.NodeName != "Continue ->")
+		//{
+		//	_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
+		//	_textDisplay.text += dialogueNode.NodeName + "\n\n";
+		//}
 
 		//Add dialogue
 		_textDisplay.text += dialogueNode.Info;
