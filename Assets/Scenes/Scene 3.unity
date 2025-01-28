@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 41e5a4d35e6375740aa0559689a3155d, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: e3c7c92e8cc15c84fb765d6eaf54cc1c, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -2978,7 +2978,7 @@ MonoBehaviour:
   - walkCloser
   - stab
   - disappear
-  - stepBack
+  - reach
 --- !u!4 &2047368480
 Transform:
   m_ObjectHideFlags: 0

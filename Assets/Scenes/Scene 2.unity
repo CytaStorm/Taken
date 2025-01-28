@@ -6920,7 +6920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 542082624}
   twineFile: {fileID: 4900000, guid: d5a6b3f375b393d428bf4467296cf8b0, type: 3}
-  radius: 3
+  radius: 5
   hasLimitedInteractions: 1
   _materialList:
   - {fileID: 2100000, guid: 0bce50383dd57cf46a318c6ebea80ebf, type: 2}
@@ -17338,7 +17338,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 7849
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 1.9405e-41, y: 773.13007, z: 1.5228728e+19, w: -4.3322633e-38}
+  m_BoundingSphereOverride: {x: 4.3e-44, y: 1.7229e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

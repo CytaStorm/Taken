@@ -12,9 +12,16 @@ Scene 2 Tent
 }
 
 
+:: "Sallos, is the door supposed to be free like this? {"position":"925,425","size":"100,100"}
+''EULYSS'': "Sallos, is the door supposed to be free like this?
+
+[[Continue->Let Sallos know.]]
+
+
 :: Continue {"position":"950,300","size":"100,100"}
 The door of the tent flaps in the wind. You shudder thinking about the draft at night.
-[[Let Sallos know.]]
+
+[["Sallos, is the door supposed to be free like this?]]
 
 
 :: Intro {"position":"700,300","size":"100,100"}
@@ -22,5 +29,5 @@ You and Sallos have set up a tent to stay the night in. It looks cozy.
 [[Continue]]
 
 
-:: Let Sallos know. {"position":"950,425","size":"100,100"}
+:: Let Sallos know. {"position":"850,575","size":"100,100"}
 ''SALLOS'': Ahhhhhhh... I'll fix it later. Let's get some food going first!

@@ -23,4 +23,9 @@ There are some footprints in the snow. They look fresh.
 
 
 :: Look closer. {"position":"700,550","size":"100,100"}
+''EULYSS'': Look closer.
+[[Continue->lookCloser]]
+
+
+:: lookCloser {"position":"700,675","size":"100,100"}
 Upon closer inspection, the footprints belong to the two of you.

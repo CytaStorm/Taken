@@ -61,7 +61,7 @@ public class SceneThreeCutscene : MonoBehaviour
         eventFlags[3].onValueChange += delegate { WalkCloser(); };
         eventFlags[4].onValueChange += delegate { Stab(); };
         eventFlags[5].onValueChange += delegate { Disappear(); };
-		eventFlags[6].onValueChange += delegate { StepBack(); };
+		eventFlags[6].onValueChange += delegate { Reach(); };
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -126,7 +126,7 @@ public class SceneThreeCutscene : MonoBehaviour
         StartCoroutine(PauseAllButtons(1.3f));
     }
 
-    private void StepBack()
+    private void Reach()
     {
         // Make sallos and eulyss look back and forth
         StartCoroutine(PauseAllButtons(0.1f));
