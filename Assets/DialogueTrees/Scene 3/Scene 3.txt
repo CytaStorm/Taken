@@ -1,5 +1,5 @@
 :: StoryTitle
-Scene 3 Test
+Scene 3
 
 
 :: StoryData

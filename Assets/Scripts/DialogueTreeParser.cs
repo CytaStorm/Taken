@@ -297,15 +297,5 @@ class DialogueTreeParser : MonoBehaviour
 				formattedSpeakerName);
 			formattedSpeakerNameOffset += formattedSpeakerName.Length;
 		}
-
-		//Italics
-		foreach ((string text, int index) removedTextTuple in
-			RemoveSpecialText(node, "//", "//"))
-		{
-			node.Info = 
-				node.Info.Insert(
-					removedTextTuple.index, 
-					"<i>" + removedTextTuple.text + "</i>");
-		}
 	}
 }
