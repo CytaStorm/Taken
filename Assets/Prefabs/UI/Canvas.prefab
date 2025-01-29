@@ -795,7 +795,8 @@ MonoBehaviour:
   audioSource: {fileID: 4257148423929475218}
   audioClip: {fileID: 8300000, guid: 9792a6b6339cef540868a5123ade8642, type: 3}
   _dialogueUI: {fileID: 8844153028613754052}
-  _PauseMenu: {fileID: 2067177920952392835}
+  _pauseMenu: {fileID: 2067177920952392835}
+  _mainMenuButton: {fileID: 953607803961340399}
   _textArea: {fileID: 448667154230452142}
   _singleTextBoxContainer: {fileID: 1406001174723178316, guid: 70127ff3ca62b8942b30917d7ef0d89c, type: 3}
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
@@ -1116,7 +1117,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 392507184114328355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5902094164007486168}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6791325712944542585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1250,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3397789759766977497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3825737841949968205}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: UnPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8440012147363793417
 GameObject:
   m_ObjectHideFlags: 0

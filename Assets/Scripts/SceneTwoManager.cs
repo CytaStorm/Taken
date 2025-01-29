@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneTwoManager : MonoBehaviour
 {
@@ -140,4 +141,10 @@ public class SceneTwoManager : MonoBehaviour
 			}
 		}	
 	}
+
+    public void ChangeToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
 }

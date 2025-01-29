@@ -25,5 +25,4 @@ public class SceneChangeButton : MonoBehaviour
             Debug.Log("changed scene");
         }         
     }
-
 }

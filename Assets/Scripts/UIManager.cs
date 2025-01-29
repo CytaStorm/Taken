@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum UIMode
@@ -27,7 +28,8 @@ public class UIManager : MonoBehaviour
 	//Parent gameobjects
 	[Header("UI Groups")]
 	[SerializeField] private GameObject _dialogueUI;
-	[SerializeField] private GameObject _PauseMenu;
+	[SerializeField] private GameObject _pauseMenu;
+	[SerializeField] private Button _mainMenuButton;
 
 	[Header("Dialogue Display")]
 	//Textbox stack
@@ -111,6 +113,8 @@ public class UIManager : MonoBehaviour
             CurrentUIMode = UIMode.Gameplay;
             _dialogueUI.SetActive(false);
         }
+
+		_mainMenuButton.onClick.AddListener(delegate { _sceneManager.ChangeToMainMenu(); });
 	}
 
 	public void ChangeToDialogue()
@@ -253,21 +257,26 @@ public class UIManager : MonoBehaviour
 		_dialogueUI.SetActive(false);
 	}
 
-	public void OnPause(InputAction.CallbackContext ctx)
+	public void UnPause()
+	{
+		_input.currentActionMap = _input.actions.FindActionMap("Movement");
+		Time.timeScale = 1;
+		_pauseMenu.SetActive(false);
+	}
+    public void OnPause(InputAction.CallbackContext ctx)
 	{
 		if (!ctx.performed) return;
 
 		//Pause
 		_input.currentActionMap = _input.actions.FindActionMap("Menu");
-		_PauseMenu.SetActive(true);
+		Time.timeScale = 0;
+		_pauseMenu.SetActive(true);
 	}
 
 	public void ExitPause(InputAction.CallbackContext ctx)
 	{
 		if (!ctx.performed) return;
-
 		//Unpause
-		_input.currentActionMap = _input.actions.FindActionMap("Movement");
-		_PauseMenu.SetActive(false);
+		UnPause();
 	}
 }
