@@ -6209,6 +6209,7 @@ MonoBehaviour:
   Interactables:
   - {fileID: 1520122979}
   _UIManager: {fileID: 1762080261}
+  _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
   DEBUG: 0
 --- !u!4 &1923970401
 Transform:

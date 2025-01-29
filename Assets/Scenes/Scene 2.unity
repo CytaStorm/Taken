@@ -18587,6 +18587,7 @@ MonoBehaviour:
   - {fileID: 757812472}
   - {fileID: 1852868507}
   _UIManager: {fileID: 542082624}
+  _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
   DEBUG: 0
 --- !u!4 &1770832732
 Transform:

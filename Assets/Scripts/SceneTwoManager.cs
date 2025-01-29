@@ -11,6 +11,7 @@ public class SceneTwoManager : MonoBehaviour
     public UIManager _UIManager;
     public DialogueTraverser traverser;     
     private DialogueGraph currentGraph;
+    [SerializeField] private Material _sallosMaterial;
 
     [Header("DEBUG")] public bool DEBUG;
 
@@ -22,6 +23,7 @@ public class SceneTwoManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 		dialogueFlags = new List<DialogueFlag>();
         traverser = new DialogueTraverser(this, _UIManager);
 
