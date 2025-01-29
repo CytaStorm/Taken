@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public enum UIMode
@@ -14,25 +15,30 @@ public enum UIMode
 public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
+
+	[Header("Other GameObjects")]
+	[SerializeField] private SceneTwoManager _sceneManager;
+	[SerializeField] private PlayerInput _input;
+
+	[Header("Audio")]
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip audioClip;
 
-	[SerializeField] private SceneTwoManager _sceneManager;
-
 	//Parent gameobjects
+	[Header("UI Groups")]
 	[SerializeField] private GameObject _dialogueUI;
+	[SerializeField] private GameObject _PauseMenu;
 
 	[Header("Dialogue Display")]
 	//Textbox stack
 	[SerializeField] private Transform _textArea;
 
 	//Textboxes
-	//[SerializeField] private GameObject _textBox;
-
 	[SerializeField] private GameObject _singleTextBoxContainer;
 
 	//Most recent textbox
 	private Transform _mostRecentTextContainer;
+
 
 	#region Buttons
 	[Header("Buttons")]
@@ -47,6 +53,7 @@ public class UIManager : MonoBehaviour
 	#endregion
 
 	#region Aesthetics
+
 	[Header("Aesthetics")]
 	//Used to change the prev text color
 	[SerializeField] private Color _prevTextColor;
@@ -78,6 +85,7 @@ public class UIManager : MonoBehaviour
 		}
 	}
 	#endregion
+
 
 	private void Update()
 	{
@@ -243,5 +251,23 @@ public class UIManager : MonoBehaviour
 		//Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
+	}
+
+	public void OnPause(InputAction.CallbackContext ctx)
+	{
+		if (!ctx.performed) return;
+
+		//Pause
+		_input.currentActionMap = _input.actions.FindActionMap("Menu");
+		_PauseMenu.SetActive(true);
+	}
+
+	public void ExitPause(InputAction.CallbackContext ctx)
+	{
+		if (!ctx.performed) return;
+
+		//Unpause
+		_input.currentActionMap = _input.actions.FindActionMap("Movement");
+		_PauseMenu.SetActive(false);
 	}
 }

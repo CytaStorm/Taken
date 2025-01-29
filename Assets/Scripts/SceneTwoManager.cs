@@ -51,7 +51,7 @@ public class SceneTwoManager : MonoBehaviour
 		    }
         }
     }
-    
+
     /// <summary>
     /// Populates list of dialogue flags with every flag in every dialogue graph
     /// in the scene
