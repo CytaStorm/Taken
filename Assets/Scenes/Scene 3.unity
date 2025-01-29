@@ -3020,7 +3020,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890127046}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 685aac3b5216ff649bbb17c63774486e, type: 3}
   m_Name: 
@@ -3032,6 +3032,9 @@ MonoBehaviour:
   portraitMaterials:
   - {fileID: 2100000, guid: 6233d22e582cd1b4fb202983c0ca841f, type: 2}
   - {fileID: 2100000, guid: 8cce7e7841d8def489595ab9fc834a69, type: 2}
+  portraitTextures:
+  - {fileID: 21300000, guid: 402ea137baff4d74d85e8f40c9d159a5, type: 3}
+  - {fileID: 21300000, guid: 578729b69c1adaf47a684885dc952eaf, type: 3}
   portrait: {fileID: 1890127050}
   speakerName: 
 --- !u!114 &1890127050
@@ -3054,8 +3057,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

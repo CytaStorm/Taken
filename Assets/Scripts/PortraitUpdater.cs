@@ -10,6 +10,7 @@ public class PortraitUpdater : MonoBehaviour
     // Treat these like a dictionary key/value pairing. One speaker per texture.   
     [SerializeField] List<string> speakerNames;
     [SerializeField] List<Material> portraitMaterials;
+    [SerializeField] List<Sprite> portraitTextures;
 
     public Image portrait;
     private DialogueNode currentNode;
@@ -66,7 +67,8 @@ public class PortraitUpdater : MonoBehaviour
             // NOTE: if this doesn't work, try having a gameobject for each character portrait
             // that enables/disables itself when the provided character is the speaker
 
-            portrait.material = portraitMaterials[portraitIndex];
+            //portrait.material = portraitMaterials[portraitIndex];
+            portrait.sprite = portraitTextures[portraitIndex];
         }
     }
 }
