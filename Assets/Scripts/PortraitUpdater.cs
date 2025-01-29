@@ -32,17 +32,14 @@ public class PortraitUpdater : MonoBehaviour
     {
         // Update current node
         currentNode = sceneTwoManager.traverser.currentNode;
-        Debug.Log(sceneTwoManager.traverser.currentNode.Info);
 
         // If current node contains a new speaker, then switch portraits
         if (currentNode.Info.Contains(':'))
         {
             // Get speaker name
             int delimiterIndex = currentNode.Info.IndexOf(':');            
-            speakerName = currentNode.Info.Substring(0, delimiterIndex);         
-
+            speakerName = currentNode.Info.Substring(0, delimiterIndex);       
             
-
             // Remove html tags
             while (speakerName.Contains('<'))
             {
@@ -53,9 +50,7 @@ public class PortraitUpdater : MonoBehaviour
                 speakerName = speakerName.Remove(startIndex, count);
                 
             }
-            speakerName.ToLower();
-            
-            
+            speakerName = speakerName.ToLower();
 
             // Find index of associated portrait
             int portraitIndex = 0;
