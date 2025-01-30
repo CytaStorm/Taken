@@ -6088,11 +6088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535d397b9a2dc604c9d89ebe7be5976c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagName: end
-  destinationScene: Scene 2
-  delayTime: 5
-  sceneManager: {fileID: 0}
-  sceneChangeActive: 0
 --- !u!4 &1778794026
 Transform:
   m_ObjectHideFlags: 0
@@ -6236,7 +6231,7 @@ GameObject:
   - component: {fileID: 1923970401}
   - component: {fileID: 1923970402}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: Scene Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
