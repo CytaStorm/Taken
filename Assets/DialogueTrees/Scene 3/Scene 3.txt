@@ -18,12 +18,10 @@ Scene 3
 [[Continue->no]]
 
 
-
 :: "Is something wrong, Sallos?" {"position":"150,175","size":"100,100"}
 ''EULYSS'': "Is something wrong, Sallos?"
 
 [[Continue->people]]
-
 
 
 :: <i>"What did you do!?"<i> {"position":"825,725","size":"100,100"}
@@ -39,7 +37,7 @@ Scene 3
 
 
 :: End {"position":"75,750","size":"100,100"}
-ending
+``end``(set: end to true)
 
 
 :: I {"position":"775,550","size":"100,100"}
@@ -62,10 +60,10 @@ You turn to see a Nari man appears from the left side of the fork. He has beady 
 [[Continue->continue 4]]
 
 
-:: Next {"position":"500,750","size":"100,100"}
+:: Next {"position":"500,725","size":"100,100"}
 The blade is thrust into Sallos.``stab``(set: stab to true)
 
-There is no blood on the other side of the blade. Instead, Sallos begins to glow.
+There is no blood on the other side of the blade.
 
 [[Reach for him.]]
 
@@ -74,7 +72,6 @@ There is no blood on the other side of the blade. Instead, Sallos begins to glow
 Reach for him.``reach``(set: reach to true)
 
 [[Continue->fade]]
-
 
 
 :: Stand closer to Sallos. {"position":"850,225","size":"100,100"}
@@ -100,7 +97,7 @@ The Jawni clears his throat.
 
 
 :: Whisper. <i>"What is he talking about?"</i> {"position":"1100,400","size":"100,100"}
-''EULYSS'': Whisper. <i>"What is he talking about?"</i>Sallos whispers back.
+''EULYSS'': Whisper. <i>"What is he talking about?"</i>
 
 [[Continue->noIdea]]
 
@@ -153,10 +150,10 @@ The two men walk closer, and the Jawni draws his sword.
 [[Continue->Next]]
 
 
-:: fade {"position":"200,775","size":"100,100"}
-He fades away into a pale yellow mist.``disappear``(set: disappear to true)
+:: fade {"position":"225,725","size":"100,100"}
+Sallos begins to glow, and he fades away into a pale yellow mist.``disappear``(set: disappear to true)
 
-[[End]]
+[[Continue->End]]
 
 
 :: no {"position":"350,325","size":"100,100"}
@@ -166,7 +163,9 @@ He fades away into a pale yellow mist.``disappear``(set: disappear to true)
 
 
 :: noIdea {"position":"1100,525","size":"100,100"}
-''SALLOS'': "I have no idea-"
+Sallos whispers back.
+
+''SALLOS'': <i>"I have no idea-"</i>
 
 He pauses, and thinks again.
 
@@ -186,6 +185,6 @@ He carries a large sword, and walks with a swagger that does not feel entirely u
 :: widenEyes {"position":"925,625","size":"100,100"}
 His eyes widen.
 
-''SALLOS'': "<i><b>Fuck.</b></i> Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money..."
+''SALLOS'': "<i><b>Fuck.</b>Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money..."</i>
 
 [[<i>"What did you do!?"<i>]]

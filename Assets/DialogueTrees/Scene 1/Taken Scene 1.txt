@@ -55,6 +55,10 @@ His anxiety doesn't completely fade, but his expression lights up a little bit.
 [["Don't be scared. I trust you. In return, trust me, alright?"]]
 
 
+:: End {"position":"625,1375","size":"100,100"}
+``end``(set: end to true)
+
+
 :: Intro {"position":"75,450","size":"100,100"}
 You trudge beside Sallos along the path, up to the top of The Heights.
 
@@ -125,6 +129,8 @@ His pace drags.
 Soon enough, the path leads to a flat area.
 
 ''SALLOS'': "We made it! Let's stop here for the time being, and set up for the night."
+
+[[Continue->End]]
 
 
 :: lookFace {"position":"450,775","size":"100,100"}

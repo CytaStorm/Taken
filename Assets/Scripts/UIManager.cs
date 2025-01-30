@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
 	public UIMode CurrentUIMode;
 
 	[Header("Other GameObjects")]
-	[SerializeField] private SceneTwoManager _sceneManager;
+	[SerializeField] private SceneController _sceneManager;
 	[SerializeField] private PlayerInput _input;
 
 	[Header("Audio")]
@@ -29,7 +30,6 @@ public class UIManager : MonoBehaviour
 	[Header("UI Groups")]
 	[SerializeField] private GameObject _dialogueUI;
 	[SerializeField] private GameObject _pauseMenu;
-	[SerializeField] private Button _mainMenuButton;
 
 	[Header("Dialogue Display")]
 	//Textbox stack
@@ -113,8 +113,6 @@ public class UIManager : MonoBehaviour
             CurrentUIMode = UIMode.Gameplay;
             _dialogueUI.SetActive(false);
         }
-
-		_mainMenuButton.onClick.AddListener(delegate { _sceneManager.ChangeToMainMenu(); });
 	}
 
 	public void ChangeToDialogue()
@@ -207,7 +205,7 @@ public class UIManager : MonoBehaviour
         }
 
 		//Add exit button
-		if (_buttons.Count == 0) 
+		if (_buttons.Count == 0 && !_sceneManager.sceneChangeActive) 
 		{
             GameObject exitButton =
                 Instantiate(_exitButton, _dialogueUI.transform, true);
@@ -279,4 +277,28 @@ public class UIManager : MonoBehaviour
 		//Unpause
 		UnPause();
 	}
+
+	public IEnumerator PauseAllButtons(float seconds)
+    {
+        yield return new WaitForSeconds(0.01f);
+
+        // disable all buttons
+        Debug.Log("started");
+        foreach(GameObject button in _buttons)
+        {
+            print(button.GetComponentInChildren<TMP_Text>().text);
+            button.SetActive(false);
+        }
+
+
+        // wait for seconds amount of time
+        yield return new WaitForSeconds(seconds);
+
+        // enable all buttons
+        Debug.Log("ended");
+        foreach (GameObject button in _buttons)
+        {
+            button.SetActive(true);
+        }
+    }
 }

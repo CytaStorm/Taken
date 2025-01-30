@@ -6059,6 +6059,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfee3bc8d9f9ef74f9320f51dd1563ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1778794024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778794026}
+  - component: {fileID: 1778794025}
+  m_Layer: 0
+  m_Name: SceneChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1778794025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778794024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535d397b9a2dc604c9d89ebe7be5976c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flagName: end
+  destinationScene: Scene 2
+  delayTime: 5
+  sceneManager: {fileID: 0}
+  sceneChangeActive: 0
+--- !u!4 &1778794026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778794024}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.2700005, y: 0.9033891, z: 5.8600006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1801651632
 GameObject:
   m_ObjectHideFlags: 0
@@ -6185,7 +6234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1923970401}
-  - component: {fileID: 1923970400}
+  - component: {fileID: 1923970402}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -6193,23 +6242,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1923970400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923970399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf968b7e49c5f4449af5cd224f13050f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoImplementDialogue: 1
-  Interactables:
-  - {fileID: 1520122979}
-  _UIManager: {fileID: 1762080261}
-  DEBUG: 0
 --- !u!4 &1923970401
 Transform:
   m_ObjectHideFlags: 0
@@ -6225,6 +6257,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1923970402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923970399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3d31501361dd54ab8db17a4defede0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoImplementDialogue: 1
+  Interactables:
+  - {fileID: 1520122979}
+  _UIManager: {fileID: 1762080261}
+  destinationScene: Scene 2
+  delayTime: 5
+  sceneChangeActive: 0
+  _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
+  DEBUG: 0
 --- !u!1 &1989675858
 GameObject:
   m_ObjectHideFlags: 0
@@ -6454,6 +6507,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 550946985650036082, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _sceneController
+      value: 
+      objectReference: {fileID: 1923970402}
     - target: {fileID: 3086641896947675875, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6485,7 +6542,7 @@ PrefabInstance:
     - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneManager
       value: 
-      objectReference: {fileID: 1923970400}
+      objectReference: {fileID: 1923970402}
     - target: {fileID: 4003383626450644320, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6654,3 +6711,4 @@ SceneRoots:
   - {fileID: 1160747147}
   - {fileID: 1606628368}
   - {fileID: 163694421}
+  - {fileID: 1778794026}

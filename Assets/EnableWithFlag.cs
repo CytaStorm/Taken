@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnableWithFlag : MonoBehaviour
 {
     public string flagName;
-    public SceneTwoManager sceneManager;
+    public SceneController sceneManager;
     public GameObject targetObject;
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class EnableWithFlag : MonoBehaviour
         if (targetObject.activeSelf == false)
         {
             // Search SceneTwoManager for matching flag
-            foreach (DialogueFlag flag in sceneManager.dialogueFlags)
+            foreach (DialogueFlag flag in sceneManager.DialogueFlags)
             {
                 if ((flag.Name == flagName) && (flag.IsTrue))
                 {

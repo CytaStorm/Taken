@@ -5,7 +5,7 @@ public class DialogueTraverser
 {
     //FIELDS
     //objects
-    public SceneTwoManager sceneManager;
+    public SceneController sceneManager;
     public UIManager _UIManager;
     [SerializeField] DialogueGraph graph;
     public DialogueNode currentNode;
@@ -23,7 +23,7 @@ public class DialogueTraverser
     /// Creates a new DialogueGraph
     /// </summary>
     /// <param name="graph"></param>
-    public DialogueTraverser (SceneTwoManager sceneManager, UIManager _UIManager)
+    public DialogueTraverser (SceneController sceneManager, UIManager _UIManager)
     {
         this.sceneManager = sceneManager;
         this._UIManager = _UIManager;
