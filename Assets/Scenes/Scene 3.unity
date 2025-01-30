@@ -1871,6 +1871,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1395216316347096354, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneManager
       value: 
@@ -1955,9 +1959,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5554448917243771255, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5902094164007486168, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395512197440034894, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482201939716830689, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1983,6 +1999,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8283072875938371480, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8313989442157834247, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1999,7 +2019,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4003383626450644320, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1890127047}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
@@ -2975,8 +2995,9 @@ GameObject:
   - component: {fileID: 1890127050}
   - component: {fileID: 1890127049}
   - component: {fileID: 1890127048}
+  - component: {fileID: 1890127052}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2998,8 +3019,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71.59119, y: -223.19965}
-  m_SizeDelta: {x: 250.9825, y: 252.6007}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250.98254, y: 252.60071}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1890127048
 MonoBehaviour:
@@ -3028,10 +3049,7 @@ MonoBehaviour:
   sceneTwoManager: {fileID: 693596820}
   speakerNames:
   - sallos
-  - akif
-  portraitMaterials:
-  - {fileID: 2100000, guid: 6233d22e582cd1b4fb202983c0ca841f, type: 2}
-  - {fileID: 2100000, guid: 8cce7e7841d8def489595ab9fc834a69, type: 2}
+  - jawni
   portraitTextures:
   - {fileID: 21300000, guid: 402ea137baff4d74d85e8f40c9d159a5, type: 3}
   - {fileID: 21300000, guid: 578729b69c1adaf47a684885dc952eaf, type: 3}
@@ -3075,6 +3093,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890127046}
   m_CullTransparentMesh: 1
+--- !u!114 &1890127052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890127046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858139f8395a3c648907efc0a368433f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: {fileID: 1992507565}
+  portrait: {fileID: 0}
+  portraitRect: {fileID: 0}
+  dialogueRect: {fileID: 0}
+--- !u!114 &1992507565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9118466284371129173, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+  m_PrefabInstance: {fileID: 1021798474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2047368478
 GameObject:
   m_ObjectHideFlags: 0

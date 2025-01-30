@@ -7,9 +7,8 @@ public class PortraitUpdater : MonoBehaviour
 {
     [SerializeField] SceneTwoManager sceneTwoManager;
 
-    // Treat these like a dictionary key/value pairing. One speaker per texture.   
+    // Treat these like a dictionary key/value pairing. One speaker per texture.
     [SerializeField] List<string> speakerNames;
-    [SerializeField] List<Material> portraitMaterials;
     [SerializeField] List<Sprite> portraitTextures;
 
     public Image portrait;
