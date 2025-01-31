@@ -21,10 +21,11 @@ public class VolumeChanger : MonoBehaviour
     {
 		if (_audioFadeInCurrentTime < _audioFadeInTime)
 		{
-			_audioFadeInCurrentTime += Mathf.Clamp(
+			_audioFadeInCurrentTime = Mathf.Clamp(
 				_audioFadeInCurrentTime + Time.deltaTime,
 				0,
 				_audioFadeInTime);
+			print("here");
 			_audioSource.volume = _audioFadeInCurrentTime / _audioFadeInTime;	
 		}
     }
