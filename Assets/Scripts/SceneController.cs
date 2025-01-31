@@ -1,17 +1,41 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneTwoManager : MonoBehaviour
+public class SceneController : MonoBehaviour
 {
     public bool autoImplementDialogue = false;
 
-    public List<DialogueFlag> dialogueFlags;
+	[Header("Dialogue Components")]
+    public List<DialogueFlag> DialogueFlags;
     public List<GameObject> Interactables;
     public UIManager _UIManager;
-    public DialogueTraverser traverser;     
-    private DialogueGraph currentGraph;
+    public DialogueTraverser Traverser;     
+    private DialogueGraph _currentGraph;
 
-    [Header("DEBUG")] public bool DEBUG;
+	#region Scene Changing
+	[Header("Scene Changing")]
+    [SerializeField] string destinationScene;
+    [SerializeField] float delayTime;
+	public delegate IEnumerator OnSceneChangeHandler(float seconds);
+	public event OnSceneChangeHandler onSceneChange;
+    public bool sceneChangeActive = false;
+    private float sceneChangeTimer = 0f;
+	#endregion
+
+	[SerializeField] private Material _sallosMaterial;
+
+	[Header("DEBUG")] public bool DEBUG;
+
+	public float timerPercent
+    {
+        get
+        {
+            return (sceneChangeTimer / (delayTime - 1.5f));
+        }
+    }
 
     public bool IsDialogueAutoImplimented()
     {
@@ -21,8 +45,9 @@ public class SceneTwoManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		dialogueFlags = new List<DialogueFlag>();
-        traverser = new DialogueTraverser(this, _UIManager);
+		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
+		DialogueFlags = new List<DialogueFlag>();
+        Traverser = new DialogueTraverser(this, _UIManager);
 
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
         foreach (GameObject npc in Interactables) 
@@ -38,20 +63,61 @@ public class SceneTwoManager : MonoBehaviour
         {
             UpdateCurrentGraph(Interactables[0].GetComponent<InteractableScript>());
         }
-    }
+
+		//Scene changing
+		onSceneChange += _UIManager.PauseAllButtons;
+		foreach (DialogueFlag flag in DialogueFlags)
+		{
+			if (flag.Name == "end")
+			{
+				flag.onValueChange += delegate 
+				{
+					print("here");
+					sceneChangeActive = true;
+					onSceneChange(5);
+				};
+			}
+		}
+	}
 
     // Update is called once per frame
     void Update()
     {
         if (DEBUG)
         {
-		    foreach (DialogueFlag flag in dialogueFlags)
+		    foreach (DialogueFlag flag in DialogueFlags)
 		    {
 		    	print(flag);
 		    }
         }
-    }
-    
+
+		//foreach (DialogueFlag flag in DialogueFlags)
+		//{
+		//	if (flag.Name == flagName &&
+		//		flag.IsTrue &&
+		//		sceneChangeActive != true)
+		//	{
+		//		sceneChangeActive = true;
+
+		//		sceneChangeTimer += Time.deltaTime;
+
+		//		if (sceneChangeTimer > delayTime)
+		//		{
+		//			UnityEngine.SceneManagement.SceneManager.LoadScene(destinationScene);
+		//		}
+		//	}
+		//}
+
+		if (sceneChangeActive)
+		{
+			sceneChangeTimer += Time.deltaTime;
+			if (sceneChangeTimer > delayTime)
+			{
+				SceneManager.LoadScene(destinationScene);
+			}
+		}
+	}
+
     /// <summary>
     /// Populates list of dialogue flags with every flag in every dialogue graph
     /// in the scene
@@ -75,7 +141,7 @@ public class SceneTwoManager : MonoBehaviour
                 {
                     if (!FlagListContainsMatch(flag))
                     {                        
-                        dialogueFlags.Add(new DialogueFlag(flag.Name));
+                        DialogueFlags.Add(new DialogueFlag(flag.Name));
                     }
                 }
             }
@@ -89,12 +155,12 @@ public class SceneTwoManager : MonoBehaviour
     public void GoToNode(int choice)
     {
 		//print("go to node");
-        traverser.GoToNode(choice);
+        Traverser.GoToNode(choice);
     }
 
     public bool CheckTraversal(DialogueNode destinationNode)
     {
-        return traverser.CheckTraversal(destinationNode, dialogueFlags);
+        return Traverser.CheckTraversal(destinationNode, DialogueFlags);
     }
 
     /// <summary>
@@ -104,7 +170,7 @@ public class SceneTwoManager : MonoBehaviour
     /// <returns></returns>
     private bool FlagListContainsMatch(DialogueFlag flag)
     {
-        foreach(DialogueFlag listFlag in dialogueFlags)
+        foreach(DialogueFlag listFlag in DialogueFlags)
         {
             if (flag.Name == listFlag.Name)
             {
@@ -121,17 +187,17 @@ public class SceneTwoManager : MonoBehaviour
     /// <param name="npcScript">Script that the sceneManager recieved an event call from</param>
     private void UpdateCurrentGraph(InteractableScript interactScript)
     {
-        currentGraph = interactScript.Graph;
-        traverser.SetNewGraph(currentGraph);
+        _currentGraph = interactScript.Graph;
+        Traverser.SetNewGraph(_currentGraph);
 
 		//Send new node info to UI Manager
-		_UIManager.NewDialogueNode(traverser.currentNode);
+		_UIManager.NewDialogueNode(Traverser.currentNode);
 		//print(currentGraph.StartNode.Info);
     }
 
 	public void ChangeDialogueFlag (DialogueFlag newFlag)
 	{
-		foreach (DialogueFlag flag in dialogueFlags)
+		foreach (DialogueFlag flag in DialogueFlags)
 		{
 			if (flag.MatchName(newFlag))
 			{

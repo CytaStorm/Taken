@@ -13,8 +13,8 @@ public class SceneThreeCutscene : MonoBehaviour
     public GameObject akif;
     public GameObject goon;
     
-    public UIManager uiManager;
-    public SceneTwoManager sceneTwoManager;
+    public UIManager _uiManager;
+    public SceneController SceneController;
 
     public Material sallosMaterial;
 
@@ -46,7 +46,7 @@ public class SceneThreeCutscene : MonoBehaviour
         eventFlags = new List<DialogueFlag>();
         foreach(string name in flagNames)
         {
-            foreach (DialogueFlag flag in sceneTwoManager.dialogueFlags) 
+            foreach (DialogueFlag flag in SceneController.DialogueFlags) 
             {
                 if (flag.Name != name) continue;
 
@@ -61,7 +61,7 @@ public class SceneThreeCutscene : MonoBehaviour
         eventFlags[3].onValueChange += delegate { WalkCloser(); };
         eventFlags[4].onValueChange += delegate { Stab(); };
         eventFlags[5].onValueChange += delegate { Disappear(); };
-		eventFlags[6].onValueChange += delegate { StepBack(); };
+		eventFlags[6].onValueChange += delegate { Reach(); };
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -95,14 +95,14 @@ public class SceneThreeCutscene : MonoBehaviour
         // Move sallos and eulyss along forest trail
         _sallosAgent.SetDestination(new Vector3(-2.11f, 0f, 7.35f));
         _eulyssAgent.SetDestination(new Vector3(-2.27f, 0f, 5.86f));
-        StartCoroutine(PauseAllButtons(3f));
+        StartCoroutine(_uiManager.PauseAllButtons(3f));
     }
 
     private void EnterAkif()
     {
         // Move akif towards sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.990002f, 0f, 10.45f));
-        StartCoroutine(PauseAllButtons(2.7f));
+        StartCoroutine(_uiManager.PauseAllButtons(2.7f));
     }
 
     private void EnterGoon()
@@ -113,7 +113,7 @@ public class SceneThreeCutscene : MonoBehaviour
         _eulyssAnimator.SetTrigger("LookLeftTrigger");
         StartCoroutine(ChangeLookLeft(_sallosAnimator, 1, 0.5f));
         StartCoroutine(ChangeLookLeft(_eulyssAnimator, 1, 0.66f));
-        StartCoroutine(PauseAllButtons(2.9f));
+        StartCoroutine(_uiManager.PauseAllButtons(2.9f));
     }
 
     private void WalkCloser()
@@ -123,26 +123,25 @@ public class SceneThreeCutscene : MonoBehaviour
         _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
         StartCoroutine(ChangeLookLeft(_sallosAnimator, 0, 0.5f));
         StartCoroutine(ChangeLookLeft(_eulyssAnimator, 0, 0.45f));
-        StartCoroutine(PauseAllButtons(1.3f));
+        StartCoroutine(_uiManager.PauseAllButtons(1.3f));
     }
 
-    private void StepBack()
+    private void Reach()
     {
-        // Make sallos and eulyss look back and forth
-        StartCoroutine(PauseAllButtons(0.1f));
+		_eulyssAnimator.SetTrigger("ReachOut");
     }
 
     private void Stab()
     {
         _akifAnimator.SetTrigger("Stab");
         _sallosAnimator.SetTrigger("StepBack");
-        StartCoroutine(PauseAllButtons(0.7f));
+        StartCoroutine(_uiManager.PauseAllButtons(0.7f));
     }
 
     private void Disappear()
     {
         StartCoroutine(FadeAway(5f));
-        StartCoroutine(PauseAllButtons(5f));
+        StartCoroutine(_uiManager.PauseAllButtons(5f));
     }
 
     private IEnumerator FadeAway(float seconds)
@@ -158,30 +157,6 @@ public class SceneThreeCutscene : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
-    private IEnumerator PauseAllButtons(float seconds)
-    {
-        yield return new WaitForSeconds(0.01f);
-
-        // disable all buttons
-        Debug.Log("started");
-        foreach(GameObject button in uiManager._buttons)
-        {
-            print(button.GetComponentInChildren<TMP_Text>().text);
-            button.SetActive(false);
-        }
-
-
-        // wait for seconds amount of time
-        yield return new WaitForSeconds(seconds);
-
-        // enable all buttons
-        Debug.Log("ended");
-        foreach (GameObject button in uiManager._buttons)
-        {
-            button.SetActive(true);
-        }
-    }
-    
     /// <summary>
     /// Changes the LookLeft parameter for Sallos to linearly go to 0 or 1 over
     /// the specified time.

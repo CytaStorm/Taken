@@ -5,24 +5,20 @@ using UnityEngine.UIElements;
 
 public class ScreenDimmer : MonoBehaviour
 {
-    [SerializeField] SceneChanger sceneChanger;
-
-    private CanvasGroup canvasGroup;
+    [SerializeField] private CanvasGroup _canvasGroup;
+	[SerializeField] private SceneController _sceneController;
 
     // Start is called before the first frame update
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (sceneChanger.sceneChangeActive)
-        {
-            canvasGroup.alpha = sceneChanger.timerPercent;
-        }
-        
+		if (_sceneController.sceneChangeActive)
+		{
+			_canvasGroup.alpha = _sceneController.timerPercent;
+		}
     }
 }

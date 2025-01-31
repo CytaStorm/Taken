@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum UIMode
@@ -14,25 +17,30 @@ public enum UIMode
 public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
+
+	[Header("Other GameObjects")]
+	[SerializeField] private SceneController _sceneManager;
+	[SerializeField] private PlayerInput _input;
+
+	[Header("Audio")]
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private AudioClip audioClip;
 
-	[SerializeField] private SceneTwoManager _sceneManager;
-
 	//Parent gameobjects
+	[Header("UI Groups")]
 	[SerializeField] private GameObject _dialogueUI;
+	[SerializeField] private GameObject _pauseMenu;
 
 	[Header("Dialogue Display")]
 	//Textbox stack
 	[SerializeField] private Transform _textArea;
 
 	//Textboxes
-	//[SerializeField] private GameObject _textBox;
-
 	[SerializeField] private GameObject _singleTextBoxContainer;
 
 	//Most recent textbox
 	private Transform _mostRecentTextContainer;
+
 
 	#region Buttons
 	[Header("Buttons")]
@@ -47,6 +55,7 @@ public class UIManager : MonoBehaviour
 	#endregion
 
 	#region Aesthetics
+
 	[Header("Aesthetics")]
 	//Used to change the prev text color
 	[SerializeField] private Color _prevTextColor;
@@ -78,6 +87,7 @@ public class UIManager : MonoBehaviour
 		}
 	}
 	#endregion
+
 
 	private void Update()
 	{
@@ -139,16 +149,16 @@ public class UIManager : MonoBehaviour
 		TextMeshProUGUI _textDisplay = 
 			_textBox.GetComponent<TextMeshProUGUI>();
 
-		//Add title of node unless it is the first node
-		//because title of node is the player's response
-		if (dialogueNode.NodeName != "Intro" && 
-			dialogueNode.NodeName != "Continue" && 
-			dialogueNode.NodeName != "newIntro" &&
-			dialogueNode.NodeName != "Continue ->")
-		{
-			_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
-			_textDisplay.text += dialogueNode.NodeName + "\n\n";
-		}
+		////Add title of node unless it is the first node
+		////because title of node is the player's response
+		//if (dialogueNode.NodeName != "Intro" && 
+		//	dialogueNode.NodeName != "Continue" && 
+		//	dialogueNode.NodeName != "newIntro" &&
+		//	dialogueNode.NodeName != "Continue ->")
+		//{
+		//	_textDisplay.text += "<b><font=SpeakerFont>YOU</font></b>: ";
+		//	_textDisplay.text += dialogueNode.NodeName + "\n\n";
+		//}
 
 		//Add dialogue
 		_textDisplay.text += dialogueNode.Info;
@@ -195,7 +205,7 @@ public class UIManager : MonoBehaviour
         }
 
 		//Add exit button
-		if (_buttons.Count == 0) 
+		if (_buttons.Count == 0 && !_sceneManager.sceneChangeActive) 
 		{
             GameObject exitButton =
                 Instantiate(_exitButton, _dialogueUI.transform, true);
@@ -244,4 +254,51 @@ public class UIManager : MonoBehaviour
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
 	}
+
+	public void UnPause()
+	{
+		_input.currentActionMap = _input.actions.FindActionMap("Movement");
+		Time.timeScale = 1;
+		_pauseMenu.SetActive(false);
+	}
+    public void OnPause(InputAction.CallbackContext ctx)
+	{
+		if (!ctx.performed) return;
+
+		//Pause
+		_input.currentActionMap = _input.actions.FindActionMap("Menu");
+		Time.timeScale = 0;
+		_pauseMenu.SetActive(true);
+	}
+
+	public void ExitPause(InputAction.CallbackContext ctx)
+	{
+		if (!ctx.performed) return;
+		//Unpause
+		UnPause();
+	}
+
+	public IEnumerator PauseAllButtons(float seconds)
+    {
+        yield return new WaitForSeconds(0.01f);
+
+        // disable all buttons
+        Debug.Log("started");
+        foreach(GameObject button in _buttons)
+        {
+            print(button.GetComponentInChildren<TMP_Text>().text);
+            button.SetActive(false);
+        }
+
+
+        // wait for seconds amount of time
+        yield return new WaitForSeconds(seconds);
+
+        // enable all buttons
+        Debug.Log("ended");
+        foreach (GameObject button in _buttons)
+        {
+            button.SetActive(true);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 :: StoryTitle
-Scene 3 Test
+Scene 3
 
 
 :: StoryData
@@ -8,44 +8,44 @@ Scene 3 Test
   "format": "Harlowe",
   "format-version": "3.3.9",
   "start": "Intro",
-  "zoom": 0.6
+  "zoom": 1
 }
 
 
-:: "Do you know him?" {"position":"375,400","size":"100,100"}
-''SALLOS'': "No, not at all."
+:: "Do you know him?" {"position":"200,325","size":"100,100"}
+''EULYSS'': "Do you know him?"
 
-[[Continue->continue 3]]
-
-
-:: "Is something wrong, Sallos?" {"position":"375,225","size":"100,100"}
-''SALLOS'': "There's people here."``enterAkif``(set: enterAkif to true)
-
-Suddenly someone appears on the right. A Jawni man, towering over both you and Sallos, even while hunched over. 
-
-He carries a large sword, and walks with a swagger that does not feel entirely unearned.
-
-[["Do you know him?"]]
+[[Continue->no]]
 
 
-:: <i>"What did you do!?"<i> {"position":"850,600","size":"100,100"}
+:: "Is something wrong, Sallos?" {"position":"150,175","size":"100,100"}
+''EULYSS'': "Is something wrong, Sallos?"
+
+[[Continue->people]]
+
+
+:: <i>"What did you do!?"<i> {"position":"825,725","size":"100,100"}
+''EULYSS'': <i>"What did you do!?"<i>
+
+[[Continue->I]]
+
+
+:: <i>"Yes...?"</i> {"position":"900,450","size":"100,100"}
+''EULYSS'': <i>"Yes...?"</i>
+
+[[Continue->widenEyes]]
+
+
+:: End {"position":"75,750","size":"100,100"}
+``end``(set: end to true)
+
+
+:: I {"position":"775,550","size":"100,100"}
 ''SALLOS'': <i>"I- I- All I did was take people across these mountains! But now's not the time to talk. We need to move."</i>
 
 The two men certainly don't look the type to be able to be talked down. Especially not while armed.
 
 [[Continue->continue 6]]
-
-
-:: <i>"Yes...?"</i> {"position":"1000,525","size":"100,100"}
-His eyes widen.
-
-''SALLOS'': "<i><b>Fuck.</b></i> Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money..."
-
-[[<i>"What did you do!?"<i>]]
-
-
-:: End {"position":"175,775","size":"100,100"}
-ending
 
 
 :: Intro {"position":"125,600","size":"100,100"}
@@ -55,23 +55,23 @@ ending
 
 
 :: Look. {"position":"650,250","size":"100,100"}
-A Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.``enterGoon``(set: enterGoon to true)
+You turn to see a Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.``enterGoon``(set: enterGoon to true)
 
 [[Continue->continue 4]]
 
 
-:: Next {"position":"500,775","size":"100,100"}
+:: Next {"position":"500,725","size":"100,100"}
 The blade is thrust into Sallos.``stab``(set: stab to true)
 
-There is no blood on the other side of the blade. Instead, Sallos begins to glow.
+There is no blood on the other side of the blade.
 
 [[Reach for him.]]
 
 
-:: Reach for him. {"position":"325,775","size":"100,100"}
-He fades away into a pale yellow mist.``disappear``(set: disappear to true)
+:: Reach for him. {"position":"375,775","size":"100,100"}
+Reach for him.``reach``(set: reach to true)
 
-[[End]]
+[[Continue->fade]]
 
 
 :: Stand closer to Sallos. {"position":"850,225","size":"100,100"}
@@ -82,7 +82,7 @@ The two men step closer.
 [[Continue->Step back.]]
 
 
-:: Start walking. {"position":"175,225","size":"100,100"}
+:: Start walking. {"position":"25,225","size":"100,100"}
 Sallos suddenly freezes. The fur on his neck stands up straight. Something's wrong.``walkLeft``(set: walkLeft to true)
 
 [["Is something wrong, Sallos?"]]
@@ -91,19 +91,15 @@ Sallos suddenly freezes. The fur on his neck stands up straight. Something's wro
 :: Step back. {"position":"1050,275","size":"100,100"}
 The Jawni clears his throat.
 
-''JAWNI'': "You are under arrest, for the transportation of fugitives from the lands of God."``stepBack``
+''JAWNI'': "You are under arrest, for the transportation of fugitives from the lands of God."
 
 [[Whisper. <i>"What is he talking about?"</i>]]
 
 
-:: Whisper. <i>"What is he talking about?"</i> {"position":"1150,400","size":"100,100"}
-Sallos whispers back.
+:: Whisper. <i>"What is he talking about?"</i> {"position":"1100,400","size":"100,100"}
+''EULYSS'': Whisper. <i>"What is he talking about?"</i>
 
-''SALLOS'': "I have no idea-"
-
-He pauses, and thinks again.
-
-[[<i>"Yes...?"</i>]]
+[[Continue->noIdea]]
 
 
 :: continue 1 {"position":"275,575","size":"100,100"}
@@ -114,7 +110,7 @@ You, on the other hand, couldn't sleep well. Sleeping outside was definitely som
 [[Continue->continue 2]]
 
 
-:: continue 2 {"position":"200,400","size":"100,100"}
+:: continue 2 {"position":"0,400","size":"100,100"}
 Sallos steps ahead of you.
 
 The path is clear and the day seems ready for you to tackle.
@@ -146,9 +142,49 @@ His voice is deep, like a large drum, every vowel another beat.
 [[Stand closer to Sallos.]]
 
 
-:: continue 6 {"position":"700,700","size":"100,100"}
+:: continue 6 {"position":"675,700","size":"100,100"}
 The two men walk closer, and the Jawni draws his sword.
 
 ''SALLOS'': "Woah, woah, there's no need for that, we surr—"
 
 [[Continue->Next]]
+
+
+:: fade {"position":"225,725","size":"100,100"}
+Sallos begins to glow, and he fades away into a pale yellow mist.``disappear``(set: disappear to true)
+
+[[Continue->End]]
+
+
+:: no {"position":"350,325","size":"100,100"}
+''SALLOS'': "No, not at all."
+
+[[Continue->continue 3]]
+
+
+:: noIdea {"position":"1100,525","size":"100,100"}
+Sallos whispers back.
+
+''SALLOS'': <i>"I have no idea-"</i>
+
+He pauses, and thinks again.
+
+[[<i>"Yes...?"</i>]]
+
+
+:: people {"position":"325,150","size":"100,100"}
+''SALLOS'': "There's people here."``enterAkif``(set: enterAkif to true)
+
+Suddenly someone appears on the right. A Jawni man, towering over both you and Sallos, even while hunched over. 
+
+He carries a large sword, and walks with a swagger that does not feel entirely unearned.
+
+[["Do you know him?"]]
+
+
+:: widenEyes {"position":"925,625","size":"100,100"}
+His eyes widen.
+
+''SALLOS'': "<i><b>Fuck.</b>Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money..."</i>
+
+[[<i>"What did you do!?"<i>]]
