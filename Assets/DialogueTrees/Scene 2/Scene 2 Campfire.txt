@@ -18,7 +18,7 @@ The campfire crackles weakly.
 
 
 :: Feed the fire with wood. {"position":"700,325","size":"100,100"}
-''EULYSS'': Feed the fire with wood.
+''EULYSS'': Feed the fire with wood.<<hasWood>><<talkedToSallos>>
 
 [[Continue->fedFire]]
 
@@ -28,5 +28,10 @@ Sallos has set up a campfire to cook some food with.
 [[Continue]]
 
 
+:: end {"position":"625,675","size":"100,100"}
+<<litCampfire>>``end``(set: end to true)
+
+
 :: fedFire {"position":"625,550","size":"100,100"}
-You feed the flame, and it roars to life!<<hasWood>><<talkedToSallos>>``litCampfire``(set: litCampfire to true)
+You feed the flame, and it roars to life!``litCampfire``(set: litCampfire to true)
+[[Continue->end]]

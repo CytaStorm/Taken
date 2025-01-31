@@ -13,54 +13,29 @@ Scene 2 Sallos Tree
 
 
 :: "I didn't get the wood." {"position":"450,500","size":"100,100"}
-''EULYSS'': "I didn't get the wood."
-
-[[Continue->grab]]
+''SALLOS'': "Could you do that, then? We need to fire stronger to cook food."<<talkedToSallos>>(set: talkedToSallos to true)
 
 
-:: "I grabbed the wood." {"position":"500,50","size":"100,100"}
-''EULYSS'': "I grabbed the wood."
-
-[[Continue->perfect]]
+:: "I grabbed the wood." {"position":"425,50","size":"100,100"}
+''SALLOS'': "Perfect. Put it in the fire!"<<talkedToSallos>><<hasWood>>(set: talkedToSallos to true)
 
 
-
-:: "Is there anything I should do?" {"position":"550,200","size":"100,100"}
-''EULYSS'': "Is there anything I should do?"
-
-[[Continue->burn]]
+:: "Is there anything I should do?" {"position":"550,150","size":"100,100"}
+''SALLOS'': "You should find some wood to fuel the fire. We need it a little strong before we can start cooking."``hasWood````talkedToSallos``(set: talkedToSallos to true)
 
 
 :: "What should I do with this wood?" {"position":"625,375","size":"100,100"}
-''EULYSS'': "What should I do with this wood?"
-
-[[Continue->Campfire]]
-
-
-:: Campfire {"position":"750,450","size":"100,100"}
 ''SALLOS'': "You already got some wood? Perfect! Go put it on the fire, and we can start cooking!<<hasWood>>``talkedToSallos``(set: talkedToSallos to true)
 
 
-:: Continue {"position":"225,300","size":"100,100"}
+:: Continue {"position":"300,300","size":"100,100"}
 ''SALLOS'': "Hi, Eulyss."
 [["I didn't get the wood."]]
 [["I grabbed the wood."]] 
 [["Is there anything I should do?"]] 
-[["What should I do with this wood?"]]
+[["What should I do with this wood?"]] 
 
 
-:: Intro {"position":"150,475","size":"100,100"}
-Sallos stands by the campfire, tending to it.
+:: Intro {"position":"25,300","size":"100,100"}
+Sallos sits at by the campfire, tending to it.
 [[Continue]]
-
-
-:: burn {"position":"875,250","size":"100,100"}
-''SALLOS'': "You should find some wood to burn. I've got some pinecones we can use to start the flame, but we'll need some actual fuel once the fire starts. That way we can actually cook!"``hasWood````talkedToSallos``(set: talkedToSallos to true)
-
-
-:: grab {"position":"450,625","size":"100,100"}
-''SALLOS'': "Could you do that, then? We need to fire stronger to cook food."<<talkedToSallos>>(set: talkedToSallos to true)
-
-
-:: perfect {"position":"675,75","size":"100,100"}
-''SALLOS'': "Perfect. Put it in the fire!"<<talkedToSallos>><<hasWood>>(set: talkedToSallos to true)

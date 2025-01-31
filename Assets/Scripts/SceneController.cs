@@ -12,7 +12,7 @@ public class SceneController : MonoBehaviour
     public List<DialogueFlag> DialogueFlags;
     public List<GameObject> Interactables;
     public UIManager _UIManager;
-    private DialogueTraverser _traverser;     
+    public DialogueTraverser Traverser;     
     private DialogueGraph _currentGraph;
 
 	#region Scene Changing
@@ -47,7 +47,7 @@ public class SceneController : MonoBehaviour
     {
 		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 		DialogueFlags = new List<DialogueFlag>();
-        _traverser = new DialogueTraverser(this, _UIManager);
+        Traverser = new DialogueTraverser(this, _UIManager);
 
         // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
         foreach (GameObject npc in Interactables) 
@@ -155,12 +155,12 @@ public class SceneController : MonoBehaviour
     public void GoToNode(int choice)
     {
 		//print("go to node");
-        _traverser.GoToNode(choice);
+        Traverser.GoToNode(choice);
     }
 
     public bool CheckTraversal(DialogueNode destinationNode)
     {
-        return _traverser.CheckTraversal(destinationNode, DialogueFlags);
+        return Traverser.CheckTraversal(destinationNode, DialogueFlags);
     }
 
     /// <summary>
@@ -188,10 +188,10 @@ public class SceneController : MonoBehaviour
     private void UpdateCurrentGraph(InteractableScript interactScript)
     {
         _currentGraph = interactScript.Graph;
-        _traverser.SetNewGraph(_currentGraph);
+        Traverser.SetNewGraph(_currentGraph);
 
 		//Send new node info to UI Manager
-		_UIManager.NewDialogueNode(_traverser.currentNode);
+		_UIManager.NewDialogueNode(Traverser.currentNode);
 		//print(currentGraph.StartNode.Info);
     }
 
