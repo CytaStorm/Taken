@@ -1,50 +1,53 @@
 :: StoryTitle
-Taken Scene 1
+Taken Scene 1 Edited
 
 
 :: StoryData
 {
-  "ifid": "E5323662-6861-4DB2-B7D7-0515B5F4A139",
+  "ifid": "8313bf54-5b9e-4643-a8aa-007a5b3a00b8",
   "format": "Harlowe",
   "format-version": "3.3.9",
-  "start": "Intro",
   "zoom": 1
 }
 
 
-:: "But what about <i>you</i>? Where's the concern for yourself?" {"position":"800,600","size":"100,100"}
-''SALLOS'': "Look, I'm not exactly the one who needed to be rescued before, and I've done this odyssey plenty of times before. You, on the other hand..."
+:: "But what about <i>you</i>? Where's the concern for yourself?" {"position":"925,425","size":"100,100"}
+''EULYSS'': "But what about <i>you</i>? Where's the concern for yourself?"
 
-[["Don't be scared. I trust you. In return, trust me, alright?"]]
+[[Continue->No need rescue]]
 
 
 :: "Don't be scared. I trust you. In return, trust me, alright?" {"position":"875,850","size":"100,100"}
-''SALLOS'': "Of course." He smiles warmly. "I love you, alright?"
+''EULYSS'': "Don't be scared. I trust you. In return, trust me, alright?"
 
-[["I love you, too."]]
-
-
-:: "Don't worry, I'm just fine!" {"position":"500,650","size":"100,100"}
-''SALLOS'': "People say that all the time, and too often, those people really aren't. It's a dangerous odyssey, and you're so precious to me." He looks at you again, and you see a look you've never seen before cross his face: //fear//.
-
-[["Don't be scared. I trust you. In return, trust me, alright?"]]
+[[Continue->ofCourse]]
 
 
-:: "How much further do we have to go?" {"position":"75,250","size":"100,100"}
-''SALLOS'': "We're still a ways from the top. We'll be there in a few days, but we'll get to a place to camp and stay the night soon."
+:: "Don't worry, I'm just fine!" {"position":"450,650","size":"100,100"}
+''EULYSS'': "Don't worry, I'm just fine!"
 
-He is a little shorter than you, but he maintains a steady pace ahead of you. He walks with a certainty gained only from years of experience. His yellow hair makes him stand out in the stark, snowy landscape.
-
-[[Continue->continue 1]]
+[[Continue->lookFace]]
 
 
-:: "I love you, too." {"position":"650,975","size":"100,100"}
-Soon enough, the path leads to a flat area.
+:: "How much further do we have to go?" {"position":"100,275","size":"100,100"}
+''EULYSS'': "How much further do we have to go?"
 
-''SALLOS'': "We made it! Let's stop here for the time being, and set up for the night."
+[[Continue->sallosResponse1]]
 
 
-:: "You're doing an amazing job, Sallos." {"position":"625,600","size":"100,100"}
+:: "I love you, too." {"position":"625,1125","size":"100,100"}
+''EULYSS'': "I love you, too."
+
+[[Continue->endScene1]]
+
+
+:: "You're doing an amazing job, Sallos." {"position":"725,525","size":"100,100"}
+''EULYSS'': "You're doing an amazing job, Sallos."
+
+[[Continue->Chestpuff]]
+
+
+:: Chestpuff {"position":"800,650","size":"100,100"}
 ''SALLOS'': "I'd better hope I am!" He pouts and puffs his chest. "What kind of a mountaineer would I be if I can't even take one person on an odyssey to the top?"
 
 His anxiety doesn't completely fade, but his expression lights up a little bit.
@@ -52,13 +55,17 @@ His anxiety doesn't completely fade, but his expression lights up a little bit.
 [["Don't be scared. I trust you. In return, trust me, alright?"]]
 
 
-:: Intro {"position":"0,475","size":"100,100"}
+:: End {"position":"625,1375","size":"100,100"}
+``end``(set: end to true)
+
+
+:: Intro {"position":"75,450","size":"100,100"}
 You trudge beside Sallos along the path, up to the top of The Heights.
 
-[["How much further do we have to go?"]]
+[[Continue->"How much further do we have to go?"]]
 
 
-:: Keep walking, the best you can. {"position":"550,425","size":"100,100"}
+:: Keep walking, the best you can. {"position":"650,400","size":"100,100"}
 But you are not just any passenger. His small eyebrows are every so slightly furled, betraying the anxiety under the professionalism. After all, it was on these mountains he had rescued you on years ago, where the two of you had first met.
 
 [["Don't worry, I'm just fine!"]]
@@ -66,40 +73,87 @@ But you are not just any passenger. His small eyebrows are every so slightly fur
 [["But what about <i>you</i>? Where's the concern for yourself?"]]
 
 
-:: Take a breath. {"position":"400,75","size":"100,100"}
+:: No need rescue {"position":"1075,575","size":"100,100"}
+''SALLOS'': "Look, I'm not exactly the one who needed to be rescued before, and I've done this odyssey plenty of times before. You, on the other hand..."
+
+[["Don't be scared. I trust you. In return, trust me, alright?"]]
+
+
+:: Take a breath. {"position":"650,50","size":"100,100"}
+''EULYSS'': Take a breath.
+
+[[Continue->lungs]]
+
+
+:: Take another breath. {"position":"850,200","size":"100,100"}
+''EULYSS'': Take another breath.
+
+Your breathing is ragged as you try to get as much air as possible with each inhale, trying to keep up with Sallos. The backpack you carry feels ever heavier...
+
+[[Continue->continue 2]]
+
+
+:: continue 1 {"position":"425,0","size":"100,100"}
+''SALLOS'': "Eulyss. You too tired to continue?" 
+
+He gives a quick look back at the girl behind him.
+
+You look nothing like him—you are an elf with long blue hair, and absolutely struggling to keep up with him. Monastery life had not prepared you well for such a trek.
+
+[[Take a breath.]]
+
+
+:: continue 2 {"position":"625,250","size":"100,100"}
+''SALLOS'': "Hey, let's slow down, alright?" 
+
+[[Continue->continue plus]]
+
+
+:: continue 3 {"position":"375,450","size":"100,100"}
+As much as you want to stay the original speed, you know he's right. Listen to the expert here. He's done the route many times before. 
+
+He's been accomodating and professional up till now, almost business-like in his manner. Taking slower steps for you, smaller steps, and constantly checking on you. For now, you are one of his customers that he needs to get over The Heights.
+
+[[Continue->Keep walking, the best you can.]]
+
+
+:: continue plus {"position":"425,275","size":"100,100"}
+His pace drags. 
+
+''SALLOS'': "No rush. The mountain won't run away."
+
+[[Continue->continue 3]]
+
+
+:: endScene1 {"position":"625,1250","size":"100,100"}
+Soon enough, the path leads to a flat area.
+
+''SALLOS'': "We made it! Let's stop here for the time being, and set up for the night."
+
+[[Continue->End]]
+
+
+:: lookFace {"position":"450,775","size":"100,100"}
+''SALLOS'': "People say that all the time, and too often, those people really aren't. It's a dangerous odyssey, and you're so precious to me." He looks at you again, and you see a look you've never seen before cross his face: //fear//.
+
+[["Don't be scared. I trust you. In return, trust me, alright?"]]
+
+
+:: lungs {"position":"850,50","size":"100,100"}
 Cold air fills your lungs, but not enough. The air is thinner up here, and each breath gives you less and less oxygen.
 
 [[Take another breath.]]
 
 
-:: Take another breath. {"position":"650,150","size":"100,100"}
-Your breathing is ragged as you try to get as much air as possible with each inhale, trying to keep up with Sallos.
+:: ofCourse {"position":"875,975","size":"100,100"}
+''SALLOS'': "Of course." He smiles warmly. "I love you, alright?"
 
-[[Continue->continue 2]]
-
-
-
-:: continue 1 {"position":"250,125","size":"100,100"}
-''SALLOS'': "Eulyss. You too tired to continue?" 
-
-He gives a quick look back.
-
-Maybe you are. It has been a while since the two of you stopped...
-
-[[Take a breath.]]
+[["I love you, too."]]
 
 
-:: continue 2 {"position":"450,250","size":"100,100"}
-''SALLOS'': "Let's slow down, alright?" His pace drags. "No rush. The mountain won't run away."
+:: sallosResponse1 {"position":"200,75","size":"100,100"}
+''SALLOS'': "We're still a ways from the top. We'll be there in a few days, but we'll get to a place to camp and stay the night soon."
 
-[[Continue->continue 3]]
+He is a little shorter than you, but he maintains a steady pace ahead. He walks with a certainty gained only from years of experience. His yellow hair makes him stand out in the stark, snowy landscape.
 
-
-
-
-:: continue 3 {"position":"225,400","size":"100,100"}
-As much as you want to stay the original speed, you know he's right. Listen to the expert here. He's done the route many times before. 
-
-He's been accomodating and professional up till now, almost business-like in his manner. Taking slower steps for you, smaller steps, and constantly checking on you. For now, you are one of his customers that he needs to get over The Heights.
-
-[[Keep walking, the best you can.]]
+[[Continue->continue 1]]

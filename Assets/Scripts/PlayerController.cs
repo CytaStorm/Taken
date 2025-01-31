@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField] private UIManager _UIManager;
 
-	[SerializeField] private PlayerInput playerInput; 
+	[SerializeField] private PlayerInput playerInput;
 
 	[SerializeField] private Camera cam;
 	[SerializeField] private NavMeshAgent _agent;
@@ -55,13 +56,13 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-        if (target != null)
-        {
+		if (target != null)
+		{
 			_agent.SetDestination(target.position);
-        }
+		}
 		//Control eulyss walking anim
 		_animator.SetFloat("VelocityPercent", _agent.velocity.magnitude / _agent.speed);
-    }
+	}
 
 	public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{

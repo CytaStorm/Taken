@@ -55,7 +55,10 @@ public class InteractableScript : MonoBehaviour
         {
 			foreach (Material mat in _materialList)
 			{
-				mat.SetColor("_Tint", new Color(Mathf.Abs(Mathf.Sin(highlightTimer)), 1, 1));
+                mat.SetColor("_Tint", new Color(
+                    Mathf.Abs(Mathf.Sin(highlightTimer)),
+                    1,
+                    1));
 			}
         }
         highlightTimer += Time.deltaTime;

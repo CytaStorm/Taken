@@ -13,7 +13,7 @@ Scene 2 Wood Tree
 
 
 :: Gather the wood. {"position":"425,350","size":"100,100"}
-You gather the wood.(set: hasWood to true)
+''EULYSS'': Gather the wood.(set: hasWood to true)
 
 
 :: Intro {"position":"200,300","size":"100,100"}

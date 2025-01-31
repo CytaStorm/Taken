@@ -18,12 +18,17 @@ public class SceneChangeButton : MonoBehaviour
 
     public void LoadNextScene()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
+		Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(currentScene.buildIndex + 1);
-            Debug.Log("changed scene");
+			SceneManager.LoadScene(currentScene.buildIndex + 1);
+			Debug.Log("changed scene");
         }         
     }
-
+	
+	public void LoadMainMenu()
+	{
+		SceneManager.LoadScene(0);
+		Time.timeScale = 1;
+	}
 }

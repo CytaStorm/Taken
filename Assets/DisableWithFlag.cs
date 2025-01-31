@@ -5,7 +5,7 @@ using UnityEngine;
 public class DisableWithFlag : MonoBehaviour
 {
     public string flagName;
-    public SceneTwoManager sceneManager;
+    public SceneController sceneManager;
     public GameObject targetObject;
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class DisableWithFlag : MonoBehaviour
         if (targetObject.activeSelf == true)
         {
             // Search SceneTwoManager for matching flag
-            foreach (DialogueFlag flag in sceneManager.dialogueFlags)
+            foreach (DialogueFlag flag in sceneManager.DialogueFlags)
             {
                 if ((flag.Name == flagName) && (flag.IsTrue))
                 {
