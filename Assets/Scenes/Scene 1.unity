@@ -6268,9 +6268,11 @@ MonoBehaviour:
   Interactables:
   - {fileID: 1520122979}
   _UIManager: {fileID: 1762080261}
-  destinationScene: Scene 2
-  delayTime: 5
-  sceneChangeActive: 0
+  _destinationScene: Scene 2
+  _fadeOutTime: 5
+  FadingOut: 0
+  _fadeInTime: 5
+  FadingIn: 1
   _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
   DEBUG: 0
 --- !u!1 &1989675858

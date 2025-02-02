@@ -205,7 +205,7 @@ public class UIManager : MonoBehaviour
         }
 
 		//Add exit button
-		if (_buttons.Count == 0 && !_sceneManager.sceneChangeActive) 
+		if (_buttons.Count == 0 && !_sceneManager.FadingOut) 
 		{
             GameObject exitButton =
                 Instantiate(_exitButton, _dialogueUI.transform, true);
