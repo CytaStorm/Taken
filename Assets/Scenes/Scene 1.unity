@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 7915708813966320101, guid: b2b9492322720fe45af39671d9209202, type: 3}
+  - {fileID: 3121631353020486406, guid: f6e8736e07c25b446b715a7a75303d62, type: 3}
   maxDistance: 15
   spawnRate: 1
   velocity: {x: -1, y: 0, z: 0}
@@ -6134,7 +6134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 7915708813966320101, guid: b2b9492322720fe45af39671d9209202, type: 3}
+  - {fileID: 3121631353020486406, guid: f6e8736e07c25b446b715a7a75303d62, type: 3}
   maxDistance: 15
   spawnRate: 1
   velocity: {x: -1, y: 0, z: 0}
