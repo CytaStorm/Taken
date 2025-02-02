@@ -701,6 +701,30 @@ PrefabInstance:
     m_TransformParent: {fileID: 1063463312}
     m_Modifications:
     - target: {fileID: 1937460232451411831, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937460232451411831, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937460232451411831, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937460232451411831, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937460232451411831, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937460232451411831, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937460232451411831, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadNextScene
       objectReference: {fileID: 0}
@@ -730,11 +754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4534846102092027085, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 260.5
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4534846102092027085, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60.7
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4534846102092027085, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
       propertyPath: m_LocalPosition.x
@@ -791,6 +815,14 @@ PrefabInstance:
     - target: {fileID: 6943441666661902760, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
       propertyPath: m_text
       value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943441666661902760, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943441666661902760, guid: 9f4407732b76f6e40913ddf208e99334, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
