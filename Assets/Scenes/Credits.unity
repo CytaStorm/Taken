@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 42501014}
   - component: {fileID: 42501013}
   m_Layer: 5
-  m_Name: Subtitle Text
+  m_Name: Body Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 223.31, y: 210.94}
+  m_SizeDelta: {x: 740, y: 210.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &42501013
 MonoBehaviour:
@@ -179,15 +179,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CREDITS
-
-    JEFF CHEN
-
-    ZIAD JAAFAR
-
-    ART PERSON
-
-    MUSIC PERSON'
+  m_text: "<b><size=140%>PROGRAMMING</size></b>\nJeff Chen\tZiad Jaafar\n<b><size=140%>STORY</size></b>\nJeff
+    Chen\n<b><size=140%>UI/UX DESIGN</size></b>\nZiad Jaafar\n<b><size=140%>3D CHARACTER
+    ART</size></b>\nJeff Chen\n<b><size=140%>2D ART</size></b>\nArt Person\n<b><size=140%>MUSIC</size></b>\nMusic
+    Person"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb27f707446ebd849b4bc1fbc65ab35f, type: 2}
   m_sharedMaterial: {fileID: 7935550308720739209, guid: cb27f707446ebd849b4bc1fbc65ab35f, type: 2}
@@ -813,16 +808,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624354746}
-  m_LocalRotation: {x: -0.0041782237, y: -0.04496726, z: 0.99858975, w: -0.027912477}
+  m_LocalRotation: {x: -0, y: -0, z: 0.8528155, w: 0.5222124}
   m_LocalPosition: {x: 0, y: 0, z: 22}
-  m_LocalScale: {x: 0.45000002, y: 0.45000005, z: 0.45000005}
+  m_LocalScale: {x: 0.75021636, y: 0.75021636, z: 0.75021636}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 892525187}
-  m_LocalEulerAnglesHint: {x: 5.166, y: -0.336, z: 183.187}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 117.038}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -316, y: 195}
+  m_AnchoredPosition: {x: 9, y: 314}
   m_SizeDelta: {x: 1363, y: 827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624354748
