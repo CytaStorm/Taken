@@ -129,6 +129,7 @@ public class UIManager : MonoBehaviour
 	//Player traversed to a new Dialogue node
 	public void NewDialogueNode(DialogueNode dialogueNode)
 	{
+		print("here");
 		//If there is a previous textBox, change its color to gray
 		if (_mostRecentTextContainer != null)
 		{

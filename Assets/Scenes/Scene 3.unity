@@ -1542,7 +1542,7 @@ MonoBehaviour:
   Interactables:
   - {fileID: 568755719}
   _UIManager: {fileID: 553045652}
-  _destinationScene: Scene
+  _destinationScene: Credits
   _fadeOutTime: 5
   FadingOut: 0
   _fadeInTime: 3
