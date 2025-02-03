@@ -88,19 +88,6 @@ public class UIManager : MonoBehaviour
 	}
 	#endregion
 
-
-	private void Update()
-	{
-		//Debug.Log(CurrentUIMode);
-
-		//Animate
-		if (_animatingLayout != null && _animatingLayout.preferredHeight < _desiredHeight)
-		{
-			_animatingLayout.preferredHeight += _animationSpeed * Time.deltaTime * 150;
-			Mathf.Clamp(_animatingLayout.preferredHeight, 0, _desiredHeight);
-		}
-	}
-
 	void Start()
 	{
         if (_sceneManager.autoImplementDialogue)
@@ -113,6 +100,18 @@ public class UIManager : MonoBehaviour
             CurrentUIMode = UIMode.Gameplay;
             _dialogueUI.SetActive(false);
         }
+	}
+
+	private void Update()
+	{
+		//Debug.Log(CurrentUIMode);
+
+		//Animate
+		if (_animatingLayout != null && _animatingLayout.preferredHeight < _desiredHeight)
+		{
+			_animatingLayout.preferredHeight += _animationSpeed * Time.deltaTime * 150;
+			Mathf.Clamp(_animatingLayout.preferredHeight, 0, _desiredHeight);
+		}
 	}
 
 	public void ChangeToDialogue()
@@ -163,9 +162,28 @@ public class UIManager : MonoBehaviour
 		//Add dialogue
 		_textDisplay.text += dialogueNode.Info;
 
+		while (_dialogueUI.activeInHierarchy == false ||
+			_dialogueUI.activeSelf == false)
+		{
+			_dialogueUI.SetActive(true);
+		}
+
 		//Get animation info
 		Canvas.ForceUpdateCanvases();
+		//if (_textDisplay.text == "You trudge beside Sallos along the path, up to the top of The Heights.")
+		//{
+		//	_desiredHeight = 110.32f;
+		//}
+		//else
+		//{
+		//	_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+		//}
 		_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+
+		//while (_desiredHeight == 0)
+		//{
+		//	Canvas.ForceUpdateCanvases();
+		//}
 
 		//if is first textbox, snap to top
 		if (_animatingLayout == null)
