@@ -134,7 +134,7 @@ Soon enough, the path leads to a flat area.
 
 
 :: lookFace {"position":"450,775","size":"100,100"}
-''SALLOS'': "People say that all the time, and too often, those people really aren't. It's a dangerous odyssey, and you're so precious to me." He looks at you again, and you see a look you've never seen before cross his face: //fear//.
+''SALLOS'': "People say that all the time, and too often, those people really aren't. It's a dangerous odyssey, and you're so precious to me." He looks at you again, and you see a look you've never seen before cross his face: <i>fear</i>.
 
 [["Don't be scared. I trust you. In return, trust me, alright?"]]
 
