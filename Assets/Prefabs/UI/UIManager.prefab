@@ -46,9 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentUIMode: 0
   _sceneManager: {fileID: 0}
+  _input: {fileID: 0}
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 0}
   _dialogueUI: {fileID: 0}
-  _gameplayUI: {fileID: 0}
-  _textDisplay: {fileID: 0}
+  _pauseMenu: {fileID: 0}
+  _textArea: {fileID: 0}
+  _singleTextBoxContainer: {fileID: 0}
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
-  _exitButton: {fileID: 6694033511536594137, guid: f70c5a92133e3b5469d528ad12a41a64, type: 3}
   _buttons: []
+  _exitButton: {fileID: 6694033511536594137, guid: f70c5a92133e3b5469d528ad12a41a64, type: 3}
+  _prevTextColor: {r: 0, g: 0, b: 0, a: 0}
+  _animationSpeed: 1
