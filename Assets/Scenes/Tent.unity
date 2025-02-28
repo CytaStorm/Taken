@@ -416,6 +416,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 80.422, y: -101.222, z: -209.173}
+--- !u!114 &294575339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+  m_PrefabInstance: {fileID: 1101518065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfee3bc8d9f9ef74f9320f51dd1563ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &470664639
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +438,6 @@ GameObject:
   - component: {fileID: 470664645}
   - component: {fileID: 470664644}
   - component: {fileID: 470664643}
-  - component: {fileID: 470664642}
   - component: {fileID: 470664641}
   - component: {fileID: 470664640}
   m_Layer: 0
@@ -583,25 +593,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &470664642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470664639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dfe6e2658b35bf4aa9d46d0a0d92767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: -1.75, z: -1.2}
-  zoom: 20
-  pitch: 2
-  cam: {fileID: 470664644}
-  zoomInDuration: 0
-  zoomInMagnitude: 0
 --- !u!81 &470664643
 AudioListener:
   m_ObjectHideFlags: 0
@@ -645,7 +636,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.94
+  orthographic size: 3.18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -670,7 +661,7 @@ Transform:
   m_GameObject: {fileID: 470664639}
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -3.43, y: 5.28, z: -3.43}
+  m_LocalPosition: {x: -1.973, y: 5.44, z: -4.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1246,7 +1237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3d31501361dd54ab8db17a4defede0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoImplementDialogue: 0
+  autoImplementDialogue: 1
   Interactables:
   - {fileID: 0}
   - {fileID: 0}
@@ -1255,7 +1246,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _UIManager: {fileID: 0}
+  _UIManager: {fileID: 294575339}
   destinationScene: Scene 3
   delayTime: 5
   sceneChangeActive: 0
