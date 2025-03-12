@@ -25,7 +25,7 @@ public class VolumeChanger : MonoBehaviour
 				_audioFadeInCurrentTime + Time.deltaTime,
 				0,
 				_audioFadeInTime);
-			print("here");
+			//print("here");
 			_audioSource.volume = _audioFadeInCurrentTime / _audioFadeInTime;	
 		}
     }
