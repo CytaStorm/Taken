@@ -222,4 +222,9 @@ public class SceneController : MonoBehaviour
     {
         FadingOut = true;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
