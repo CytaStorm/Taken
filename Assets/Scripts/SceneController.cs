@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,34 +7,51 @@ public class SceneController : MonoBehaviour
 {
     public bool autoImplementDialogue = false;
 
-	[Header("Dialogue Components")]
+    [Header("Dialogue Components")]
     public List<DialogueFlag> DialogueFlags;
     public List<GameObject> Interactables;
     public UIManager _UIManager;
-    public DialogueTraverser Traverser;     
+    public DialogueTraverser Traverser;
     private DialogueGraph _currentGraph;
 
-	#region Scene Changing
-	[Header("Scene Changing")]
-    [SerializeField] string destinationScene;
-    [SerializeField] float delayTime;
-	public delegate IEnumerator OnSceneChangeHandler(float seconds);
-	public event OnSceneChangeHandler onSceneChange;
-    public bool sceneChangeActive = false;
-    private float sceneChangeTimer = 0f;
-	#endregion
+    #region Scene Changing
+    [Header("Scene Changing")]
+    [SerializeField] private string _destinationScene;
+    [SerializeField] private float _fadeOutTime;
+    [HideInInspector] 
+    public bool FadingOut = false;
+    private float _fadeOutTimer = 0f;
 
-	[SerializeField] private Material _sallosMaterial;
+    [Space(10)]
+    [SerializeField] private float _fadeInTime;
+    public bool FadesIn = true;
+    private float _fadeInTimer = 0f;
 
-	[Header("DEBUG")] public bool DEBUG;
+    public delegate IEnumerator OnSceneChangeHandler(float seconds);
+    public event OnSceneChangeHandler onSceneChange;
+    #endregion
 
-	public float timerPercent
+    [Space(10)] [SerializeField] private Material _sallosMaterial;
+
+    [Header("DEBUG")] public bool DEBUG;
+
+    public float FadeOutTimerPercent
     {
         get
         {
-            return (sceneChangeTimer / (delayTime - 1.5f));
+            return (_fadeOutTimer / (_fadeOutTime - 1.5f));
         }
     }
+
+    public float FadeInTimerPercent
+    {
+        get
+        {
+            return (_fadeInTimer / (_fadeInTime - 1.5f));
+        }
+    }
+
+
 
     public bool IsDialogueAutoImplimented()
     {
@@ -73,7 +89,7 @@ public class SceneController : MonoBehaviour
 				flag.onValueChange += delegate 
 				{
 					print("here");
-					sceneChangeActive = true;
+					FadingOut = true;
 					onSceneChange(5);
 				};
 			}
@@ -85,38 +101,33 @@ public class SceneController : MonoBehaviour
     {
         if (DEBUG)
         {
-		    foreach (DialogueFlag flag in DialogueFlags)
-		    {
-		    	print(flag);
-		    }
+            foreach (DialogueFlag flag in DialogueFlags)
+            {
+                print(flag);
+            }
         }
 
-		//foreach (DialogueFlag flag in DialogueFlags)
-		//{
-		//	if (flag.Name == flagName &&
-		//		flag.IsTrue &&
-		//		sceneChangeActive != true)
-		//	{
-		//		sceneChangeActive = true;
+        #region Fades in/out
+        if (FadesIn)
+        {
+            _fadeInTimer = Mathf.Clamp(_fadeInTimer + Time.deltaTime, 0, _fadeInTime);
+        }
+        if (_fadeInTimer == _fadeInTime)
+        {
+            FadesIn = false;
+        }
+        
 
-		//		sceneChangeTimer += Time.deltaTime;
-
-		//		if (sceneChangeTimer > delayTime)
-		//		{
-		//			UnityEngine.SceneManagement.SceneManager.LoadScene(destinationScene);
-		//		}
-		//	}
-		//}
-
-		if (sceneChangeActive)
+		if (FadingOut)
 		{
-			sceneChangeTimer += Time.deltaTime;
-			if (sceneChangeTimer > delayTime)
+			_fadeOutTimer += Time.deltaTime;
+			if (_fadeOutTimer > _fadeOutTime)
 			{
-				SceneManager.LoadScene(destinationScene);
+				SceneManager.LoadScene(_destinationScene);
 			}
 		}
-	}
+        #endregion
+    }
 
     /// <summary>
     /// Populates list of dialogue flags with every flag in every dialogue graph
@@ -206,4 +217,9 @@ public class SceneController : MonoBehaviour
 			}
 		}	
 	}
+
+    public void NextScene()
+    {
+        FadingOut = true;
+    }
 }
