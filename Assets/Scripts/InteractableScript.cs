@@ -9,8 +9,6 @@ public class InteractableScript : MonoBehaviour
     [Header("References to other Gameobjects")]
     public UIManager _UIManager;
 
-    [Header("Dialogue")]
-    [SerializeField] private TextAsset twineFile;
     public DialogueGraph Graph { get; protected set; }
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
@@ -31,7 +29,7 @@ public class InteractableScript : MonoBehaviour
     protected virtual void Awake()
     {
 		//print(twineFile);
-        Graph = new DialogueGraph(twineFile);
+        //Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
     }

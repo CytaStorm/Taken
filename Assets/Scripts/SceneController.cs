@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public bool autoImplementDialogue = false;
+    private List<NewDialogueGraph> _graphs = new List<NewDialogueGraph>();
 
     [Header("Dialogue Components")]
+    [SerializeField] private TextAsset _twineJson;
     public List<DialogueFlag> DialogueFlags;
     public List<GameObject> Interactables;
     public UIManager _UIManager;
@@ -62,14 +64,20 @@ public class SceneController : MonoBehaviour
     void Start()
     {
 		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
+
+        JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
+
+        _graphs = jsonGraph.CreateGraphs();
+
 		DialogueFlags = new List<DialogueFlag>();
         Traverser = new DialogueTraverser(this, _UIManager);
 
-        // Adds sceneManager as a listner to every npc's UpdateSceneGraph event
-        foreach (GameObject npc in Interactables) 
+        //sets up each interactable in scene
+        foreach (GameObject interactable in Interactables) 
         {
-            InteractableScript npcScript = npc.GetComponent<InteractableScript>();
-            npcScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);            
+            InteractableScript interactScript = interactable.GetComponent<InteractableScript>();
+            interactScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);
+            
         }
 
         CreateAllDialogueFlags();

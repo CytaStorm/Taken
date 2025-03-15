@@ -4,6 +4,7 @@ using System.IO;
 using System.ComponentModel;
 public class DialogueGraph
 {
+    public string name;
     //FIELDS
     //Streamreader stuff
     [SerializeField] private StreamReader reader;
@@ -28,7 +29,7 @@ public class DialogueGraph
 
     private void Parse(TextAsset textFile)
     {
-        nodes = DialogueTreeParser.ParseFile(textFile);        
+        nodes = TwineParser.ParseFile(textFile);        
 
         // Find refernece to starting node
         foreach (DialogueNode node in nodes)

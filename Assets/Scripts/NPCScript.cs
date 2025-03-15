@@ -12,8 +12,6 @@ public class NPCScript : InteractableScript
     [Tooltip("Check this if the NPC only needs to move without interaction")] 
     [SerializeField] private bool isPuppet;
 
-
-
     protected override void Awake()
     {
         if (isPuppet) return;
