@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
+  _UIManager: {fileID: 294575339}
   twineFile: {fileID: 4900000, guid: 9700b095161428b4fa0383b7d1dcd026, type: 3}
   radius: 3
   hasLimitedInteractions: 0
@@ -835,6 +835,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _input
+      value: 
+      objectReference: {fileID: 1305066570}
+    - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneManager
       value: 
       objectReference: {fileID: 2108548294}
@@ -1239,17 +1243,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoImplementDialogue: 1
   Interactables:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 178867013}
   _UIManager: {fileID: 294575339}
-  destinationScene: Scene 3
-  delayTime: 5
-  sceneChangeActive: 0
+  _destinationScene: 
+  _fadeOutTime: 0
+  FadingOut: 0
+  _fadeInTime: 0
+  FadesIn: 1
   _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
   DEBUG: 0
 --- !u!114 &2108548295
