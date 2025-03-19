@@ -1248,6 +1248,10 @@ PrefabInstance:
       propertyPath: _sceneManager
       value: 
       objectReference: {fileID: 1770832733}
+    - target: {fileID: 3840515897352885008, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3879445995671405612, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneController
       value: 
@@ -1406,7 +1410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035258847038180165, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1247.8999
       objectReference: {fileID: 0}
     - target: {fileID: 9035258847038180165, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchoredPosition.y
