@@ -15,4 +15,12 @@ public class NewDialogueGraph
     {
         Name = name;
     }
+
+    public void ParseNodes()
+    {
+        foreach (NewDialogueNode node in Nodes)
+        {
+            TwineParser.ParseNode(node);
+        }
+    }
 }

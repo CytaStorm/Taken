@@ -37,7 +37,11 @@ public class JSONGraph
 		foreach (NewDialogueGraph graph in dialogueGraphs)
 		{
 			AddAllLinkedPassages(graph);
+
+			//Parse Dialogue nodes
+			graph.ParseNodes();
 		}
+
 
 		return dialogueGraphs;
 	}
@@ -68,4 +72,5 @@ public class JSONGraph
 			}
 		}
 	}
+
 }

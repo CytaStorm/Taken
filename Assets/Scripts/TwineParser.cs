@@ -7,19 +7,6 @@ using UnityEngine;
 class TwineParser : MonoBehaviour
 {
 	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="jsonPassage"></param>
-	/// <param name="passagesLeft"></param>
-	/// <returns></returns>
-	public static NewDialogueNode ParseJSONPassage(JSONPassage jsonPassage, List<JSONPassage> passagesLeft)
-	{
-		NewDialogueNode newNode = new NewDialogueNode(jsonPassage.name, jsonPassage.text);
-
-		return newNode;
-	}
-
-	/// <summary>
 	/// Parse twine file.
 	/// </summary>
 	/// <param name="textFile">File to parse.</param>
