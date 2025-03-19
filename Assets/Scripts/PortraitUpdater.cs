@@ -6,19 +6,23 @@ using UnityEngine.UI;
 public class PortraitUpdater : MonoBehaviour
 {
     [SerializeField] SceneController _sceneController;
+    [SerializeField] UIManager _uiManager;
 
     // Treat these like a dictionary key/value pairing. One speaker per texture.
     [SerializeField] List<string> speakerNames;
     [SerializeField] List<Sprite> portraitTextures;
 
     public Image portrait;
+    private GameObject portraitObject;
     private DialogueNode currentNode;
     public string speakerName; // public for debugging only!
 
     // Start is called before the first frame update
     void Start()
     {
-        portrait = GetComponent<Image>();
+        //portrait = GetComponent<Image>();
+        portraitObject = portrait.gameObject;
+
         // Sanitize strings
         foreach (string name in speakerNames)
         {
@@ -30,29 +34,42 @@ public class PortraitUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_uiManager.CurrentUIMode == UIMode.Dialogue)
+        {
+            portraitObject.SetActive(true);
+            UpdatePortraitSprite();
+        }
+        else
+        {
+            portraitObject.SetActive(false);
+        }
+    }
+
+    private void UpdatePortraitSprite()
+    {
         // Update current node
         currentNode = _sceneController.Traverser.currentNode;
 
-		if (currentNode == null)
-		{
-			return;
-		}
+        if (currentNode == null)
+        {
+            return;
+        }
         // If current node contains a new speaker, then switch portraits
         if (currentNode.Info.Contains(':'))
         {
             // Get speaker name
-            int delimiterIndex = currentNode.Info.IndexOf(':');            
-            speakerName = currentNode.Info.Substring(0, delimiterIndex);       
-            
+            int delimiterIndex = currentNode.Info.IndexOf(':');
+            speakerName = currentNode.Info.Substring(0, delimiterIndex);
+
             // Remove html tags
             while (speakerName.Contains('<'))
             {
-                
+
                 int startIndex = speakerName.IndexOf('<');
                 int endIndex = speakerName.IndexOf('>');
                 int count = endIndex - startIndex + 1;
                 speakerName = speakerName.Remove(startIndex, count);
-                
+
             }
             speakerName = speakerName.ToLower();
 
