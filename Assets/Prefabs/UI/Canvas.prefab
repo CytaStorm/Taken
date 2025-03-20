@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneController: {fileID: 0}
-  _uiManager: {fileID: 0}
+  _uiManager: {fileID: 3825737841949968205}
   speakerNames:
   - sallos
   - akif

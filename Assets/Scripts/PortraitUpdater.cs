@@ -36,12 +36,12 @@ public class PortraitUpdater : MonoBehaviour
     {
         if (_uiManager.CurrentUIMode == UIMode.Dialogue)
         {
-            portraitObject.SetActive(true);
+            SetActivePortraitAndSiblings(true);
             UpdatePortraitSprite();
         }
         else
         {
-            portraitObject.SetActive(false);
+            SetActivePortraitAndSiblings(false);
         }
     }
 
@@ -89,6 +89,16 @@ public class PortraitUpdater : MonoBehaviour
 
             //portrait.material = portraitMaterials[portraitIndex];
             portrait.sprite = portraitTextures[portraitIndex];
+        }
+    }
+
+    private void SetActivePortraitAndSiblings(bool setState)
+    {
+        portraitObject.SetActive(setState);
+
+        foreach (Transform childTransform in portraitObject.transform.parent)
+        {
+            childTransform.gameObject.SetActive(setState);
         }
     }
 }
