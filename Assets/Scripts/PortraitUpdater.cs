@@ -34,13 +34,17 @@ public class PortraitUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (_uiManager.CurrentUIMode == UIMode.Dialogue)
         {
+            // Activate portrait gameobject and any siblings during dialogue,
+            // and update portrait texture.
             SetActivePortraitAndSiblings(true);
             UpdatePortraitSprite();
         }
         else
         {
+            // Otherwise dectivate portrait and its siblings
             SetActivePortraitAndSiblings(false);
         }
     }
@@ -92,6 +96,11 @@ public class PortraitUpdater : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The border for the portrit is a sibling of the portrait, so
+    /// this script makes sure it gets deactivated
+    /// </summary>
+    /// <param name="setState"></param>
     private void SetActivePortraitAndSiblings(bool setState)
     {
         portraitObject.SetActive(setState);
