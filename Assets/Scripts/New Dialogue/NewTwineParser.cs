@@ -12,6 +12,11 @@ public class NewTwineParser
 	/// <returns></returns>
 	public static void ParseNode(NewDialogueNode node)
 	{
+		//Parse link conditions
+		ParseLinkConditions(node);
+		//Parse flags that entry to this node causes
+		AddNewChangeFlags(node);
+
 		return;
 	}
 
@@ -24,8 +29,6 @@ public class NewTwineParser
 		//RemoveSpecialText(currentNode, "(else-if:", "]\n");
 		//RemoveSpecialText(currentNode, "(else:", "]\n");
 
-		//Parse flags that entry to this node causes
-		ParseNewChangeFlags(currentNode);
 
 		//Parse speaker of dialogue
 		//ParseTextFormat(currentNode);
@@ -34,27 +37,59 @@ public class NewTwineParser
 		//currentNode.Info = currentNode.Info.Trim();
 	}
 
-	private static void ParseNewChangeFlags(NewDialogueNode currentNode)
+	/// <summary>
+	/// Parses Twine's if statements to link nodes
+	/// </summary>
+	/// <param name="currentNode">Node being parsed</param>
+	private static void ParseLinkConditions(NewDialogueNode currentNode)
+	{
+		//Get ifs and their hooks, these should be the same length
+		List<string> ifs = GetRemovedSpecialText(currentNode, "\n(if:", ")");
+		List<string> hooks = GetRemovedSpecialText(currentNode, "[", "]");
+		
+		//parse hooks first
+	}
+
+	/// <summary>
+	/// Sets all flags to be changed upon node entry.
+	/// </summary>
+	/// <param name="currentNode">Node being parsed.</param>
+	private static void AddNewChangeFlags(NewDialogueNode currentNode)
 	{
 		//Get the string to parse
 		List<string> stringToParse = 
-			GetRemovedSpecialText(currentNode, "(set: ", ")");
+			GetRemovedSpecialText(currentNode, "\n(set: ", ")");
 		//If it doesn't have (set:) return
 		if (stringToParse.Count == 0) return;
+		
+		currentNode.FlagsToChange.AddRange(ExtractFlags(stringToParse));
+	}
 
-		//Parse it
-		string[] splitStringToParse = stringToParse[0].Split(' ');
-		bool changeFlagTo;
-		if (splitStringToParse[2] == "true") 
+	/// <summary>
+	/// Parses extracts set flag text.
+	/// </summary>
+	/// <param name="stringsToParse">List of extract set flag statements</param>
+	/// <returns></returns>
+	private static List<NewDialogueFlag> ExtractFlags (List<string> stringsToParse)
+	{
+		List<NewDialogueFlag> result = new List<NewDialogueFlag>();
+		foreach (string setFlag in stringsToParse)
 		{
-			changeFlagTo = true; 
-		} 
-		else 
-		{
-			changeFlagTo = false; 
+			//Parse it
+			string[] splitStringToParse = stringsToParse[0].Split(' ');
+			bool changeFlagTo;
+			if (splitStringToParse[2] == "true") 
+			{
+				changeFlagTo = true; 
+			} 
+			else 
+			{
+				changeFlagTo = false; 
+			}
+			result.Add(
+				new NewDialogueFlag(splitStringToParse[0].Substring(1), changeFlagTo));
 		}
-		currentNode.FlagsToChange.Add(
-			new DialogueFlag(splitStringToParse[0], changeFlagTo));
+		return result;
 	}
 
 	/// <summary>
@@ -76,18 +111,8 @@ public class NewTwineParser
 			//Find first set of delimiters
 			int specialTextStartIndex = 
 				startDelimiterStartIndex + startDelimiter.Length;
-			int specialTextEndIndex = -1000;
 
-			//In case they are the same, search for next instance of delimiter
-			if (startDelimiter == endDelimiter)
-			{
-				specialTextEndIndex = node.Text.IndexOf(
-				endDelimiter, node.Text.IndexOf(endDelimiter) + 1);
-			}
-			else
-			{
-				specialTextEndIndex = node.Text.IndexOf(endDelimiter);
-			}
+			int specialTextEndIndex = node.Text.IndexOf(endDelimiter, specialTextStartIndex + 1);
 
 			int specialTextLength = specialTextEndIndex - specialTextStartIndex;
 
@@ -105,4 +130,26 @@ public class NewTwineParser
 		}
 		return results;
 	}
+
+	/// <summary>
+	/// Returns list of removed text in node between delimiters.
+	/// </summary>
+	/// <param name="node">Node to edit on.</param>
+	/// <param name="startDelimiter">Start delimiter to look for.</param>
+	/// <param name="endDelimiter">End delimiter to look for.</param>
+	/// <returns>Returns list of removed text in node between 
+	/// delimiters.</returns>
+	private static List<string> GetRemovedSpecialText(
+		NewDialogueNode node, string startDelimiter, string endDelimiter)
+	{
+		List<string> result = new List<string>();
+		foreach (
+			(string text, int) removedTextTuple in 
+			RemoveSpecialText(node, startDelimiter, endDelimiter))
+		{
+			result.Add(removedTextTuple.text);
+		};
+		return result;
+	}
+
 }

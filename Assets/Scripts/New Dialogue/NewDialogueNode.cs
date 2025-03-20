@@ -8,7 +8,7 @@ public class NewDialogueNode
     public List<NewDialogueLink> Links = new List<NewDialogueLink>();
 
     //public List<DialogueFlag> Flags { get; set; }
-    public List<DialogueFlag> FlagsToChange { get; set; }
+    public List<NewDialogueFlag> FlagsToChange = new List<NewDialogueFlag>();
     
 
     public NewDialogueNode(string _name, string _text, List<JSONLinks> links)

@@ -20,7 +20,7 @@ public class NewDialogueGraph
     {
         foreach (NewDialogueNode node in Nodes)
         {
-            TwineParser.ParseNode(node);
+            NewTwineParser.ParseNode(node);
         }
     }
 }

@@ -75,7 +75,7 @@ public class NewDialogueFlag
 
 	public override string ToString()
 	{
-		return $"{Names} must be {IsTrue}";
+		return $"{Names}, {IsTrue}";
 	}
 
 	public override bool Equals(object obj)

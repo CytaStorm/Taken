@@ -7,7 +7,7 @@ public class NewDialogueLink
     /// <summary>
     /// Flags that must be fulfilled to accept link
     /// </summary>
-    public List<NewDialogueFlag> Flags = null;
+    public List<NewDialogueFlag> Flags = new List<NewDialogueFlag>();
 
     /// <summary>
     /// Name to show over link
