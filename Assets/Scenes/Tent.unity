@@ -1667,7 +1667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoImplementDialogue: 0
-  _twineJson: {fileID: 4900000, guid: 416411e7ec1d637488d5364cbe0baecb, type: 3}
+  _twineJson: {fileID: 4900000, guid: 271116262809f3741af7d390aa1233f9, type: 3}
   Interactables: []
   _UIManager: {fileID: 294575339}
   _destinationScene: 
