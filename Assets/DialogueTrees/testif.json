@@ -1,7 +1,7 @@
 {
   "passages": [
     {
-      "text": "t(if: $hasWood is true)[ [[testif]] ]\n(set: $hasWood to true)",
+      "text": "t\n(if: $hasWood is true)[ [[leave->testif]] ]\n(set: $hasWood to true)",
       "links": [
         {
           "name": "testif",
