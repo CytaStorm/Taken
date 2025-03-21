@@ -1172,14 +1172,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneController: {fileID: 0}
   _uiManager: {fileID: 3825737841949968205}
-  speakerNames:
+  _portrait: {fileID: 16436465327516741}
+  _speakerNames:
   - sallos
-  - akif
-  portraitTextures:
+  - jawni
+  _portraitTextures:
   - {fileID: 21300000, guid: 76763e343906654478a47473a9d4758e, type: 3}
   - {fileID: 21300000, guid: 578729b69c1adaf47a684885dc952eaf, type: 3}
-  portrait: {fileID: 16436465327516741}
-  speakerName: 
 --- !u!82 &4257148423929475218
 AudioSource:
   m_ObjectHideFlags: 0
