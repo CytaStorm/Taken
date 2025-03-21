@@ -8,23 +8,32 @@ public class PortraitUpdater : MonoBehaviour
     [SerializeField] SceneController _sceneController;
     [SerializeField] UIManager _uiManager;
 
-    // Treat these like a dictionary key/value pairing. One speaker per texture.
-    [SerializeField] List<string> speakerNames;
-    [SerializeField] List<Sprite> portraitTextures;
+    [SerializeField] Image _portrait;
 
-    public Image portrait;
-    private GameObject portraitObject;
-    private DialogueNode currentNode;
-    public string speakerName; // public for debugging only!
+    // Treat these like a dictionary key/value pairing. One speaker per texture.
+    [SerializeField] List<string> _speakerNames;
+    [SerializeField] List<Sprite> _portraitTextures;
+
+    
+    private GameObject _portraitObject;
+    private List<Transform> _portraitSiblingTransforms;
+    private DialogueNode _currentNode;
+    private string _speakerName; // make public for debugging only!
 
     // Start is called before the first frame update
     void Start()
     {
-        //portrait = GetComponent<Image>();
-        portraitObject = portrait.gameObject;
+        // Initialize global variables
+        _portraitObject = _portrait.gameObject;
+
+        _portraitSiblingTransforms = new List<Transform>();
+        foreach (Transform childTransform in _portraitObject.transform.parent)
+        {
+            _portraitSiblingTransforms.Add(childTransform);
+        }
 
         // Sanitize strings
-        foreach (string name in speakerNames)
+        foreach (string name in _speakerNames)
         {
             name.Trim();
             name.ToLower();
@@ -52,48 +61,44 @@ public class PortraitUpdater : MonoBehaviour
     private void UpdatePortraitSprite()
     {
         // Update current node
-        currentNode = _sceneController.Traverser.currentNode;
+        _currentNode = _sceneController.Traverser.currentNode;
 
-        if (currentNode == null)
+        if (_currentNode == null)
         {
             return;
         }
 
         // If current node contains a new speaker, then switch portraits
-        if (currentNode.Info.Contains(':'))
+        if (_currentNode.Info.Contains(':'))
         {
             // Get speaker name
-            int delimiterIndex = currentNode.Info.IndexOf(':');
-            speakerName = currentNode.Info.Substring(0, delimiterIndex);
+            int delimiterIndex = _currentNode.Info.IndexOf(':');
+            _speakerName = _currentNode.Info.Substring(0, delimiterIndex);
 
             // Remove xml tags
-            while (speakerName.Contains('<'))
+            while (_speakerName.Contains('<'))
             {
 
-                int startIndex = speakerName.IndexOf('<');
-                int endIndex = speakerName.IndexOf('>');
+                int startIndex = _speakerName.IndexOf('<');
+                int endIndex = _speakerName.IndexOf('>');
                 int count = endIndex - startIndex + 1;
-                speakerName = speakerName.Remove(startIndex, count);
+                _speakerName = _speakerName.Remove(startIndex, count);
 
             }
-            speakerName = speakerName.ToLower();
+            _speakerName = _speakerName.ToLower();
 
             // Find index of associated portrait
             int portraitIndex = 0;
-            for (int i = 0; i < speakerNames.Count; i++)
+            for (int i = 0; i < _speakerNames.Count; i++)
             {
-                if (speakerName == speakerNames[i])
+                if (_speakerName == _speakerNames[i])
                 {
                     portraitIndex = i;
                 }
             }
 
             // Switch portraits
-            // NOTE: if this doesn't work, try having a gameobject for each character portrait
-            // that enables/disables itself when the provided character is the speaker
-
-            //portrait.material = portraitMaterials[portraitIndex];
-            portrait.sprite = portraitTextures[portraitIndex];
+            _portrait.sprite = _portraitTextures[portraitIndex];
         }
         else
         {
@@ -106,15 +111,16 @@ public class PortraitUpdater : MonoBehaviour
     /// The border for the portrit is a sibling of the portrait, so
     /// this script makes sure it gets deactivated
     /// </summary>
-    /// <param name="setState"></param>
+    /// <param name="setState">"true" to set everything active,
+    /// "false" to set everything inactive</param>
     private void SetActivePortraitAndSiblings(bool setState)
     {
-        portraitObject.SetActive(setState);
+        _portraitObject.SetActive(setState);
 
         // Could be optimized by creating global references to every child
-        foreach (Transform childTransform in portraitObject.transform.parent)
+        foreach (Transform sibling in _portraitSiblingTransforms)
         {
-            childTransform.gameObject.SetActive(setState);
+            sibling.gameObject.SetActive(setState);
         }
     }
 }
