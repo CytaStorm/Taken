@@ -58,6 +58,7 @@ public class PortraitUpdater : MonoBehaviour
         {
             return;
         }
+
         // If current node contains a new speaker, then switch portraits
         if (currentNode.Info.Contains(':'))
         {
@@ -65,7 +66,7 @@ public class PortraitUpdater : MonoBehaviour
             int delimiterIndex = currentNode.Info.IndexOf(':');
             speakerName = currentNode.Info.Substring(0, delimiterIndex);
 
-            // Remove html tags
+            // Remove xml tags
             while (speakerName.Contains('<'))
             {
 
@@ -94,6 +95,11 @@ public class PortraitUpdater : MonoBehaviour
             //portrait.material = portraitMaterials[portraitIndex];
             portrait.sprite = portraitTextures[portraitIndex];
         }
+        else
+        {
+            // If there is no speaker, deactiviate the portrait and its siblings
+            SetActivePortraitAndSiblings(false);
+        }
     }
 
     /// <summary>
@@ -105,6 +111,7 @@ public class PortraitUpdater : MonoBehaviour
     {
         portraitObject.SetActive(setState);
 
+        // Could be optimized by creating global references to every child
         foreach (Transform childTransform in portraitObject.transform.parent)
         {
             childTransform.gameObject.SetActive(setState);
