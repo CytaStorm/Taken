@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class NewTwineParser
@@ -51,24 +52,42 @@ public class NewTwineParser
 		List<NewDialogueFlag> flags = ExtractFlags(ifs);
 
 		//Hooks
-		List<string> unparsedLinks = GetRemovedSpecialText(currentNode, "[ ", " ]");
-		List<List<string>> hooks = new List<List<string>>();
-		for (int i = 0; i < unparsedLinks.Count; i++)
-		{
-			string unparsedLink = unparsedLinks[i];
-			//each hook
-			hooks.Add(GetRemovedSpecialText(unparsedLink, "[[", "]]"));
-		}
+		List<string> unhookedLinks = 
+			GetRemovedSpecialText(currentNode, "[ ", " ]");
+		List<NewDialogueLink>[] parsedLinks = new List<NewDialogueLink>[unhookedLinks.Count];
 
-		List<(NewDialogueFlag, List<NewDialogueLink>)> conditionals =
-			new List<(NewDialogueFlag, List<NewDialogueLink>)>();
-
-		//UNDER CONSTRUCTION, PARSE HOOKS INTO LINKS NEXT
+		//Find matching link in currentNode, and add the flag to it
 		for (int i = 0; i < flags.Count; i++)
 		{
-			conditionals.Add((flags[i], ))
+			string unhookedLink = unhookedLinks[i];
+			parsedLinks[i] = new List<NewDialogueLink>();
+
+			//break up hooks to find
+			List<string[]> splitUnparsedLinks = new List<string[]>();
+			foreach (string unparsedLink in GetRemovedSpecialText(unhookedLink, "[[", "]]"))
+			{
+				splitUnparsedLinks.Add(unparsedLink.Split("->"));
+
+				NewDialogueLink matchingLink = 
+					currentNode.Links.FirstOrDefault(
+						link => link.Link == splitUnparsedLinks[i][1]);
+
+				matchingLink.Flags.Add(flags[i]);
+			}
 		}
-		return;
+
+		//UNDER CONSTRUCTION, PARSE HOOKS INTO LINKS
+		//List<NewDialogueLink>[] parsedLinks = new List<NewDialogueLink>[parsedLinks.Length];
+
+		////Find and update matching link in current node
+		//foreach (List<NewDialogueLink> hook in parsedLinks)
+		//{
+		//	foreach (string link in hook)
+		//	{
+		//		NewDialogueLink matchingLink = currentNode.Links.FirstOrDefault(
+		//			match => match.);
+		//	}
+		//}
 	}
 
 	/// <summary>
@@ -97,7 +116,7 @@ public class NewTwineParser
 		foreach (string setFlag in stringsToParse)
 		{
 			//Parse it
-			string[] splitStringToParse = stringsToParse[0].Split(' ');
+			string[] splitStringToParse = setFlag.Split(' ');
 
 			bool changeFlagTo;
 			if (splitStringToParse[2] == "true") 
@@ -113,25 +132,6 @@ public class NewTwineParser
 		}
 		return result;
 	}
-
-	//private static string ParseHookLinks(NewDialogueNode node)
-	//{
-	//	int nestingLevel = 1;
-	//		
-	//	int startDelimiterStartIndex = node.Text.IndexOf("[");
-
-	//	int currentIndex = startDelimiterStartIndex;
-	//	while (currentIndex != node.Text.Length - 1)
-	//	{
-	//		currentIndex++;
-	//		if (node.Text[currentIndex - 1].ToString() + 
-	//			node.Text[currentIndex].ToString() == "[[")
-	//		{
-	//			nestingLevel++;
-	//		}
-	//	}
-	//	
-	//}
 
 	/// <summary>
 	/// Removes text between two specified delimiters, along with the delimiters.

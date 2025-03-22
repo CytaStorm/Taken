@@ -1,98 +1,166 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public bool autoImplementDialogue = false;
-    private List<NewDialogueGraph> _graphs = new List<NewDialogueGraph>();
 
+    #region Dialogue Components
+    /// <summary>
+    /// All graphs in scene.
+    /// </summary>
     [Header("Dialogue Components")]
-    [SerializeField] private TextAsset _twineJson;
-    public List<DialogueFlag> DialogueFlags;
-    public List<GameObject> Interactables;
-    public UIManager _UIManager;
-    public DialogueTraverser Traverser;
-    private DialogueGraph _currentGraph;
+	private List<NewDialogueGraph> _graphs;
 
-    #region Scene Changing
-    [Header("Scene Changing")]
-    [SerializeField] private string _destinationScene;
-    [SerializeField] private float _fadeOutTime;
-    [HideInInspector] 
-    public bool FadingOut = false;
-    private float _fadeOutTimer = 0f;
+	/// <summary>
+	///	Twine json to read from.
+	/// </summary>
+	[Tooltip("Twine JSON to read from")] [SerializeField] 
+	private TextAsset _twineJson;
 
-    [Space(10)]
-    [SerializeField] private float _fadeInTime;
-    public bool FadesIn = true;
-    private float _fadeInTimer = 0f;
+	/// <summary>
+	/// Does the scene start with dialogue?
+	/// </summary>
+	public bool autoStartDialogue = false;
 
-    public delegate IEnumerator OnSceneChangeHandler(float seconds);
-    public event OnSceneChangeHandler onSceneChange;
-    #endregion
+	/// <summary>
+	/// Graph used for scene as a whole.
+	/// </summary>
+	private NewDialogueGraph _sceneGraph;
 
-    [Space(10)] [SerializeField] private Material _sallosMaterial;
+	/// <summary>
+	/// All dialogue flags in scene.
+	/// </summary>
+	public List<NewDialogueFlag> DialogueFlags;
 
-    [Header("DEBUG")] public bool DEBUG;
+	/// <summary>
+	/// All interactables in scene
+	/// </summary>
+	private GameObject[] _interactables;
 
-    public float FadeOutTimerPercent
-    {
-        get
-        {
-            return (_fadeOutTimer / (_fadeOutTime - 1.5f));
-        }
-    }
+	/// <summary>
+	/// UI Manager in Scene
+	/// </summary>
+	public UIManager _UIManager;
 
-    public float FadeInTimerPercent
-    {
-        get
-        {
-            return (_fadeInTimer / (_fadeInTime - 1.5f));
-        }
-    }
+	/// <summary>
+	/// Dialogue Traverser for traversing dialogue.
+	/// </summary>
+	public DialogueTraverser Traverser;
+	#endregion
+
+	#region Scene Changing
+	/// <summary>
+	/// Destination scene.
+	/// </summary>
+	[Header("Scene Changing")]
+	[Tooltip("Destination Scene")][SerializeField] private string _destinationScene;
+
+	/// <summary>
+	/// Time in seconds, to fade out
+	/// </summary>
+	[Tooltip("Time, in seconds, that it takes to fade out of scene.")]
+	[SerializeField]private float _fadeOutTime;
+
+	/// <summary>
+	/// Is the scene currently fading out?
+	/// </summary>
+	[HideInInspector] public bool FadingOut = false;
+
+	/// <summary>
+	/// Current time of fadeout.
+	/// </summary>
+	private float _fadeOutTimer = 0f;
+
+	/// <summary>
+	/// Time, in seconds, to fade in.
+	/// </summary>
+	[Space(10)]
+	[Tooltip("Time, in seconds, to fade in.")][SerializeField] private float _fadeInTime;
+
+	/// <summary>
+	/// Does the scene fade in?
+	/// </summary>
+	public bool FadesIn = true;
+
+	/// <summary>
+	/// Current time of fadein.
+	/// </summary>
+	private float _fadeInTimer = 0f;
+
+	public delegate IEnumerator OnSceneChangeHandler(float seconds);
+	public event OnSceneChangeHandler onSceneChange;
+	#endregion
+
+	[Space(10)] [SerializeField] private Material _sallosMaterial;
+
+	[Header("DEBUG")] public bool DEBUG;
+
+	public float FadeOutTimerPercent
+	{
+		get
+		{
+			return (_fadeOutTimer / (_fadeOutTime - 1.5f));
+		}
+	}
+
+	public float FadeInTimerPercent
+	{
+		get
+		{
+			return (_fadeInTimer / (_fadeInTime - 1.5f));
+		}
+	}
 
 
 
-    public bool IsDialogueAutoImplimented()
-    {
-        return autoImplementDialogue;
-    }
+	public bool IsDialogueAutoImplemented()
+	{
+		return autoStartDialogue;
+	}
 
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Start is called before the first frame update
+	void Start()
+	{
 		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 
-        JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
+		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
 
-        _graphs = jsonGraph.CreateGraphs();
+		_graphs = jsonGraph.CreateGraphs();
 
-		DialogueFlags = new List<DialogueFlag>();
-        Traverser = new DialogueTraverser(this, _UIManager);
+		DialogueFlags = new List<NewDialogueFlag>();
 
-        //sets up each interactable in scene
-        foreach (GameObject interactable in Interactables) 
-        {
-            InteractableScript interactScript = interactable.GetComponent<InteractableScript>();
-            interactScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);
-            
-        }
+		Traverser = new DialogueTraverser(this, _UIManager);
 
-        CreateAllDialogueFlags();
+		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 
-        // If dialogue is to be auto-implemented, set dialogue to that of first NPC
-        if (autoImplementDialogue)
-        {
-            UpdateCurrentGraph(Interactables[0].GetComponent<InteractableScript>());
-        }
+		//Find all interactable objects in scene
+		_interactables = GameObject.FindGameObjectsWithTag("Interactable");
+		//sets up each interactable in scene
+		foreach (GameObject interactable in _interactables) 
+		{
+			//Sets up graph for interactable
+			InteractableScript interactScript = interactable.GetComponent<InteractableScript>();
+			interactScript.Graph = _graphs.FirstOrDefault(graph => graph.Name == interactable.name);
+
+			interactScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);
+		}
+
+		CreateAllDialogueFlags();
+
+		// If dialogue is to be auto-implemented, set dialogue to that of first NPC
+		if (autoStartDialogue)
+		{
+			UpdateCurrentGraph(_interactables[0].GetComponent<InteractableScript>());
+		}
 
 		//Scene changing
 		onSceneChange += _UIManager.PauseAllButtons;
-		foreach (DialogueFlag flag in DialogueFlags)
+		foreach (NewDialogueFlag flag in DialogueFlags)
 		{
-			if (flag.Name == "end")
+			if (flag.Names.Contains("end"))
 			{
 				flag.onValueChange += delegate 
 				{
@@ -104,27 +172,27 @@ public class SceneController : MonoBehaviour
 		}
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (DEBUG)
-        {
-            foreach (DialogueFlag flag in DialogueFlags)
-            {
-                print(flag);
-            }
-        }
+	// Update is called once per frame
+	void Update()
+	{
+		if (DEBUG)
+		{
+			foreach (NewDialogueFlag flag in DialogueFlags)
+			{
+				print(flag);
+			}
+		}
 
-        #region Fades in/out
-        if (FadesIn)
-        {
-            _fadeInTimer = Mathf.Clamp(_fadeInTimer + Time.deltaTime, 0, _fadeInTime);
-        }
-        if (_fadeInTimer == _fadeInTime)
-        {
-            FadesIn = false;
-        }
-        
+		#region Fades in/out
+		if (FadesIn)
+		{
+			_fadeInTimer = Mathf.Clamp(_fadeInTimer + Time.deltaTime, 0, _fadeInTime);
+		}
+		if (_fadeInTimer == _fadeInTime)
+		{
+			FadesIn = false;
+		}
+		
 
 		if (FadingOut)
 		{
@@ -134,91 +202,68 @@ public class SceneController : MonoBehaviour
 				SceneManager.LoadScene(_destinationScene);
 			}
 		}
-        #endregion
-    }
+		#endregion
+	}
 
-    /// <summary>
-    /// Populates list of dialogue flags with every flag in every dialogue graph
-    /// in the scene
-    /// </summary>
-    private void CreateAllDialogueFlags()
-    {
-        // NOTE: there's way too much iteration in this, might try optimizing later
-
-        foreach (GameObject interactable in Interactables) 
-        { 
-            InteractableScript interactScript = interactable.GetComponent<InteractableScript>();
-            DialogueGraph graph = interactScript.Graph;
-
-            if (graph == null) { break; } // crash prevention
-
-            // For every dialogueFlag in every node, add to the sceneManager's list
-            // if it isn't already there
-            foreach (DialogueNode node in graph.Nodes)
-            {
-                foreach (DialogueFlag flag in node.Flags)
-                {
-                    if (!FlagListContainsMatch(flag))
-                    {                        
-                        DialogueFlags.Add(new DialogueFlag(flag.Name));
-                    }
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    /// Advance node according to choice
-    /// </summary>
-    /// <param name="choice">Index of destinationNode in current node</param>
-    public void GoToNode(int choice)
-    {
-		//print("go to node");
-        Traverser.GoToNode(choice);
-    }
-
-    public bool CheckTraversal(DialogueNode destinationNode)
-    {
-        return Traverser.CheckTraversal(destinationNode, DialogueFlags);
-    }
-
-    /// <summary>
-    /// Checks if there is already a flag in the scene's internal list with the same name
-    /// </summary>
-    /// <param name="flag">Flag to check against list</param>
-    /// <returns></returns>
-    private bool FlagListContainsMatch(DialogueFlag flag)
-    {
-        foreach(DialogueFlag listFlag in DialogueFlags)
-        {
-            if (flag.Name == listFlag.Name)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Update the currentGraph variable based on the npcScript the sceneManager gets an
-    /// UpdateSceneGraph call from
-    /// </summary>
-    /// <param name="npcScript">Script that the sceneManager recieved an event call from</param>
-    private void UpdateCurrentGraph(InteractableScript interactScript)
-    {
-        _currentGraph = interactScript.Graph;
-        Traverser.SetNewGraph(_currentGraph);
-
-		//Send new node info to UI Manager
-		_UIManager.NewDialogueNode(Traverser.currentNode);
-		//print(currentGraph.StartNode.Info);
-    }
-
-	public void ChangeDialogueFlag (DialogueFlag newFlag)
+	/// <summary>
+	/// Populates list of dialogue flags with every flag in every dialogue graph
+	/// in the scene
+	/// </summary>
+	private void CreateAllDialogueFlags()
 	{
-		foreach (DialogueFlag flag in DialogueFlags)
+		foreach (NewDialogueGraph graph in _graphs)
 		{
-			if (flag.MatchName(newFlag))
+			foreach (NewDialogueNode node in graph.Nodes)
+			{
+				foreach (NewDialogueFlag flag in node.FlagsToChange)
+				{
+					NewDialogueFlag match = DialogueFlags.FirstOrDefault(matchFlag => matchFlag.Names == flag.Names);
+					//if flag doesn't already exist
+					if (match == default(NewDialogueFlag))
+					{
+						DialogueFlags.Add(new NewDialogueFlag(flag.Names));
+					}
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Advance node according to choice
+	/// </summary>
+	/// <param name="choice">Index of destinationNode in current node</param>
+	public void GoToNode(int choice)
+	{
+		//print("go to node");
+		Traverser.GoToNode(choice);
+	}
+
+	public bool CheckTraversal(NewDialogueNode destinationNode)
+	{
+		//return Traverser.CheckTraversal(destinationNode, DialogueFlags);
+		return true;
+	}
+
+	/// <summary>
+	/// Update the currentGraph variable based on the npcScript the sceneManager gets an
+	/// UpdateSceneGraph call from
+	/// </summary>
+	/// <param name="npcScript">Script that the sceneManager recieved an event call from</param>
+	private void UpdateCurrentGraph(InteractableScript interactScript)
+	{
+		//_currentGraph = interactScript.Graph;
+		//Traverser.SetNewGraph(_currentGraph);
+
+		////Send new node info to UI Manager
+		//_UIManager.NewDialogueNode(Traverser.currentNode);
+		//print(currentGraph.StartNode.Info);
+	}
+
+	public void ChangeDialogueFlag (NewDialogueFlag newFlag)
+	{
+		foreach (NewDialogueFlag flag in DialogueFlags)
+		{
+			if (flag.Names.Equals(newFlag.Names)) 
 			{
 				flag.IsTrue = newFlag.IsTrue;
 				//print(flag);
@@ -226,8 +271,8 @@ public class SceneController : MonoBehaviour
 		}	
 	}
 
-    public void NextScene()
-    {
-        FadingOut = true;
-    }
+	public void NextScene()
+	{
+		FadingOut = true;
+	}
 }

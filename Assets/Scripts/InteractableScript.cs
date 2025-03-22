@@ -9,7 +9,7 @@ public class InteractableScript : MonoBehaviour
     [Header("References to other Gameobjects")]
     public UIManager _UIManager;
 
-    public DialogueGraph Graph { get; protected set; }
+    public NewDialogueGraph Graph;
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
     [Header("Interactivity")]

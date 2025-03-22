@@ -75,7 +75,13 @@ public class NewDialogueFlag
 
 	public override string ToString()
 	{
-		return $"{Names}, {IsTrue}";
+		string result = string.Empty;
+		foreach (string conditionName in Names)
+		{
+			result += $"{conditionName}, ";
+		}
+		result = result.Substring(0, result.Length - 2);
+		return $"{result}, {IsTrue}";
 	}
 
 	public override bool Equals(object obj)

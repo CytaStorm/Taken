@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine.Rendering;
 [Serializable]
 public class JSONGraph
@@ -34,6 +35,7 @@ public class JSONGraph
 			}
 		}
 
+		//actually link nodes
 		foreach (NewDialogueGraph graph in dialogueGraphs)
 		{
 			AddAllLinkedPassages(graph);
@@ -69,6 +71,17 @@ public class JSONGraph
 				graph.Nodes.Add(new NewDialogueNode(nextPassage.name, nextPassage.text, nextPassage.links));
 				nodeQueue.Enqueue(graph.Nodes.Last());
 				passages.Remove(nextPassage);
+			}
+		}
+
+		//Make connections between nodes
+		foreach (NewDialogueNode node in graph.Nodes)
+		{
+			foreach (NewDialogueLink link in node.Links)
+			{
+				link.ConnectedNode = 
+					graph.Nodes.FirstOrDefault(
+						connection => connection.Name == link.Link);
 			}
 		}
 	}

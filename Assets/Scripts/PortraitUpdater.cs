@@ -12,7 +12,7 @@ public class PortraitUpdater : MonoBehaviour
     [SerializeField] List<Sprite> portraitTextures;
 
     public Image portrait;
-    private DialogueNode currentNode;
+    private NewDialogueNode currentNode;
     public string speakerName; // public for debugging only!
 
     // Start is called before the first frame update
@@ -38,11 +38,11 @@ public class PortraitUpdater : MonoBehaviour
 			return;
 		}
         // If current node contains a new speaker, then switch portraits
-        if (currentNode.Info.Contains(':'))
+        if (currentNode.Text.Contains(':'))
         {
             // Get speaker name
-            int delimiterIndex = currentNode.Info.IndexOf(':');            
-            speakerName = currentNode.Info.Substring(0, delimiterIndex);       
+            int delimiterIndex = currentNode.Text.IndexOf(':');            
+            speakerName = currentNode.Text.Substring(0, delimiterIndex);       
             
             // Remove html tags
             while (speakerName.Contains('<'))

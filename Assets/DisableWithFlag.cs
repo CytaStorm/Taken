@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DisableWithFlag : MonoBehaviour
 {
-    public string flagName;
+    public List<string> flagName;
     public SceneController sceneManager;
     public GameObject targetObject;
 
@@ -21,9 +21,9 @@ public class DisableWithFlag : MonoBehaviour
         if (targetObject.activeSelf == true)
         {
             // Search SceneTwoManager for matching flag
-            foreach (DialogueFlag flag in sceneManager.DialogueFlags)
+            foreach (NewDialogueFlag flag in sceneManager.DialogueFlags)
             {
-                if ((flag.Name == flagName) && (flag.IsTrue))
+                if ((flag.Names.Equals(flagName)) && (flag.IsTrue))
                 {
                     targetObject.SetActive(false);
                 }

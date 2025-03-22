@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-        if (_sceneManager.autoImplementDialogue)
+        if (_sceneManager.autoStartDialogue)
         {
             CurrentUIMode = UIMode.Dialogue;
             _dialogueUI.SetActive(true);
@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
 	}
 
 	//Player traversed to a new Dialogue node
-	public void NewDialogueNode(DialogueNode dialogueNode)
+	public void NewDialogueNode(NewDialogueNode dialogueNode)
 	{
 		//If there is a previous textBox, change its color to gray
 		if (_mostRecentTextContainer != null)
@@ -160,7 +160,7 @@ public class UIManager : MonoBehaviour
 		//}
 
 		//Add dialogue
-		_textDisplay.text += dialogueNode.Info;
+		_textDisplay.text += dialogueNode.Text;
 
 		while (_dialogueUI.activeInHierarchy == false ||
 			_dialogueUI.activeSelf == false)
@@ -199,12 +199,12 @@ public class UIManager : MonoBehaviour
 		CreateButtons(dialogueNode);
 	}
 
-	private void CreateButtons(DialogueNode dialogueNode)
+	private void CreateButtons(NewDialogueNode dialogueNode)
 	{
 		//Check links
 		for (int i = 0; i < dialogueNode.Links.Count; i++)
 		{
-			DialogueNode linkedNode = dialogueNode.Links[i];
+			NewDialogueNode linkedNode = dialogueNode.Links[i].ConnectedNode;
 
 			if (_sceneManager.CheckTraversal(linkedNode))
 			{
@@ -212,7 +212,7 @@ public class UIManager : MonoBehaviour
                 GameObject newestButton =
                     Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
                 _buttons.Add(newestButton);
-                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.NodeName;
+                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.Name;
 
                 int choiceIndex = i;
                 Button buttonComponent = newestButton.GetComponent<Button>();

@@ -1,16 +1,21 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
 
 public class NewDialogueNode
 {
     public string Name { get; set; }
     public string Text { get; set; }
+
     public List<NewDialogueLink> Links = new List<NewDialogueLink>();
 
     //public List<DialogueFlag> Flags { get; set; }
     public List<NewDialogueFlag> FlagsToChange = new List<NewDialogueFlag>();
-    
 
+    public delegate void OnEnterHandler();
+    
+    public event OnEnterHandler onEnter;
+    
     public NewDialogueNode(string _name, string _text, List<JSONLinks> links)
     {
         Name = _name;

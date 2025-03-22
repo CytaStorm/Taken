@@ -11,6 +11,10 @@ public class NewDialogueGraph
     public List<JSONPassage> passages;
     public List<NewDialogueNode> Nodes = new List<NewDialogueNode>();
 
+    public NewDialogueNode StartNode;
+
+    public bool traversed;
+
     public NewDialogueGraph(string name)
     {
         Name = name;
@@ -22,5 +26,21 @@ public class NewDialogueGraph
         {
             NewTwineParser.ParseNode(node);
         }
+    }
+
+    public void ReassignStart()
+    {
+        NewDialogueNode newStart;
+
+        // If there are no links, don't reassign start
+        if (StartNode.Links.Count == 0 || StartNode.Name == "newIntro") { return; }
+
+        // find the next viable start node by acessing the first start's link
+        newStart = StartNode.Links[0].ConnectedNode;
+
+        // reassign start
+        Nodes.Remove(StartNode);
+        newStart.Name = "newIntro";
+        StartNode = newStart;
     }
 }

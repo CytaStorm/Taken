@@ -20,7 +20,7 @@ public class SceneThreeCutscene : MonoBehaviour
 
     // Event trigger variables
     public List<string> flagNames;
-    private List<DialogueFlag> eventFlags;
+    private List<NewDialogueFlag> eventFlags;
     private double timer;
 
     // Actor components
@@ -43,12 +43,12 @@ public class SceneThreeCutscene : MonoBehaviour
         timer = 0f;
 
         //Create eventFlags list based on string list flagNames
-        eventFlags = new List<DialogueFlag>();
+        eventFlags = new List<NewDialogueFlag>();
         foreach(string name in flagNames)
         {
-            foreach (DialogueFlag flag in SceneController.DialogueFlags) 
+            foreach (NewDialogueFlag flag in SceneController.DialogueFlags) 
             {
-                if (flag.Name != name) continue;
+                if (flag.Names.Equals(name)) continue;
 
                 eventFlags.Add(flag);
             }
