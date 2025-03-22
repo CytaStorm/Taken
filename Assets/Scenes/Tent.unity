@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 24224236067700799, guid: f122e70e08687594386cd086b7b62d44, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 9136164056533882495, guid: f122e70e08687594386cd086b7b62d44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1253,9 +1257,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218951768}
+  - component: {fileID: 1218951769}
   m_Layer: 0
   m_Name: pinecones
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1276,6 +1281,22 @@ Transform:
   - {fileID: 1096324194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218951769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218951767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 294575339}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList: []
 --- !u!1 &1236709003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,9 +1306,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1236709004}
+  - component: {fileID: 1236709005}
   m_Layer: 0
   m_Name: branches
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1308,6 +1330,22 @@ Transform:
   - {fileID: 903048406}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1236709005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236709003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 294575339}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList: []
 --- !u!1 &1305066569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,9 +1469,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1325810162}
+  - component: {fileID: 1325810163}
   m_Layer: 0
   m_Name: deadTree
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1454,6 +1493,22 @@ Transform:
   - {fileID: 1673353572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1325810163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325810161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UIManager: {fileID: 294575339}
+  radius: 3
+  hasLimitedInteractions: 1
+  _materialList: []
 --- !u!1001 &1404164877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1666,9 +1721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3d31501361dd54ab8db17a4defede0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoImplementDialogue: 0
-  _twineJson: {fileID: 4900000, guid: 271116262809f3741af7d390aa1233f9, type: 3}
-  Interactables: []
+  _twineJson: {fileID: 4900000, guid: 416411e7ec1d637488d5364cbe0baecb, type: 3}
+  autoStartDialogue: 0
   _UIManager: {fileID: 294575339}
   _destinationScene: 
   _fadeOutTime: 0
