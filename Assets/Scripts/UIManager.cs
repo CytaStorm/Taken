@@ -208,6 +208,19 @@ public class UIManager : MonoBehaviour
 
 			if (_sceneManager.CheckTraversal(linkedNode))
 			{
+				//Create exit button
+				if (linkedNode.Tags != null && 
+					linkedNode.Tags.Count != 0 &&
+					linkedNode.Tags.Contains("exit")){
+					GameObject exitButton =
+						Instantiate(_exitButton, _dialogueUI.transform, true);
+					_buttons.Add(exitButton);
+					Button exitButtonComponent = exitButton.GetComponent<Button>();
+					exitButtonComponent.onClick.AddListener(PlaySound);
+					exitButtonComponent.onClick.AddListener(ClearButtons);
+					exitButtonComponent.onClick.AddListener(ClearText);
+					exitButtonComponent.onClick.AddListener(ChangeToGameplay);
+				}
                 //create button for each link
                 GameObject newestButton =
                     Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
@@ -223,18 +236,18 @@ public class UIManager : MonoBehaviour
         }
 
 		//Add exit button
-		if (_buttons.Count == 0 && !_sceneManager.FadingOut) 
-		{
-            GameObject exitButton =
-                Instantiate(_exitButton, _dialogueUI.transform, true);
-            _buttons.Add(exitButton);
+		//if (_buttons.Count == 0 && !_sceneManager.FadingOut) 
+		//{
+        //    GameObject exitButton =
+        //        Instantiate(_exitButton, _dialogueUI.transform, true);
+        //    _buttons.Add(exitButton);
 
-            Button buttonComponent = exitButton.GetComponent<Button>();
-            buttonComponent.onClick.AddListener(PlaySound);
-            buttonComponent.onClick.AddListener(ClearButtons);
-            buttonComponent.onClick.AddListener(ClearText);
-            buttonComponent.onClick.AddListener(ChangeToGameplay);
-        }
+        //    Button buttonComponent = exitButton.GetComponent<Button>();
+        //    buttonComponent.onClick.AddListener(PlaySound);
+        //    buttonComponent.onClick.AddListener(ClearButtons);
+        //    buttonComponent.onClick.AddListener(ClearText);
+        //    buttonComponent.onClick.AddListener(ChangeToGameplay);
+        //}
 	}
 
 	private void PlaySound()

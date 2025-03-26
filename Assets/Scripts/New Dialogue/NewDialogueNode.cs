@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class NewDialogueNode
 {
+    /// <summary>
+    /// Name of Node
+    /// </summary>
     public string Name { get; set; }
+    /// <summary>
+    /// Text inside node.
+    /// </summary>
     public string Text { get; set; }
+    /// <summary>
+    /// Tag of node
+    /// </summary>
+    public List<string> Tags { get; set; }
 
     public List<NewDialogueLink> Links = new List<NewDialogueLink>();
 
-    //public List<DialogueFlag> Flags { get; set; }
     public List<NewDialogueFlag> FlagsToChange = new List<NewDialogueFlag>();
 
     public delegate void OnEnterHandler();

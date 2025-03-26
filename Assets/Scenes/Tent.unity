@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3d31501361dd54ab8db17a4defede0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _twineJson: {fileID: 4900000, guid: 416411e7ec1d637488d5364cbe0baecb, type: 3}
+  _twineJson: {fileID: 4900000, guid: 271116262809f3741af7d390aa1233f9, type: 3}
   autoStartDialogue: 1
   _UIManager: {fileID: 294575339}
   _destinationScene: 
