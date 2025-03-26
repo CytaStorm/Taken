@@ -7,8 +7,8 @@ public class DialogueTraverser
     //objects
     public SceneController sceneManager;
     public UIManager _UIManager;
-    [SerializeField] NewDialogueGraph graph;
-    public NewDialogueNode currentNode;
+    public NewDialogueGraph CurrentGraph;
+    public NewDialogueNode CurrentNode;
     /*
     [SerializeField] GameObject buttonPrefab;
     [SerializeField] GameObject parentOfButton;
@@ -36,16 +36,17 @@ public class DialogueTraverser
     /// <param name="graph"></param>
     public void SetNewGraph(NewDialogueGraph graph)
     {
-        this.graph = graph;
-        if (graph.traversed == false)
-        {
-            graph.traversed = true;
-        }
-        else
-        {
-            graph.ReassignStart();
-        }
-        currentNode = graph.StartNode;
+        //Reassign start node
+        //this.graph = graph;
+        //if (graph.traversed == false)
+        //{
+        //    graph.traversed = true;
+        //}
+        //else
+        //{
+        //    graph.ReassignStart();
+        //}
+        CurrentNode = graph.StartNode;
 		GoToSelf();
     }
 
@@ -54,7 +55,7 @@ public class DialogueTraverser
 	/// </summary>
 	private void GoToSelf()
 	{
-		foreach (NewDialogueFlag newFlag in currentNode.FlagsToChange) 
+		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
 		{
 			sceneManager.ChangeDialogueFlag(newFlag);
 		}
@@ -67,15 +68,15 @@ public class DialogueTraverser
     /// <param name="choice"></param>
     public void GoToNode(int choice)
     {
-		currentNode = currentNode.Links[choice].ConnectedNode;
+		CurrentNode = CurrentNode.Links[choice].ConnectedNode;
 
-		foreach (NewDialogueFlag newFlag in currentNode.FlagsToChange) 
+		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
 		{
 			sceneManager.ChangeDialogueFlag(newFlag);
 		}
 
         //Send currentNode info to UI Manager
-		_UIManager.NewDialogueNode(currentNode);
+		_UIManager.NewDialogueNode(CurrentNode);
     }
 
     /// <summary>

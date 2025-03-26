@@ -1,7 +1,7 @@
 {
     "passages": [
         {
-            "text": "Your legs are burning, and your breathing is labored. But you and Sallos have finished pitching the tent.\n\n[[Finally, we're done! The tent is all set up! I need a break!->worse]]\n\n(set: $kindlingQuest to false)\\\n(set: $logQuest to false)\\\n(set: $hasKindling to false)\\\n(set: $hasWood to false)",
+            "text": "Your legs are burning, and your breathing is labored. But you and Sallos have finished pitching the tent.\n[[Finally, we're done! The tent is all set up! I need a break!->worse]]\n\n(set: $kindlingQuest to false)\n(set: $logQuest to false)\n(set: $hasKindling to false)\n(set: $hasWood to false)",
             "links": [
                 {
                     "name": "Finally, we're done! The tent is all set up! I need a break!",

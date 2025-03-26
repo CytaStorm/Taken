@@ -150,10 +150,12 @@ public class SceneController : MonoBehaviour
 
 		CreateAllDialogueFlags();
 
-		// If dialogue is to be auto-implemented, set dialogue to that of first NPC
+		// If scene dialogue is to be auto-implemented, set dialogue to that of first NPC
 		if (autoStartDialogue)
 		{
-			UpdateCurrentGraph(_interactables[0].GetComponent<InteractableScript>());
+
+			ActivateSceneDialogue();
+			//UpdateCurrentGraph(_interactables[0].GetComponent<InteractableScript>());
 		}
 
 		//Scene changing
@@ -203,6 +205,15 @@ public class SceneController : MonoBehaviour
 			}
 		}
 		#endregion
+	}
+
+	private void ActivateSceneDialogue()
+	{
+		Traverser.SetNewGraph(_sceneGraph);
+
+		//Send new node info to UI Manager
+		_UIManager.NewDialogueNode(Traverser.CurrentNode);
+		print(Traverser.CurrentGraph.StartNode.Text);
 	}
 
 	/// <summary>

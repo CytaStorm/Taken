@@ -19,6 +19,8 @@ public class NewTwineParser
 		//Parse flags that entry to this node causes
 		AddNewChangeFlags(node);
 
+		//Clear any remaining links
+		RemoveSpecialText(node, "\n[[", "]]");
 		return;
 	}
 
@@ -183,7 +185,32 @@ public class NewTwineParser
 	private static List<(string specialText, int removedStartIndex)> RemoveSpecialText(
 		NewDialogueNode node, string startDelimiter, string endDelimiter)
 	{
-		return RemoveSpecialText(node.Text, startDelimiter, endDelimiter);
+		List<(string specialText, int removedStartIndex)> results = 
+			new List<(string specialText, int removedStartIndex)>();
+		int startDelimiterStartIndex = node.Text.IndexOf(startDelimiter);
+		while (startDelimiterStartIndex != -1)
+		{
+			//Find first set of delimiters
+			int specialTextStartIndex = 
+				startDelimiterStartIndex + startDelimiter.Length;
+
+			int specialTextEndIndex = node.Text.IndexOf(endDelimiter, specialTextStartIndex + 1);
+
+			int specialTextLength = specialTextEndIndex - specialTextStartIndex;
+
+			string specialText = node.Text.Substring(
+				specialTextStartIndex, specialTextLength);
+			results.Add((specialText, startDelimiterStartIndex));
+
+			node.Text = node.Text.Remove(
+				specialTextStartIndex - startDelimiter.Length,
+				specialText.Length +
+				startDelimiter.Length +
+				endDelimiter.Length);
+
+			startDelimiterStartIndex = node.Text.IndexOf(startDelimiter);
+		}
+		return results;
 	}
 
 	/// <summary>

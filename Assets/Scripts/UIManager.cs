@@ -212,7 +212,7 @@ public class UIManager : MonoBehaviour
                 GameObject newestButton =
                     Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
                 _buttons.Add(newestButton);
-                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.Name;
+                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = dialogueNode.Links[i].Name;
 
                 int choiceIndex = i;
                 Button buttonComponent = newestButton.GetComponent<Button>();

@@ -31,7 +31,7 @@ public class PortraitUpdater : MonoBehaviour
     void Update()
     {
         // Update current node
-        currentNode = _sceneController.Traverser.currentNode;
+        currentNode = _sceneController.Traverser.CurrentNode;
 
 		if (currentNode == null)
 		{

@@ -22,6 +22,7 @@ public class NewDialogueGraph
 
     public void ParseNodes()
     {
+        StartNode = Nodes[0];
         foreach (NewDialogueNode node in Nodes)
         {
             NewTwineParser.ParseNode(node);
