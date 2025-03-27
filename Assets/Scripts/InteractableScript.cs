@@ -15,7 +15,7 @@ public class InteractableScript : MonoBehaviour
     [Header("Interactivity")]
     public float radius = 3f;
     protected bool hasInteracted = false;
-    protected bool isFocus = false;       
+    public bool isFocus = false;       
 
     public bool hasLimitedInteractions = true;
     protected bool canInteract = true;    

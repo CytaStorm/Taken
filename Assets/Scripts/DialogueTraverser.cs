@@ -46,7 +46,9 @@ public class DialogueTraverser
         //{
         //    graph.ReassignStart();
         //}
+        CurrentGraph = graph;
         CurrentNode = graph.StartNode;
+		_UIManager.NewDialogueNode(CurrentNode);
 		GoToSelf();
     }
 

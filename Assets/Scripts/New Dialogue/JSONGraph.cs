@@ -26,7 +26,7 @@ public class JSONGraph
 					dialogueGraphs[dialogueGraphs.Count - 1];
 
 				//Add start node
-				latestGraph.Nodes.Add(new NewDialogueNode(passage.name, passage.text, passage.links));
+				latestGraph.Nodes.Add(new NewDialogueNode(passage.name, passage.text, passage.links, passage.tags));
 				latestGraph.Name = latestGraph.Nodes[0].Name;
 
 				//Remove start node from JSON passage list
@@ -68,7 +68,7 @@ public class JSONGraph
 				if (nextPassage == null) continue;
 
 				//Found passage
-				graph.Nodes.Add(new NewDialogueNode(nextPassage.name, nextPassage.text, nextPassage.links));
+				graph.Nodes.Add(new NewDialogueNode(nextPassage.name, nextPassage.text, nextPassage.links, nextPassage.tags));
 				nodeQueue.Enqueue(graph.Nodes.Last());
 				passages.Remove(nextPassage);
 			}

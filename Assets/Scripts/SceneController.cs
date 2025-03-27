@@ -126,14 +126,11 @@ public class SceneController : MonoBehaviour
 	{
 		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 
+		//Setup graphs
 		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
-
 		_graphs = jsonGraph.CreateGraphs();
-
 		DialogueFlags = new List<NewDialogueFlag>();
-
 		Traverser = new DialogueTraverser(this, _UIManager);
-
 		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 
 		//Find all interactable objects in scene
@@ -211,9 +208,7 @@ public class SceneController : MonoBehaviour
 	{
 		Traverser.SetNewGraph(_sceneGraph);
 
-		//Send new node info to UI Manager
-		_UIManager.NewDialogueNode(Traverser.CurrentNode);
-		print(Traverser.CurrentGraph.StartNode.Text);
+		//print(Traverser.CurrentGraph.StartNode.Text);
 	}
 
 	/// <summary>
@@ -262,12 +257,7 @@ public class SceneController : MonoBehaviour
 	/// <param name="npcScript">Script that the sceneManager recieved an event call from</param>
 	private void UpdateCurrentGraph(InteractableScript interactScript)
 	{
-		//_currentGraph = interactScript.Graph;
-		//Traverser.SetNewGraph(_currentGraph);
-
-		////Send new node info to UI Manager
-		//_UIManager.NewDialogueNode(Traverser.currentNode);
-		//print(currentGraph.StartNode.Info);
+		Traverser.SetNewGraph(interactScript.Graph);
 	}
 
 	public void ChangeDialogueFlag (NewDialogueFlag newFlag)

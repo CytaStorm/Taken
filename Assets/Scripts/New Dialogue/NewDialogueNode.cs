@@ -15,17 +15,17 @@ public class NewDialogueNode
     /// <summary>
     /// Tag of node
     /// </summary>
-    public List<string> Tags { get; set; }
+    public List<string> Tags = new List<string>();
 
     public List<NewDialogueLink> Links = new List<NewDialogueLink>();
 
     public List<NewDialogueFlag> FlagsToChange = new List<NewDialogueFlag>();
 
     public delegate void OnEnterHandler();
-    
+
     public event OnEnterHandler onEnter;
-    
-    public NewDialogueNode(string _name, string _text, List<JSONLinks> links)
+
+    public NewDialogueNode(string _name, string _text, List<JSONLinks> links, List<string> tags)
     {
         Name = _name;
         Text = _text;
@@ -34,6 +34,11 @@ public class NewDialogueNode
         {
             //Temporary link, must fill out with actual details on parse
             Links.Add(new NewDialogueLink(link.name, link.link));
+        }
+
+        foreach (string tag in tags)
+        {
+            Tags.Add(tag);
         }
     }
 

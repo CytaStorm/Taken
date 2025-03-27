@@ -39,7 +39,7 @@
             ]
         },
         {
-            "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Leave->exitCut]]",
+            "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Leave->exitCut]]\n(set: $hasWood to true)",
             "links": [
                 {
                     "name": "Leave",
@@ -55,7 +55,7 @@
             }
         },
         {
-            "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n\n[[Cut some logs->cut]][(set: $hasWood to true)]",
+            "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n[[Cut some logs->cut]]",
             "links": [
                 {
                     "name": "Cut some logs",
@@ -756,7 +756,7 @@
             ]
         },
         {
-            "text": "(set: $kindlingQuest to true)",
+            "text": "\n(set: $kindlingQuest to true)",
             "name": "exitKindlingQuest",
             "pid": "46",
             "position": {
