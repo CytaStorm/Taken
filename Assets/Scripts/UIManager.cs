@@ -288,6 +288,7 @@ public class UIManager : MonoBehaviour
 		//Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
+		PlayerController.PlayerControl.RemoveFocus();
 	}
 
 	public void UnPause()

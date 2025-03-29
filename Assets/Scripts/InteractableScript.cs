@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;  // Import the AI Navigation namespace
@@ -13,13 +14,12 @@ public class InteractableScript : MonoBehaviour
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
     [Header("Interactivity")]
-    public float radius = 3f;
     protected bool hasInteracted = false;
-    public bool isFocus = false;       
+    public bool isFocus { get { return PlayerController.PlayerControl.Focus == this; } }
 
     public bool hasLimitedInteractions = true;
     protected bool canInteract = true;    
-    protected int interactionCount = 0;
+    public int interactionCount = 0;
     public GameObject InteractionPoint;
 
 	[Header("Materials")]
@@ -33,11 +33,6 @@ public class InteractableScript : MonoBehaviour
         //Graph = new DialogueGraph(twineFile);
         UpdateSceneGraph = new UnityEvent<InteractableScript>();
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
-    }
-
-    protected void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
     public virtual void Interact()
@@ -70,34 +65,29 @@ public class InteractableScript : MonoBehaviour
 
 		float distance = Vector3.Distance(
 			PlayerController.PlayerControl.gameObject.transform.position,
-			gameObject.transform.position);
+			InteractionPoint.transform.position);
 
 		// If its able to be interacted with, Interact
-		if (distance <= radius && !hasInteracted)
+		if (distance < 0.1 && isFocus && _UIManager.CurrentUIMode == UIMode.Gameplay)
 		{
 			if (hasLimitedInteractions)
 			{
 				if (interactionCount > 0) { return; }
 				else {interactionCount++; }
 			}
+            //hasInteracted = true;
             Interact();
-		}
-		else if (distance > radius)
-		{
-			hasInteracted = false;
 		}
     }
 
-	public void OnDefocused()
-	{
-		isFocus = false;
-		hasInteracted = false;
-	}
+	//public void OnDefocused()
+	//{
+	//	hasInteracted = false;
+	//}
 
-	public void OnFocused()
-	{
-		isFocus = true;
-	}
+	//public void OnFocused()
+	//{
+	//}
 
     private void OnMouseEnter()
     {
