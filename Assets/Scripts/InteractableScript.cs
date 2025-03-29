@@ -80,15 +80,6 @@ public class InteractableScript : MonoBehaviour
 		}
     }
 
-	//public void OnDefocused()
-	//{
-	//	hasInteracted = false;
-	//}
-
-	//public void OnFocused()
-	//{
-	//}
-
     private void OnMouseEnter()
     {
 		//Debug.Log("mouse entered");
