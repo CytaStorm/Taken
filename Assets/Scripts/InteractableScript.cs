@@ -20,6 +20,7 @@ public class InteractableScript : MonoBehaviour
     public bool hasLimitedInteractions = true;
     protected bool canInteract = true;    
     protected int interactionCount = 0;
+    public GameObject InteractionPoint;
 
 	[Header("Materials")]
 	[SerializeField] protected List<Material> _materialList;

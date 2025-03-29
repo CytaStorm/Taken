@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Animator _animator;
 
 	private InteractableScript focus;
-	private Transform target;
+	private InteractableScript _target;
 
 	//PROPERTIES
 	/// <summary>
@@ -56,15 +56,22 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (target != null)
+		if (_target != null)
 		{
-			_agent.SetDestination(target.position);
+			_agent.SetDestination(_target.InteractionPoint.transform.position);
+
+			if (transform.position == _target.InteractionPoint.transform.position)
+			{
+				Vector3 direction = _target.transform.position - transform.position;
+				Quaternion targetRotation = Quaternion.LookRotation(direction);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 150 * Time.deltaTime);
+			}
 		}
 		//Control eulyss walking anim
 		_animator.SetFloat("VelocityPercent", _agent.velocity.magnitude / _agent.speed);
 	}
 
-	public void OnMoveInteract(InputAction.CallbackContext ctx)
+    public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{
 		if (!ctx.performed) return;
 		Vector3 mousePos = Mouse.current.position.ReadValue();
@@ -118,13 +125,13 @@ public class PlayerController : MonoBehaviour
 
 	public void FollowTarget (InteractableScript newTarget)
 	{
-		_agent.stoppingDistance = newTarget.radius * 0.8f; // stop just inside radius
-		target = newTarget.transform;
+		//_agent.stoppingDistance = newTarget.radius * 0.8f; // stop just inside radius
+		_target = newTarget;
 	}
 
 	public void StopFollowTarget()
 	{
-		target = null;
+		_target = null;
 		_agent.stoppingDistance = 0;
 	}
 
