@@ -5,7 +5,7 @@ public class DialogueTraverser
 {
     //FIELDS
     //objects
-    public SceneController sceneManager;
+    public SceneController SceneController;
     public UIManager _UIManager;
     public NewDialogueGraph CurrentGraph;
     public NewDialogueNode CurrentNode;
@@ -25,7 +25,7 @@ public class DialogueTraverser
     /// <param name="graph"></param>
     public DialogueTraverser (SceneController sceneManager, UIManager _UIManager)
     {
-        this.sceneManager = sceneManager;
+        this.SceneController = sceneManager;
         this._UIManager = _UIManager;
     }
 
@@ -59,7 +59,7 @@ public class DialogueTraverser
 	{
 		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
 		{
-			sceneManager.ChangeDialogueFlag(newFlag);
+			SceneController.ChangeDialogueFlag(newFlag);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class DialogueTraverser
 
 		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
 		{
-			sceneManager.ChangeDialogueFlag(newFlag);
+			SceneController.ChangeDialogueFlag(newFlag);
 		}
 
         //Send currentNode info to UI Manager
@@ -87,25 +87,16 @@ public class DialogueTraverser
     /// <param name="destinationNode">Node that is to be traveled to</param>
     /// <param name="flags">List of all possible conditionals in the scene</param>
     /// <returns>True if all conditionals are met, false otheriwse</returns>
-    public bool CheckTraversal(DialogueNode destinationNode, List<DialogueFlag> flags)
+    public bool CheckTraversal(List<NewDialogueFlag> flagsToCheck)
     {        
         // First, find every conditional in the scene's list of dialogueFlags that corresponds
         // to a conditional in the distination node
         // Then, check if any of these nodes don't match. Return false if so.
-        foreach (DialogueFlag destinationFlag in destinationNode.Flags) 
+        foreach (NewDialogueFlag destinationFlag in flagsToCheck) 
         {
-            foreach (DialogueFlag flag in flags) 
+            if (!SceneController.DialogueFlags.Contains(destinationFlag))
             {
-                if (flag.MatchName(destinationFlag))
-                { 
-                    if (flag != destinationFlag)
-                    {
-                        // Print error message to console
-                        //Debug.Log($"Unable to traverse because condition {flag.Name} wasn't met");
-
-                        return false;                        
-                    }
-                }
+                return false;
             }
         }
 

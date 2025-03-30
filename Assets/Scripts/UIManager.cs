@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 	public UIMode CurrentUIMode;
 
 	[Header("Other GameObjects")]
-	[SerializeField] private SceneController _sceneManager;
+	[SerializeField] private SceneController _sceneController;
 	[SerializeField] private PlayerInput _input;
 
 	[Header("Audio")]
@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-        if (_sceneManager.autoStartDialogue)
+        if (_sceneController.autoStartDialogue)
         {
             CurrentUIMode = UIMode.Dialogue;
             _dialogueUI.SetActive(true);
@@ -204,11 +204,15 @@ public class UIManager : MonoBehaviour
 		//Check links
 		for (int i = 0; i < dialogueNode.Links.Count; i++)
 		{
-			NewDialogueNode linkedNode = dialogueNode.Links[i].ConnectedNode;
+			NewDialogueLink link = dialogueNode.Links[i];
+			NewDialogueNode linkedNode = link.ConnectedNode;
 
-			if (_sceneManager.CheckTraversal(linkedNode))
+			if (_sceneController.CheckTraversal(link.Flags))
 			{
-                int choiceIndex = i;
+				//Local variable is used here n/c delegates will capture full local context...
+				//means that if i is used directly the delegates will capture i++ because
+				//the enclosing for loop will add 1 to i at the end of each loop.
+				int choiceIndex = i;
 
 				//Create exit button, if it exists
 				if (linkedNode.Tags != null && 
@@ -217,25 +221,26 @@ public class UIManager : MonoBehaviour
 					GameObject exitButton =
 						Instantiate(_exitButton, _dialogueUI.transform, true);
 					_buttons.Add(exitButton);
-					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = dialogueNode.Links[i].Name;
+					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
 					Button exitButtonComponent = exitButton.GetComponent<Button>();
 
-					exitButtonComponent.onClick.AddListener(delegate { _sceneManager.GoToNode(choiceIndex); });
+					exitButtonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
 					exitButtonComponent.onClick.AddListener(PlaySound);
 					exitButtonComponent.onClick.AddListener(ClearButtons);
 					exitButtonComponent.onClick.AddListener(ClearText);
 					exitButtonComponent.onClick.AddListener(ChangeToGameplay);
 					continue;
 				}
-                //create button for each link
+
+				//Create link button
                 GameObject newestButton =
                     Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
                 _buttons.Add(newestButton);
-                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = dialogueNode.Links[i].Name;
+                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
                 Button buttonComponent = newestButton.GetComponent<Button>();
                 buttonComponent.onClick.AddListener(PlaySound);
                 buttonComponent.onClick.AddListener(ClearButtons);
-                buttonComponent.onClick.AddListener(delegate { _sceneManager.GoToNode(choiceIndex); });
+                buttonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
             }			
         }
 

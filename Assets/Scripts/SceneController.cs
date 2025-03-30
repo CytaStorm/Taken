@@ -244,10 +244,9 @@ public class SceneController : MonoBehaviour
 		Traverser.GoToNode(choice);
 	}
 
-	public bool CheckTraversal(NewDialogueNode destinationNode)
+	public bool CheckTraversal(List<NewDialogueFlag> flagsToCheck)
 	{
-		//return Traverser.CheckTraversal(destinationNode, DialogueFlags);
-		return true;
+		return Traverser.CheckTraversal(flagsToCheck);
 	}
 
 	/// <summary>
