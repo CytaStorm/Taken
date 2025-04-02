@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneThreeCutscene : MonoBehaviour
+public class CutsceneController : SceneController
 {
     // Actors
     public GameObject sallos;

@@ -71,7 +71,11 @@
       "position": {
         "x": "75",
         "y": "750"
-      }
+      },
+      "tags": [
+        "exit",
+        "end"
+      ]
     },
     {
       "text": "''SALLOS'': <i>\"I- I- All I did was take people across these mountains! But now's not the time to talk. We need to move.\"</i>\n\nThe two men certainly don't look the type to be able to be talked down. Especially not while armed.\n\n[[Continue->continue 6]]",
@@ -98,12 +102,15 @@
           "pid": "15"
         }
       ],
-      "name": "Intro",
+      "name": "scene",
       "pid": "7",
       "position": {
         "x": "125",
         "y": "600"
-      }
+      },
+      "tags": [
+        "start"
+      ]
     },
     {
       "text": "You turn to see a Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.``enterGoon``(set: enterGoon to true)\n\n[[Continue->continue 4]]",
@@ -298,7 +305,7 @@
       }
     },
     {
-      "text": "The two men walk closer, and the Jawni draws his sword.\n\n''SALLOS'': \"Woah, woah, there's no need for that, we surr—\"\n\n[[Continue->Next]]",
+      "text": "The two men walk closer, and the Jawni draws his sword.\n\n''SALLOS'': \"Woah, woah, there's no need for that, we surrâ€”\"\n\n[[Continue->Next]]",
       "links": [
         {
           "name": "Continue",
