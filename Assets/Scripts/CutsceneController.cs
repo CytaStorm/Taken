@@ -12,9 +12,6 @@ public class CutsceneController : SceneController
     public GameObject eulyss;
     public GameObject akif;
     public GameObject goon;
-    
-    public UIManager _uiManager;
-    public SceneController SceneController;
 
     public Material sallosMaterial;
 
@@ -46,7 +43,7 @@ public class CutsceneController : SceneController
         eventFlags = new List<NewDialogueFlag>();
         foreach(string name in flagNames)
         {
-            foreach (NewDialogueFlag flag in SceneController.DialogueFlags) 
+            foreach (NewDialogueFlag flag in DialogueFlags) 
             {
                 if (flag.Names.Equals(name)) continue;
 
@@ -95,14 +92,14 @@ public class CutsceneController : SceneController
         // Move sallos and eulyss along forest trail
         _sallosAgent.SetDestination(new Vector3(-2.11f, 0f, 7.35f));
         _eulyssAgent.SetDestination(new Vector3(-2.27f, 0f, 5.86f));
-        StartCoroutine(_uiManager.PauseAllButtons(3f));
+        StartCoroutine(_UIManager.PauseAllButtons(3f));
     }
 
     private void EnterAkif()
     {
         // Move akif towards sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.990002f, 0f, 10.45f));
-        StartCoroutine(_uiManager.PauseAllButtons(2.7f));
+        StartCoroutine(_UIManager.PauseAllButtons(2.7f));
     }
 
     private void EnterGoon()
@@ -113,7 +110,7 @@ public class CutsceneController : SceneController
         _eulyssAnimator.SetTrigger("LookLeftTrigger");
         StartCoroutine(ChangeLookLeft(_sallosAnimator, 1, 0.5f));
         StartCoroutine(ChangeLookLeft(_eulyssAnimator, 1, 0.66f));
-        StartCoroutine(_uiManager.PauseAllButtons(2.9f));
+        StartCoroutine(_UIManager.PauseAllButtons(2.9f));
     }
 
     private void WalkCloser()
@@ -123,7 +120,7 @@ public class CutsceneController : SceneController
         _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
         StartCoroutine(ChangeLookLeft(_sallosAnimator, 0, 0.5f));
         StartCoroutine(ChangeLookLeft(_eulyssAnimator, 0, 0.45f));
-        StartCoroutine(_uiManager.PauseAllButtons(1.3f));
+        StartCoroutine(_UIManager.PauseAllButtons(1.3f));
     }
 
     private void Reach()
@@ -135,13 +132,13 @@ public class CutsceneController : SceneController
     {
         _akifAnimator.SetTrigger("Stab");
         _sallosAnimator.SetTrigger("StepBack");
-        StartCoroutine(_uiManager.PauseAllButtons(0.7f));
+        StartCoroutine(_UIManager.PauseAllButtons(0.7f));
     }
 
     private void Disappear()
     {
         StartCoroutine(FadeAway(5f));
-        StartCoroutine(_uiManager.PauseAllButtons(5f));
+        StartCoroutine(_UIManager.PauseAllButtons(5f));
     }
 
     private IEnumerator FadeAway(float seconds)

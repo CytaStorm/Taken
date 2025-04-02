@@ -1461,7 +1461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &693596821
 Transform:
   m_ObjectHideFlags: 0
@@ -2149,7 +2149,7 @@ PrefabInstance:
     - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneController
       value: 
-      objectReference: {fileID: 693596822}
+      objectReference: {fileID: 2047368479}
     - target: {fileID: 3879445995671405612, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneController
       value: 
@@ -3334,7 +3334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2047368479
 MonoBehaviour:
   m_ObjectHideFlags: 0
