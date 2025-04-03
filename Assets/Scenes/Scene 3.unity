@@ -3348,7 +3348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _twineJson: {fileID: 4900000, guid: 8c2f45f23e2cd6841a1f265f0d8e131b, type: 3}
-  autoStartDialogue: 0
+  autoStartDialogue: 1
   _UIManager: {fileID: 553045652}
   _destinationScene: 
   _fadeOutTime: 0
@@ -3361,8 +3361,6 @@ MonoBehaviour:
   eulyss: {fileID: 36616011}
   akif: {fileID: 278721995}
   goon: {fileID: 819007649}
-  _uiManager: {fileID: 553045652}
-  SceneController: {fileID: 693596822}
   sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
   flagNames:
   - walkLeft

@@ -35,7 +35,11 @@ public class CutsceneController : SceneController
     // MAKE SURE EXECUTION ORDER IS SET TO LAST FOR THIS TO WORK
     void Start()
     {
-        sallosMaterial.SetFloat("_Dissolve_Effect", 0);
+
+
+        // REMOVED -- done by parent
+        //sallosMaterial.SetFloat("_Dissolve_Effect", 0);
+
         // Initialize timer
         timer = 0f;
 
