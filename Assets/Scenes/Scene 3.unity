@@ -3254,7 +3254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _twineJson: {fileID: 4900000, guid: 8c2f45f23e2cd6841a1f265f0d8e131b, type: 3}
-  autoStartDialogue: 0
+  autoStartDialogue: 1
   _UIManager: {fileID: 553045652}
   _destinationScene: 
   _fadeOutTime: 10
