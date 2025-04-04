@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -35,7 +36,7 @@ public class CutsceneController : SceneController
     // MAKE SURE EXECUTION ORDER IS SET TO LAST FOR THIS TO WORK
     void Start()
     {
-
+        base.Start();
 
         // REMOVED -- done by parent
         //sallosMaterial.SetFloat("_Dissolve_Effect", 0);
@@ -56,6 +57,7 @@ public class CutsceneController : SceneController
         }
 
         // Assign all event methods to OnClick() events for all buttons
+        /*
         eventFlags[0].onValueChange += delegate { WalkLeft(); };
         eventFlags[1].onValueChange += delegate { EnterAkif(); };
         eventFlags[2].onValueChange += delegate { EnterGoon(); };
@@ -63,6 +65,7 @@ public class CutsceneController : SceneController
         eventFlags[4].onValueChange += delegate { Stab(); };
         eventFlags[5].onValueChange += delegate { Disappear(); };
 		eventFlags[6].onValueChange += delegate { Reach(); };
+        */
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();
@@ -87,6 +90,8 @@ public class CutsceneController : SceneController
 	// Update is called once per frame
 	void Update()
     {
+        base.Update();
+
         // Update timer each frame
         timer += Time.deltaTime;
     }
