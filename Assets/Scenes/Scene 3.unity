@@ -3256,7 +3256,7 @@ MonoBehaviour:
   _twineJson: {fileID: 4900000, guid: 8c2f45f23e2cd6841a1f265f0d8e131b, type: 3}
   autoStartDialogue: 1
   _UIManager: {fileID: 553045652}
-  _destinationScene: 
+  _destinationScene: Title
   _fadeOutTime: 10
   FadingOut: 0
   _fadeInTime: 10

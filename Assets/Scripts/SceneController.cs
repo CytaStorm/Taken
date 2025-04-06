@@ -223,13 +223,15 @@ public class SceneController : MonoBehaviour
 			{
 				foreach (NewDialogueFlag flag in node.FlagsToChange)
 				{
-					NewDialogueFlag match = DialogueFlags.FirstOrDefault(matchFlag => matchFlag.Names == flag.Names);
-					//if flag doesn't already exist
-					if (match == default(NewDialogueFlag))
-					{
-						DialogueFlags.Add(new NewDialogueFlag(flag.Names));
-					}
-				}
+					// Check flag list against the list of every flag in DialogueFlags
+					foreach(NewDialogueFlag compareAgainst in DialogueFlags)
+                    {
+                        IEnumerable<string> difference = flag.Names.Except(compareAgainst.Names);
+                        //if flag doesn't already exist
+                        if (difference.Count() == 0) continue;
+                        DialogueFlags.Add(new NewDialogueFlag(flag.Names));
+                    }
+                }
 			}
 		}
 	}
@@ -270,6 +272,8 @@ public class SceneController : MonoBehaviour
 			}
 		}	
 	}
+
+	//private bool CheckNameListEquality()
 
 	public void NextScene()
 	{

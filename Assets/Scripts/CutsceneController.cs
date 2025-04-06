@@ -50,14 +50,14 @@ public class CutsceneController : SceneController
         {
             foreach (NewDialogueFlag flag in DialogueFlags) 
             {
-                if (flag.Names.Equals(name)) continue;
+                if (!flag.Names.Contains(name)) continue;
 
                 eventFlags.Add(flag);
             }
         }
 
         // Assign all event methods to OnClick() events for all buttons
-        /*
+        
         eventFlags[0].onValueChange += delegate { WalkLeft(); };
         eventFlags[1].onValueChange += delegate { EnterAkif(); };
         eventFlags[2].onValueChange += delegate { EnterGoon(); };
@@ -65,7 +65,7 @@ public class CutsceneController : SceneController
         eventFlags[4].onValueChange += delegate { Stab(); };
         eventFlags[5].onValueChange += delegate { Disappear(); };
 		eventFlags[6].onValueChange += delegate { Reach(); };
-        */
+        
 
         // Get component data for all actors
         _sallosAgent = sallos.GetComponent<NavMeshAgent>();
