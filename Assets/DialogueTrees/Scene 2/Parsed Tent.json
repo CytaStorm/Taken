@@ -12,8 +12,8 @@
       "name": "addWood",
       "pid": "1",
       "position": {
-        "x": "1700",
-        "y": "500"
+        "x": "1675",
+        "y": "425"
       }
     },
     {
@@ -49,7 +49,7 @@
       }
     },
     {
-      "text": "These branches hang low, easy enough for you to grab.\n\n($if $kindlingQuest is true)[ [[Wrench off a few branches->grabKindling]] ]\n[[Leave->exitBranches]]",
+      "text": "These branches hang low, easy enough for you to grab.\n\n(if: $kindlingQuest is true)[ [[Wrench off a few branches->grabKindling]] ]\n[[Leave->exitBranches]]",
       "links": [
         {
           "name": "Wrench off a few branches",
@@ -84,8 +84,8 @@
       "name": "cut",
       "pid": "5",
       "position": {
-        "x": "775",
-        "y": "1050"
+        "x": "850",
+        "y": "1025"
       }
     },
     {
@@ -105,7 +105,7 @@
       "name": "deadTree",
       "pid": "6",
       "position": {
-        "x": "675",
+        "x": "900",
         "y": "875"
       },
       "tags": [
@@ -124,8 +124,8 @@
       "name": "emptyStove",
       "pid": "7",
       "position": {
-        "x": "1300",
-        "y": "50"
+        "x": "925",
+        "y": "300"
       },
       "tags": [
         "start"
@@ -148,8 +148,8 @@
       "name": "exitEmptyStove",
       "pid": "9",
       "position": {
-        "x": "1125",
-        "y": "75"
+        "x": "950",
+        "y": "475"
       },
       "tags": [
         "exit"
@@ -240,8 +240,8 @@
       "name": "foodTime",
       "pid": "16",
       "position": {
-        "x": "1500",
-        "y": "875"
+        "x": "1375",
+        "y": "675"
       }
     },
     {
@@ -437,8 +437,8 @@
       "name": "kindlingSallos",
       "pid": "28",
       "position": {
-        "x": "1125",
-        "y": "300"
+        "x": "1225",
+        "y": "175"
       },
       "tags": [
         "start"
@@ -456,8 +456,8 @@
       "name": "kindlingStove",
       "pid": "29",
       "position": {
-        "x": "850",
-        "y": "275"
+        "x": "750",
+        "y": "300"
       },
       "tags": [
         "start"
@@ -475,8 +475,8 @@
       "name": "lightup",
       "pid": "30",
       "position": {
-        "x": "1300",
-        "y": "875"
+        "x": "1250",
+        "y": "575"
       }
     },
     {
@@ -618,7 +618,7 @@
       }
     },
     {
-      "text": "Sallos did say that pine cones are good for kindling, right?\n\n($if kindlingQuest)[ [[Gather a few->getPinecones]] ]\n[[Leave->exitNoGrabPinecones]]",
+      "text": "Sallos did say that pine cones are good for kindling, right?\n\n(if: $kindlingQuest is true)[ [[Gather a few->getPinecones]] ]\n[[Leave->exitNoGrabPinecones]]",
       "links": [
         {
           "name": "Gather a few",
@@ -634,8 +634,8 @@
       "name": "pinecones",
       "pid": "39",
       "position": {
-        "x": "150",
-        "y": "825"
+        "x": "175",
+        "y": "850"
       },
       "tags": [
         "start"
@@ -736,8 +736,8 @@
       "name": "startCooking",
       "pid": "45",
       "position": {
-        "x": "1475",
-        "y": "675"
+        "x": "1500",
+        "y": "550"
       }
     },
     {
@@ -816,8 +816,8 @@
       "name": "woodSallos",
       "pid": "50",
       "position": {
-        "x": "1450",
-        "y": "500"
+        "x": "1375",
+        "y": "475"
       }
     },
     {
@@ -832,8 +832,8 @@
       "name": "woodStove",
       "pid": "51",
       "position": {
-        "x": "1100",
-        "y": "525"
+        "x": "1125",
+        "y": "450"
       },
       "tags": [
         "start"
@@ -860,8 +860,8 @@
       "name": "exitDeadTree",
       "pid": "53",
       "position": {
-        "x": "550",
-        "y": "1175"
+        "x": "700",
+        "y": "925"
       },
       "tags": [
         "exit"
