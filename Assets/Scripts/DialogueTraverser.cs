@@ -5,10 +5,10 @@ public class DialogueTraverser
 {
     //FIELDS
     //objects
-    public SceneController sceneManager;
+    public SceneController SceneController;
     public UIManager _UIManager;
-    [SerializeField] DialogueGraph graph;
-    public DialogueNode currentNode;
+    public NewDialogueGraph CurrentGraph;
+    public NewDialogueNode CurrentNode;
     /*
     [SerializeField] GameObject buttonPrefab;
     [SerializeField] GameObject parentOfButton;
@@ -20,12 +20,12 @@ public class DialogueTraverser
     */
 
     /// <summary>
-    /// Creates a new DialogueGraph
+    /// Creates a new DialogueGraph traverser
     /// </summary>
     /// <param name="graph"></param>
     public DialogueTraverser (SceneController sceneManager, UIManager _UIManager)
     {
-        this.sceneManager = sceneManager;
+        this.SceneController = sceneManager;
         this._UIManager = _UIManager;
     }
 
@@ -34,18 +34,21 @@ public class DialogueTraverser
     /// sets the graph's starting node to be the current node
     /// </summary>
     /// <param name="graph"></param>
-    public void SetNewGraph(DialogueGraph graph)
+    public void SetNewGraph(NewDialogueGraph graph)
     {
-        this.graph = graph;
-        if (graph.WasTraversed == false)
-        {
-            graph.WasTraversed = true;
-        }
-        else
-        {
-            graph.ReassignStart();
-        }
-        currentNode = graph.StartNode;
+        //Reassign start node
+        //this.graph = graph;
+        //if (graph.traversed == false)
+        //{
+        //    graph.traversed = true;
+        //}
+        //else
+        //{
+        //    graph.ReassignStart();
+        //}
+        CurrentGraph = graph;
+        CurrentNode = graph.StartNode;
+		_UIManager.NewDialogueNode(CurrentNode);
 		GoToSelf();
     }
 
@@ -54,9 +57,9 @@ public class DialogueTraverser
 	/// </summary>
 	private void GoToSelf()
 	{
-		foreach (DialogueFlag newFlag in currentNode.FlagsToChange) 
+		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
 		{
-			sceneManager.ChangeDialogueFlag(newFlag);
+			SceneController.ChangeDialogueFlag(newFlag);
 		}
 	}
 
@@ -67,15 +70,15 @@ public class DialogueTraverser
     /// <param name="choice"></param>
     public void GoToNode(int choice)
     {
-		currentNode = currentNode.Links[choice];
+		CurrentNode = CurrentNode.Links[choice].ConnectedNode;
 
-		foreach (DialogueFlag newFlag in currentNode.FlagsToChange) 
+		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
 		{
-			sceneManager.ChangeDialogueFlag(newFlag);
+			SceneController.ChangeDialogueFlag(newFlag);
 		}
 
         //Send currentNode info to UI Manager
-		_UIManager.NewDialogueNode(currentNode);
+		_UIManager.NewDialogueNode(CurrentNode);
     }
 
     /// <summary>
@@ -84,25 +87,16 @@ public class DialogueTraverser
     /// <param name="destinationNode">Node that is to be traveled to</param>
     /// <param name="flags">List of all possible conditionals in the scene</param>
     /// <returns>True if all conditionals are met, false otheriwse</returns>
-    public bool CheckTraversal(DialogueNode destinationNode, List<DialogueFlag> flags)
+    public bool CheckTraversal(List<NewDialogueFlag> flagsToCheck)
     {        
         // First, find every conditional in the scene's list of dialogueFlags that corresponds
         // to a conditional in the distination node
         // Then, check if any of these nodes don't match. Return false if so.
-        foreach (DialogueFlag destinationFlag in destinationNode.Flags) 
+        foreach (NewDialogueFlag destinationFlag in flagsToCheck) 
         {
-            foreach (DialogueFlag flag in flags) 
+            if (!SceneController.DialogueFlags.Contains(destinationFlag))
             {
-                if (flag.MatchName(destinationFlag))
-                { 
-                    if (flag != destinationFlag)
-                    {
-                        // Print error message to console
-                        //Debug.Log($"Unable to traverse because condition {flag.Name} wasn't met");
-
-                        return false;                        
-                    }
-                }
+                return false;
             }
         }
 

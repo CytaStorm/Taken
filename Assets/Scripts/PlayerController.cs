@@ -17,8 +17,9 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private bool inDialogue = false;
 	[SerializeField] private Animator _animator;
 
-	private InteractableScript focus;
-	private Transform target;
+	[SerializeField] private float rotationDistance;
+
+	public InteractableScript Focus;
 
 	//PROPERTIES
 	/// <summary>
@@ -56,15 +57,23 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (target != null)
+		if (Focus != null)
 		{
-			_agent.SetDestination(target.position);
+			_agent.SetDestination(Focus.InteractionPoint.transform.position);
+
+			//if (transform.position == _target.InteractionPoint.transform.position)
+			if (Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) < rotationDistance)
+			{
+				Vector3 direction = Focus.transform.position - transform.position;
+				Quaternion targetRotation = Quaternion.LookRotation(direction);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 150 * Time.deltaTime);
+			}
 		}
 		//Control eulyss walking anim
 		_animator.SetFloat("VelocityPercent", _agent.velocity.magnitude / _agent.speed);
 	}
 
-	public void OnMoveInteract(InputAction.CallbackContext ctx)
+    public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{
 		if (!ctx.performed) return;
 		Vector3 mousePos = Mouse.current.position.ReadValue();
@@ -96,36 +105,17 @@ public class PlayerController : MonoBehaviour
 
 	private void SetFocus(InteractableScript newFocus)
 	{
-		if (newFocus == focus) return;
+		if (newFocus == Focus) return;
 
 		//New focus object
-		if (focus != null) focus.OnDefocused();
-		focus = newFocus;
-		newFocus.OnFocused();
-
-		// Follow target
-		FollowTarget(newFocus);
+		//if (Focus != null) Focus.OnDefocused();
+		Focus = newFocus;
 	}
 	
-	private void RemoveFocus()
+	public void RemoveFocus()
 	{
-		if (focus != null) focus.OnDefocused();
-		focus = null;
-
-		// Stop moving
-		StopFollowTarget();
-	}
-
-	public void FollowTarget (InteractableScript newTarget)
-	{
-		_agent.stoppingDistance = newTarget.radius * 0.8f; // stop just inside radius
-		target = newTarget.transform;
-	}
-
-	public void StopFollowTarget()
-	{
-		target = null;
-		_agent.stoppingDistance = 0;
+		//if (Focus != null) Focus.OnDefocused();
+		Focus = null;
 	}
 
 	public Vector3 GetDestination()

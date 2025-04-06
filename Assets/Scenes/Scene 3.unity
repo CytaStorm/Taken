@@ -265,9 +265,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  twineFile: {fileID: 0}
-  radius: 3
   hasLimitedInteractions: 1
+  interactionCount: 0
+  InteractionPoint: {fileID: 0}
   _materialList: []
   agent: {fileID: 36616014}
   _animator: {fileID: 36616013}
@@ -997,9 +997,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  twineFile: {fileID: 0}
-  radius: 3
   hasLimitedInteractions: 1
+  interactionCount: 0
+  InteractionPoint: {fileID: 0}
   _materialList: []
   agent: {fileID: 278721997}
   _animator: {fileID: 278721996}
@@ -1110,9 +1110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 553045652}
-  twineFile: {fileID: 4900000, guid: 5d6c4e6c006d87d4f9f4d89786827186, type: 3}
-  radius: 3
   hasLimitedInteractions: 1
+  interactionCount: 0
+  InteractionPoint: {fileID: 0}
   _materialList: []
 --- !u!1 &624461084
 GameObject:
@@ -1538,9 +1538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3d31501361dd54ab8db17a4defede0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoImplementDialogue: 1
-  Interactables:
-  - {fileID: 568755719}
+  _twineJson: {fileID: 4900000, guid: 7ff7b34b22348574e966502e432ce2c6, type: 3}
+  autoStartDialogue: 1
   _UIManager: {fileID: 553045652}
   _destinationScene: Credits
   _fadeOutTime: 5
@@ -2124,9 +2123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  twineFile: {fileID: 0}
-  radius: 3
   hasLimitedInteractions: 1
+  interactionCount: 0
+  InteractionPoint: {fileID: 0}
   _materialList: []
   agent: {fileID: 819007654}
   _animator: {fileID: 819007650}
@@ -2800,9 +2799,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 0}
-  twineFile: {fileID: 0}
-  radius: 3
   hasLimitedInteractions: 1
+  interactionCount: 0
+  InteractionPoint: {fileID: 0}
   _materialList: []
   agent: {fileID: 1075811457}
   _animator: {fileID: 1075811456}

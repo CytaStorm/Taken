@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 	public UIMode CurrentUIMode;
 
 	[Header("Other GameObjects")]
-	[SerializeField] private SceneController _sceneManager;
+	[SerializeField] private SceneController _sceneController;
 	[SerializeField] private PlayerInput _input;
 
 	[Header("Audio")]
@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-        if (_sceneManager.autoImplementDialogue)
+        if (_sceneController.autoStartDialogue)
         {
             CurrentUIMode = UIMode.Dialogue;
             _dialogueUI.SetActive(true);
@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
 	}
 
 	//Player traversed to a new Dialogue node
-	public void NewDialogueNode(DialogueNode dialogueNode)
+	public void NewDialogueNode(NewDialogueNode dialogueNode)
 	{
 		//If there is a previous textBox, change its color to gray
 		if (_mostRecentTextContainer != null)
@@ -160,7 +160,7 @@ public class UIManager : MonoBehaviour
 		//}
 
 		//Add dialogue
-		_textDisplay.text += dialogueNode.Info;
+		_textDisplay.text += dialogueNode.Text;
 
 		while (_dialogueUI.activeInHierarchy == false ||
 			_dialogueUI.activeSelf == false)
@@ -199,42 +199,64 @@ public class UIManager : MonoBehaviour
 		CreateButtons(dialogueNode);
 	}
 
-	private void CreateButtons(DialogueNode dialogueNode)
+	private void CreateButtons(NewDialogueNode dialogueNode)
 	{
 		//Check links
 		for (int i = 0; i < dialogueNode.Links.Count; i++)
 		{
-			DialogueNode linkedNode = dialogueNode.Links[i];
+			NewDialogueLink link = dialogueNode.Links[i];
+			NewDialogueNode linkedNode = link.ConnectedNode;
 
-			if (_sceneManager.CheckTraversal(linkedNode))
+			if (_sceneController.CheckTraversal(link.Flags))
 			{
-                //create button for each link
+				//Local variable is used here n/c delegates will capture full local context...
+				//means that if i is used directly the delegates will capture i++ because
+				//the enclosing for loop will add 1 to i at the end of each loop.
+				int choiceIndex = i;
+
+				//Create exit button, if it exists
+				if (linkedNode.Tags != null && 
+					linkedNode.Tags.Count != 0 &&
+					linkedNode.Tags.Contains("exit")){
+					GameObject exitButton =
+						Instantiate(_exitButton, _dialogueUI.transform, true);
+					_buttons.Add(exitButton);
+					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
+					Button exitButtonComponent = exitButton.GetComponent<Button>();
+
+					exitButtonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
+					exitButtonComponent.onClick.AddListener(PlaySound);
+					exitButtonComponent.onClick.AddListener(ClearButtons);
+					exitButtonComponent.onClick.AddListener(ClearText);
+					exitButtonComponent.onClick.AddListener(ChangeToGameplay);
+					continue;
+				}
+
+				//Create link button
                 GameObject newestButton =
                     Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
                 _buttons.Add(newestButton);
-                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = linkedNode.NodeName;
-
-                int choiceIndex = i;
+                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
                 Button buttonComponent = newestButton.GetComponent<Button>();
                 buttonComponent.onClick.AddListener(PlaySound);
                 buttonComponent.onClick.AddListener(ClearButtons);
-                buttonComponent.onClick.AddListener(delegate { _sceneManager.GoToNode(choiceIndex); });
+                buttonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
             }			
         }
 
 		//Add exit button
-		if (_buttons.Count == 0 && !_sceneManager.FadingOut) 
-		{
-            GameObject exitButton =
-                Instantiate(_exitButton, _dialogueUI.transform, true);
-            _buttons.Add(exitButton);
+		//if (_buttons.Count == 0 && !_sceneManager.FadingOut) 
+		//{
+        //    GameObject exitButton =
+        //        Instantiate(_exitButton, _dialogueUI.transform, true);
+        //    _buttons.Add(exitButton);
 
-            Button buttonComponent = exitButton.GetComponent<Button>();
-            buttonComponent.onClick.AddListener(PlaySound);
-            buttonComponent.onClick.AddListener(ClearButtons);
-            buttonComponent.onClick.AddListener(ClearText);
-            buttonComponent.onClick.AddListener(ChangeToGameplay);
-        }
+        //    Button buttonComponent = exitButton.GetComponent<Button>();
+        //    buttonComponent.onClick.AddListener(PlaySound);
+        //    buttonComponent.onClick.AddListener(ClearButtons);
+        //    buttonComponent.onClick.AddListener(ClearText);
+        //    buttonComponent.onClick.AddListener(ChangeToGameplay);
+        //}
 	}
 
 	private void PlaySound()
@@ -271,6 +293,7 @@ public class UIManager : MonoBehaviour
 		//Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
+		PlayerController.PlayerControl.RemoveFocus();
 	}
 
 	public void UnPause()

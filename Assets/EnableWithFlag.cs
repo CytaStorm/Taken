@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnableWithFlag : MonoBehaviour
 {
-    public string flagName;
+    public List<string> flagName;
     public SceneController sceneManager;
     public GameObject targetObject;
 
@@ -19,9 +20,9 @@ public class EnableWithFlag : MonoBehaviour
         if (targetObject.activeSelf == false)
         {
             // Search SceneTwoManager for matching flag
-            foreach (DialogueFlag flag in sceneManager.DialogueFlags)
+            foreach (NewDialogueFlag flag in sceneManager.DialogueFlags)
             {
-                if ((flag.Name == flagName) && (flag.IsTrue))
+                if ((flag.Names.Equals(flagName)) && (flag.IsTrue))
                 {
                     targetObject.SetActive(true);
                 }

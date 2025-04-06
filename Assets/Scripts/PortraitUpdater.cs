@@ -17,7 +17,7 @@ public class PortraitUpdater : MonoBehaviour
     
     private GameObject _portraitObject;
     private List<Transform> _portraitSiblingTransforms;
-    private DialogueNode _currentNode;
+    private NewDialogueNode _currentNode;
     private string _speakerName; // make public for debugging only!
 
     // Start is called before the first frame update
@@ -61,7 +61,7 @@ public class PortraitUpdater : MonoBehaviour
     private void UpdatePortraitSprite()
     {
         // Update current node
-        _currentNode = _sceneController.Traverser.currentNode;
+        _currentNode = _sceneController.Traverser.CurrentNode;
 
         if (_currentNode == null)
         {
@@ -69,11 +69,11 @@ public class PortraitUpdater : MonoBehaviour
         }
 
         // If current node contains a new speaker, then switch portraits
-        if (_currentNode.Info.Contains(':'))
+        if (_currentNode.Text.Contains(':'))
         {
             // Get speaker name
-            int delimiterIndex = _currentNode.Info.IndexOf(':');
-            _speakerName = _currentNode.Info.Substring(0, delimiterIndex);
+            int delimiterIndex = _currentNode.Text.IndexOf(':');
+            _speakerName = _currentNode.Text.Substring(0, delimiterIndex);
 
             // Remove xml tags
             while (_speakerName.Contains('<'))

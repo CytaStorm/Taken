@@ -9,6 +9,9 @@ public class DialogueNode
 	//Used to create links
     public List<string> LinkNames { get; set; }
 
+    /// <summary>
+    /// Requirements to enter node
+    /// </summary>
     public List<DialogueFlag> Flags { get; set; }
     public List<DialogueFlag> FlagsToChange { get; set; }
     

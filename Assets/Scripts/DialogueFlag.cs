@@ -1,3 +1,5 @@
+using System;
+
 /// <summary>
 /// Custom data structure for representing condition checks in dialogue trees 
 /// </summary>
@@ -64,12 +66,6 @@ public class DialogueFlag
 	{
 		return Name == flag2.Name ;
 	}
-
-	public static bool operator == (DialogueFlag flag1, DialogueFlag flag2)
-	{
-		return flag1.MatchName(flag2) && flag1.IsTrue == flag2.IsTrue;
-	}
-
 	public override bool Equals(object obj)
 	{
 		if (obj is DialogueFlag)
@@ -79,9 +75,15 @@ public class DialogueFlag
 
 		return false;
 	}
-	public override int GetHashCode()
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(_isTrue, Name, IsTrue);
+    }
+
+    public static bool operator == (DialogueFlag flag1, DialogueFlag flag2)
 	{
-		return GetHashCode();
+		return flag1.MatchName(flag2) && flag1.IsTrue == flag2.IsTrue;
 	}
 
 	public static bool operator != (DialogueFlag flag1, DialogueFlag flag2)
