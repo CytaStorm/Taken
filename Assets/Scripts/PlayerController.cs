@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 			_agent.SetDestination(Focus.InteractionPoint.transform.position);
 
 			//if (transform.position == _target.InteractionPoint.transform.position)
-			if (Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) < rotationDistance)
+			if (Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) <= rotationDistance)
 			{
 				Vector3 direction = Focus.transform.position - transform.position;
 				Quaternion targetRotation = Quaternion.LookRotation(direction);

@@ -18069,7 +18069,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 213ea66b793748d48b29361d3183585c, type: 2}
-  m_BuildHeightMesh: 0
+  m_BuildHeightMesh: 1
 --- !u!1001 &1407884600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19938,6 +19938,10 @@ PrefabInstance:
       propertyPath: _UIManager
       value: 
       objectReference: {fileID: 542082624}
+    - target: {fileID: 4479040174137065267, guid: 04257226746196d40959e7dd0a473026, type: 3}
+      propertyPath: rotationDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4654963420066053951, guid: 04257226746196d40959e7dd0a473026, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.18
