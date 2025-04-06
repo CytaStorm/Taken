@@ -65,7 +65,7 @@
       }
     },
     {
-      "text": "``end``(set: end to true)",
+      "text": "d\n(set: $end to true)",
       "name": "End",
       "pid": "5",
       "position": {
@@ -94,7 +94,7 @@
       }
     },
     {
-      "text": "''SALLOS'': \"All packed up! Let's get out of here.\"\n\n[[Continue->continue 1]]",
+      "text": "''SALLOS'': \"All packed up! Let's get out of here.\"\n(set: $end to true)\n(set: $disappear to true)\n(set: $reach to true)\n(set: $stab to true)\n(set: $enterGoon to true)\n(set: $enterAkif to true)\n(set: $walkLeft to true)\n\n[[Continue->continue 1]]",
       "links": [
         {
           "name": "Continue",
@@ -105,15 +105,15 @@
       "name": "scene",
       "pid": "7",
       "position": {
-        "x": "125",
-        "y": "600"
+        "x": "100",
+        "y": "625"
       },
       "tags": [
         "start"
       ]
     },
     {
-      "text": "You turn to see a Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.``enterGoon``(set: enterGoon to true)\n\n[[Continue->continue 4]]",
+      "text": "You turn to see a Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.\n(set: $enterGoon to true)\n\n[[Continue->continue 4]]",
       "links": [
         {
           "name": "Continue",
@@ -129,7 +129,7 @@
       }
     },
     {
-      "text": "The blade is thrust into Sallos.``stab``(set: stab to true)\n\nThere is no blood on the other side of the blade.\n\n[[Reach for him.]]",
+      "text": "The blade is thrust into Sallos.\n(set: $stab to true)\n\nThere is no blood on the other side of the blade.\n\n[[Reach for him.]]",
       "links": [
         {
           "name": "Reach for him.",
@@ -145,7 +145,7 @@
       }
     },
     {
-      "text": "Reach for him.``reach``(set: reach to true)\n\n[[Continue->fade]]",
+      "text": "Reach for him.\n(set: $reach to true)\n\n[[Continue->fade]]",
       "links": [
         {
           "name": "Continue",
@@ -161,7 +161,7 @@
       }
     },
     {
-      "text": "''SALLOS'': \"And what business do you have with him?\"``walkCloser``(set: walkCloser to true)\n\nThe two men step closer.\n\n[[Continue->Step back.]]",
+      "text": "''SALLOS'': \"And what business do you have with him?\"\n\nThe two men step closer.\n\n[[Continue->Step back.]]",
       "links": [
         {
           "name": "Continue",
@@ -177,7 +177,7 @@
       }
     },
     {
-      "text": "Sallos suddenly freezes. The fur on his neck stands up straight. Something's wrong.``walkLeft``(set: walkLeft to true)\n\n[[\"Is something wrong, Sallos?\"]]",
+      "text": "Sallos suddenly freezes. The fur on his neck stands up straight. Something's wrong.\n(set: $walkLeft to true)\n\n[[\"Is something wrong, Sallos?\"]]",
       "links": [
         {
           "name": "\"Is something wrong, Sallos?\"",
@@ -204,7 +204,7 @@
       "name": "Step back.",
       "pid": "13",
       "position": {
-        "x": "1050",
+        "x": "1075",
         "y": "275"
       }
     },
@@ -321,7 +321,7 @@
       }
     },
     {
-      "text": "Sallos begins to glow, and he fades away into a pale yellow mist.``disappear``(set: disappear to true)\n\n[[Continue->End]]",
+      "text": "Sallos begins to glow, and he fades away into a pale yellow mist.\n(set: $disappear to true)\n\n[[Continue->End]]",
       "links": [
         {
           "name": "Continue",
@@ -369,7 +369,7 @@
       }
     },
     {
-      "text": "''SALLOS'': \"There's people here.\"``enterAkif``(set: enterAkif to true)\n\nSuddenly someone appears on the right. A Jawni man, towering over both you and Sallos, even while hunched over. \n\nHe carries a large sword, and walks with a swagger that does not feel entirely unearned.\n\n[[\"Do you know him?\"]]",
+      "text": "''SALLOS'': \"There's people here.\"\n(set: $enterAkif to true)\n\nSuddenly someone appears on the right. A Jawni man, towering over both you and Sallos, even while hunched over. \n\nHe carries a large sword, and walks with a swagger that does not feel entirely unearned.\n\n[[\"Do you know him?\"]]",
       "links": [
         {
           "name": "\"Do you know him?\"",
