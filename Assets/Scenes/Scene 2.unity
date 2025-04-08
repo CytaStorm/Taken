@@ -19190,7 +19190,7 @@ MonoBehaviour:
   _fadeInTime: 3
   FadesIn: 1
   _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
-  DEBUG: 0
+  DEBUG: 1
 --- !u!1 &1781750174
 GameObject:
   m_ObjectHideFlags: 0
