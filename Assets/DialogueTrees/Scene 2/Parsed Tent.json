@@ -105,8 +105,8 @@
       "name": "deadTree",
       "pid": "6",
       "position": {
-        "x": "900",
-        "y": "875"
+        "x": "925",
+        "y": "775"
       },
       "tags": [
         "start"
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "text": "(set: $kindlingQuest to true)",
+      "text": "\n(set: $kindlingQuest to true)",
       "name": "exitKindlingQuest",
       "pid": "12",
       "position": {
