@@ -41,7 +41,7 @@
           "pid": "6"
         }
       ],
-      "name": "\"What did you do!?\"",
+      "name": "whatDo",
       "pid": "3",
       "position": {
         "x": "825",
@@ -57,7 +57,7 @@
           "pid": "25"
         }
       ],
-      "name": "\"Yes...?\"",
+      "name": "yes",
       "pid": "4",
       "position": {
         "x": "900",
@@ -89,7 +89,7 @@
       "name": "I",
       "pid": "6",
       "position": {
-        "x": "775",
+        "x": "600",
         "y": "550"
       }
     },
@@ -193,12 +193,12 @@
       }
     },
     {
-      "text": "The Jawni clears his throat.\n\n''JAWNI'': \"You are under arrest, for the transportation of fugitives from the lands of God.\"\n\n[[Whisper. <i>\"What is he talking about?\"</i>]]",
+      "text": "The Jawni clears his throat.\n\n''JAWNI'': \"You are under arrest, for the transportation of fugitives from the lands of God.\"\n\n[[Whisper. <i>\"What is he talking about?\"</i>->whisper]]",
       "links": [
         {
           "name": "Whisper. <i>\"What is he talking about?\"</i>",
-          "link": "Whisper. <i>\"What is he talking about?\"</i>",
-          "broken": true
+          "link": "whisper",
+          "pid": "14"
         }
       ],
       "name": "Step back.",
@@ -217,7 +217,7 @@
           "pid": "23"
         }
       ],
-      "name": "Whisper. \"What is he talking about?\"",
+      "name": "whisper",
       "pid": "14",
       "position": {
         "x": "1100",
@@ -353,12 +353,12 @@
       }
     },
     {
-      "text": "Sallos whispers back.\n\n''SALLOS'': <i>\"I have no idea-\"</i>\n\nHe pauses, and thinks again.\n\n[[<i>\"Yes...?\"</i>]]",
+      "text": "Sallos whispers back.\n\n''SALLOS'': <i>\"I have no idea-\"</i>\n\nHe pauses, and thinks again.\n\n[[<i>\"Yes...?\"</i>->yes]]",
       "links": [
         {
           "name": "<i>\"Yes...?\"</i>",
-          "link": "<i>\"Yes...?\"</i>",
-          "broken": true
+          "link": "yes",
+          "pid": "4"
         }
       ],
       "name": "noIdea",
@@ -385,12 +385,12 @@
       }
     },
     {
-      "text": "His eyes widen.\n\n''SALLOS'': \"<i><b>Fuck.</b>Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money...\"</i>\n\n[[<i>\"What did you do!?\"<i>]]",
+      "text": "His eyes widen.\n\n''SALLOS'': \"<i><b>Fuck.</b>Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money...\"</i>\n\n[[<i>\"What did you do!?\"<i>->whatDo]]",
       "links": [
         {
           "name": "<i>\"What did you do!?\"<i>",
-          "link": "<i>\"What did you do!?\"<i>",
-          "broken": true
+          "link": "whatDo",
+          "pid": "3"
         }
       ],
       "name": "widenEyes",
