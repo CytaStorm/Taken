@@ -108,8 +108,8 @@ public class SceneController : MonoBehaviour
 
 	public float FadeInTimerPercent
 	{
-		get
-		{
+		get//
+		{  //
 			return (_fadeInTimer / (_fadeInTime - 1.5f));
 		}
 	}
@@ -218,16 +218,17 @@ public class SceneController : MonoBehaviour
 	}
 
     /// <summary>
-    /// Populates list of dialogue flags
+    /// Populates list of dialogue flags with every flag in every dialogue graph
     /// in the scene
     /// </summary>
-	/// <param name="node">node to add flags from</param>
+	/// <param name="graph">Graph to add flags from</param>
     protected void CreateDialogueFlags(NewDialogueNode node)
 	{
 		foreach (NewDialogueFlag flag in node.FlagsToChange)
         {
             NewDialogueFlag match = DialogueFlags.FirstOrDefault(
-				matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
+        		matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
+
 			//skip if there is a match
             if (match != null) continue;
             DialogueFlags.Add(new NewDialogueFlag(flag.Names));
@@ -247,7 +248,7 @@ public class SceneController : MonoBehaviour
 	public bool CheckTraversal(List<NewDialogueFlag> flagsToCheck)
 	{
 		return Traverser.CheckTraversal(flagsToCheck);
-		}
+	}
 
     /// <summary>
     /// Update the currentGraph variable based on the npcScript the sceneManager gets an
