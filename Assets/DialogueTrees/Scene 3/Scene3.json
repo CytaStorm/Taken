@@ -94,7 +94,7 @@
       }
     },
     {
-      "text": "''SALLOS'': \"All packed up! Let's get out of here.\"\n(set: $end to true)\n(set: $disappear to true)\n(set: $reach to true)\n(set: $stab to true)\n(set: $enterGoon to true)\n(set: $enterAkif to true)\n(set: $walkLeft to true)\n\n[[Continue->continue 1]]",
+      "text": "''SALLOS'': \"All packed up! Let's get out of here.\"\n(set: $end to false)\n(set: $disappear to false)\n(set: $reach to false)\n(set: $stab to false)\n(set: $enterGoon to false)\n(set: $enterAkif to false)\n(set: $walkLeft to false)\n\n[[Continue->continue 1]]",
       "links": [
         {
           "name": "Continue",
@@ -125,7 +125,7 @@
       "pid": "8",
       "position": {
         "x": "650",
-        "y": "250"
+        "y": "225"
       }
     },
     {
@@ -268,8 +268,8 @@
       "name": "continue 3",
       "pid": "17",
       "position": {
-        "x": "500",
-        "y": "250"
+        "x": "475",
+        "y": "200"
       }
     },
     {
@@ -348,8 +348,8 @@
       "name": "no",
       "pid": "22",
       "position": {
-        "x": "350",
-        "y": "325"
+        "x": "375",
+        "y": "350"
       }
     },
     {

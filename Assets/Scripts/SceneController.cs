@@ -108,8 +108,8 @@ public class SceneController : MonoBehaviour
 
 	public float FadeInTimerPercent
 	{
-		get
-		{
+		get//
+		{  //
 			return (_fadeInTimer / (_fadeInTime - 1.5f));
 		}
 	}
@@ -227,7 +227,8 @@ public class SceneController : MonoBehaviour
 		foreach (NewDialogueFlag flag in node.FlagsToChange)
         {
             NewDialogueFlag match = DialogueFlags.FirstOrDefault(
-				matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
+        		matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
+
 			//skip if there is a match
             if (match != null) continue;
             DialogueFlags.Add(new NewDialogueFlag(flag.Names));
