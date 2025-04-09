@@ -34,7 +34,7 @@ public class CutsceneController : SceneController
 
     // Start is called before the first frame update
     // MAKE SURE EXECUTION ORDER IS SET TO LAST FOR THIS TO WORK
-    void Start()
+    new void Start()
     {
         base.Start();
 
@@ -88,7 +88,7 @@ public class CutsceneController : SceneController
     }
 
 	// Update is called once per frame
-	void Update()
+	new void Update()
     {
         base.Update();
 

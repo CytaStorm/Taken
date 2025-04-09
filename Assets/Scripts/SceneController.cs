@@ -145,7 +145,13 @@ public class SceneController : MonoBehaviour
 			interactScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);
 		}
 
-		CreateAllDialogueFlags();
+		foreach (NewDialogueGraph graph in _graphs)
+		{
+			foreach (NewDialogueNode node in graph.Nodes)
+			{
+				CreateDialogueFlags(node);
+			}
+		}
 
 		// If scene dialogue is to be auto-implemented, set dialogue to that of first NPC
 		if (autoStartDialogue)
@@ -215,25 +221,17 @@ public class SceneController : MonoBehaviour
     /// Populates list of dialogue flags with every flag in every dialogue graph
     /// in the scene
     /// </summary>
-    protected void CreateAllDialogueFlags()
+	/// <param name="graph">Graph to add flags from</param>
+    protected void CreateDialogueFlags(NewDialogueNode node)
 	{
-		foreach (NewDialogueGraph graph in _graphs)
-		{
-			foreach (NewDialogueNode node in graph.Nodes)
-			{
-				foreach (NewDialogueFlag flag in node.FlagsToChange)
-				{
-					// Check flag list against the list of every flag in DialogueFlags
-					foreach(NewDialogueFlag compareAgainst in DialogueFlags)
-                    {
-                        IEnumerable<string> difference = flag.Names.Except(compareAgainst.Names);
-                        //if flag doesn't already exist
-                        if (difference.Count() == 0) continue;
-                        DialogueFlags.Add(new NewDialogueFlag(flag.Names));
-                    }
-                }
-			}
-		}
+		foreach (NewDialogueFlag flag in node.FlagsToChange)
+        {
+            NewDialogueFlag match = DialogueFlags.FirstOrDefault(
+				matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
+			//skip if there is a match
+            if (match != null) continue;
+            DialogueFlags.Add(new NewDialogueFlag(flag.Names));
+        }
 	}
 
 	/// <summary>
