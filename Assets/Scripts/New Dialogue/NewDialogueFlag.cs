@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Custom data structure for representing condition checks in dialogue trees 
@@ -89,7 +90,7 @@ public class NewDialogueFlag
 		if (obj is NewDialogueFlag)
 		{
 			NewDialogueFlag other = (NewDialogueFlag)obj;
-			return other.IsTrue == IsTrue && other.Names == Names;
+			return other.IsTrue == IsTrue && other.Names.SequenceEqual(Names);
 		}
 
 		return false;
