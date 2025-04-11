@@ -5,8 +5,8 @@ Parsed Tent
 :: StoryData
 {
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
-  "format": "Twison",
-  "format-version": "0.0.1",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
   "start": "scene",
   "tag-colors": {
     "exit": "red",
@@ -43,20 +43,20 @@ These branches hang low, easy enough for you to grab.
 [[Leave->exitBranches]]
 
 
-:: cut {"position":"775,1050","size":"100,100"}
+:: cut {"position":"750,825","size":"100,100"}
 After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.
 [[Leave->exitCut]]
 (set: $hasWood to true)
 
 
-:: deadTree [start] {"position":"675,875","size":"100,100"}
+:: deadTree [start] {"position":"700,975","size":"100,100"}
 The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.
 
 (if: $logQuest is true)[ [[Cut some logs->cut]] ]
 [[Leave->exitDeadTree]]
 
 
-:: emptyStove [start] {"position":"1300,50","size":"100,100"}
+:: emptyStove [start] {"position":"1525,50","size":"100,100"}
 The stove is small, enough to be folded up and carried by Sallos on the trek here. It has a chimney running from it out through the tent, reminding you of the warm hearth at home. You feel colder just by looking at its dead state. Get it lit!
 
 [[Leave->exitEmptyStove]]
@@ -66,15 +66,15 @@ The stove is small, enough to be folded up and carried by Sallos on the trek her
 
 
 
-:: exitCut [exit] {"position":"850,1200","size":"100,100"}
+:: exitCut [exit] {"position":"875,1050","size":"100,100"}
 
 
 
-:: exitDeadTree [exit] {"position":"550,1175","size":"100,100"}
+:: exitDeadTree [exit] {"position":"800,1150","size":"100,100"}
 
 
 
-:: exitEmptyStove [exit] {"position":"1125,75","size":"100,100"}
+:: exitEmptyStove [exit] {"position":"1275,125","size":"100,100"}
 
 
 
@@ -82,8 +82,9 @@ The stove is small, enough to be folded up and carried by Sallos on the trek her
 
 
 
-:: exitHatchet [exit] {"position":"425,600","size":"100,100"}
+:: exitHatchet [exit] {"position":"500,575","size":"100,100"}
 
+(set: $logQuest to true)
 
 
 :: exitKindlingQuest [exit] {"position":"275,600","size":"100,100"}
@@ -91,7 +92,7 @@ The stove is small, enough to be folded up and carried by Sallos on the trek her
 (set: $kindlingQuest to true)
 
 
-:: exitKindlingStove [exit] {"position":"750,475","size":"100,100"}
+:: exitKindlingStove [exit] {"position":"1975,200","size":"100,100"}
 
 
 
@@ -154,7 +155,7 @@ The hatchet feels light in your hand. You’ve cut logs before, this should be e
 [[Continue->pemmican]]
 
 
-:: itsBad {"position":"1925,800","size":"100,100"}
+:: itsBad {"position":"1875,750","size":"100,100"}
 <b>SALLOS:</b> Well, get used to it then, it’s what we’ll be eating till we get to the top. I’m saving the best stuff for once we get up there.
 
 [[Continue->makeHoosh]]
@@ -179,13 +180,23 @@ The hatchet feels light in your hand. You’ve cut logs before, this should be e
 [[No, let me get the logs!->startLogs]]
 
 
-:: kindlingSallos [start] {"position":"1125,300","size":"100,100"}
-<b>SALLOS:</b> I can't wait to eat!
+:: kindlingSallos [start] {"position":"775,425","size":"100,100"}
+Sallos picks through the branches, keeping the suitable ones and tossing away the wet ones.
 
-[[Continue->sallosAskWood]]
+[[Continue->kindlingSallos2]]
 
 
-:: kindlingStove [start] {"position":"850,275","size":"100,100"}
+:: kindlingSallos2 {"position":"775,575","size":"100,100"}
+He hums a simple tune while he does so.
+
+[[Leave->kindlingSallosExit]]
+
+
+:: kindlingSallosExit [exit] {"position":"950,525","size":"100,100"}
+
+
+
+:: kindlingStove [start] {"position":"1775,125","size":"100,100"}
 The stove is small, enough to be folded up and carried by Sallos on the trek here. It has a chimney running from it out through the tent, reminding you of the warm hearth at home. You feel colder just by looking at its dead state. Get it lit!
 
 [[Leave->exitKindlingStove]]
@@ -204,6 +215,22 @@ Your eyes light up, and your stomach growls loudly.
 [[It is bad!->itsBad]]
 
 
+:: logSallos [start] {"position":"775,150","size":"100,100"}
+Sallos is slowly hacking away at the tree.
+
+[[Continue->logSallos2]]
+
+
+:: logSallos2 {"position":"775,275","size":"100,100"}
+<b>SALLOS: </b>Hiii-yah!
+
+[[Leave->logSallosExit]]
+
+
+:: logSallosExit [exit] {"position":"1000,250","size":"100,100"}
+
+
+
 :: look {"position":"2100,950","size":"100,100"}
 Sallos looks listfully at you, and you, back at him. 
 
@@ -217,7 +244,7 @@ Sallos looks listfully at you, and you, back at him.
 [[Sure!->makeIt]]
 
 
-:: makeIt {"position":"2050,775","size":"100,100"}
+:: makeIt {"position":"1975,650","size":"100,100"}
 You drop the rest of your pemmican in the water, and Sallos puts in a biscuit. It slowly disintegrates, turning the water into a thin soup, the vegetables floating around lazily as they detach from the body of the block. 
 
 [[Continue->look]]
@@ -260,7 +287,7 @@ Sallos did say that pine cones are good for kindling, right?
 [[That really was awful… But you did save my life out there. And we met.->funny]]
 
 
-:: sallosAskWood {"position":"1400,300","size":"100,100"}
+:: sallosAskWood {"position":"1500,300","size":"100,100"}
 <b>SALLOS:</b> So, you've got the kindling? Hand it over, and I'll start the fire!
 
 [[Continue->startFire]]
@@ -294,7 +321,7 @@ SALLOS: Anyways, we should probably finish up soon. We should catch some rest as
 [[Continue->foodTime]]
 
 
-:: startFire {"position":"1700,275","size":"100,100"}
+:: startFire {"position":"1700,300","size":"100,100"}
 Sallos puts the sticks and the pinecones into the stove, and begins striking an iron rod to get a spark. After a few attempts, the kindling catches, and the tent lights up.
 
 [[Continue->addWood]]
@@ -302,7 +329,6 @@ Sallos puts the sticks and the pinecones into the stove, and begins striking an 
 
 :: startLogs {"position":"450,175","size":"100,100"}
 <b>SALLOS:</b> You sure? Well, take this hatchet and find some logs! Same rules—nothing wet!
-(set: $logQuest to true)
 
 [[Continue->holdHatchet]]
 
@@ -319,13 +345,13 @@ The bar is waxy, and looks like a brick made of peas and dirt. Not very appetizi
 [[Continue->itIs]]
 
 
-:: woodSallos {"position":"1450,500","size":"100,100"}
+:: woodSallos {"position":"1500,500","size":"100,100"}
 <b>SALLOS:</b> I've got the fire started, and I see you have some logs! Set them down over there, and we'll put just one or two in the stove for now. We wouldn't want to smother the flame out!
 
 [[Continue->addWood]]
 
 
-:: woodStove [start] {"position":"1100,525","size":"100,100"}
+:: woodStove [start] {"position":"1300,500","size":"100,100"}
 The embers in the stove make a light crackle as they smoulder, giving off the barest of light and warmth.
 
 [[Continue->woodSallos]]
