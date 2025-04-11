@@ -264,7 +264,7 @@ public class SceneController : MonoBehaviour
 	{
 		foreach (NewDialogueFlag flag in DialogueFlags)
 		{
-			if (flag.Names.Equals(newFlag.Names)) 
+			if (flag.Names.SequenceEqual(newFlag.Names)) 
 			{
 				flag.IsTrue = newFlag.IsTrue;
 				//print(flag);
