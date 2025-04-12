@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
 
+	public static UIManager UI { get; private set; }
+
 	[Header("Other GameObjects")]
 	[SerializeField] private SceneController _sceneController;
 	[SerializeField] private PlayerInput _input;
@@ -86,9 +88,23 @@ public class UIManager : MonoBehaviour
 			
 		}
 	}
-	#endregion
+    #endregion
 
-	void Start()
+	/// <summary>
+	/// Singleton
+	/// </summary>
+    private void Awake()
+    {
+		if (UI != null && UI != this)
+		{
+			Destroy(UI);
+		} else
+		{
+			UI = this;
+		}
+    }
+
+    void Start()
 	{
         if (_sceneController.autoStartDialogue)
         {

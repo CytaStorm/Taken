@@ -41,11 +41,6 @@ public class SceneController : MonoBehaviour
     protected GameObject[] _interactables;
 
 	/// <summary>
-	/// UI Manager in Scene
-	/// </summary>
-	public UIManager _UIManager;
-
-	/// <summary>
 	/// Dialogue Traverser for traversing dialogue.
 	/// </summary>
 	public DialogueTraverser Traverser;
@@ -108,8 +103,8 @@ public class SceneController : MonoBehaviour
 
 	public float FadeInTimerPercent
 	{
-		get//
-		{  //
+		get
+		{  
 			return (_fadeInTimer / (_fadeInTime - 1.5f));
 		}
 	}
@@ -130,7 +125,7 @@ public class SceneController : MonoBehaviour
 		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
 		_graphs = jsonGraph.CreateGraphs();
 		DialogueFlags = new List<NewDialogueFlag>();
-		Traverser = new DialogueTraverser(this, _UIManager);
+		Traverser = new DialogueTraverser(this, UIManager.UI);
 		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 
 		//Find all interactable objects in scene
@@ -162,7 +157,7 @@ public class SceneController : MonoBehaviour
 		}
 
 		//Scene changing
-		onSceneChange += _UIManager.PauseAllButtons;
+		onSceneChange += UIManager.UI.PauseAllButtons;
 		foreach (NewDialogueFlag flag in DialogueFlags)
 		{
 			if (flag.Names.Contains("end"))
