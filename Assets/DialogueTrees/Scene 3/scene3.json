@@ -94,7 +94,7 @@
       }
     },
     {
-      "text": "''SALLOS'': \"All packed up! Let's get out of here.\"\n(set: $end to false)\n(set: $disappear to false)\n(set: $reach to false)\n(set: $stab to false)\n(set: $walkCloser to true)\n(set: $enterGoon to false)\n(set: $enterAkif to false)\n(set: $walkLeft to false)\n\n[[Continue->continue 1]]",
+      "text": "''SALLOS'': \"All packed up! Let's get out of here.\"\n(set: $end to false)\n(set: $disappear to false)\n(set: $reach to false)\n(set: $stab to false)\n(set: $walkCloser to false)\n(set: $enterGoon to false)\n(set: $enterAkif to false)\n(set: $walkLeft to false)\n\n[[Continue->continue 1]]",
       "links": [
         {
           "name": "Continue",
