@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
   hasLimitedInteractions: 1
   interactionCount: 0
   InteractionPoint: {fileID: 0}
@@ -996,7 +995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
   hasLimitedInteractions: 1
   interactionCount: 0
   InteractionPoint: {fileID: 0}
@@ -1065,55 +1063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfee3bc8d9f9ef74f9320f51dd1563ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &568755719
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 568755722}
-  - component: {fileID: 568755723}
-  m_Layer: 7
-  m_Name: DialogueHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
-  m_IsActive: 1
---- !u!4 &568755722
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568755719}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.58, y: -30.75, z: -5.73}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &568755723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568755719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _UIManager: {fileID: 553045652}
-  hasLimitedInteractions: 1
-  interactionCount: 0
-  InteractionPoint: {fileID: 0}
-  _materialList: []
 --- !u!1 &624461084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,7 +2017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
   hasLimitedInteractions: 1
   interactionCount: 0
   InteractionPoint: {fileID: 0}
@@ -2086,7 +2034,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 964303337}
-  - component: {fileID: 964303336}
   m_Layer: 0
   m_Name: SceneChanger
   m_TagString: Untagged
@@ -2094,18 +2041,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &964303336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964303335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535d397b9a2dc604c9d89ebe7be5976c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &964303337
 Transform:
   m_ObjectHideFlags: 0
@@ -2744,7 +2679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c5a3c8f1e7d034a8cf66832bf5e4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
   hasLimitedInteractions: 1
   interactionCount: 0
   InteractionPoint: {fileID: 0}
@@ -3358,18 +3292,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _twineJson: {fileID: 4900000, guid: 8c2f45f23e2cd6841a1f265f0d8e131b, type: 3}
-  autoStartDialogue: 0
+  autoStartDialogue: 1
   _destinationScene: 
   _fadeOutTime: 0
   FadingOut: 0
-  _fadeInTime: 0
+  _fadeInTime: 3
   FadesIn: 1
   _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
   DEBUG: 0
-  Sallos: {fileID: 1075811454}
-  Eulyss: {fileID: 36616011}
-  Akif: {fileID: 278721995}
-  Goon: {fileID: 819007649}
+  _sallos: {fileID: 1075811454}
+  _eulyss: {fileID: 36616011}
+  _akif: {fileID: 278721995}
+  _goon: {fileID: 819007649}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3383,7 +3317,6 @@ SceneRoots:
   - {fileID: 819007648}
   - {fileID: 1617419226}
   - {fileID: 2047368480}
-  - {fileID: 568755722}
   - {fileID: 1838195146}
   - {fileID: 1021798474}
   - {fileID: 416187123}

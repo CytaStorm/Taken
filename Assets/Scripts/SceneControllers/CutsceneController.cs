@@ -21,4 +21,17 @@ public class CutsceneController : SceneController
         // Update timer each frame
         _timer += Time.deltaTime;
     }
+
+    protected void CreateEventFlags()
+    {
+        foreach (string name in _flagNames)
+        {
+            foreach (NewDialogueFlag flag in DialogueFlags)
+            {
+                if (!flag.Names.Contains(name)) continue;
+
+                _eventFlags.Add(flag);
+            }
+        }
+    }
 } 

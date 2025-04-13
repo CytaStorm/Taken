@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,6 +7,7 @@ public class NPCScript : InteractableScript
     [Header("Character")]
     [SerializeField] private NavMeshAgent agent;
 	[SerializeField] private Animator _animator;
+
     public bool canMove = true;
     protected bool isMoving = false;
 
@@ -84,4 +86,19 @@ public class NPCScript : InteractableScript
 		LookAtPlayer();
         base.Interact();
 	}
+
+    /// <summary>
+    /// Disables Interaction for a certain amount of time.
+    /// </summary>
+    /// <param name="seconds">How long to disable interactions for</param>
+    /// <returns></returns>
+    public IEnumerator DisableInteractionForDuration(float seconds)
+    {
+        //Disable interaction
+        isPuppet = true;
+
+        yield return new WaitForSeconds(seconds);
+
+        isPuppet = false;
+    }
 }

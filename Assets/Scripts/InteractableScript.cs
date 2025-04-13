@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
@@ -8,8 +9,6 @@ using UnityEngine.Events;  // Import the AI Navigation namespace
 public class InteractableScript : MonoBehaviour
 {
     [Header("References to other Gameobjects")]
-    public UIManager _UIManager;
-
     public NewDialogueGraph Graph;
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
@@ -37,7 +36,7 @@ public class InteractableScript : MonoBehaviour
 
     public virtual void Interact()
     {
-		_UIManager.ChangeToDialogue();
+		UIManager.UI.ChangeToDialogue();
 		hasInteracted = true;
 		interactionCount++;
 		UpdateSceneGraph.Invoke(this);
@@ -68,7 +67,7 @@ public class InteractableScript : MonoBehaviour
 			InteractionPoint.transform.position);
 
 		// If its able to be interacted with, Interact
-		if (distance < 0.1 && isFocus && _UIManager.CurrentUIMode == UIMode.Gameplay)
+		if (distance < 0.1 && isFocus && UIManager.UI.CurrentUIMode == UIMode.Gameplay)
 		{
 			if (hasLimitedInteractions)
 			{
@@ -97,6 +96,7 @@ public class InteractableScript : MonoBehaviour
 		}
         isHighlighted = false;
     }
+
 
     //private void OnDrawGizmosSelected()
     //{

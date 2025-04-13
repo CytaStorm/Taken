@@ -9,10 +9,10 @@ using UnityEngine.AI;
 public class SceneThreeController : CutsceneController
 {
     // Actors
-    public GameObject Sallos;
-    public GameObject Eulyss;
-    public GameObject Akif;
-    public GameObject Goon;
+    [SerializeField] private GameObject _sallos;
+    [SerializeField] private GameObject _eulyss;
+    [SerializeField] private GameObject _akif;
+    [SerializeField] private GameObject _goon;
     
     // Actor components
     private NavMeshAgent _sallosAgent;
@@ -44,15 +44,7 @@ public class SceneThreeController : CutsceneController
         _flagNames.Add("reach");
 
         //Create eventFlags list based on string list flagNames
-        foreach(string name in _flagNames)
-        {
-            foreach (NewDialogueFlag flag in DialogueFlags) 
-            {
-                if (!flag.Names.Contains(name)) continue;
-
-                _eventFlags.Add(flag);
-            }
-        }
+        CreateEventFlags();
 
         // Assign all event methods to OnClick() events for all buttons
         _eventFlags[0].onValueChange += delegate { WalkLeft(); };
@@ -64,39 +56,30 @@ public class SceneThreeController : CutsceneController
         _eventFlags[6].onValueChange += delegate { Reach(); };
 
         // Get component data for all actors
-        _sallosAgent = Sallos.GetComponent<NavMeshAgent>();
-        _sallosAnimator = Sallos.GetComponent<Animator>();
+        _sallosAgent = _sallos.GetComponent<NavMeshAgent>();
+        _sallosAnimator = _sallos.GetComponent<Animator>();
 
-        _eulyssAgent = Eulyss.GetComponent<NavMeshAgent>();
-        _eulyssAnimator = Eulyss.GetComponent<Animator>();
+        _eulyssAgent = _eulyss.GetComponent<NavMeshAgent>();
+        _eulyssAnimator = _eulyss.GetComponent<Animator>();
 
-        _akifAgent = Akif.GetComponent<NavMeshAgent>();
-        _akifAnimator = Akif.GetComponent<Animator>();
+        _akifAgent = _akif.GetComponent<NavMeshAgent>();
+        _akifAnimator = _akif.GetComponent<Animator>();
 
-        _goonAgent = Goon.GetComponent<NavMeshAgent>();
-        _goonAnimator = Goon.GetComponent<Animator>();
+        _goonAgent = _goon.GetComponent<NavMeshAgent>();
+        _goonAnimator = _goon.GetComponent<Animator>();
 
         // Set initial positions of all actors
-        Sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
-        Eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
-        Akif.transform.position = new Vector3(-4.92f, 0, 16.85f);
-        Goon.transform.position = new Vector3(-12.08f, 0, 4.37f);
+        _sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
+        _eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
+        _akif.transform.position = new Vector3(-4.92f, 0, 16.85f);
+        _goon.transform.position = new Vector3(-12.08f, 0, 4.37f);
     }
 
-	// Update is called once per frame
-	new void Update()
+    
+    // Update is called once per frame
+    new void Update()
     {
         base.Update(); // Update timer each frame
-    }
-
-    /// <summary>
-    /// Finds the event flag with the specified name. (ONLY USE ON EVENT FLAGS B/C THEY HAVE ONE NAME ONLY)
-    /// </summary>
-    /// <param name="eventName">Flag name to look for.</param>
-    /// <returns>Flag with that name.</returns>
-    private NewDialogueFlag FindEventWithName(string eventName)
-    {
-        return _eventFlags.FirstOrDefault(flag => flag.Names[0] == eventName);
     }
 
     private void WalkLeft()
