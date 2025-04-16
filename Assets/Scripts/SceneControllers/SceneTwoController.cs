@@ -68,9 +68,10 @@ public class SceneTwoController : CutsceneController
             yield return null;
         }
 
+        _sallosAgent.isStopped = true;
 
         _sallosScript.transform.rotation = 
-            Quaternion.Euler(_sallosScript.transform.rotation.x, 120, _sallosScript.transform.rotation.z);
+            Quaternion.Euler(_sallosScript.transform.rotation.x, 40, _sallosScript.transform.rotation.z);
 
         Quaternion q = Quaternion.LookRotation(
             _deadTree.transform.position - sallosMesh.transform.position);
