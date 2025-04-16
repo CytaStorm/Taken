@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,7 @@ public class NPCScript : InteractableScript
     [Header("Character")]
     [SerializeField] private NavMeshAgent agent;
 	[SerializeField] private Animator _animator;
+    public GameObject Mesh;
 
     public bool canMove = true;
     protected bool isMoving = false;
@@ -100,5 +102,24 @@ public class NPCScript : InteractableScript
         yield return new WaitForSeconds(seconds);
 
         isPuppet = false;
+    }
+
+    public IEnumerator RotateToFaceDirection(Vector3 target)
+    {
+        yield return 0;
+
+        while (transform.position.x != agent.destination.x && 
+            transform.position.z != agent.destination.z)
+        {
+            yield return null;
+        }
+
+        var q = Quaternion.LookRotation(target - transform.position);
+
+        while(Quaternion.Angle(transform.rotation, q) > 0)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 50 * Time.deltaTime);
+            yield return null;
+        }
     }
 }
