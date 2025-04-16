@@ -1279,7 +1279,7 @@ PrefabInstance:
     - target: {fileID: 2738910716026719855, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _portraitTextures.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 76763e343906654478a47473a9d4758e, type: 3}
+      objectReference: {fileID: 21300000, guid: 5b1bd51ec8cd3b84287d6cc6603af005, type: 3}
     - target: {fileID: 2738910716026719855, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _portraitTextures.Array.data[1]
       value: 
