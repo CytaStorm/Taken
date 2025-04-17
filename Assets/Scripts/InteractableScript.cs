@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,15 +11,18 @@ public class InteractableScript : MonoBehaviour
 {
     [Header("References to other Gameobjects")]
     public NewDialogueGraph Graph;
+
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
     [Header("Interactivity")]
-    protected bool hasInteracted = false;
-    public bool isFocus { get { return PlayerController.PlayerControl.Focus == this; } }
-
-    public bool hasLimitedInteractions = true;
-    protected bool canInteract = true;    
-    public int interactionCount = 0;
+    public bool Interactable = true;    
+    public bool HasLimitedInteractions = false;
+    public int InteractionCount = 0;
+    public bool isFocus { 
+        get { 
+            return PlayerController.PlayerControl.Focus == this; 
+        } 
+    }
 
     public GameObject InteractionPoint;
     public GameObject InteractionPivot;
@@ -39,14 +43,13 @@ public class InteractableScript : MonoBehaviour
     public virtual void Interact()
     {
 		UIManager.UI.ChangeToDialogue();
-		hasInteracted = true;
-		interactionCount++;
+		InteractionCount++;
 		UpdateSceneGraph.Invoke(this);
     }
 
     protected virtual void Update()
 	{
-        if (isHighlighted && !isFocus)
+        if (isHighlighted && !isFocus && Interactable)
         {
 			foreach (Material mat in _materialList)
 			{
@@ -59,7 +62,7 @@ public class InteractableScript : MonoBehaviour
         highlightTimer += Time.deltaTime;
 
         //Interaction filter
-        if (!isFocus || !canInteract)
+        if (!isFocus || !Interactable)
 		{
 			return;
 		}
@@ -71,10 +74,10 @@ public class InteractableScript : MonoBehaviour
 		// If its able to be interacted with, Interact
 		if (distance < 0.1 && isFocus && UIManager.UI.CurrentUIMode == UIMode.Gameplay)
 		{
-			if (hasLimitedInteractions)
+			if (HasLimitedInteractions)
 			{
-				if (interactionCount > 0) { return; }
-				else {interactionCount++; }
+				if (InteractionCount > 0) { return; }
+				else {InteractionCount++; }
 			}
             //hasInteracted = true;
             Interact();
@@ -98,7 +101,6 @@ public class InteractableScript : MonoBehaviour
 		}
         isHighlighted = false;
     }
-
 
     //private void OnDrawGizmosSelected()
     //{

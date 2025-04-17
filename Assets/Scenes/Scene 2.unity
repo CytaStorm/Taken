@@ -1527,8 +1527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasLimitedInteractions: 1
-  interactionCount: 0
+  Interactable: 1
+  HasLimitedInteractions: 0
+  InteractionCount: 0
   InteractionPoint: {fileID: 0}
   InteractionPivot: {fileID: 0}
   _materialList:
@@ -7024,8 +7025,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasLimitedInteractions: 0
-  interactionCount: 0
+  Interactable: 1
+  HasLimitedInteractions: 0
+  InteractionCount: 0
   InteractionPoint: {fileID: 0}
   InteractionPivot: {fileID: 0}
   _materialList:
@@ -7090,6 +7092,14 @@ PrefabInstance:
       propertyPath: hasLimitedInteractions
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5916161910065205699, guid: 8db95ced89954aa46916a67538918c36, type: 3}
+      propertyPath: _materialList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5916161910065205699, guid: 8db95ced89954aa46916a67538918c36, type: 3}
+      propertyPath: _materialList.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7612011664264392258, guid: 8db95ced89954aa46916a67538918c36, type: 3}
@@ -18703,8 +18713,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasLimitedInteractions: 0
-  interactionCount: 0
+  Interactable: 1
+  HasLimitedInteractions: 0
+  InteractionCount: 0
   InteractionPoint: {fileID: 0}
   InteractionPivot: {fileID: 0}
   _materialList:

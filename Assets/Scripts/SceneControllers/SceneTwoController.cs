@@ -47,8 +47,6 @@ public class SceneTwoController : CutsceneController
 	{
 		_sallosAgent.speed = 3f;
 		_sallosAgent.SetDestination(new Vector3(32.81f, 0f, 38.47f));
-
-		StartCoroutine(_sallosScript.DisableInteractionForDuration(3));
 		StartCoroutine(ArriveAtLog());
 
 		//while (_sallos.transform.rotation.y != -97.8)
@@ -62,6 +60,7 @@ public class SceneTwoController : CutsceneController
 	{
 		Transform sallosMesh = _sallosScript.Mesh.transform;
 
+		_sallosScript.Interactable = false;
 		//while (sallosMesh.position.x != _sallosAgent.destination.x && 
 		//    sallosMesh.transform.position.z != _sallosAgent.destination.z)
 		while (Vector3.Distance(sallosMesh.position, _sallosAgent.destination) > 0.1f)
@@ -80,7 +79,7 @@ public class SceneTwoController : CutsceneController
 				Quaternion.RotateTowards(sallosMesh.transform.rotation, q, 50 * Time.deltaTime);
 			yield return null;
 		}
-
+		_sallosScript.Interactable = true;
 		//_sallosScript.InteractionPivot.transform.rotation = 
 		//	Quaternion.Euler(_sallosScript.InteractionPivot.transform.rotation.x,
 		//					-20,

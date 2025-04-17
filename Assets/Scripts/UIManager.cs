@@ -240,11 +240,22 @@ public class UIManager : MonoBehaviour
 					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
 					Button exitButtonComponent = exitButton.GetComponent<Button>();
 
-					exitButtonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
+					exitButtonComponent.onClick.AddListener(
+						delegate { _sceneController.GoToNode(choiceIndex); });
+					exitButtonComponent.onClick.AddListener(delegate
+					{
+						if (PlayerController.PlayerControl.Focus != null &&
+							PlayerController.PlayerControl.Focus is NPCScript)
+						{
+							((NPCScript)PlayerController.PlayerControl.Focus).ExitDialogue();
+						}
+					});
 					exitButtonComponent.onClick.AddListener(PlaySound);
 					exitButtonComponent.onClick.AddListener(ClearButtons);
 					exitButtonComponent.onClick.AddListener(ClearText);
 					exitButtonComponent.onClick.AddListener(ChangeToGameplay);
+					
+					//Add event to focus to let them know they've finished
 					continue;
 				}
 
@@ -256,7 +267,8 @@ public class UIManager : MonoBehaviour
                 Button buttonComponent = newestButton.GetComponent<Button>();
                 buttonComponent.onClick.AddListener(PlaySound);
                 buttonComponent.onClick.AddListener(ClearButtons);
-                buttonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
+                buttonComponent.onClick.AddListener(
+					delegate { _sceneController.GoToNode(choiceIndex); });
             }			
         }
 

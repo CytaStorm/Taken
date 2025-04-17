@@ -128,12 +128,12 @@ public class SceneController : MonoBehaviour
 		Traverser = new DialogueTraverser(this, UIManager.UI);
 		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 
-		//Find all interactable objects in scene
+		//Find all Interactable objects in scene
 		_interactables = GameObject.FindGameObjectsWithTag("Interactable");
-		//sets up each interactable in scene
+		//sets up each Interactable in scene
 		foreach (GameObject interactable in _interactables) 
 		{
-			//Sets up graph for interactable
+			//Sets up graph for Interactable
 			InteractableScript interactScript = interactable.GetComponent<InteractableScript>();
 			interactScript.Graph = _graphs.FirstOrDefault(graph => graph.Name == interactable.name);
 

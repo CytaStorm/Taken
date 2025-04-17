@@ -12,7 +12,7 @@ public class NPCScript : InteractableScript
 
     //used after ending interaction with an NPC to restore them looking in their
     //previous direction
-    private Vector3 _prevFaceDirection;
+    private Quaternion _prevFaceDirection;
 
     public bool canMove = true;
     protected bool isMoving = false;
@@ -58,32 +58,33 @@ public class NPCScript : InteractableScript
             //Mesh.transform.LookAt(destination);
             StartCoroutine(
                 RotateMeshToFaceDirection(
-                    PlayerController.PlayerControl.transform.position,
-                    100));
+                    Quaternion.LookRotation(
+                        PlayerController.PlayerControl.transform.position - Mesh.transform.position),
+                    150));
         }
     }
 
-    protected void TurnToFacePlayer()
-    {
-        // If stationary, don't run method
-        if (!canMove) { return; }
+    //protected void TurnToFacePlayer()
+    //{
+    //    // If stationary, don't run method
+    //    if (!canMove) { return; }
 
-        // Get current angle
-        Vector3 oldAngle = transform.rotation.eulerAngles; 
-        // Face player position
-        Vector3 destination = PlayerController.PlayerControl.transform.position;
-        if (destination != null)
-        {
-            Mesh.transform.LookAt(destination);
-        }
-        // Set angle to halfway between
-        Vector3 angleDifference = transform.rotation.eulerAngles - oldAngle;
-    }
+    //    // Get current angle
+    //    Vector3 oldAngle = transform.rotation.eulerAngles; 
+    //    // Face player position
+    //    Vector3 destination = PlayerController.PlayerControl.transform.position;
+    //    if (destination != null)
+    //    {
+    //        Mesh.transform.LookAt(destination);
+    //    }
+    //    // Set angle to halfway between
+    //    Vector3 angleDifference = transform.rotation.eulerAngles - oldAngle;
+    //}
 
     // Moves the NPC to the destination
     protected void MoveToPosition(Vector3 destination)
     {
-        // Only move if the interactable has an agent AND a destination
+        // Only move if the Interactable has an agent AND a destination
         if ((_agent != null) && (destination != null))
         {
             _agent.SetDestination(destination); // Sets the destination for the NavMeshAgent
@@ -93,6 +94,8 @@ public class NPCScript : InteractableScript
 
 	public override void Interact()
 	{
+        //Save prev rotation
+        _prevFaceDirection = Mesh.transform.rotation;
 		LookAtPlayer();
         base.Interact();
 	}
@@ -112,16 +115,25 @@ public class NPCScript : InteractableScript
         isPuppet = false;
     }
 
-    public IEnumerator RotateMeshToFaceDirection(Vector3 target, int speed)
+    public IEnumerator RotateMeshToFaceDirection(Quaternion target, int speed)
     {
         yield return 0;
 
-        var q = Quaternion.LookRotation(target - Mesh.transform.position);
+        //var q = Quaternion.LookRotation(target - Mesh.transform.position);
 
-        while(Quaternion.Angle(Mesh.transform.rotation, q) > 0)
+        //disable interaction till rotation is complete
+        Interactable = false;
+        while(Quaternion.Angle(Mesh.transform.rotation, target) > 0)
         {
-            Mesh.transform.rotation = Quaternion.RotateTowards(Mesh.transform.rotation, q, speed * Time.deltaTime);
+            Mesh.transform.rotation = Quaternion.RotateTowards(
+                Mesh.transform.rotation, target, speed * Time.deltaTime);
             yield return null;
         }
+        Interactable = true;
     }
+
+	public void ExitDialogue()
+	{
+        StartCoroutine(RotateMeshToFaceDirection(_prevFaceDirection, 150));
+	}
 }

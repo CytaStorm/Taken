@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 		if (_UIManager.CurrentUIMode == UIMode.Dialogue) return;
 
 		//Player clicks in game
-		// if ray hits interactable
+		// if ray hits Interactable
 		if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
 		{
 			InteractableScript interactable = hit.collider.GetComponent<InteractableScript>();
