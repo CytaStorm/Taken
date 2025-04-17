@@ -6,14 +6,14 @@
         {
           "name": "Continue",
           "link": "startCooking",
-          "pid": "45"
+          "pid": "43"
         }
       ],
       "name": "addWood",
       "pid": "1",
       "position": {
-        "x": "1675",
-        "y": "425"
+        "x": "2150",
+        "y": "500"
       }
     },
     {
@@ -22,13 +22,13 @@
         {
           "name": "Continue",
           "link": "likeIt",
-          "pid": "31"
+          "pid": "30"
         }
       ],
       "name": "bite",
       "pid": "2",
       "position": {
-        "x": "1875",
+        "x": "2325",
         "y": "525"
       }
     },
@@ -38,18 +38,18 @@
         {
           "name": "Continue",
           "link": "sleepSoon",
-          "pid": "44"
+          "pid": "42"
         }
       ],
       "name": "blush",
       "pid": "3",
       "position": {
-        "x": "2600",
+        "x": "3050",
         "y": "1200"
       }
     },
     {
-      "text": "These branches hang low, easy enough for you to grab.\n\n(if: $kindlingQuest is true)[ [[Wrench off a few branches->grabKindling]] ]\n[[Leave->exitBranches]]",
+      "text": "These branches hang low, easy enough for you to grab.\n\n($if $kindlingQuest is true)[ [[Wrench off a few branches->grabKindling]] ]\n[[Leave->exitBranches]]",
       "links": [
         {
           "name": "Wrench off a few branches",
@@ -59,7 +59,7 @@
         {
           "name": "Leave",
           "link": "exitBranches",
-          "pid": "54"
+          "pid": "7"
         }
       ],
       "name": "branches",
@@ -84,8 +84,8 @@
       "name": "cut",
       "pid": "5",
       "position": {
-        "x": "850",
-        "y": "1025"
+        "x": "800",
+        "y": "875"
       }
     },
     {
@@ -99,33 +99,14 @@
         {
           "name": "Leave",
           "link": "exitDeadTree",
-          "pid": "53"
+          "pid": "9"
         }
       ],
       "name": "deadTree",
       "pid": "6",
       "position": {
-        "x": "925",
-        "y": "775"
-      },
-      "tags": [
-        "start"
-      ]
-    },
-    {
-      "text": "The stove is small, enough to be folded up and carried by Sallos on the trek here. It has a chimney running from it out through the tent, reminding you of the warm hearth at home. You feel colder just by looking at its dead state. Get it lit!\n\n[[Leave->exitEmptyStove]]",
-      "links": [
-        {
-          "name": "Leave",
-          "link": "exitEmptyStove",
-          "pid": "9"
-        }
-      ],
-      "name": "emptyStove",
-      "pid": "7",
-      "position": {
-        "x": "925",
-        "y": "300"
+        "x": "700",
+        "y": "1000"
       },
       "tags": [
         "start"
@@ -133,11 +114,11 @@
     },
     {
       "text": "",
-      "name": "exitCut",
-      "pid": "8",
+      "name": "exitBranches",
+      "pid": "7",
       "position": {
-        "x": "850",
-        "y": "1200"
+        "x": "475",
+        "y": "1025"
       },
       "tags": [
         "exit"
@@ -145,11 +126,23 @@
     },
     {
       "text": "",
-      "name": "exitEmptyStove",
+      "name": "exitCut",
+      "pid": "8",
+      "position": {
+        "x": "875",
+        "y": "1000"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "",
+      "name": "exitDeadTree",
       "pid": "9",
       "position": {
-        "x": "950",
-        "y": "475"
+        "x": "800",
+        "y": "1150"
       },
       "tags": [
         "exit"
@@ -160,20 +153,20 @@
       "name": "exitGrabKindling",
       "pid": "10",
       "position": {
-        "x": "350",
-        "y": "1175"
+        "x": "450",
+        "y": "1150"
       },
       "tags": [
         "exit"
       ]
     },
     {
-      "text": "",
+      "text": "\n(set: $logQuest to true)",
       "name": "exitHatchet",
       "pid": "11",
       "position": {
-        "x": "425",
-        "y": "600"
+        "x": "250",
+        "y": "625"
       },
       "tags": [
         "exit"
@@ -184,8 +177,8 @@
       "name": "exitKindlingQuest",
       "pid": "12",
       "position": {
-        "x": "275",
-        "y": "600"
+        "x": "100",
+        "y": "625"
       },
       "tags": [
         "exit"
@@ -193,11 +186,11 @@
     },
     {
       "text": "",
-      "name": "exitKindlingStove",
+      "name": "exitNoGrabPinecones",
       "pid": "13",
       "position": {
-        "x": "750",
-        "y": "475"
+        "x": "0",
+        "y": "900"
       },
       "tags": [
         "exit"
@@ -220,7 +213,7 @@
       "name": "exitSleep",
       "pid": "15",
       "position": {
-        "x": "1200",
+        "x": "1650",
         "y": "1400"
       },
       "tags": [
@@ -234,14 +227,14 @@
         {
           "name": "Continue",
           "link": "lightup",
-          "pid": "30"
+          "pid": "29"
         }
       ],
       "name": "foodTime",
       "pid": "16",
       "position": {
-        "x": "1375",
-        "y": "675"
+        "x": "1950",
+        "y": "875"
       }
     },
     {
@@ -250,13 +243,13 @@
         {
           "name": "Continue",
           "link": "older",
-          "pid": "36"
+          "pid": "35"
         }
       ],
       "name": "funny",
       "pid": "17",
       "position": {
-        "x": "2350",
+        "x": "2800",
         "y": "575"
       }
     },
@@ -288,7 +281,7 @@
       "name": "grabKindling",
       "pid": "19",
       "position": {
-        "x": "275",
+        "x": "350",
         "y": "1025"
       }
     },
@@ -298,13 +291,13 @@
         {
           "name": "Continue",
           "link": "pinch",
-          "pid": "38"
+          "pid": "37"
         }
       ],
       "name": "grow",
       "pid": "20",
       "position": {
-        "x": "2225",
+        "x": "2675",
         "y": "1075"
       }
     },
@@ -320,7 +313,7 @@
       "name": "height",
       "pid": "21",
       "position": {
-        "x": "2600",
+        "x": "3050",
         "y": "975"
       }
     },
@@ -336,8 +329,8 @@
       "name": "holdHatchet",
       "pid": "22",
       "position": {
-        "x": "500",
-        "y": "350"
+        "x": "400",
+        "y": "400"
       }
     },
     {
@@ -346,13 +339,13 @@
         {
           "name": "Continue",
           "link": "pemmican",
-          "pid": "37"
+          "pid": "36"
         }
       ],
       "name": "itIs",
       "pid": "23",
       "position": {
-        "x": "1375",
+        "x": "1825",
         "y": "1100"
       }
     },
@@ -362,14 +355,14 @@
         {
           "name": "Continue",
           "link": "makeHoosh",
-          "pid": "33"
+          "pid": "32"
         }
       ],
       "name": "itsBad",
       "pid": "24",
       "position": {
-        "x": "1925",
-        "y": "800"
+        "x": "2325",
+        "y": "750"
       }
     },
     {
@@ -378,13 +371,13 @@
         {
           "name": "Continue",
           "link": "makeHoosh",
-          "pid": "33"
+          "pid": "32"
         }
       ],
       "name": "itsGood",
       "pid": "25",
       "position": {
-        "x": "1875",
+        "x": "2325",
         "y": "1075"
       }
     },
@@ -394,13 +387,13 @@
         {
           "name": "Continue",
           "link": "look",
-          "pid": "32"
+          "pid": "31"
         }
       ],
       "name": "justWater",
       "pid": "26",
       "position": {
-        "x": "2025",
+        "x": "2475",
         "y": "1075"
       }
     },
@@ -415,49 +408,35 @@
         {
           "name": "No, let me get the logs!",
           "link": "startLogs",
-          "pid": "47"
+          "pid": "45"
         }
       ],
       "name": "kindling",
       "pid": "27",
       "position": {
-        "x": "300",
-        "y": "375"
+        "x": "150",
+        "y": "325"
       }
     },
     {
-      "text": "<b>SALLOS:</b> I can't wait to eat!\n\n[[Continue->sallosAskWood]]",
+      "text": "Sallos picks through the branches, keeping the suitable ones and tossing away the wet ones.\n\n(if: $hasKindling is true) [ [[Continue->kindlingMeetInside]] ]\n(if: $hasKindling is false) [ [[Continue->kindlingSallos2]] ]",
       "links": [
         {
           "name": "Continue",
-          "link": "sallosAskWood",
-          "pid": "41"
+          "link": "kindlingMeetInside",
+          "pid": "56"
+        },
+        {
+          "name": "Continue",
+          "link": "kindlingSallos2",
+          "pid": "53"
         }
       ],
       "name": "kindlingSallos",
       "pid": "28",
       "position": {
-        "x": "1225",
-        "y": "175"
-      },
-      "tags": [
-        "start"
-      ]
-    },
-    {
-      "text": "The stove is small, enough to be folded up and carried by Sallos on the trek here. It has a chimney running from it out through the tent, reminding you of the warm hearth at home. You feel colder just by looking at its dead state. Get it lit!\n\n[[Leave->exitKindlingStove]]",
-      "links": [
-        {
-          "name": "Leave",
-          "link": "exitKindlingStove",
-          "pid": "13"
-        }
-      ],
-      "name": "kindlingStove",
-      "pid": "29",
-      "position": {
-        "x": "750",
-        "y": "300"
+        "x": "825",
+        "y": "475"
       },
       "tags": [
         "start"
@@ -469,14 +448,14 @@
         {
           "name": "What is it?",
           "link": "whatIs",
-          "pid": "49"
+          "pid": "47"
         }
       ],
       "name": "lightup",
-      "pid": "30",
+      "pid": "29",
       "position": {
-        "x": "1250",
-        "y": "575"
+        "x": "1750",
+        "y": "875"
       }
     },
     {
@@ -494,9 +473,9 @@
         }
       ],
       "name": "likeIt",
-      "pid": "31",
+      "pid": "30",
       "position": {
-        "x": "1750",
+        "x": "2200",
         "y": "875"
       }
     },
@@ -506,13 +485,13 @@
         {
           "name": "Continue",
           "link": "reminds",
-          "pid": "40"
+          "pid": "39"
         }
       ],
       "name": "look",
-      "pid": "32",
+      "pid": "31",
       "position": {
-        "x": "2100",
+        "x": "2550",
         "y": "950"
       }
     },
@@ -527,13 +506,13 @@
         {
           "name": "Sure!",
           "link": "makeIt",
-          "pid": "34"
+          "pid": "33"
         }
       ],
       "name": "makeHoosh",
-      "pid": "33",
+      "pid": "32",
       "position": {
-        "x": "1950",
+        "x": "2400",
         "y": "950"
       }
     },
@@ -543,14 +522,14 @@
         {
           "name": "Continue",
           "link": "look",
-          "pid": "32"
+          "pid": "31"
         }
       ],
       "name": "makeIt",
-      "pid": "34",
+      "pid": "33",
       "position": {
-        "x": "2050",
-        "y": "775"
+        "x": "2425",
+        "y": "650"
       }
     },
     {
@@ -563,10 +542,10 @@
         }
       ],
       "name": "notYet",
-      "pid": "35",
+      "pid": "34",
       "position": {
-        "x": "250",
-        "y": "100"
+        "x": "200",
+        "y": "150"
       }
     },
     {
@@ -575,13 +554,13 @@
         {
           "name": "I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!",
           "link": "sigh",
-          "pid": "43"
+          "pid": "41"
         }
       ],
       "name": "older",
-      "pid": "36",
+      "pid": "35",
       "position": {
-        "x": "2225",
+        "x": "2675",
         "y": "750"
       }
     },
@@ -591,13 +570,13 @@
         {
           "name": "Take it.",
           "link": "takeIt",
-          "pid": "48"
+          "pid": "46"
         }
       ],
       "name": "pemmican",
-      "pid": "37",
+      "pid": "36",
       "position": {
-        "x": "1625",
+        "x": "2075",
         "y": "1100"
       }
     },
@@ -611,14 +590,14 @@
         }
       ],
       "name": "pinch",
-      "pid": "38",
+      "pid": "37",
       "position": {
-        "x": "2550",
+        "x": "3000",
         "y": "825"
       }
     },
     {
-      "text": "Sallos did say that pine cones are good for kindling, right?\n\n(if: $kindlingQuest is true)[ [[Gather a few->getPinecones]] ]\n[[Leave->exitNoGrabPinecones]]",
+      "text": "Sallos did say that pine cones are good for kindling, right?\n\n($if kindlingQuest)[ [[Gather a few->getPinecones]] ]\n[[Leave->exitNoGrabPinecones]]",
       "links": [
         {
           "name": "Gather a few",
@@ -628,13 +607,13 @@
         {
           "name": "Leave",
           "link": "exitNoGrabPinecones",
-          "pid": "55"
+          "pid": "13"
         }
       ],
       "name": "pinecones",
-      "pid": "39",
+      "pid": "38",
       "position": {
-        "x": "175",
+        "x": "150",
         "y": "850"
       },
       "tags": [
@@ -651,26 +630,10 @@
         }
       ],
       "name": "reminds",
-      "pid": "40",
+      "pid": "39",
       "position": {
-        "x": "2150",
+        "x": "2600",
         "y": "600"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> So, you've got the kindling? Hand it over, and I'll start the fire!\n\n[[Continue->startFire]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "startFire",
-          "pid": "46"
-        }
-      ],
-      "name": "sallosAskWood",
-      "pid": "41",
-      "position": {
-        "x": "1400",
-        "y": "300"
       }
     },
     {
@@ -679,11 +642,11 @@
         {
           "name": "Finally, we're done! The tent is all set up! I need a break!",
           "link": "worse",
-          "pid": "52"
+          "pid": "49"
         }
       ],
       "name": "scene",
-      "pid": "42",
+      "pid": "40",
       "position": {
         "x": "75",
         "y": "125"
@@ -702,9 +665,9 @@
         }
       ],
       "name": "sigh",
-      "pid": "43",
+      "pid": "41",
       "position": {
-        "x": "2450",
+        "x": "2900",
         "y": "700"
       }
     },
@@ -718,9 +681,9 @@
         }
       ],
       "name": "sleepSoon",
-      "pid": "44",
+      "pid": "42",
       "position": {
-        "x": "1725",
+        "x": "2175",
         "y": "1350"
       }
     },
@@ -734,30 +697,30 @@
         }
       ],
       "name": "startCooking",
-      "pid": "45",
+      "pid": "43",
       "position": {
-        "x": "1500",
-        "y": "550"
+        "x": "1925",
+        "y": "675"
       }
     },
     {
-      "text": "Sallos puts the sticks and the pinecones into the stove, and begins striking an iron rod to get a spark. After a few attempts, the kindling catches, and the tent lights up.\n\n[[Continue->addWood]]",
+      "text": "Sallos puts the sticks into the stove, and begins striking an iron rod to get a spark. After a few attempts, the kindling catches, and the tent lights up.\n\n[[Continue->woodStove]]",
       "links": [
         {
           "name": "Continue",
-          "link": "addWood",
-          "pid": "1"
+          "link": "woodStove",
+          "pid": "48"
         }
       ],
-      "name": "startFire",
-      "pid": "46",
+      "name": "setFire",
+      "pid": "44",
       "position": {
-        "x": "1700",
-        "y": "275"
+        "x": "1550",
+        "y": "725"
       }
     },
     {
-      "text": "<b>SALLOS:</b> You sure? Well, take this hatchet and find some logs! Same rules—nothing wet!\n(set: $logQuest to true)\n\n[[Continue->holdHatchet]]",
+      "text": "<b>SALLOS:</b> You sure? Well, take this hatchet and find some logs! Same rules—nothing wet!\n\n[[Continue->holdHatchet]]",
       "links": [
         {
           "name": "Continue",
@@ -766,10 +729,10 @@
         }
       ],
       "name": "startLogs",
-      "pid": "47",
+      "pid": "45",
       "position": {
-        "x": "450",
-        "y": "175"
+        "x": "350",
+        "y": "200"
       }
     },
     {
@@ -782,9 +745,9 @@
         }
       ],
       "name": "takeIt",
-      "pid": "48",
+      "pid": "46",
       "position": {
-        "x": "1700",
+        "x": "2150",
         "y": "700"
       }
     },
@@ -798,14 +761,14 @@
         }
       ],
       "name": "whatIs",
-      "pid": "49",
+      "pid": "47",
       "position": {
-        "x": "1175",
+        "x": "1625",
         "y": "1075"
       }
     },
     {
-      "text": "<b>SALLOS:</b> I've got the fire started, and I see you have some logs! Set them down over there, and we'll put just one or two in the stove for now. We wouldn't want to smother the flame out!\n\n[[Continue->addWood]]",
+      "text": "The embers in the stove make a light crackle as they smoulder, giving off the barest of light and warmth.\n\n[[Continue->addWood]]",
       "links": [
         {
           "name": "Continue",
@@ -813,31 +776,12 @@
           "pid": "1"
         }
       ],
-      "name": "woodSallos",
-      "pid": "50",
-      "position": {
-        "x": "1375",
-        "y": "475"
-      }
-    },
-    {
-      "text": "The embers in the stove make a light crackle as they smoulder, giving off the barest of light and warmth.\n\n[[Continue->woodSallos]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "woodSallos",
-          "pid": "50"
-        }
-      ],
       "name": "woodStove",
-      "pid": "51",
+      "pid": "48",
       "position": {
-        "x": "1125",
-        "y": "450"
-      },
-      "tags": [
-        "start"
-      ]
+        "x": "1650",
+        "y": "550"
+      }
     },
     {
       "text": "Sallos doesn’t look any worse for wear, despite him outpacing you the whole trek up, and doing most of the heavy lifting setting up the tent.\n\n[[Continue->notYet]]",
@@ -845,35 +789,135 @@
         {
           "name": "Continue",
           "link": "notYet",
-          "pid": "35"
+          "pid": "34"
         }
       ],
       "name": "worse",
-      "pid": "52",
+      "pid": "49",
       "position": {
-        "x": "125",
-        "y": "350"
+        "x": "25",
+        "y": "300"
+      }
+    },
+    {
+      "text": "Sallos is slowly hacking away at the tree.\n\n(if: $hasWood is true) [ [[Continue->logMeetInside]] ]\n(if: $hasWood is false) [ [[Continue->logSallos2]] ]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "logMeetInside",
+          "pid": "55"
+        },
+        {
+          "name": "Continue",
+          "link": "logSallos2",
+          "pid": "51"
+        }
+      ],
+      "name": "logSallos",
+      "pid": "50",
+      "position": {
+        "x": "825",
+        "y": "125"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "<b>SALLOS: </b>Hiii-yah!\n\n[[Leave->logSallosExit]]",
+      "links": [
+        {
+          "name": "Leave",
+          "link": "logSallosExit",
+          "pid": "52"
+        }
+      ],
+      "name": "logSallos2",
+      "pid": "51",
+      "position": {
+        "x": "825",
+        "y": "275"
       }
     },
     {
       "text": "",
-      "name": "exitDeadTree",
+      "name": "logSallosExit",
+      "pid": "52",
+      "position": {
+        "x": "975",
+        "y": "300"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "He hums a simple tune while he does so.\n\n[[Leave->kindlingSallosExit]]",
+      "links": [
+        {
+          "name": "Leave",
+          "link": "kindlingSallosExit",
+          "pid": "54"
+        }
+      ],
+      "name": "kindlingSallos2",
       "pid": "53",
       "position": {
-        "x": "700",
-        "y": "925"
-      },
-      "tags": [
-        "exit"
-      ]
+        "x": "800",
+        "y": "625"
+      }
     },
     {
       "text": "",
-      "name": "exitBranches",
+      "name": "kindlingSallosExit",
       "pid": "54",
       "position": {
-        "x": "475",
-        "y": "1025"
+        "x": "925",
+        "y": "600"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "<b>SALLOS: </b>You've got the logs? Great! Just drop them off inside the tent, and I'll finish up here too. Meet you inside!\n\n[[Leave->exitLogMeetInside]]",
+      "links": [
+        {
+          "name": "Leave",
+          "link": "exitLogMeetInside",
+          "pid": "58"
+        }
+      ],
+      "name": "logMeetInside",
+      "pid": "55",
+      "position": {
+        "x": "650",
+        "y": "125"
+      }
+    },
+    {
+      "text": "<b>SALLOS: </b>You've got the logs? Great! Just drop them off inside the tent, and I'll finish up here too. Meet you inside!\n\n[[Leave->exitKindlingMeetInside]]",
+      "links": [
+        {
+          "name": "Leave",
+          "link": "exitKindlingMeetInside",
+          "pid": "57"
+        }
+      ],
+      "name": "kindlingMeetInside",
+      "pid": "56",
+      "position": {
+        "x": "675",
+        "y": "450"
+      }
+    },
+    {
+      "text": "",
+      "name": "exitKindlingMeetInside",
+      "pid": "57",
+      "position": {
+        "x": "650",
+        "y": "625"
       },
       "tags": [
         "exit"
@@ -881,19 +925,106 @@
     },
     {
       "text": "",
-      "name": "exitNoGrabPinecones",
-      "pid": "55",
+      "name": "exitLogMeetInside",
+      "pid": "58",
       "position": {
-        "x": "25",
-        "y": "825"
+        "x": "675",
+        "y": "275"
       },
       "tags": [
         "exit"
+      ]
+    },
+    {
+      "text": "The stove is quiet and depressing. Get it lit!\n\n(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]",
+      "links": [
+        {
+          "name": "Place the logs down by the stove.",
+          "link": "placeLogs",
+          "pid": "60"
+        },
+        {
+          "name": "Place the kindling down by the stove.",
+          "link": "placeKindling",
+          "pid": "61"
+        }
+      ],
+      "name": "deadStove",
+      "pid": "59",
+      "position": {
+        "x": "1225",
+        "y": "125"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "You place the bundle of sticks by the stove.\n(set: $sallosWalkIn to true)\n\n[[Continue->exitPlaceStove]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "exitPlaceStove",
+          "pid": "62"
+        }
+      ],
+      "name": "placeLogs",
+      "pid": "60",
+      "position": {
+        "x": "1175",
+        "y": "325"
+      }
+    },
+    {
+      "text": "You place the bundle of sticks by the stove.\n(set: $sallosWalkIn to true)\n\n[[Continue->exitPlaceStove]] ",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "exitPlaceStove",
+          "pid": "62"
+        }
+      ],
+      "name": "placeKindling",
+      "pid": "61",
+      "position": {
+        "x": "1325",
+        "y": "325"
+      }
+    },
+    {
+      "text": "",
+      "name": "exitPlaceStove",
+      "pid": "62",
+      "position": {
+        "x": "1275",
+        "y": "550"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "<b>SALLOS: </b>Alright! Let's get started! I'm getting really hungry, so let's try to get this thing up and running as fast as possible!\n\n[[Continue->setFire]] ",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "setFire",
+          "pid": "44"
+        }
+      ],
+      "name": "enterSallos",
+      "pid": "63",
+      "position": {
+        "x": "1400",
+        "y": "700"
+      },
+      "tags": [
+        "start"
       ]
     }
   ],
   "name": "Parsed Tent",
-  "startnode": "42",
+  "startnode": "40",
   "creator": "Twine",
   "creator-version": "2.10.0",
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870"

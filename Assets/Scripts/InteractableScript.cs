@@ -19,7 +19,9 @@ public class InteractableScript : MonoBehaviour
     public bool hasLimitedInteractions = true;
     protected bool canInteract = true;    
     public int interactionCount = 0;
+
     public GameObject InteractionPoint;
+    public GameObject InteractionPivot;
 
 	[Header("Materials")]
 	[SerializeField] protected List<Material> _materialList;

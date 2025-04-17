@@ -6,9 +6,13 @@ using UnityEngine.AI;
 public class NPCScript : InteractableScript
 {
     [Header("Character")]
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private Animator _animator;
     public GameObject Mesh;
+
+    //used after ending interaction with an NPC to restore them looking in their
+    //previous direction
+    private Vector3 _prevFaceDirection;
 
     public bool canMove = true;
     protected bool isMoving = false;
@@ -35,7 +39,7 @@ public class NPCScript : InteractableScript
 
         if (_animator != null)
         {
-            _animator.SetFloat("VelocityPercent", agent.velocity.magnitude / agent.speed);
+            _animator.SetFloat("VelocityPercent", _agent.velocity.magnitude / _agent.speed);
         }
 
         if (isPuppet) return;
@@ -51,7 +55,11 @@ public class NPCScript : InteractableScript
         Vector3 destination = PlayerController.PlayerControl.transform.position;
         if (destination != null)
         {
-            transform.LookAt(destination);
+            //Mesh.transform.LookAt(destination);
+            StartCoroutine(
+                RotateMeshToFaceDirection(
+                    PlayerController.PlayerControl.transform.position,
+                    100));
         }
     }
 
@@ -66,7 +74,7 @@ public class NPCScript : InteractableScript
         Vector3 destination = PlayerController.PlayerControl.transform.position;
         if (destination != null)
         {
-            transform.LookAt(destination);
+            Mesh.transform.LookAt(destination);
         }
         // Set angle to halfway between
         Vector3 angleDifference = transform.rotation.eulerAngles - oldAngle;
@@ -76,9 +84,9 @@ public class NPCScript : InteractableScript
     protected void MoveToPosition(Vector3 destination)
     {
         // Only move if the interactable has an agent AND a destination
-        if ((agent != null) && (destination != null))
+        if ((_agent != null) && (destination != null))
         {
-            agent.SetDestination(destination); // Sets the destination for the NavMeshAgent
+            _agent.SetDestination(destination); // Sets the destination for the NavMeshAgent
             isMoving = true; // Sets the NPC to moving state
         }
     }
@@ -104,21 +112,15 @@ public class NPCScript : InteractableScript
         isPuppet = false;
     }
 
-    public IEnumerator RotateToFaceDirection(Vector3 target)
+    public IEnumerator RotateMeshToFaceDirection(Vector3 target, int speed)
     {
         yield return 0;
 
-        while (transform.position.x != agent.destination.x && 
-            transform.position.z != agent.destination.z)
-        {
-            yield return null;
-        }
+        var q = Quaternion.LookRotation(target - Mesh.transform.position);
 
-        var q = Quaternion.LookRotation(target - transform.position);
-
-        while(Quaternion.Angle(transform.rotation, q) > 0)
+        while(Quaternion.Angle(Mesh.transform.rotation, q) > 0)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 50 * Time.deltaTime);
+            Mesh.transform.rotation = Quaternion.RotateTowards(Mesh.transform.rotation, q, speed * Time.deltaTime);
             yield return null;
         }
     }

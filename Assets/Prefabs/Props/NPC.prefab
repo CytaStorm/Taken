@@ -212,8 +212,9 @@ MonoBehaviour:
   hasLimitedInteractions: 1
   interactionCount: 0
   InteractionPoint: {fileID: 1631020855432542737}
+  InteractionPivot: {fileID: 5793175739943287436}
   _materialList: []
-  agent: {fileID: 675282841663714232}
+  _agent: {fileID: 675282841663714232}
   _animator: {fileID: 2139248925291046284}
   Mesh: {fileID: 0}
   canMove: 1

@@ -62,17 +62,20 @@ public class NewTwineParser
 		for (int i = 0; i < flags.Count; i++)
 		{
 			string unhookedLink = unhookedLinks[i];
-			parsedLinks[i] = new List<NewDialogueLink>();
+			//parsedLinks[i] = new List<NewDialogueLink>();
 
 			//break up hooks to find
 			List<string[]> splitUnparsedLinks = new List<string[]>();
-			foreach (string unparsedLink in GetRemovedSpecialText(unhookedLink, "[[", "]]"))
+
+			List<string> unparsedLinks = GetRemovedSpecialText(unhookedLink, "[[", "]]");
+            for (int unparsedLinkCounter = 0; unparsedLinkCounter < unparsedLinks.Count; unparsedLinkCounter++)
 			{
-				splitUnparsedLinks.Add(unparsedLink.Split("->"));
+                string unparsedLink = unparsedLinks[unparsedLinkCounter];
+                splitUnparsedLinks.Add(unparsedLink.Split("->"));
 
 				NewDialogueLink matchingLink = 
 					currentNode.Links.FirstOrDefault(
-						link => link.Link == splitUnparsedLinks[i][1]);
+						link => link.Link == splitUnparsedLinks[unparsedLinkCounter][1]);
 
 				matchingLink.Flags.Add(flags[i]);
 			}
