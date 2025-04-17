@@ -14,8 +14,8 @@ public class NPCScript : InteractableScript
     //previous direction
     private Quaternion _prevFaceDirection;
 
-    public bool canMove = true;
-    protected bool isMoving = false;
+    public bool CanMove = true;
+    public bool FacePlayerWhileTalking = true;
 
     [Tooltip("Check this if the NPC only needs to move without interaction")] 
     [SerializeField] private bool isPuppet;
@@ -49,7 +49,7 @@ public class NPCScript : InteractableScript
 	protected void LookAtPlayer()
     {
         // If stationary, don't run method
-        if (!canMove) { return; }
+        if (!CanMove) { return; }
 
         // Face player position
         Vector3 destination = PlayerController.PlayerControl.transform.position;
@@ -67,7 +67,7 @@ public class NPCScript : InteractableScript
     //protected void TurnToFacePlayer()
     //{
     //    // If stationary, don't run method
-    //    if (!canMove) { return; }
+    //    if (!CanMove) { return; }
 
     //    // Get current angle
     //    Vector3 oldAngle = transform.rotation.eulerAngles; 
@@ -88,15 +88,17 @@ public class NPCScript : InteractableScript
         if ((_agent != null) && (destination != null))
         {
             _agent.SetDestination(destination); // Sets the destination for the NavMeshAgent
-            isMoving = true; // Sets the NPC to moving state
         }
     }
 
 	public override void Interact()
 	{
         //Save prev rotation
-        _prevFaceDirection = Mesh.transform.rotation;
-		LookAtPlayer();
+        if (FacePlayerWhileTalking)
+        {
+            _prevFaceDirection = Mesh.transform.rotation;
+		    LookAtPlayer();
+        }
         base.Interact();
 	}
 
@@ -117,7 +119,7 @@ public class NPCScript : InteractableScript
 
     public IEnumerator RotateMeshToFaceDirection(Quaternion target, int speed)
     {
-        yield return 0;
+        //yield return 0;
 
         //var q = Quaternion.LookRotation(target - Mesh.transform.position);
 
@@ -134,6 +136,9 @@ public class NPCScript : InteractableScript
 
 	public void ExitDialogue()
 	{
-        StartCoroutine(RotateMeshToFaceDirection(_prevFaceDirection, 150));
+        if (FacePlayerWhileTalking)
+        {
+            StartCoroutine(RotateMeshToFaceDirection(_prevFaceDirection, 150));
+        }
 	}
 }

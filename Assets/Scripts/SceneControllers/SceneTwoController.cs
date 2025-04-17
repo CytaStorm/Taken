@@ -58,11 +58,10 @@ public class SceneTwoController : CutsceneController
 	
 	private IEnumerator ArriveAtLog()
 	{
+		//Move to Log
 		Transform sallosMesh = _sallosScript.Mesh.transform;
 
 		_sallosScript.Interactable = false;
-		//while (sallosMesh.position.x != _sallosAgent.destination.x && 
-		//    sallosMesh.transform.position.z != _sallosAgent.destination.z)
 		while (Vector3.Distance(sallosMesh.position, _sallosAgent.destination) > 0.1f)
 		{
 			yield return null;
@@ -79,14 +78,10 @@ public class SceneTwoController : CutsceneController
 				Quaternion.RotateTowards(sallosMesh.transform.rotation, q, 50 * Time.deltaTime);
 			yield return null;
 		}
+
+		//Arrived at log
 		_sallosScript.Interactable = true;
-		//_sallosScript.InteractionPivot.transform.rotation = 
-		//	Quaternion.Euler(_sallosScript.InteractionPivot.transform.rotation.x,
-		//					-20,
-		//					//140,
-		//					_sallosScript.InteractionPivot.transform.rotation.z);
-		//_sallosScript.InteractionPivot.transform.rotation =
-		//	Quaternion.AngleAxis(0, Vector3.up);
 		_sallosScript.Graph = _graphs.FirstOrDefault(graph => graph.Name == "logSallos");
+		_sallosScript.FacePlayerWhileTalking = false;
 	}
 }
