@@ -1530,6 +1530,7 @@ MonoBehaviour:
   hasLimitedInteractions: 1
   interactionCount: 0
   InteractionPoint: {fileID: 0}
+  InteractionPivot: {fileID: 0}
   _materialList:
   - {fileID: 2100000, guid: 3389aedd928cd164987a10d17d823674, type: 2}
 --- !u!1001 &315369278
@@ -7026,6 +7027,7 @@ MonoBehaviour:
   hasLimitedInteractions: 0
   interactionCount: 0
   InteractionPoint: {fileID: 0}
+  InteractionPivot: {fileID: 0}
   _materialList:
   - {fileID: 2100000, guid: 0bce50383dd57cf46a318c6ebea80ebf, type: 2}
 --- !u!1001 &764760237
@@ -7084,6 +7086,10 @@ PrefabInstance:
       propertyPath: Mesh
       value: 
       objectReference: {fileID: 368054135}
+    - target: {fileID: 5916161910065205699, guid: 8db95ced89954aa46916a67538918c36, type: 3}
+      propertyPath: hasLimitedInteractions
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7612011664264392258, guid: 8db95ced89954aa46916a67538918c36, type: 3}
@@ -18700,6 +18706,7 @@ MonoBehaviour:
   hasLimitedInteractions: 0
   interactionCount: 0
   InteractionPoint: {fileID: 0}
+  InteractionPivot: {fileID: 0}
   _materialList:
   - {fileID: 2100000, guid: 58ddb1af998eda94ab8ad478b8e1de42, type: 2}
   - {fileID: 2100000, guid: 8215d254a089a9548a87fb4167f809cd, type: 2}
