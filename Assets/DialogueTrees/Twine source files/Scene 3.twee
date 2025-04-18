@@ -34,7 +34,7 @@ d
 (set: $end to true)
 
 
-:: I {"position":"600,550","size":"100,100"}
+:: I {"position":"625,575","size":"100,100"}
 ''SALLOS'': <i>"I- I- All I did was take people across these mountains! But now's not the time to talk. We need to move."</i>
 
 The two men certainly don't look the type to be able to be talked down. Especially not while armed.
@@ -177,7 +177,7 @@ He carries a large sword, and walks with a swagger that does not feel entirely u
 (set: $disappear to false)
 (set: $reach to false)
 (set: $stab to false)
-(set: $walkCloser to true)
+(set: $walkCloser to false)
 (set: $enterGoon to false)
 (set: $enterAkif to false)
 (set: $walkLeft to false)
