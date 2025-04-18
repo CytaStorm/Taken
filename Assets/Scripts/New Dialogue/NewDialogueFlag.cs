@@ -34,6 +34,16 @@ public class NewDialogueFlag
 	public event onValueChangeHandler onValueChange;
 
 	/// <summary>
+	/// Creates a copy of a DialogueFlag, set to false.
+	/// </summary>
+	/// <param name="other"></param>
+	public NewDialogueFlag(NewDialogueFlag other)
+	{
+		IsTrue = false;
+		Names.AddRange(other.Names);
+	}
+
+	/// <summary>
 	/// Creates a new DialogueFlag with a single flag that is set to false
 	/// </summary>
 	/// <param name="conditionName">Name of condition</param>

@@ -72,7 +72,7 @@ public class InteractableScript : MonoBehaviour
 			InteractionPoint.transform.position);
 
 		// If its able to be interacted with, Interact
-		if (distance < 0.1 && isFocus && UIManager.UI.CurrentUIMode == UIMode.Gameplay)
+		if (distance < 0.2 && isFocus && UIManager.UI.CurrentUIMode == UIMode.Gameplay)
 		{
 			if (HasLimitedInteractions)
 			{

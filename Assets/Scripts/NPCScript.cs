@@ -46,10 +46,13 @@ public class NPCScript : InteractableScript
 		base.Update();
 	}
 
-	protected void LookAtPlayer()
+	public void LookAtPlayer()
     {
         // If stationary, don't run method
         if (!CanMove) { return; }
+
+        FacePlayerWhileTalking = true;
+        _prevFaceDirection = Mesh.transform.rotation;
 
         // Face player position
         Vector3 destination = PlayerController.PlayerControl.transform.position;
@@ -96,7 +99,6 @@ public class NPCScript : InteractableScript
         //Save prev rotation
         if (FacePlayerWhileTalking)
         {
-            _prevFaceDirection = Mesh.transform.rotation;
 		    LookAtPlayer();
         }
         base.Interact();

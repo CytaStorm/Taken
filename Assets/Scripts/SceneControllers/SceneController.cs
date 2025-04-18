@@ -226,6 +226,7 @@ public class SceneController : MonoBehaviour
 
 			//skip if there is a match
             if (match != null) continue;
+
             DialogueFlags.Add(new NewDialogueFlag(flag.Names));
         }
 	}
@@ -264,7 +265,8 @@ public class SceneController : MonoBehaviour
 				flag.IsTrue = newFlag.IsTrue;
 				//print(flag);
 			}
-		}	
+		}
+
 	}
 
 	//private bool CheckNameListEquality()
