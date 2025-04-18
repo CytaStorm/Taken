@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1937460232451411831}
   - component: {fileID: 1989812428406193687}
   m_Layer: 5
-  m_Name: DialogueChoiceButton
+  m_Name: NewDialogueExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,10 +216,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.91823894, g: 0.91823894, b: 0.91823894, a: 1}
-    m_HighlightedColor: {r: 0.5008899, g: 0.57686263, b: 0.84276724, a: 1}
-    m_PressedColor: {r: 0.34007746, g: 0.3962927, b: 0.59748423, a: 1}
-    m_SelectedColor: {r: 0.5019608, g: 0.5764706, b: 0.84313726, a: 1}
+    m_NormalColor: {r: 0.84313726, g: 0.60784316, b: 0.5019608, a: 1}
+    m_HighlightedColor: {r: 0.9748427, g: 0.5282696, b: 0.40771714, a: 1}
+    m_PressedColor: {r: 0.61006284, g: 0.28879744, b: 0.20143577, a: 1}
+    m_SelectedColor: {r: 0.9764706, g: 0.5294118, b: 0.40784314, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
