@@ -74,9 +74,9 @@ public class NewDialogueFlag
 	}
 
 	/// <summary>
-	/// Creates a new OR DialogueFlag
+	/// Creates a new AND DialogueFlag
 	/// </summary>
-	/// <param name="conditionNames">List of OR conditions</param>
+	/// <param name="conditionNames">List of AND conditions</param>
 	/// <param name="isTrue">True or False.</param>
 	public NewDialogueFlag(List<string> conditionNames, bool isTrue)
 	{

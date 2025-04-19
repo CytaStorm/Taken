@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -51,7 +52,7 @@ public class NewTwineParser
 
 		//If
 		List<string> ifs = GetRemovedSpecialText(currentNode, "\n(if: ", ")");
-		List<NewDialogueFlag> flags = ExtractFlags(ifs);
+		List<List<NewDialogueFlag>> flags = ExtractFlags(ifs);
 
 		//Hooks
 		List<string> unhookedLinks = 
@@ -77,7 +78,7 @@ public class NewTwineParser
 					currentNode.Links.FirstOrDefault(
 						link => link.Link == splitUnparsedLinks[unparsedLinkCounter][1]);
 
-				matchingLink.Flags.Add(flags[i]);
+				matchingLink.Flags.AddRange(flags[i]);
 			}
 		}
 
@@ -106,8 +107,11 @@ public class NewTwineParser
 			GetRemovedSpecialText(currentNode, "\n(set: ", ")");
 		//If it doesn't have (set:) return
 		if (stringToParse.Count == 0) return;
-		
-		currentNode.FlagsToChange.AddRange(ExtractFlags(stringToParse));
+
+		//ExtractFlags returns a list of list of newdialogue flags, but because each
+		//twine set command only edits one variable, we can assume ExtractFlag's
+		//return list has only one element
+		currentNode.FlagsToChange.AddRange(ExtractFlags(stringToParse)[0]);
 	}
 
 	/// <summary>
@@ -115,25 +119,32 @@ public class NewTwineParser
 	/// </summary>
 	/// <param name="stringsToParse">List of extract set flag statements</param>
 	/// <returns></returns>
-	private static List<NewDialogueFlag> ExtractFlags (List<string> stringsToParse)
+	private static List<List<NewDialogueFlag>> ExtractFlags (List<string> stringsToParse)
 	{
-		List<NewDialogueFlag> result = new List<NewDialogueFlag>();
+		List<List<NewDialogueFlag>> result = new List<List<NewDialogueFlag>>();
 		foreach (string setFlag in stringsToParse)
 		{
-			//Parse it
-			string[] splitStringToParse = setFlag.Split(' ');
+			//Break up ANDS
+			string[] splitFlag = setFlag.Split(" and ");
 
-			bool changeFlagTo;
-			if (splitStringToParse[2] == "true") 
+			List<NewDialogueFlag> linkedDialogueFlags = new List<NewDialogueFlag>();
+			//default to flase
+			bool flagTruthness = false;
+
+			foreach (string flag in splitFlag)
 			{
-				changeFlagTo = true; 
-			} 
-			else 
-			{
-				changeFlagTo = false; 
+				//Parse it
+				string[] splitStringToParse = flag.Split(' '); 
+
+				if (splitStringToParse[2] == "true")
+				{
+					flagTruthness = true;
+				}
+
+				//substring starting at 1 to get rid of dollar sign
+				linkedDialogueFlags.Add(new NewDialogueFlag(splitStringToParse[0].Substring(1), flagTruthness));
 			}
-			result.Add(
-				new NewDialogueFlag(splitStringToParse[0].Substring(1), changeFlagTo));
+			result.Add(linkedDialogueFlags);
 		}
 		return result;
 	}
