@@ -222,7 +222,7 @@ public class UIManager : MonoBehaviour
 					GameObject exitButton =
 						Instantiate(_exitButton, _buttonContainer.transform, false);
 					_buttons.Add(exitButton);
-					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
+					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name + ">";
 					Button exitButtonComponent = exitButton.GetComponent<Button>();
 
 					exitButtonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
