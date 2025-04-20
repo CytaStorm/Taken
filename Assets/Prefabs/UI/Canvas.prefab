@@ -997,16 +997,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5125869765685389824}
-  m_LocalRotation: {x: -0, y: -0, z: 0.996941, w: -0.078158565}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9923106, w: 0.12377298}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.9625, y: 2.9625, z: 2.9625}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2585680233699584483}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 188.965}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 165.78}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 109, y: -114}
+  m_AnchoredPosition: {x: 86, y: -107}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5470241196117084085
@@ -1490,8 +1490,8 @@ MonoBehaviour:
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
   _buttonContainer: {fileID: 8590943804063653380}
   _buttons: []
-  _exitButton: {fileID: 6694033511536594137, guid: bcfca7718327bb648958016b4dd65262, type: 3}
-  _prevTextColor: {r: 0.4575472, g: 0.4575472, b: 0.4575472, a: 1}
+  _exitButton: {fileID: 6694033511536594137, guid: f70c5a92133e3b5469d528ad12a41a64, type: 3}
+  _prevTextColor: {r: 0.4153118, g: 0.45629293, b: 0.52201253, a: 1}
   _animationSpeed: 10
 --- !u!114 &2738910716026719855
 MonoBehaviour:
