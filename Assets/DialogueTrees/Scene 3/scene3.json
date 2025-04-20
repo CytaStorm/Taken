@@ -597,7 +597,7 @@
       }
     },
     {
-      "text": "Sallos did say that pine cones are good for kindling, right?\n\n($if kindlingQuest)[ [[Gather a few->getPinecones]] ]\n[[Leave->exitNoGrabPinecones]]",
+      "text": "Sallos did say that pine cones are good for kindling, right?\n\n($if kindlingQuest is true)[ [[Gather a few->getPinecones]] ]\n[[Leave->exitNoGrabPinecones]]",
       "links": [
         {
           "name": "Gather a few",

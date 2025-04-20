@@ -127,7 +127,7 @@ public class NewTwineParser
 			//Break up ANDS
 			string[] splitFlag = setFlag.Split(" and ");
 
-			List<NewDialogueFlag> linkedDialogueFlags = new List<NewDialogueFlag>();
+			List<NewDialogueFlag> extractedFlag = new List<NewDialogueFlag>();
 			//default to flase
 			bool flagTruthness = false;
 
@@ -139,12 +139,15 @@ public class NewTwineParser
 				if (splitStringToParse[2] == "true")
 				{
 					flagTruthness = true;
+				} else
+				{
+					flagTruthness = false;
 				}
 
 				//substring starting at 1 to get rid of dollar sign
-				linkedDialogueFlags.Add(new NewDialogueFlag(splitStringToParse[0].Substring(1), flagTruthness));
+				extractedFlag.Add(new NewDialogueFlag(splitStringToParse[0].Substring(1), flagTruthness));
 			}
-			result.Add(linkedDialogueFlags);
+			result.Add(extractedFlag);
 		}
 		return result;
 	}

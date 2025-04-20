@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 /// <summary>
 /// Custom data structure for representing condition checks in dialogue trees 
@@ -15,11 +16,11 @@ public class NewDialogueFlag
 		get { return _isTrue; }
 		set
 		{
-			_isTrue = value;
-			if (onValueChange != null)
+			if (value != IsTrue)
 			{
-				onValueChange();
-			}
+				_isTrue = value;
+                onValueChange?.Invoke();
+            }
 		}
 	}
 
