@@ -141,6 +141,34 @@ public class UIManager : MonoBehaviour
 		_dialogueUI.SetActive(true);
 	}
 
+	public void NewDialogueLink(NewDialogueLink dialogueLink)
+	{
+
+		Transform _textBoxContainer;
+		Transform _textBox;
+		TextMeshProUGUI _textDisplay;
+
+		//History text
+		_textBoxContainer =
+			Instantiate(_singleTextBoxContainer, _textArea.transform).transform;
+		_textBox =
+			_textBoxContainer.transform.GetChild(0);
+		_textDisplay =
+			_textBox.GetComponent<TextMeshProUGUI>();
+		_textDisplay.text += dialogueLink.Name;
+		
+		_mostRecentTextContainer.GetChild(0).
+			GetComponent<TextMeshProUGUI>().color = _prevTextColor;
+		_animatingLayout.preferredHeight = _desiredHeight;
+
+		_mostRecentTextContainer = _textBoxContainer;
+
+		//_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+
+		Canvas.ForceUpdateCanvases();
+		NewDialogueNode(dialogueLink.ConnectedNode);
+	}
+
 	//Player traversed to a new Dialogue node
 	public void NewDialogueNode(NewDialogueNode dialogueNode)
 	{
@@ -152,16 +180,21 @@ public class UIManager : MonoBehaviour
 			_animatingLayout.preferredHeight = _desiredHeight;
 		}
 
+		Transform _textBoxContainer;
+		Transform _textBox;
+		TextMeshProUGUI _textDisplay;
+
+
+		// New text
 		//text box references
 		//Container used to animate text boxes
-		Transform _textBoxContainer = 
+		_textBoxContainer = 
 			Instantiate(_singleTextBoxContainer, _textArea.transform).transform;
 
 		//Textbox itself
-		Transform _textBox = 
+		_textBox = 
 			_textBoxContainer.transform.GetChild(0);
-
-		TextMeshProUGUI _textDisplay = 
+		_textDisplay = 
 			_textBox.GetComponent<TextMeshProUGUI>();
 
 		////Add title of node unless it is the first node

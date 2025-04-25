@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class DialogueTraverser
@@ -70,7 +71,8 @@ public class DialogueTraverser
 	/// <param name="choice"></param>
 	public void GoToNode(int choice)
 	{
-		CurrentNode = CurrentNode.Links[choice].ConnectedNode;
+		NewDialogueLink selectedLink = CurrentNode.Links[choice];
+		CurrentNode = selectedLink.ConnectedNode;
 
 		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
 		{
@@ -78,7 +80,7 @@ public class DialogueTraverser
 		}
 
 		//Send currentNode info to UI Manager
-		_UIManager.NewDialogueNode(CurrentNode);
+		_UIManager.NewDialogueLink(selectedLink);
 	}
 
 	/// <summary>
