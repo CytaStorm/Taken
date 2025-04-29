@@ -266,6 +266,38 @@ public class UIManager : MonoBehaviour
 				//means that if i is used directly the delegates will capture i++ because
 				//the enclosing for loop will add 1 to i at the end of each loop.
 				int choiceIndex = i;
+
+				//Create exit button, if it exists
+				if (linkedNode.Tags != null &&
+					linkedNode.Tags.Count != 0 &&
+					linkedNode.Tags.Contains("exit"))
+				{
+					GameObject exitButton =
+						Instantiate(_exitButton, _dialogueUI.transform, true);
+					_buttons.Add(exitButton);
+					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = "<i>" + link.Name + "</i>";
+					Button exitButtonComponent = exitButton.GetComponent<Button>();
+
+					exitButtonComponent.onClick.AddListener(
+						delegate { _sceneController.GoToNode(choiceIndex); });
+					exitButtonComponent.onClick.AddListener(
+						delegate
+						{
+							if (PlayerController.PlayerControl.Focus != null &&
+							PlayerController.PlayerControl.Focus is NPCScript)
+							{
+								((NPCScript)PlayerController.PlayerControl.Focus).ExitDialogue();
+							}
+						}
+					);
+					exitButtonComponent.onClick.AddListener(PlaySound);
+					exitButtonComponent.onClick.AddListener(ClearButtons);
+					exitButtonComponent.onClick.AddListener(ClearText);
+					exitButtonComponent.onClick.AddListener(ChangeToGameplay);
+
+					continue;
+				}
+
 				//create button for each link
 				GameObject newestButton =
 					Instantiate(_dialogueChoiceButton, _buttonContainer.transform, true);
@@ -276,18 +308,6 @@ public class UIManager : MonoBehaviour
 				buttonComponent.onClick.AddListener(ClearButtons);
 				buttonComponent.onClick.AddListener(
 					delegate { _sceneController.GoToNode(choiceIndex); });
-			}
-
-			//Create exit button, if it exists
-			if (linkedNode.Tags != null &&
-				linkedNode.Tags.Count != 0 &&
-				linkedNode.Tags.Contains("exit"))
-			{
-				GameObject exitButton =
-					Instantiate(_exitButton, _dialogueUI.transform, true);
-				_buttons.Add(exitButton);
-				exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = "<i>" + link.Name + "</i>";
-				Button exitButtonComponent = exitButton.GetComponent<Button>();
 			}
 		}
 	}

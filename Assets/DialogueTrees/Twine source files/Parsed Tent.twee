@@ -5,8 +5,8 @@ Parsed Tent
 :: StoryData
 {
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
-  "format": "Harlowe",
-  "format-version": "3.3.9",
+  "format": "Twison",
+  "format-version": "0.0.1",
   "start": "scene",
   "tag-colors": {
     "exit": "red",
