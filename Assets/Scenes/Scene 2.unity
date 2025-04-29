@@ -1176,10 +1176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
-  hasLimitedInteractions: 1
-  interactionCount: 0
+  Interactable: 1
+  HasLimitedInteractions: 0
+  InteractionCount: 0
   InteractionPoint: {fileID: 0}
+  InteractionPivot: {fileID: 0}
   _materialList:
   - {fileID: 2100000, guid: 3389aedd928cd164987a10d17d823674, type: 2}
 --- !u!1001 &297489087
@@ -1190,6 +1191,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550946985650036082, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _sceneController
+      value: 
+      objectReference: {fileID: 1770832733}
+    - target: {fileID: 2738910716026719855, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _sceneController
+      value: 
+      objectReference: {fileID: 1770832733}
+    - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _input
+      value: 
+      objectReference: {fileID: 1817774280}
+    - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _sceneController
+      value: 
+      objectReference: {fileID: 1770832733}
     - target: {fileID: 4003383626450644320, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -18089,6 +18106,17 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1488638856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+  m_PrefabInstance: {fileID: 297489087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfee3bc8d9f9ef74f9320f51dd1563ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1497998627
 GameObject:
   m_ObjectHideFlags: 0
@@ -18519,10 +18547,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
-  hasLimitedInteractions: 1
-  interactionCount: 0
+  Interactable: 1
+  HasLimitedInteractions: 0
+  InteractionCount: 0
   InteractionPoint: {fileID: 0}
+  InteractionPivot: {fileID: 0}
   _materialList:
   - {fileID: 2100000, guid: 58ddb1af998eda94ab8ad478b8e1de42, type: 2}
   - {fileID: 2100000, guid: 8215d254a089a9548a87fb4167f809cd, type: 2}
@@ -18887,6 +18916,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4654963420066053951, guid: 04257226746196d40959e7dd0a473026, type: 3}
   m_PrefabInstance: {fileID: 5846754502159382765}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1817774280 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8178595822778452173, guid: 04257226746196d40959e7dd0a473026, type: 3}
+  m_PrefabInstance: {fileID: 5846754502159382765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1835868773
 GameObject:
   m_ObjectHideFlags: 0
@@ -19335,7 +19375,7 @@ PrefabInstance:
     - target: {fileID: 4479040174137065267, guid: 04257226746196d40959e7dd0a473026, type: 3}
       propertyPath: _UIManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1488638856}
     - target: {fileID: 4479040174137065267, guid: 04257226746196d40959e7dd0a473026, type: 3}
       propertyPath: rotationDistance
       value: 0
