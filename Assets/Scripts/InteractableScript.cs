@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
@@ -8,19 +10,22 @@ using UnityEngine.Events;  // Import the AI Navigation namespace
 public class InteractableScript : MonoBehaviour
 {
     [Header("References to other Gameobjects")]
-    public UIManager _UIManager;
-
     public NewDialogueGraph Graph;
+
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
     [Header("Interactivity")]
-    protected bool hasInteracted = false;
-    public bool isFocus { get { return PlayerController.PlayerControl.Focus == this; } }
+    public bool Interactable = true;    
+    public bool HasLimitedInteractions = false;
+    public int InteractionCount = 0;
+    public bool isFocus { 
+        get { 
+            return PlayerController.PlayerControl.Focus == this; 
+        } 
+    }
 
-    public bool hasLimitedInteractions = true;
-    protected bool canInteract = true;    
-    public int interactionCount = 0;
     public GameObject InteractionPoint;
+    public GameObject InteractionPivot;
 
 	[Header("Materials")]
 	[SerializeField] protected List<Material> _materialList;
@@ -37,15 +42,14 @@ public class InteractableScript : MonoBehaviour
 
     public virtual void Interact()
     {
-		_UIManager.ChangeToDialogue();
-		hasInteracted = true;
-		interactionCount++;
+		UIManager.UI.ChangeToDialogue();
+		InteractionCount++;
 		UpdateSceneGraph.Invoke(this);
     }
 
     protected virtual void Update()
 	{
-        if (isHighlighted && !isFocus)
+        if (isHighlighted && !isFocus && Interactable)
         {
 			foreach (Material mat in _materialList)
 			{
@@ -58,7 +62,7 @@ public class InteractableScript : MonoBehaviour
         highlightTimer += Time.deltaTime;
 
         //Interaction filter
-        if (!isFocus || !canInteract)
+        if (!isFocus || !Interactable)
 		{
 			return;
 		}
@@ -68,12 +72,12 @@ public class InteractableScript : MonoBehaviour
 			InteractionPoint.transform.position);
 
 		// If its able to be interacted with, Interact
-		if (distance < 0.1 && isFocus && _UIManager.CurrentUIMode == UIMode.Gameplay)
+		if (distance < 0.2 && isFocus && UIManager.UI.CurrentUIMode == UIMode.Gameplay)
 		{
-			if (hasLimitedInteractions)
+			if (HasLimitedInteractions)
 			{
-				if (interactionCount > 0) { return; }
-				else {interactionCount++; }
+				if (InteractionCount > 0) { return; }
+				else {InteractionCount++; }
 			}
             //hasInteracted = true;
             Interact();

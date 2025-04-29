@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/New Dialogue/JSONGraph.cs.meta
 guid: 0f9ba470e04549d41952bee09ac6aba0
+========
+guid: 0163e0d3e6726b94ea5caf732b829820
+>>>>>>>> ui-redesign:Assets/Scripts/DialogueNode.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

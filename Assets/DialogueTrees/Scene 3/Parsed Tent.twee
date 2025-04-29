@@ -1,0 +1,362 @@
+:: StoryTitle
+Parsed Tent
+
+
+:: StoryData
+{
+  "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "scene",
+  "tag-colors": {
+    "exit": "red",
+    "start": "green",
+    "endScene": "purple",
+    "end": "purple"
+  },
+  "zoom": 0.6
+}
+
+
+:: Sallos [start] {"position":"50,1075","size":"100,100"}
+<b>SALLOS:</b> Hey, how are you holding up? 
+(set: $talkedToSallos to true)
+[[I'm fine.->fine]]
+[[I'm beat!->beat]]
+
+
+:: SallosTalkedTo [start] {"position":"350,1000","size":"100,100"}
+<b>SALLOS:</b> Hey, what's up? Need anything?
+(if: $hasWood is true)[ [[Present the firewood.->giveFirewood]] ]
+(if: $hasTinder is true)[ [[Present the tinder.->giveTinder]] ]
+(if: $hasWood is false and $hasTinder is false)[ [[I forgot what I needed to do.->forgot]] ]
+[[I'm alright.->sallosTalkedToExit]]
+
+
+:: addWood {"position":"2150,500","size":"100,100"}
+Then, he adds in a few logs at a time, and before long, the flame is roaring, and the tent is now much warmer. 
+
+[[Continue->startCooking]]
+
+
+:: beat {"position":"100,1350","size":"100,100"}
+<b>SALLOS:</b> Awh, I'm sorry to hear that! But we just have a little bit more work to do.
+[[Continue->work]] 
+
+
+:: bite {"position":"2325,525","size":"100,100"}
+You take a bite, and it rips and crumbles a bit, like a very greasy cake. Slimy, almost.
+
+[[Continue->likeIt]]
+
+
+:: blush {"position":"3050,1200","size":"100,100"}
+You blush. The boy has a way with words, even in his faraway dialect of Ghuzian. You can feel the beat of your heart more now.
+
+[[Continue->sleepSoon]]
+
+
+:: cannotCut {"position":"1300,1325","size":"100,100"}
+You've already collect a fair amount of tinder. It'd probably be best for Sallos to take care of the firewood.
+[[Continue->exitDeadTree]] 
+
+
+:: cannotGrabTinder {"position":"500,1050","size":"100,100"}
+Your hands are already full of firewood. Best to let Sallos take care of these.
+[[Continue->exitGrabTinder]] 
+
+
+:: cut {"position":"1600,1300","size":"100,100"}
+After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.
+[[Continue->exitDeadTree]]
+(set: $hasWood to true)
+
+
+:: deadStove [start] {"position":"1225,125","size":"100,100"}
+The stove is quiet and depressing. Get it lit!
+
+(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]
+(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]
+
+
+:: deadTree [start] {"position":"1275,1075","size":"100,100"}
+The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.
+
+(if: $logQuest is true and $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]
+(if: $logQuest is true and $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]
+[[Leave->exitDeadTree]]
+
+
+:: enterSallos [start] {"position":"1400,700","size":"100,100"}
+<b>SALLOS: </b>Alright! Let's get started! I'm getting really hungry, so let's try to get this thing up and running as fast as possible!
+
+[[Continue->setFire]] 
+
+
+:: exitDeadTree [exit] {"position":"1525,1575","size":"100,100"}
+
+
+
+:: exitGrabTinder [exit] {"position":"625,1500","size":"100,100"}
+
+
+
+:: exitNoGrabPinecones [exit] {"position":"900,1325","size":"100,100"}
+
+
+
+:: exitPinecones [exit] {"position":"975,1475","size":"100,100"}
+
+
+
+:: exitPlaceStove [exit] {"position":"1275,550","size":"100,100"}
+
+
+
+:: exitQuestGive [exit] {"position":"25,1775","size":"100,100"}
+
+
+
+:: exitSallosQuest [exit] {"position":"500,1675","size":"100,100"}
+
+
+
+:: exitScene [exit] {"position":"50,400","size":"100,100"}
+
+
+
+:: exitSleep [exit end] {"position":"2075,1375","size":"100,100"}
+
+
+
+:: exitTinder [exit] {"position":"775,1150","size":"100,100"}
+
+
+
+:: fine {"position":"25,1425","size":"100,100"}
+<b>SALLOS:</b> Glad to hear it! We still have some work to do, though.
+[[Continue->work]]
+
+
+:: foodTime {"position":"1950,875","size":"100,100"}
+<b>SALLOS:</b> Tonight we're having...
+
+[[Continue->lightup]]
+
+
+:: forgot {"position":"175,1100","size":"100,100"}
+<b>SALLOS:</b> Oh! You just need to get some firewood or tinder for me. There's a hatchet by the deadwood over there, and I think I saw good spot for foraging tinder a bit further past that.
+[[Thank you.->sallosTalkedToExit]]
+
+
+:: funny {"position":"2800,575","size":"100,100"}
+<b>SALLOS:</b> It’s pretty funny thinking back, rescuing and then falling in love with you… and you still look exactly the same as the day we met.
+
+[[Continue->older]]
+
+
+:: getPinecones {"position":"1100,1325","size":"100,100"}
+Upon closer inspection, most of these are soaked through. Unsuitable for kindling.
+[[Continue->exitPinecones]]
+
+
+:: giveFirewood {"position":"500,1450","size":"100,100"}
+<b>SALLOS:</b> Amazing! I already got the tinder and some kindling as well. Let's go inside the tent, and get the fire started!
+[[Continue->exitSallosQuest]]
+
+
+:: giveTinder {"position":"350,1600","size":"100,100"}
+<b>SALLOS:</b> Amazing! I already got the firewood and some kindling as well. Let's go inside the tent, and get the fire started!
+[[Continue->exitSallosQuest]]
+
+
+:: grabTinder {"position":"725,1275","size":"100,100"}
+You've gathered some tinder.
+(set: $hasTinder to true)
+[[Continue->exitGrabTinder]]
+
+
+
+:: grow {"position":"2675,1075","size":"100,100"}
+<b>SALLOS</b>: Man, I really wish I could get a few more inches. It’s terrible how every other Ifni gets to be tall and strong, while I’m stuck down here. However—
+
+[[Continue->pinch]]
+
+
+:: height {"position":"3050,975","size":"100,100"}
+<b>SALLOS:</b> It puts me at just the right height to look at you. Even if I can’t live as long as you, I’m happy that I can see you at the same level as me.
+
+[[Continue->blush]]
+
+
+:: itIs {"position":"1825,1100","size":"100,100"}
+<b>SALLOS:</b> It's...
+
+[[Continue->pemmican]]
+
+
+:: itsBad {"position":"2325,750","size":"100,100"}
+<b>SALLOS:</b> Well, get used to it then, it’s what we’ll be eating till we get to the top. I’m saving the best stuff for once we get up there.
+
+[[Continue->makeHoosh]]
+
+
+:: itsGood {"position":"2325,1075","size":"100,100"}
+<b>SALLOS:</b>I guess that’s a successful experiment! I’m really happy that you like it!
+
+[[Continue->makeHoosh]]
+
+
+:: justWater {"position":"2475,1075","size":"100,100"}
+<b>SALLOS:</b> Whatever suits your tastes.
+
+[[Continue->look]]
+
+
+:: lightup {"position":"1750,875","size":"100,100"}
+Your eyes light up, and your stomach growls loudly.
+
+[[What is it?->whatIs]]
+
+
+:: likeIt {"position":"2200,875","size":"100,100"}
+<b>SALLOS:</b> Like it? I tried to make yours as tasty as possible without using meat stuff. How’d I do?
+
+[[It is good!->itsGood]]
+[[It is bad!->itsBad]]
+
+
+:: look {"position":"2550,950","size":"100,100"}
+Sallos looks listfully at you, and you, back at him. 
+
+[[Continue->reminds]]
+
+
+:: makeHoosh {"position":"2400,950","size":"100,100"}
+<b>SALLOS:</b> If you’d like, you can also put your pemmican in the water to make some hoosh. I’ve still got some biscuits for that as well.
+
+[[I am alright, water is just fine.->justWater]]
+[[Sure!->makeIt]]
+
+
+:: makeIt {"position":"2425,650","size":"100,100"}
+You drop the rest of your pemmican in the water, and Sallos puts in a biscuit. It slowly disintegrates, turning the water into a thin soup, the vegetables floating around lazily as they detach from the body of the block. 
+
+[[Continue->look]]
+
+
+:: older {"position":"2675,750","size":"100,100"}
+He, however, doesn’t. In the years since you first met him, he’s gotten older, lost some of the roundness in his face and gained a few marks and nicks. Proof that he’s been alive, he’s always said. That being said, he’s not grown taller by much.
+
+[[I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!->sigh]]
+
+
+:: pemmican {"position":"2075,1100","size":"100,100"}
+<b>SALLOS:</b> Just some pemmican. I’ve got meat in mine, so be careful which one you eat. Here, take it.
+
+[[Take it.->takeIt]]
+
+
+:: pinch {"position":"3000,825","size":"100,100"}
+He reaches over to you and pinches your cheek.
+
+[[Continue->height]]
+
+
+:: pinecones [start] {"position":"975,1150","size":"100,100"}
+Sallos did say that pine cones are good for kindling, right?
+
+(if: $tinderQuest is true)[ [[Gather a few->getPinecones]] ]
+[[Continue->exitNoGrabPinecones]]
+
+
+:: placeKindling {"position":"1325,325","size":"100,100"}
+You place the bundle of sticks by the stove.
+(set: $sallosWalkIn to true)
+
+[[Continue->exitPlaceStove]] 
+
+
+:: placeLogs {"position":"1175,325","size":"100,100"}
+You place the bundle of sticks by the stove.
+(set: $sallosWalkIn to true)
+
+[[Continue->exitPlaceStove]]
+
+
+:: reminds {"position":"2600,600","size":"100,100"}
+<b>SALLOS:</b> You know, eating like this reminds me a lot of when we first met all those years ago. We ate a meal just like this. Except it was just biscuits and water for you. Didn’t have the veggies back then!
+
+[[That really was awful… But you did save my life out there. And we met.->funny]]
+
+
+:: sallosTalkedToExit [exit] {"position":"250,1400","size":"100,100"}
+
+
+
+:: scene [start] {"position":"100,50","size":"100,100"}
+Your legs are burning, and your breathing is labored. But you and Sallos have finished pitching the tent.
+
+[[Finally, we're done! The tent is all set up! I need a break!->wear]]
+
+
+:: setFire {"position":"1550,725","size":"100,100"}
+Sallos puts the sticks into the stove, and begins striking an iron rod to get a spark. After a few attempts, the kindling catches, and the tent lights up.
+
+[[Continue->woodStove]]
+
+
+:: sigh {"position":"2900,700","size":"100,100"}
+He lets out an exasperated sigh.
+
+[[Continue->grow]]
+
+
+:: sleepSoon {"position":"2175,1350","size":"100,100"}
+SALLOS: Anyways, we should probably finish up soon. We should catch some rest as soon as possible. I want to catch the sunrise at the peak.
+
+[[Leave->exitSleep]]
+
+
+:: startCooking {"position":"1925,675","size":"100,100"}
+<b>SALLOS:</b> Now that that's settled, let's get cooking! I've been waiting!
+
+[[Continue->foodTime]]
+
+
+:: takeIt {"position":"2150,700","size":"100,100"}
+The bar is waxy, and looks like a brick made of peas and dirt. Not very appetizing, however edible it is.
+
+[[Take a bite->bite]]
+
+
+:: tinder [start] {"position":"725,975","size":"100,100"}
+Ther is a pile of pine branches and needles on the ground before you.
+(if: $tinderQuest is true and $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]
+(if: $tinderQuest is true and $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]
+[[Continue->exitTinder]]
+
+
+:: wear {"position":"100,225","size":"100,100"}
+Sallos doesn’t look any worse for wear, despite him outpacing you the whole trek up, and doing most of the heavy lifting setting up the tent.
+
+[[Continue->exitScene]]
+
+
+:: whatIs {"position":"1625,1075","size":"100,100"}
+<b>EULYSS:</b> What is it?
+
+[[Continue->itIs]]
+
+
+:: woodStove {"position":"1650,550","size":"100,100"}
+The embers in the stove make a light crackle as they smoulder, giving off the barest of light and warmth.
+
+[[Continue->addWood]]
+
+
+:: work {"position":"75,1525","size":"100,100"}
+<b>SALLOS:</b> There's a few dead trees around here. You should help me cut some firewood. Or you can go look for tinder—pine needles or anything else that's tiny and dry will work.
+[[Continue->exitQuestGive]]
+
+

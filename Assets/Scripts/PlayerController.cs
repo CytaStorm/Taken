@@ -61,8 +61,8 @@ public class PlayerController : MonoBehaviour
 		{
 			_agent.SetDestination(Focus.InteractionPoint.transform.position);
 
-			//if (transform.position == _target.InteractionPoint.transform.position)
-			if (Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) < rotationDistance)
+			//casted to ints to prevent floating point imprecision
+			if ((int)Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) == (int)rotationDistance)
 			{
 				Vector3 direction = Focus.transform.position - transform.position;
 				Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 		if (_UIManager.CurrentUIMode == UIMode.Dialogue) return;
 
 		//Player clicks in game
-		// if ray hits interactable
+		// if ray hits Interactable
 		if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
 		{
 			InteractableScript interactable = hit.collider.GetComponent<InteractableScript>();

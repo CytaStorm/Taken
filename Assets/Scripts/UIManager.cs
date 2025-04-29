@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
 {
 	public UIMode CurrentUIMode;
 
+	public static UIManager UI { get; private set; }
+
 	[Header("Other GameObjects")]
 	[SerializeField] private SceneController _sceneController;
 	[SerializeField] private PlayerInput _input;
@@ -87,9 +89,23 @@ public class UIManager : MonoBehaviour
 			
 		}
 	}
-	#endregion
+    #endregion
 
-	void Start()
+	/// <summary>
+	/// Singleton
+	/// </summary>
+    private void Awake()
+    {
+		if (UI != null && UI != this)
+		{
+			Destroy(UI);
+		} else
+		{
+			UI = this;
+		}
+    }
+
+    void Start()
 	{
         if (_sceneController.autoStartDialogue)
         {
@@ -126,6 +142,49 @@ public class UIManager : MonoBehaviour
 		_dialogueUI.SetActive(true);
 	}
 
+	public void NewDialogueLink(NewDialogueLink dialogueLink)
+	{
+		if (dialogueLink.Name != "Continue" && dialogueLink.Name != "Leave")
+		{
+
+			Transform _textBoxContainer;
+			Transform _textBox;
+			TextMeshProUGUI _textDisplay;
+
+			//History text
+			_textBoxContainer =
+				Instantiate(_singleTextBoxContainer, _textArea.transform).transform;
+			_textBox =
+				_textBoxContainer.transform.GetChild(0);
+			_textDisplay =
+				_textBox.GetComponent<TextMeshProUGUI>();
+			_textDisplay.text += dialogueLink.Name;
+
+			_mostRecentTextContainer.GetChild(0).
+				GetComponent<TextMeshProUGUI>().color = _prevTextColor;
+
+			//_mostRecentTextContainer = _textBoxContainer;
+
+			//_animatingLayout.preferredHeight = _desiredHeight;
+
+			//_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+
+			Canvas.ForceUpdateCanvases();
+			_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+
+			//if is first textbox, snap to top
+			if (_animatingLayout == null)
+			{
+				_mostRecentTextContainer = _textBoxContainer;
+				_animatingLayout.preferredHeight = _desiredHeight;
+
+			}
+			_mostRecentTextContainer = _textBoxContainer;
+
+		}
+		NewDialogueNode(dialogueLink.ConnectedNode);
+	}
+
 	//Player traversed to a new Dialogue node
 	public void NewDialogueNode(NewDialogueNode dialogueNode)
 	{
@@ -137,16 +196,21 @@ public class UIManager : MonoBehaviour
 			_animatingLayout.preferredHeight = _desiredHeight;
 		}
 
+		Transform _textBoxContainer;
+		Transform _textBox;
+		TextMeshProUGUI _textDisplay;
+
+
+		// New text
 		//text box references
 		//Container used to animate text boxes
-		Transform _textBoxContainer = 
+		_textBoxContainer = 
 			Instantiate(_singleTextBoxContainer, _textArea.transform).transform;
 
 		//Textbox itself
-		Transform _textBox = 
+		_textBox = 
 			_textBoxContainer.transform.GetChild(0);
-
-		TextMeshProUGUI _textDisplay = 
+		_textDisplay = 
 			_textBox.GetComponent<TextMeshProUGUI>();
 
 		////Add title of node unless it is the first node
@@ -171,20 +235,7 @@ public class UIManager : MonoBehaviour
 
 		//Get animation info
 		Canvas.ForceUpdateCanvases();
-		//if (_textDisplay.text == "You trudge beside Sallos along the path, up to the top of The Heights.")
-		//{
-		//	_desiredHeight = 110.32f;
-		//}
-		//else
-		//{
-		//	_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
-		//}
 		_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
-
-		//while (_desiredHeight == 0)
-		//{
-		//	Canvas.ForceUpdateCanvases();
-		//}
 
 		//if is first textbox, snap to top
 		if (_animatingLayout == null)
@@ -193,6 +244,7 @@ public class UIManager : MonoBehaviour
 			_animatingLayout.preferredHeight = _desiredHeight;
 
 		}
+
 		_mostRecentTextContainer = _textBoxContainer;
 
 		//Activate dialogue UI
@@ -210,54 +262,54 @@ public class UIManager : MonoBehaviour
 
 			if (_sceneController.CheckTraversal(link.Flags))
 			{
-				//Local variable is used here n/c delegates will capture full local context...
+				//Local variable is used here b/c delegates will capture full local context...
 				//means that if i is used directly the delegates will capture i++ because
 				//the enclosing for loop will add 1 to i at the end of each loop.
 				int choiceIndex = i;
 
 				//Create exit button, if it exists
-				if (linkedNode.Tags != null && 
+				if (linkedNode.Tags != null &&
 					linkedNode.Tags.Count != 0 &&
-					linkedNode.Tags.Contains("exit")){
+					linkedNode.Tags.Contains("exit"))
+				{
 					GameObject exitButton =
-						Instantiate(_exitButton, _buttonContainer.transform, false);
+						Instantiate(_exitButton, _buttonContainer.transform, true);
 					_buttons.Add(exitButton);
 					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = "<i>" + link.Name + "</i>";
 					Button exitButtonComponent = exitButton.GetComponent<Button>();
 
-					exitButtonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
+					exitButtonComponent.onClick.AddListener(
+						delegate { _sceneController.GoToNode(choiceIndex); });
+					exitButtonComponent.onClick.AddListener(
+						delegate
+						{
+							if (PlayerController.PlayerControl.Focus != null &&
+							PlayerController.PlayerControl.Focus is NPCScript)
+							{
+								((NPCScript)PlayerController.PlayerControl.Focus).ExitDialogue();
+							}
+						}
+					);
 					exitButtonComponent.onClick.AddListener(PlaySound);
 					exitButtonComponent.onClick.AddListener(ClearButtons);
 					exitButtonComponent.onClick.AddListener(ClearText);
 					exitButtonComponent.onClick.AddListener(ChangeToGameplay);
+
 					continue;
 				}
 
-				//Create link button
-                GameObject newestButton =
-                    Instantiate(_dialogueChoiceButton, _buttonContainer.transform, true);
-                _buttons.Add(newestButton);
-                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
-                Button buttonComponent = newestButton.GetComponent<Button>();
-                buttonComponent.onClick.AddListener(PlaySound);
-                buttonComponent.onClick.AddListener(ClearButtons);
-                buttonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
-            }			
-        }
-
-		//Add exit button
-		//if (_buttons.Count == 0 && !_sceneManager.FadingOut) 
-		//{
-        //    GameObject exitButton =
-        //        Instantiate(_exitButton, _dialogueUI.transform, true);
-        //    _buttons.Add(exitButton);
-
-        //    Button buttonComponent = exitButton.GetComponent<Button>();
-        //    buttonComponent.onClick.AddListener(PlaySound);
-        //    buttonComponent.onClick.AddListener(ClearButtons);
-        //    buttonComponent.onClick.AddListener(ClearText);
-        //    buttonComponent.onClick.AddListener(ChangeToGameplay);
-        //}
+				//create button for each link
+				GameObject newestButton =
+					Instantiate(_dialogueChoiceButton, _buttonContainer.transform, true);
+				_buttons.Add(newestButton);
+				newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
+				Button buttonComponent = newestButton.GetComponent<Button>();
+				buttonComponent.onClick.AddListener(PlaySound);
+				buttonComponent.onClick.AddListener(ClearButtons);
+				buttonComponent.onClick.AddListener(
+					delegate { _sceneController.GoToNode(choiceIndex); });
+			}
+		}
 	}
 
 	private void PlaySound()

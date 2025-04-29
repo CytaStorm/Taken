@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 
 /// <summary>
 /// Custom data structure for representing condition checks in dialogue trees 
@@ -14,11 +16,11 @@ public class NewDialogueFlag
 		get { return _isTrue; }
 		set
 		{
-			_isTrue = value;
-			if (onValueChange != null)
+			if (value != IsTrue)
 			{
-				onValueChange();
-			}
+				_isTrue = value;
+                onValueChange?.Invoke();
+            }
 		}
 	}
 
@@ -31,6 +33,16 @@ public class NewDialogueFlag
 	/// Methods to call when the value changes
 	/// </summary>
 	public event onValueChangeHandler onValueChange;
+
+	/// <summary>
+	/// Creates a copy of a DialogueFlag, set to false.
+	/// </summary>
+	/// <param name="other"></param>
+	public NewDialogueFlag(NewDialogueFlag other)
+	{
+		IsTrue = false;
+		Names.AddRange(other.Names);
+	}
 
 	/// <summary>
 	/// Creates a new DialogueFlag with a single flag that is set to false
@@ -63,9 +75,9 @@ public class NewDialogueFlag
 	}
 
 	/// <summary>
-	/// Creates a new OR DialogueFlag
+	/// Creates a new AND DialogueFlag
 	/// </summary>
-	/// <param name="conditionNames">List of OR conditions</param>
+	/// <param name="conditionNames">List of AND conditions</param>
 	/// <param name="isTrue">True or False.</param>
 	public NewDialogueFlag(List<string> conditionNames, bool isTrue)
 	{
@@ -89,7 +101,7 @@ public class NewDialogueFlag
 		if (obj is NewDialogueFlag)
 		{
 			NewDialogueFlag other = (NewDialogueFlag)obj;
-			return other.IsTrue == IsTrue && other.Names == Names;
+			return other.IsTrue == IsTrue && other.Names.SequenceEqual(Names);
 		}
 
 		return false;

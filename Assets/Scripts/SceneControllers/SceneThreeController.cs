@@ -1,93 +1,85 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneThreeCutscene : MonoBehaviour
+public class SceneThreeController : CutsceneController
 {
     // Actors
-    public GameObject sallos;
-    public GameObject eulyss;
-    public GameObject akif;
-    public GameObject goon;
+    [SerializeField] private GameObject _sallos;
+    [SerializeField] private GameObject _eulyss;
+    [SerializeField] private GameObject _akif;
+    [SerializeField] private GameObject _goon;
     
-    public UIManager _uiManager;
-    public SceneController SceneController;
-
-    public Material sallosMaterial;
-
-    // Event trigger variables
-    public List<string> flagNames;
-    private List<NewDialogueFlag> eventFlags;
-    private double timer;
-
     // Actor components
     private NavMeshAgent _sallosAgent;
     private Animator _sallosAnimator;
+
     private NavMeshAgent _eulyssAgent;
     private Animator _eulyssAnimator;
+
     private NavMeshAgent _akifAgent;
     private Animator _akifAnimator;
+
     private NavMeshAgent _goonAgent;
     private Animator _goonAnimator;
 
 
     // Start is called before the first frame update
     // MAKE SURE EXECUTION ORDER IS SET TO LAST FOR THIS TO WORK
-    void Start()
+    new void Start()
     {
-        sallosMaterial.SetFloat("_Dissolve_Effect", 0);
-        // Initialize timer
-        timer = 0f;
+        base.Start();
+
+        //Add flags
+        _flagNames.Add("walkLeft");
+        _flagNames.Add("enterAkif");
+        _flagNames.Add("enterGoon");
+        _flagNames.Add("walkCloser");
+        _flagNames.Add("stab");
+        _flagNames.Add("disappear");
+        _flagNames.Add("reach");
 
         //Create eventFlags list based on string list flagNames
-        eventFlags = new List<NewDialogueFlag>();
-        foreach(string name in flagNames)
-        {
-            foreach (NewDialogueFlag flag in SceneController.DialogueFlags) 
-            {
-                if (flag.Names.Equals(name)) continue;
-
-                eventFlags.Add(flag);
-            }
-        }
+        CreateEventFlags();
 
         // Assign all event methods to OnClick() events for all buttons
-        eventFlags[0].onValueChange += delegate { WalkLeft(); };
-        eventFlags[1].onValueChange += delegate { EnterAkif(); };
-        eventFlags[2].onValueChange += delegate { EnterGoon(); };
-        eventFlags[3].onValueChange += delegate { WalkCloser(); };
-        eventFlags[4].onValueChange += delegate { Stab(); };
-        eventFlags[5].onValueChange += delegate { Disappear(); };
-		eventFlags[6].onValueChange += delegate { Reach(); };
+        _eventFlags[0].onValueChange += delegate { WalkLeft(); };
+        _eventFlags[1].onValueChange += delegate { EnterAkif(); };
+        _eventFlags[2].onValueChange += delegate { EnterGoon(); };
+        _eventFlags[3].onValueChange += delegate { WalkCloser(); };
+        _eventFlags[4].onValueChange += delegate { Stab(); };
+        _eventFlags[5].onValueChange += delegate { Disappear(); };
+        _eventFlags[6].onValueChange += delegate { Reach(); };
 
         // Get component data for all actors
-        _sallosAgent = sallos.GetComponent<NavMeshAgent>();
-        _sallosAnimator = sallos.GetComponent<Animator>();
+        _sallosAgent = _sallos.GetComponent<NavMeshAgent>();
+        _sallosAnimator = _sallos.GetComponent<Animator>();
 
-        _eulyssAgent = eulyss.GetComponent<NavMeshAgent>();
-        _eulyssAnimator = eulyss.GetComponent<Animator>();
+        _eulyssAgent = _eulyss.GetComponent<NavMeshAgent>();
+        _eulyssAnimator = _eulyss.GetComponent<Animator>();
 
-        _akifAgent = akif.GetComponent<NavMeshAgent>();
-        _akifAnimator = akif.GetComponent<Animator>();
+        _akifAgent = _akif.GetComponent<NavMeshAgent>();
+        _akifAnimator = _akif.GetComponent<Animator>();
 
-        _goonAgent = goon.GetComponent<NavMeshAgent>();
-        _goonAnimator = goon.GetComponent<Animator>();
+        _goonAgent = _goon.GetComponent<NavMeshAgent>();
+        _goonAnimator = _goon.GetComponent<Animator>();
 
         // Set initial positions of all actors
-        sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
-        eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
-        akif.transform.position = new Vector3(-4.92f, 0, 16.85f);
-        goon.transform.position = new Vector3(-12.08f, 0, 4.37f);
+        _sallos.transform.position = new Vector3(-0.41f, 0, 0.2f);
+        _eulyss.transform.position = new Vector3(-0.93f, 0, -0.49f);
+        _akif.transform.position = new Vector3(-4.92f, 0, 16.85f);
+        _goon.transform.position = new Vector3(-12.08f, 0, 4.37f);
     }
 
-	// Update is called once per frame
-	void Update()
+    
+    // Update is called once per frame
+    new void Update()
     {
-        // Update timer each frame
-        timer += Time.deltaTime;
+        base.Update(); // Update timer each frame
     }
 
     private void WalkLeft()
@@ -95,14 +87,14 @@ public class SceneThreeCutscene : MonoBehaviour
         // Move sallos and eulyss along forest trail
         _sallosAgent.SetDestination(new Vector3(-2.11f, 0f, 7.35f));
         _eulyssAgent.SetDestination(new Vector3(-2.27f, 0f, 5.86f));
-        StartCoroutine(_uiManager.PauseAllButtons(3f));
+        StartCoroutine(UIManager.UI.PauseAllButtons(3f));
     }
 
     private void EnterAkif()
     {
         // Move akif towards sallos and eulyss
         _akifAgent.SetDestination(new Vector3(-2.990002f, 0f, 10.45f));
-        StartCoroutine(_uiManager.PauseAllButtons(2.7f));
+        StartCoroutine(UIManager.UI.PauseAllButtons(2.7f));
     }
 
     private void EnterGoon()
@@ -113,7 +105,7 @@ public class SceneThreeCutscene : MonoBehaviour
         _eulyssAnimator.SetTrigger("LookLeftTrigger");
         StartCoroutine(ChangeLookLeft(_sallosAnimator, 1, 0.5f));
         StartCoroutine(ChangeLookLeft(_eulyssAnimator, 1, 0.66f));
-        StartCoroutine(_uiManager.PauseAllButtons(2.9f));
+        StartCoroutine(UIManager.UI.PauseAllButtons(2.9f));
     }
 
     private void WalkCloser()
@@ -123,7 +115,7 @@ public class SceneThreeCutscene : MonoBehaviour
         _goonAgent.SetDestination(new Vector3(-3.66f, 0f, 7.04f));
         StartCoroutine(ChangeLookLeft(_sallosAnimator, 0, 0.5f));
         StartCoroutine(ChangeLookLeft(_eulyssAnimator, 0, 0.45f));
-        StartCoroutine(_uiManager.PauseAllButtons(1.3f));
+        StartCoroutine(UIManager.UI.PauseAllButtons(1.3f));
     }
 
     private void Reach()
@@ -135,22 +127,22 @@ public class SceneThreeCutscene : MonoBehaviour
     {
         _akifAnimator.SetTrigger("Stab");
         _sallosAnimator.SetTrigger("StepBack");
-        StartCoroutine(_uiManager.PauseAllButtons(0.7f));
+        StartCoroutine(UIManager.UI.PauseAllButtons(0.7f));
     }
 
     private void Disappear()
     {
         StartCoroutine(FadeAway(5f));
-        StartCoroutine(_uiManager.PauseAllButtons(5f));
+        StartCoroutine(UIManager.UI.PauseAllButtons(5f));
     }
 
     private IEnumerator FadeAway(float seconds)
     {
         float time = 0f;
 
-        while (sallosMaterial.GetFloat("_Dissolve_Effect") < 1)
+        while (_sallosMaterial.GetFloat("_Dissolve_Effect") < 1)
         {
-            sallosMaterial.SetFloat("_Dissolve_Effect", time / seconds);
+            _sallosMaterial.SetFloat("_Dissolve_Effect", time / seconds);
             time += Time.deltaTime;
             yield return null;
         }
