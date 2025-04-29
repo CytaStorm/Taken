@@ -143,29 +143,44 @@ public class UIManager : MonoBehaviour
 
 	public void NewDialogueLink(NewDialogueLink dialogueLink)
 	{
+		if (dialogueLink.Name != "Continue" && dialogueLink.Name != "Leave")
+		{
 
-		Transform _textBoxContainer;
-		Transform _textBox;
-		TextMeshProUGUI _textDisplay;
+			Transform _textBoxContainer;
+			Transform _textBox;
+			TextMeshProUGUI _textDisplay;
 
-		//History text
-		_textBoxContainer =
-			Instantiate(_singleTextBoxContainer, _textArea.transform).transform;
-		_textBox =
-			_textBoxContainer.transform.GetChild(0);
-		_textDisplay =
-			_textBox.GetComponent<TextMeshProUGUI>();
-		_textDisplay.text += dialogueLink.Name;
-		
-		_mostRecentTextContainer.GetChild(0).
-			GetComponent<TextMeshProUGUI>().color = _prevTextColor;
-		_animatingLayout.preferredHeight = _desiredHeight;
+			//History text
+			_textBoxContainer =
+				Instantiate(_singleTextBoxContainer, _textArea.transform).transform;
+			_textBox =
+				_textBoxContainer.transform.GetChild(0);
+			_textDisplay =
+				_textBox.GetComponent<TextMeshProUGUI>();
+			_textDisplay.text += dialogueLink.Name;
 
-		_mostRecentTextContainer = _textBoxContainer;
+			_mostRecentTextContainer.GetChild(0).
+				GetComponent<TextMeshProUGUI>().color = _prevTextColor;
 
-		//_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+			//_mostRecentTextContainer = _textBoxContainer;
 
-		Canvas.ForceUpdateCanvases();
+			//_animatingLayout.preferredHeight = _desiredHeight;
+
+			//_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+
+			Canvas.ForceUpdateCanvases();
+			_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
+
+			//if is first textbox, snap to top
+			if (_animatingLayout == null)
+			{
+				_mostRecentTextContainer = _textBoxContainer;
+				_animatingLayout.preferredHeight = _desiredHeight;
+
+			}
+			_mostRecentTextContainer = _textBoxContainer;
+
+		}
 		NewDialogueNode(dialogueLink.ConnectedNode);
 	}
 
@@ -219,20 +234,7 @@ public class UIManager : MonoBehaviour
 
 		//Get animation info
 		Canvas.ForceUpdateCanvases();
-		//if (_textDisplay.text == "You trudge beside Sallos along the path, up to the top of The Heights.")
-		//{
-		//	_desiredHeight = 110.32f;
-		//}
-		//else
-		//{
-		//	_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
-		//}
 		_desiredHeight = _textBox.GetComponent<RectTransform>().rect.height;
-
-		//while (_desiredHeight == 0)
-		//{
-		//	Canvas.ForceUpdateCanvases();
-		//}
 
 		//if is first textbox, snap to top
 		if (_animatingLayout == null)
@@ -241,6 +243,7 @@ public class UIManager : MonoBehaviour
 			_animatingLayout.preferredHeight = _desiredHeight;
 
 		}
+
 		_mostRecentTextContainer = _textBoxContainer;
 
 		//Activate dialogue UI
