@@ -6794,6 +6794,10 @@ PrefabInstance:
       propertyPath: _sceneController
       value: 
       objectReference: {fileID: 1923970402}
+    - target: {fileID: 2738910716026719855, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _sceneController
+      value: 
+      objectReference: {fileID: 1923970402}
     - target: {fileID: 3086641896947675875, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour
 	[Header("Buttons")]
 	//Dialogue Choice Button
 	[SerializeField] private GameObject _dialogueChoiceButton;
+	[SerializeField] private GameObject _buttonContainer;
 
     //Dialogue Choice Button List
     public List<GameObject> _buttons;
@@ -261,66 +262,34 @@ public class UIManager : MonoBehaviour
 
 			if (_sceneController.CheckTraversal(link.Flags))
 			{
-				//Local variable is used here n/c delegates will capture full local context...
+				//Local variable is used here b/c delegates will capture full local context...
 				//means that if i is used directly the delegates will capture i++ because
 				//the enclosing for loop will add 1 to i at the end of each loop.
 				int choiceIndex = i;
-
-				//Create exit button, if it exists
-				if (linkedNode.Tags != null && 
-					linkedNode.Tags.Count != 0 &&
-					linkedNode.Tags.Contains("exit")){
-					GameObject exitButton =
-						Instantiate(_exitButton, _dialogueUI.transform, true);
-					_buttons.Add(exitButton);
-					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
-					Button exitButtonComponent = exitButton.GetComponent<Button>();
-
-					exitButtonComponent.onClick.AddListener(
-						delegate { _sceneController.GoToNode(choiceIndex); });
-					exitButtonComponent.onClick.AddListener(delegate
-					{
-						if (PlayerController.PlayerControl.Focus != null &&
-							PlayerController.PlayerControl.Focus is NPCScript)
-						{
-							((NPCScript)PlayerController.PlayerControl.Focus).ExitDialogue();
-						}
-					});
-					exitButtonComponent.onClick.AddListener(PlaySound);
-					exitButtonComponent.onClick.AddListener(ClearButtons);
-					exitButtonComponent.onClick.AddListener(ClearText);
-					exitButtonComponent.onClick.AddListener(ChangeToGameplay);
-					
-					//Add event to focus to let them know they've finished
-					continue;
-				}
-
-				//Create link button
-                GameObject newestButton =
-                    Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
-                _buttons.Add(newestButton);
-                newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
-                Button buttonComponent = newestButton.GetComponent<Button>();
-                buttonComponent.onClick.AddListener(PlaySound);
-                buttonComponent.onClick.AddListener(ClearButtons);
-                buttonComponent.onClick.AddListener(
+				//create button for each link
+				GameObject newestButton =
+					Instantiate(_dialogueChoiceButton, _buttonContainer.transform, true);
+				_buttons.Add(newestButton);
+				newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
+				Button buttonComponent = newestButton.GetComponent<Button>();
+				buttonComponent.onClick.AddListener(PlaySound);
+				buttonComponent.onClick.AddListener(ClearButtons);
+				buttonComponent.onClick.AddListener(
 					delegate { _sceneController.GoToNode(choiceIndex); });
-            }			
-        }
+			}
 
-		//Add exit button
-		//if (_buttons.Count == 0 && !_sceneManager.FadingOut) 
-		//{
-        //    GameObject exitButton =
-        //        Instantiate(_exitButton, _dialogueUI.transform, true);
-        //    _buttons.Add(exitButton);
-
-        //    Button buttonComponent = exitButton.GetComponent<Button>();
-        //    buttonComponent.onClick.AddListener(PlaySound);
-        //    buttonComponent.onClick.AddListener(ClearButtons);
-        //    buttonComponent.onClick.AddListener(ClearText);
-        //    buttonComponent.onClick.AddListener(ChangeToGameplay);
-        //}
+			//Create exit button, if it exists
+			if (linkedNode.Tags != null &&
+				linkedNode.Tags.Count != 0 &&
+				linkedNode.Tags.Contains("exit"))
+			{
+				GameObject exitButton =
+					Instantiate(_exitButton, _dialogueUI.transform, true);
+				_buttons.Add(exitButton);
+				exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = "<i>" + link.Name + "</i>";
+				Button exitButtonComponent = exitButton.GetComponent<Button>();
+			}
+		}
 	}
 
 	private void PlaySound()
