@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
 	[Header("Buttons")]
 	//Dialogue Choice Button
 	[SerializeField] private GameObject _dialogueChoiceButton;
+	[SerializeField] private GameObject _buttonContainer;
 
     //Dialogue Choice Button List
     public List<GameObject> _buttons;
@@ -219,9 +220,9 @@ public class UIManager : MonoBehaviour
 					linkedNode.Tags.Count != 0 &&
 					linkedNode.Tags.Contains("exit")){
 					GameObject exitButton =
-						Instantiate(_exitButton, _dialogueUI.transform, true);
+						Instantiate(_exitButton, _buttonContainer.transform, false);
 					_buttons.Add(exitButton);
-					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
+					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = "<i>" + link.Name + "</i>";
 					Button exitButtonComponent = exitButton.GetComponent<Button>();
 
 					exitButtonComponent.onClick.AddListener(delegate { _sceneController.GoToNode(choiceIndex); });
@@ -234,7 +235,7 @@ public class UIManager : MonoBehaviour
 
 				//Create link button
                 GameObject newestButton =
-                    Instantiate(_dialogueChoiceButton, _dialogueUI.transform, true);
+                    Instantiate(_dialogueChoiceButton, _buttonContainer.transform, true);
                 _buttons.Add(newestButton);
                 newestButton.GetComponent<DialogueChoiceScript>().ButtonText.text = link.Name;
                 Button buttonComponent = newestButton.GetComponent<Button>();
