@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -120,6 +121,7 @@ public class TwineParser
 		//twine set command only edits one variable, we can assume ExtractFlag's
 		//return list has only one element
 		currentNode.FlagsToChange.AddRange(ExtractFlags(stringToParse)[0]);
+		string test = currentNode.FlagsToChange[0].Name;
 	}
 
 	/// <summary>
@@ -192,6 +194,8 @@ public class TwineParser
                 flagTruthness = false;
             }
 
+			DialogueFlagBool test = new DialogueFlagBool(flagName, flagTruthness);
+			string testName = test.Name;
             result.Add(new DialogueFlagBool(flagName, flagTruthness));
         }
 
@@ -234,7 +238,6 @@ public class TwineParser
                 default:
                     throw new ArgumentException("Bad parse");
             }
-            result.Add(new DialogueFlagValue(flagName, valueRightHandSide));
         }
     }
 
