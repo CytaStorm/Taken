@@ -142,7 +142,7 @@ public class UIManager : MonoBehaviour
 		_dialogueUI.SetActive(true);
 	}
 
-	public void NewDialogueLink(NewDialogueLink dialogueLink)
+	public void NewDialogueLink(DialogueLink dialogueLink)
 	{
 		if (dialogueLink.Name != "Continue" && dialogueLink.Name != "Leave")
 		{
@@ -186,7 +186,7 @@ public class UIManager : MonoBehaviour
 	}
 
 	//Player traversed to a new Dialogue node
-	public void NewDialogueNode(NewDialogueNode dialogueNode)
+	public void NewDialogueNode(DialogueNode dialogueNode)
 	{
 		//If there is a previous textBox, change its color to gray
 		if (_mostRecentTextContainer != null)
@@ -252,13 +252,13 @@ public class UIManager : MonoBehaviour
 		CreateButtons(dialogueNode);
 	}
 
-	private void CreateButtons(NewDialogueNode dialogueNode)
+	private void CreateButtons(DialogueNode dialogueNode)
 	{
 		//Check links
 		for (int i = 0; i < dialogueNode.Links.Count; i++)
 		{
-			NewDialogueLink link = dialogueNode.Links[i];
-			NewDialogueNode linkedNode = link.ConnectedNode;
+			DialogueLink link = dialogueNode.Links[i];
+			DialogueNode linkedNode = link.ConnectedNode;
 
 			if (_sceneController.CheckTraversal(link.Flags))
 			{

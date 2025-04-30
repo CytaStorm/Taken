@@ -8,8 +8,8 @@ public class DialogueTraverser
 	//objects
 	public SceneController SceneController;
 	public UIManager _UIManager;
-	public NewDialogueGraph CurrentGraph;
-	public NewDialogueNode CurrentNode;
+	public DialogueGraph CurrentGraph;
+	public DialogueNode CurrentNode;
 	/*
 	[SerializeField] GameObject buttonPrefab;
 	[SerializeField] GameObject parentOfButton;
@@ -35,7 +35,7 @@ public class DialogueTraverser
 	/// sets the graph's starting node to be the current node
 	/// </summary>
 	/// <param name="graph"></param>
-	public void SetNewGraph(NewDialogueGraph graph)
+	public void SetNewGraph(DialogueGraph graph)
 	{
 		//Reassign start node
 		//this.graph = graph;
@@ -58,10 +58,7 @@ public class DialogueTraverser
 	/// </summary>
 	private void GoToSelf()
 	{
-		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
-		{
-			SceneController.ChangeDialogueFlag(newFlag);
-		}
+		UpdateFlags();
 	}
 
 	/// <summary>
@@ -70,31 +67,39 @@ public class DialogueTraverser
 	/// </summary>
 	/// <param name="choice"></param>
 	public void GoToNode(int choice)
-	{
-		NewDialogueLink selectedLink = CurrentNode.Links[choice];
-		CurrentNode = selectedLink.ConnectedNode;
+    {
+        DialogueLink selectedLink = CurrentNode.Links[choice];
+        CurrentNode = selectedLink.ConnectedNode;
 
-		foreach (NewDialogueFlag newFlag in CurrentNode.FlagsToChange) 
-		{
-			SceneController.ChangeDialogueFlag(newFlag);
-		}
+        UpdateFlags();
 
-		//Send currentNode info to UI Manager
-		_UIManager.NewDialogueLink(selectedLink);
-	}
+        //Send currentNode info to UI Manager
+        _UIManager.NewDialogueLink(selectedLink);
+    }
 
 	/// <summary>
-	/// Checks if the destination node has a conditional that would stop traversal
+	/// Updates flags based on current node.
 	/// </summary>
-	/// <param name="destinationNode">Node that is to be traveled to</param>
-	/// <param name="flags">List of all possible conditionals in the scene</param>
-	/// <returns>True if all conditionals are met, false otheriwse</returns>
-	public bool CheckTraversal(List<NewDialogueFlag> flagsToCheck)
+    private void UpdateFlags()
+    {
+        foreach (DialogueFlag newFlag in CurrentNode.FlagsToChange)
+        {
+            SceneController.ChangeDialogueFlag(newFlag);
+        }
+    }
+
+    /// <summary>
+    /// Checks if the destination node has a conditional that would stop traversal
+    /// </summary>
+    /// <param name="destinationNode">Node that is to be traveled to</param>
+    /// <param name="flags">List of all possible conditionals in the scene</param>
+    /// <returns>True if all conditionals are met, false otheriwse</returns>
+    public bool CheckTraversal(List<DialogueFlag> flagsToCheck)
 	{        
 		// First, find every conditional in the scene's list of dialogueFlags that corresponds
 		// to a conditional in the distination node
 		// Then, check if any of these nodes don't match. Return false if so.
-		foreach (NewDialogueFlag destinationFlag in flagsToCheck) 
+		foreach (DialogueFlag destinationFlag in flagsToCheck) 
 		{
 			if (!SceneController.DialogueFlags.Contains(destinationFlag))
 			{

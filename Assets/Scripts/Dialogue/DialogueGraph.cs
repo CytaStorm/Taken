@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class NewDialogueGraph
+public class DialogueGraph
 {
     public string Name;
     
     public List<JSONPassage> passages;
-    public List<NewDialogueNode> Nodes = new List<NewDialogueNode>();
+    public List<DialogueNode> Nodes = new List<DialogueNode>();
 
-    public NewDialogueNode StartNode;
+    public DialogueNode StartNode;
 
     public bool traversed;
 
-    public NewDialogueGraph(string name)
+    public DialogueGraph(string name)
     {
         Name = name;
     }
@@ -23,15 +23,15 @@ public class NewDialogueGraph
     public void ParseNodes()
     {
         StartNode = Nodes[0];
-        foreach (NewDialogueNode node in Nodes)
+        foreach (DialogueNode node in Nodes)
         {
-            NewTwineParser.ParseNode(node);
+            TwineParser.ParseNode(node);
         }
     }
 
     public void ReassignStart()
     {
-        NewDialogueNode newStart;
+        DialogueNode newStart;
 
         // If there are no links, don't reassign start
         if (StartNode.Links.Count == 0 || StartNode.Name == "newIntro") { return; }

@@ -38,14 +38,14 @@ public class SceneTwoController : CutsceneController
 
 		CreateEventFlags();
 
-		_eventFlags[0].onValueChange += delegate { SallosGoToKindling(); };
-		_eventFlags[1].onValueChange += delegate { SallosGoToLog(); };
-		_eventFlags[2].onValueChange += delegate {
-			if (_eventFlags[2].IsTrue)
-			{
-				_sallosScript.LookAtPlayer();
-			}
-		};
+		_eventFlags[0].OnValueChange += delegate { SallosGoToKindling(); };
+		_eventFlags[1].OnValueChange += delegate { SallosGoToLog(); };
+		//_eventFlags[2].OnValueChange += delegate {
+		//	if (_eventFlags[2].IsTrue true)
+		//	{
+		//		_sallosScript.LookAtPlayer();
+		//	}
+		//};
 	}
 
 	// Update is called once per frame

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewDialogueLink
+public class DialogueLink
 {
     /// <summary>
     /// Flags that must be fulfilled to accept link
     /// </summary>
-    public List<NewDialogueFlag> Flags = new List<NewDialogueFlag>();
+    public List<DialogueFlag> Flags = new List<DialogueFlag>();
 
     /// <summary>
     /// Name to show over link
@@ -22,20 +22,26 @@ public class NewDialogueLink
     /// <summary>
     /// Node that it connects to.
     /// </summary>
-    public NewDialogueNode ConnectedNode = null;
+    public DialogueNode ConnectedNode = null;
 
     /// <summary>
     /// Temporary link object used in first pass through of graph creation
     /// </summary>
     /// <param name="_name">Name to display on dialogue button.</param>
     /// <param name="_link">Name of node it connects to.</param>
-    public NewDialogueLink(string _name, string _link)
+    public DialogueLink(string _name, string _link)
     {
         Name = _name;
         Link = _link;
     }
 
-    public NewDialogueLink(List<NewDialogueFlag> _flags, string _name, NewDialogueNode connectedNode)
+    /// <summary>
+    /// Full DialogueLink constructor.
+    /// </summary>
+    /// <param name="_flags">All flags required for entry.</param>
+    /// <param name="_name">Name to display over link.</param>
+    /// <param name="connectedNode">Connected Node</param>
+    public DialogueLink(List<DialogueFlag> _flags, string _name, DialogueNode connectedNode)
     {
         Name = _name;
         Flags = _flags;

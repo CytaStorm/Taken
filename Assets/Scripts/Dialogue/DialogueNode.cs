@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class NewDialogueNode
+public class DialogueNode
 {
     /// <summary>
     /// Name of Node
@@ -17,15 +18,18 @@ public class NewDialogueNode
     /// </summary>
     public List<string> Tags = new List<string>();
 
-    public List<NewDialogueLink> Links = new List<NewDialogueLink>();
+    public List<DialogueLink> Links = new List<DialogueLink>();
 
-    public List<NewDialogueFlag> FlagsToChange = new List<NewDialogueFlag>();
+    /// <summary>
+    /// Dialogue Flags to change.
+    /// If the Flag is a bool flag, then change it to match
+    /// If the Flag is a value flag, check if relativeChange is null
+    /// If relativeChange is null, directly set value, change value to match
+    /// If relativeChange is not null, then de/increment by relativechange
+    /// </summary>
+    public List<DialogueFlag> FlagsToChange = new List<DialogueFlag>();
 
-    public delegate void OnEnterHandler();
-
-    public event OnEnterHandler onEnter;
-
-    public NewDialogueNode(string _name, string _text, List<JSONLinks> links, List<string> tags)
+    public DialogueNode(string _name, string _text, List<JSONLinks> links, List<string> tags)
     {
         Name = _name;
         Text = _text;
@@ -33,7 +37,7 @@ public class NewDialogueNode
         foreach (JSONLinks link in links)
         {
             //Temporary link, must fill out with actual details on parse
-            Links.Add(new NewDialogueLink(link.name, link.link));
+            Links.Add(new DialogueLink(link.name, link.link));
         }
 
         foreach (string tag in tags)
@@ -42,7 +46,7 @@ public class NewDialogueNode
         }
     }
 
-    public NewDialogueNode(string _name, string _text)
+    public DialogueNode(string _name, string _text)
     {
         Name = _name;
         Text = _text;
@@ -62,7 +66,7 @@ public class NewDialogueNode
     private string PrintLinks()
     {
         string output = "";
-        foreach (NewDialogueLink link in Links) 
+        foreach (DialogueLink link in Links) 
         {
             output += link.Name + " -> " + link.Link + "\n";
         }

@@ -10,7 +10,7 @@ using UnityEngine.Events;  // Import the AI Navigation namespace
 public class InteractableScript : MonoBehaviour
 {
     [Header("References to other Gameobjects")]
-    public NewDialogueGraph Graph;
+    public DialogueGraph Graph;
 
     public UnityEvent<InteractableScript> UpdateSceneGraph { get; private set; }
 
