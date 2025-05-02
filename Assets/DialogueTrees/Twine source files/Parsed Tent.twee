@@ -5,8 +5,8 @@ Parsed Tent
 :: StoryData
 {
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
-  "format": "Twison",
-  "format-version": "0.0.1",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
   "start": "scene",
   "tag-colors": {
     "exit": "red",
@@ -19,8 +19,8 @@ Parsed Tent
 }
 
 
-:: "What're you making?" {"position":"1850,825","size":"100,100"}
-<b>SALLOS: </b> I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.
+:: "What're you making?" {"position":"1725,625","size":"100,100"}
+<b>SALLOS: </b>I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.
 [[Continue->parchment]]
 
 
@@ -45,8 +45,9 @@ Then, he adds in a few logs at a time, and before long, the flame is roaring, an
 [[Continue->startCooking]]
 
 
-:: agreeToHelp {"position":"2225,825","size":"100,100"}
-<b>SALLOS: </b>
+:: agreeToHelp {"position":"2050,700","size":"100,100"}
+<b>SALLOS: </b>That's great! Here, just do this one, and we'll be fine.
+[[Unwrap it->unwrap]]
 
 
 :: beat {"position":"100,1350","size":"100,100"}
@@ -76,6 +77,16 @@ Your hands are already full of firewood. Best to let Sallos take care of these.
 [[Continue->exitGrabTinder]]
 
 
+:: continueUnwrap {"position":"2025,900","size":"100,100"}
+<b>SALLOS: </b>Are you excited to reach the top? We've been waiting for years for this, haven't we?
+[[When do we get to the top?->whenTop]]
+
+
+:: continueUpwrap2 {"position":"2225,1225","size":"100,100"}
+After some time, the string comes apart.
+[[Give it a taste->taste]]
+
+
 :: cut {"position":"725,400","size":"100,100"}
 After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.
 [[Continue->exitDeadTree]]
@@ -97,6 +108,15 @@ The fallen tree collects snow. It seems to have fallen recently, judging by how 
 [[Leave->exitDeadTree]]
 
 
+:: discussWithSallos {"position":"2275,850","size":"100,100"}
+<b>SALLOS: </b>It's crazy to think that I had to save you up here when we first met. Remember that? We barely spoke each other's languages! Haha.
+[[Continue->discussWithSallos2]]
+
+
+:: discussWithSallos2 {"position":"2300,1050","size":"100,100"}
+<b>SALLOS: </b>
+
+
 :: edgeFormed {"position":"1475,1400","size":"100,100"}
 You close your eyes do your best to conjure up an image of the sharpest edge you can imagine in your mind. Your head begins to ache slightly, but as you open your eyes, you see that the hatchet's head has regained its sharpness, the edge gaining a shiny coating contrasting with the surrounding rust and abuse.
 [[Leave->exitHatchet]]
@@ -115,11 +135,15 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 
 
 
-:: exitHatchet [exit] {"position":"1275,1275","size":"100,100"}
+:: exitHatchet [exit] {"position":"1375,1250","size":"100,100"}
 
 
 
-:: exitHelp [exit] {"position":"2350,575","size":"100,100"}
+:: exitHelp [exit] {"position":"2125,550","size":"100,100"}
+
+
+
+:: exitHelpRepeat [exit] {"position":"1850,575","size":"100,100"}
 
 
 
@@ -155,13 +179,17 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 
 
 
-:: exitTinder [exit] {"position":"775,1150","size":"100,100"}
+:: exitTinder [exit] {"position":"875,1000","size":"100,100"}
 
 
 
-:: fine {"position":"25,1425","size":"100,100"}
+:: fine {"position":"0,1325","size":"100,100"}
 <b>SALLOS:</b> Glad to hear it! We still have some work to do, though.
 [[Continue->work]]
+
+
+:: finishUnwrap {"position":"1825,1050","size":"100,100"}
+<b>SALLOS: </b>You all done over there? The water's boiling now. Just put the 
 
 
 :: foodTime {"position":"2675,925","size":"100,100"}
@@ -208,21 +236,16 @@ You've gathered some tinder.
 [[Continue->pinch]]
 
 
-:: hatchet [start] {"position":"1225,1025","size":"100,100"}
+:: hatchet [start] {"position":"1475,950","size":"100,100"}
 The hatchet sits in on the ground quietly, resting after its long day of work.
 (if: $sharpendHatchet is false) [ [[Take a closer look->hatchetLookCloser]] ]
 (if: $sharpendHatchet is true ) [ [[Take a closer look->sharpHatchetLookCloser]] ]
 [[Leave->exitHatchet]]
 
 
-:: hatchetLookCloser {"position":"1650,1175","size":"100,100"}
+:: hatchetLookCloser {"position":"1575,1150","size":"100,100"}
 You pick it up, and take a closer look at the head. It's been worn down after years of use. It's edge is chipped, and rust dots the surface. You could try to use some of your magic to reshape and restore it.
 [[Sharpen the hatchet->sharpen]]
-
-
-:: hatchetSharpened {"position":"1500,875","size":"100,100"}
-The hatchet sits in on the ground quietly, resting after its long day of work, it's blade freshly sharpened.
-[[Leave->exitHatchet]] 
 
 
 :: height {"position":"3650,1025","size":"100,100"}
@@ -231,8 +254,8 @@ The hatchet sits in on the ground quietly, resting after its long day of work, i
 [[Continue->blush]]
 
 
-:: help {"position":"2000,675","size":"100,100"}
-<b>SALLOS: </b>I could use some help unpacking these cubes though, if you'd like to help.
+:: help {"position":"1850,725","size":"100,100"}
+<b>SALLOS: </b>I could use some help unpacking these though, if you'd like to help. They're on tight!
 [[Sure!->agreeToHelp]]
 [[I think I'll keep looking around a bit first.->exitHelp]]
 
@@ -299,8 +322,8 @@ He, however, doesn’t. In the years since you first met him, he’s gotten olde
 [[I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!->sigh]]
 
 
-:: parchment {"position":"2075,1000","size":"100,100"}
-He pulls out a handful of parchment wrapped cubes, tied with a piece of string.
+:: parchment {"position":"1700,775","size":"100,100"}
+He pulls out a handful of parchment wrapped cubes, tied with pieces of string.
 [[Continue->help]]
 
 
@@ -343,14 +366,14 @@ You place the bundle of sticks by the stove.
 [[That really was awful… But you did save my life out there. And we met.->funny]]
 
 
-:: sallosDiscussion [start] {"position":"1975,425","size":"100,100"}
+:: sallosDiscussion [start] {"position":"1750,475","size":"100,100"}
 Sallos sits by the pot, watching the water slowly come to a boil.
 [["What're you making?"]]
 
 
-:: sallosDiscussionRepeat [secondStart] {"position":"2250,375","size":"100,100"}
+:: sallosDiscussionRepeat [start] {"position":"1950,425","size":"100,100"}
 <b>SALLOS: </b>Would you like to help?
-[[Just a minute.->exitHelp]]
+[[Just a minute.->exitHelpRepeat]]
 
 
 :: sallosTalkedToExit [exit] {"position":"250,1400","size":"100,100"}
@@ -368,12 +391,12 @@ Sallos puts the sticks into the stove, and begins striking an iron rod to get a 
 [[Continue->addWood]]
 
 
-:: sharpHatchetLookCloser {"position":"1525,1050","size":"100,100"}
+:: sharpHatchetLookCloser {"position":"1300,1050","size":"100,100"}
 Thanks to your efforts, the hatchet has been sharpened to a razor's edge.
 [[Leave->exitHatchet]]
 
 
-:: sharpen {"position":"1800,1300","size":"100,100"}
+:: sharpen {"position":"1650,1325","size":"100,100"}
 You focus your mana, and touch the blade. You feel as is a wind is blowing across your arm, and the axe head begins to glow blue, and it begins to deform and almost melt.
 (set: $strength += 1)
 (set: $sharpenedHatchet to true)
@@ -403,11 +426,23 @@ The bar is waxy, and looks like a brick made of peas and dirt. Not very appetizi
 [[Take a bite->bite]]
 
 
+:: taste {"position":"2050,1050","size":"100,100"}
+Incredibly salty.
+[[Continue->finishUnwrap]] 
+
+
 :: tinder [start] {"position":"725,975","size":"100,100"}
 Ther is a pile of pine branches and needles on the ground before you.
 (if: $tinderQuest is true and $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]
 (if: $tinderQuest is true and $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]
 [[Continue->exitTinder]]
+
+
+:: unwrap {"position":"1800,925","size":"100,100"}
+You begin to work through the knot, but it's a struggle to get a hold of each line of string.
+[[Continue->continueUnwrap]]
+
+
 
 
 :: wear {"position":"100,225","size":"100,100"}
@@ -420,6 +455,10 @@ Sallos doesn’t look any worse for wear, despite him outpacing you the whole tr
 <b>EULYSS:</b> What is it?
 
 [[Continue->itIs]]
+
+
+:: whenTop {"position":"2175,725","size":"100,100"}
+
 
 
 :: work {"position":"75,1525","size":"100,100"}

@@ -40,7 +40,7 @@ public class JSONGraph
 		{
 			AddAllLinkedPassages(graph);
 
-			//Parse Dialogue nodes
+			//Parse Dialogue nodes specialtext
 			graph.ParseNodes();
 		}
 
