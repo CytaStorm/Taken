@@ -5,17 +5,23 @@ Parsed Tent
 :: StoryData
 {
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
-  "format": "Harlowe",
-  "format-version": "3.3.9",
+  "format": "Twison",
+  "format-version": "0.0.1",
   "start": "scene",
   "tag-colors": {
     "exit": "red",
     "start": "green",
     "endScene": "purple",
-    "end": "purple"
+    "end": "purple",
+    "secondStart": "yellow"
   },
   "zoom": 0.6
 }
+
+
+:: "What're you making?" {"position":"1850,825","size":"100,100"}
+<b>SALLOS: </b> I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.
+[[Continue->parchment]]
 
 
 :: Sallos [start] {"position":"50,1075","size":"100,100"}
@@ -39,18 +45,22 @@ Then, he adds in a few logs at a time, and before long, the flame is roaring, an
 [[Continue->startCooking]]
 
 
+:: agreeToHelp {"position":"2225,825","size":"100,100"}
+<b>SALLOS: </b>
+
+
 :: beat {"position":"100,1350","size":"100,100"}
 <b>SALLOS:</b> Awh, I'm sorry to hear that! But we just have a little bit more work to do.
 [[Continue->work]]
 
 
-:: bite {"position":"2325,525","size":"100,100"}
+:: bite {"position":"2925,575","size":"100,100"}
 You take a bite, and it rips and crumbles a bit, like a very greasy cake. Slimy, almost.
 
 [[Continue->likeIt]]
 
 
-:: blush {"position":"3050,1200","size":"100,100"}
+:: blush {"position":"3650,1250","size":"100,100"}
 You blush. The boy has a way with words, even in his faraway dialect of Ghuzian. You can feel the beat of your heart more now.
 
 [[Continue->sleepSoon]]
@@ -87,12 +97,12 @@ The fallen tree collects snow. It seems to have fallen recently, judging by how 
 [[Leave->exitDeadTree]]
 
 
-:: edgeFormed {"position":"1400,1450","size":"100,100"}
+:: edgeFormed {"position":"1475,1400","size":"100,100"}
 You close your eyes do your best to conjure up an image of the sharpest edge you can imagine in your mind. Your head begins to ache slightly, but as you open your eyes, you see that the hatchet's head has regained its sharpness, the edge gaining a shiny coating contrasting with the surrounding rust and abuse.
-[[Leave->exitHatchet]] 
+[[Leave->exitHatchet]]
 
 
-:: enterSallos [start] {"position":"875,675","size":"100,100"}
+:: enterSallos [start] {"position":"900,800","size":"100,100"}
 <b>SALLOS: </b>Alright! Let's get started! We've got everything we need to start cooking!
 [[Continue->setFire]]
 
@@ -105,7 +115,11 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 
 
 
-:: exitHatchet [exit] {"position":"1275,1325","size":"100,100"}
+:: exitHatchet [exit] {"position":"1275,1275","size":"100,100"}
+
+
+
+:: exitHelp [exit] {"position":"2350,575","size":"100,100"}
 
 
 
@@ -137,7 +151,7 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 
 
 
-:: exitSleep [exit end] {"position":"2075,1375","size":"100,100"}
+:: exitSleep [exit end] {"position":"2675,1425","size":"100,100"}
 
 
 
@@ -150,7 +164,7 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 [[Continue->work]]
 
 
-:: foodTime {"position":"1950,875","size":"100,100"}
+:: foodTime {"position":"2675,925","size":"100,100"}
 <b>SALLOS:</b> Tonight we're having...
 
 [[Continue->lightup]]
@@ -161,7 +175,7 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 [[Thank you.->sallosTalkedToExit]]
 
 
-:: funny {"position":"2800,575","size":"100,100"}
+:: funny {"position":"3400,625","size":"100,100"}
 <b>SALLOS:</b> It’s pretty funny thinking back, rescuing and then falling in love with you… and you still look exactly the same as the day we met.
 
 [[Continue->older]]
@@ -188,99 +202,115 @@ You've gathered some tinder.
 [[Continue->exitGrabTinder]]
 
 
-:: grow {"position":"2675,1075","size":"100,100"}
+:: grow {"position":"3275,1125","size":"100,100"}
 <b>SALLOS</b>: Man, I really wish I could get a few more inches. It’s terrible how every other Ifni gets to be tall and strong, while I’m stuck down here. However—
 
 [[Continue->pinch]]
 
 
-:: hatchet [start] {"position":"1300,1075","size":"100,100"}
+:: hatchet [start] {"position":"1225,1025","size":"100,100"}
 The hatchet sits in on the ground quietly, resting after its long day of work.
 (if: $sharpendHatchet is false) [ [[Take a closer look->hatchetLookCloser]] ]
 (if: $sharpendHatchet is true ) [ [[Take a closer look->sharpHatchetLookCloser]] ]
 [[Leave->exitHatchet]]
 
 
-:: hatchetLookCloser {"position":"1550,1200","size":"100,100"}
+:: hatchetLookCloser {"position":"1650,1175","size":"100,100"}
 You pick it up, and take a closer look at the head. It's been worn down after years of use. It's edge is chipped, and rust dots the surface. You could try to use some of your magic to reshape and restore it.
 [[Sharpen the hatchet->sharpen]]
 
 
-:: height {"position":"3050,975","size":"100,100"}
+:: hatchetSharpened {"position":"1500,875","size":"100,100"}
+The hatchet sits in on the ground quietly, resting after its long day of work, it's blade freshly sharpened.
+[[Leave->exitHatchet]] 
+
+
+:: height {"position":"3650,1025","size":"100,100"}
 <b>SALLOS:</b> It puts me at just the right height to look at you. Even if I can’t live as long as you, I’m happy that I can see you at the same level as me.
 
 [[Continue->blush]]
 
 
-:: itIs {"position":"1825,1100","size":"100,100"}
+:: help {"position":"2000,675","size":"100,100"}
+<b>SALLOS: </b>I could use some help unpacking these cubes though, if you'd like to help.
+[[Sure!->agreeToHelp]]
+[[I think I'll keep looking around a bit first.->exitHelp]]
+
+
+:: itIs {"position":"2525,1125","size":"100,100"}
 <b>SALLOS:</b> It's...
 
 [[Continue->pemmican]]
 
 
-:: itsBad {"position":"2325,750","size":"100,100"}
+:: itsBad {"position":"2925,800","size":"100,100"}
 <b>SALLOS:</b> Well, get used to it then, it’s what we’ll be eating till we get to the top. I’m saving the best stuff for once we get up there.
 
 [[Continue->makeHoosh]]
 
 
-:: itsGood {"position":"2325,1075","size":"100,100"}
+:: itsGood {"position":"2925,1125","size":"100,100"}
 <b>SALLOS:</b>I guess that’s a successful experiment! I’m really happy that you like it!
 
 [[Continue->makeHoosh]]
 
 
-:: justWater {"position":"2475,1075","size":"100,100"}
+:: justWater {"position":"3075,1125","size":"100,100"}
 <b>SALLOS:</b> Whatever suits your tastes.
 
 [[Continue->look]]
 
 
-:: lightup {"position":"1750,875","size":"100,100"}
+:: lightup {"position":"2675,675","size":"100,100"}
 Your eyes light up, and your stomach growls loudly.
 
 [[What is it?->whatIs]]
 
 
-:: likeIt {"position":"2200,875","size":"100,100"}
+:: likeIt {"position":"2800,925","size":"100,100"}
 <b>SALLOS:</b> Like it? I tried to make yours as tasty as possible without using meat stuff. How’d I do?
 
 [[It is good!->itsGood]]
 [[It is bad!->itsBad]]
 
 
-:: look {"position":"2550,950","size":"100,100"}
+:: look {"position":"3150,1000","size":"100,100"}
 Sallos looks listfully at you, and you, back at him. 
 
 [[Continue->reminds]]
 
 
-:: makeHoosh {"position":"2400,950","size":"100,100"}
+:: makeHoosh {"position":"3000,1000","size":"100,100"}
 <b>SALLOS:</b> If you’d like, you can also put your pemmican in the water to make some hoosh. I’ve still got some biscuits for that as well.
 
 [[I am alright, water is just fine.->justWater]]
 [[Sure!->makeIt]]
 
 
-:: makeIt {"position":"2425,650","size":"100,100"}
+:: makeIt {"position":"3025,700","size":"100,100"}
 You drop the rest of your pemmican in the water, and Sallos puts in a biscuit. It slowly disintegrates, turning the water into a thin soup, the vegetables floating around lazily as they detach from the body of the block. 
 
 [[Continue->look]]
 
 
-:: older {"position":"2675,750","size":"100,100"}
+:: older {"position":"3275,800","size":"100,100"}
 He, however, doesn’t. In the years since you first met him, he’s gotten older, lost some of the roundness in his face and gained a few marks and nicks. Proof that he’s been alive, he’s always said. That being said, he’s not grown taller by much.
 
 [[I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!->sigh]]
 
 
-:: pemmican {"position":"2075,1100","size":"100,100"}
+:: parchment {"position":"2075,1000","size":"100,100"}
+He pulls out a handful of parchment wrapped cubes, tied with a piece of string.
+[[Continue->help]]
+
+
+:: pemmican {"position":"2675,1150","size":"100,100"}
 <b>SALLOS:</b> Just some pemmican. I’ve got meat in mine, so be careful which one you eat. Here, take it.
 
 [[Take it.->takeIt]]
 
 
-:: pinch {"position":"3000,825","size":"100,100"}
+:: pinch {"position":"3600,875","size":"100,100"}
 He reaches over to you and pinches your cheek.
 
 [[Continue->height]]
@@ -307,10 +337,20 @@ You place the bundle of sticks by the stove.
 [[Continue->exitPlaceStove]]
 
 
-:: reminds {"position":"2600,600","size":"100,100"}
+:: reminds {"position":"3200,650","size":"100,100"}
 <b>SALLOS:</b> You know, eating like this reminds me a lot of when we first met all those years ago. We ate a meal just like this. Except it was just biscuits and water for you. Didn’t have the veggies back then!
 
 [[That really was awful… But you did save my life out there. And we met.->funny]]
+
+
+:: sallosDiscussion [start] {"position":"1975,425","size":"100,100"}
+Sallos sits by the pot, watching the water slowly come to a boil.
+[["What're you making?"]]
+
+
+:: sallosDiscussionRepeat [secondStart] {"position":"2250,375","size":"100,100"}
+<b>SALLOS: </b>Would you like to help?
+[[Just a minute.->exitHelp]]
 
 
 :: sallosTalkedToExit [exit] {"position":"250,1400","size":"100,100"}
@@ -328,25 +368,25 @@ Sallos puts the sticks into the stove, and begins striking an iron rod to get a 
 [[Continue->addWood]]
 
 
-:: sharpHatchetLookCloser {"position":"1500,1050","size":"100,100"}
+:: sharpHatchetLookCloser {"position":"1525,1050","size":"100,100"}
 Thanks to your efforts, the hatchet has been sharpened to a razor's edge.
 [[Leave->exitHatchet]]
 
 
-:: sharpen {"position":"1550,1325","size":"100,100"}
+:: sharpen {"position":"1800,1300","size":"100,100"}
 You focus your mana, and touch the blade. You feel as is a wind is blowing across your arm, and the axe head begins to glow blue, and it begins to deform and almost melt.
 (set: $strength += 1)
 (set: $sharpenedHatchet to true)
 [[Continue->edgeFormed]]
 
 
-:: sigh {"position":"2900,700","size":"100,100"}
+:: sigh {"position":"3500,750","size":"100,100"}
 He lets out an exasperated sigh.
 
 [[Continue->grow]]
 
 
-:: sleepSoon {"position":"2175,1350","size":"100,100"}
+:: sleepSoon {"position":"2775,1400","size":"100,100"}
 SALLOS: Anyways, we should probably finish up soon. We should catch some rest as soon as possible. I want to catch the sunrise at the peak.
 
 [[Leave->exitSleep]]
@@ -357,7 +397,7 @@ SALLOS: Anyways, we should probably finish up soon. We should catch some rest as
 [[Continue->exitPot]]
 
 
-:: takeIt {"position":"2150,700","size":"100,100"}
+:: takeIt {"position":"2750,750","size":"100,100"}
 The bar is waxy, and looks like a brick made of peas and dirt. Not very appetizing, however edible it is.
 
 [[Take a bite->bite]]
@@ -376,7 +416,7 @@ Sallos doesn’t look any worse for wear, despite him outpacing you the whole tr
 [[Continue->exitScene]]
 
 
-:: whatIs {"position":"1700,1025","size":"100,100"}
+:: whatIs {"position":"2525,875","size":"100,100"}
 <b>EULYSS:</b> What is it?
 
 [[Continue->itIs]]
