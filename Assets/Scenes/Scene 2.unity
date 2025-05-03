@@ -1191,6 +1191,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 448667154230452142, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 550946985650036082, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneController
       value: 
@@ -1206,6 +1210,14 @@ PrefabInstance:
     - target: {fileID: 1468127464243165128, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003771970710784594, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.5012207
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003771970710784594, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00018310547
       objectReference: {fileID: 0}
     - target: {fileID: 2514954679267853206, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Color.b
@@ -1339,6 +1351,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 260
       objectReference: {fileID: 0}
+    - target: {fileID: 8028397489988605382, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1624890665}
     - target: {fileID: 8235999061094595140, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -18358,6 +18374,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 855476570}
   m_LocalEulerAnglesHint: {x: -0.628, y: -5.095, z: -3.206}
+--- !u!114 &1624890665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1149196193969460865, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+  m_PrefabInstance: {fileID: 297489087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b9a68ac1ec16a4b850a1244e38f3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1650134038
 GameObject:
   m_ObjectHideFlags: 0
@@ -18791,7 +18818,7 @@ MonoBehaviour:
   _fadeInTime: 3
   FadesIn: 1
   _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
-  DEBUG: 1
+  DEBUG: 0
   _sallos: {fileID: 1995761731}
   _deadTree: {fileID: 1316866498}
   _kindling: {fileID: 887832376}
