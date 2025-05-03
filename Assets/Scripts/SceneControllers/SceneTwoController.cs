@@ -37,7 +37,7 @@ public class SceneTwoController : CutsceneController
 		_flagNames.Add("turnToFacePlayer");
 
 		CreateEventFlags();
-
+        /*
 		_eventFlags[0].onValueChange += delegate { SallosGoToKindling(); };
 		_eventFlags[1].onValueChange += delegate { SallosGoToLog(); };
 		_eventFlags[2].onValueChange += delegate {
@@ -45,11 +45,13 @@ public class SceneTwoController : CutsceneController
 			{
 				_sallosScript.LookAtPlayer();
 			}
+		
 		};
-	}
+		*/
+    }
 
-	// Update is called once per frame
-	new void Update()
+    // Update is called once per frame
+    new void Update()
 	{
 		base.Update();
 	}
