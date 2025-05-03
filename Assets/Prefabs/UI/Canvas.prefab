@@ -823,7 +823,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: -0}
-  m_AnchoredPosition: {x: 207, y: -297}
+  m_AnchoredPosition: {x: -40, y: -50}
   m_SizeDelta: {x: 610, y: 1210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3305399426232368227
@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 8510075297594084583}
   - component: {fileID: 3269409090000259396}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -973,7 +973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -146}
+  m_AnchoredPosition: {x: -372, y: 224}
   m_SizeDelta: {x: 434.4155, y: 62.1126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8510075297594084583
@@ -1416,6 +1416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8466379684201899955}
   - component: {fileID: 6383950710315167800}
+  - component: {fileID: 1672108229391180632}
   m_Layer: 5
   m_Name: Portrait Container
   m_TagString: Untagged
@@ -1501,6 +1502,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1672108229391180632}
+        m_TargetAssemblyTypeName: MobileUIBehavior, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1672108229391180632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013164258526958538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b9a68ac1ec16a4b850a1244e38f3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRange: 0
+  altTargetPos: {x: 0, y: 400, z: 0}
 --- !u!1 &5125869765685389824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,7 +2519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRange: 1
-  altTargetPos: {x: 477.5, y: 483, z: 0}
+  altTargetPos: {x: 677.5, y: 200, z: 0}
 --- !u!1 &6791325712944542585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,7 +2703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: -0, y: -0}
-  m_AnchoredPosition: {x: 206.5, y: -296.5}
+  m_AnchoredPosition: {x: -40.5, y: -49.5}
   m_SizeDelta: {x: 600, y: 1201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7683524941126919173
@@ -3527,7 +3554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 289, y: -257}
+  m_AnchoredPosition: {x: -80, y: 113}
   m_SizeDelta: {x: 230.8616, y: 315.4209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7326417814831278941

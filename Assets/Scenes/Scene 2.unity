@@ -1200,8 +1200,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1770832733}
     - target: {fileID: 1149196193969460865, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: altTargetPos.x
+      value: 677.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149196193969460865, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: altTargetPos.y
-      value: 483
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1468127464243165128, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Color.b
