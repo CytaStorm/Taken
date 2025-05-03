@@ -6781,7 +6781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5916161910065205699, guid: 8db95ced89954aa46916a67538918c36, type: 3}
       propertyPath: FacePlayerWhileTalking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5916161910065205699, guid: 8db95ced89954aa46916a67538918c36, type: 3}
       propertyPath: hasLimitedInteractions
@@ -7147,7 +7147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.16601644
+      value: 0.24066968
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7155,7 +7155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.986123
+      value: -0.9706071
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalRotation.z
@@ -7167,7 +7167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -160.887
+      value: -152.148
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
