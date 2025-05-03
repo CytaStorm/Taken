@@ -1204,6 +1204,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1817774280}
     - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: _exitButton
+      value: 
+      objectReference: {fileID: 6694033511536594137, guid: 348625eed45ef3e4ea781e8a0ce0d51c, type: 3}
+    - target: {fileID: 3825737841949968205, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: _sceneController
       value: 
       objectReference: {fileID: 1770832733}
@@ -6696,9 +6700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c332f13018fbdc7479bb5e24ad42669c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagName: []
-  sceneManager: {fileID: 1770832733}
-  targetObject: {fileID: 242750582}
 --- !u!4 &739092646
 Transform:
   m_ObjectHideFlags: 0
@@ -6722,6 +6723,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 675282841663714232, guid: 8db95ced89954aa46916a67538918c36, type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2239648708641970165, guid: 8db95ced89954aa46916a67538918c36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.27
@@ -19367,6 +19372,10 @@ PrefabInstance:
     - target: {fileID: 1578976159632464753, guid: 04257226746196d40959e7dd0a473026, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268569142787013776, guid: 04257226746196d40959e7dd0a473026, type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4479040174137065267, guid: 04257226746196d40959e7dd0a473026, type: 3}
       propertyPath: cam
