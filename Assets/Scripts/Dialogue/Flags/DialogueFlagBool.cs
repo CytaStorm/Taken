@@ -61,7 +61,6 @@ public class DialogueFlagBool : DialogueFlag
 	public override string ToString()
 	{
 		string result = Name;
-		result = result.Substring(0, result.Length - 2);
 		return $"{result}, {IsTrue}";
 	}
 

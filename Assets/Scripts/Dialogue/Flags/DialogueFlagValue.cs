@@ -113,7 +113,7 @@ public class DialogueFlagValue : DialogueFlag
 
 	public override string ToString()
 	{
-		return $"{Name}, {Relation}, {Value}";
+		return $"{Name}, Comparison: {Relation}, {Value}";
 	}
 
 	public override bool Equals(DialogueFlag obj)

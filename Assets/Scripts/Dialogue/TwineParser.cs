@@ -24,14 +24,15 @@ public class TwineParser
 		AddNewChangeFlags(node);
 
 		//Clear any remaining links
-		RemoveNodeSpecialText(node, "\n[[", "]]");
+		//RemoveNodeSpecialText(node, "[[", "]]");
+		RemoveSpecialText(node, "[[", "]]");
 		return;
 	}
 
 	private static void ParseNewNode(DialogueNode currentNode)
 	{
 		//parse flags
-		
+
 		//These are used in twinery, but not here
 		//RemoveSpecialText(currentNode, "(if:", "]\n");
 		//RemoveSpecialText(currentNode, "(else-if:", "]\n");
@@ -54,8 +55,9 @@ public class TwineParser
 		//Get ifs and their hooks, these should be the same length
 
 		//If
-		List<string> ifs = GetNodeRemovedSpecialText(currentNode, "\n(if: ", ")");
-		
+		//List<string> ifs = GetNodeRemovedSpecialText(currentNode, "\n(if: ", ")");
+		List<string> ifs = GetRemovedSpecialText(currentNode, "(if: ", ")");
+
 		//Each item in this list is a list of dialogueflags representing
 		//the flags in each link condition block (if: ... )
 		//
@@ -64,31 +66,21 @@ public class TwineParser
 		List<List<DialogueFlag>> flags = ExtractFlags(ifs);
 
 		//Hooks
-		List<string> unhookedLinks = 
-			GetNodeRemovedSpecialText(currentNode, "[ ", " ]");
-		List<DialogueLink>[] parsedLinks = new List<DialogueLink>[unhookedLinks.Count];
+		List<string> unparsedLinks =
+			//GetNodeRemovedSpecialText(currentNode, "[ ", " ]");
+			GetRemovedSpecialText(currentNode, "[ [[", "]] ]");
+		List<DialogueLink>[] parsedLinks = new List<DialogueLink>[unparsedLinks.Count];
 
 		//Find matching link in currentNode, and add the flag to it
 		for (int i = 0; i < flags.Count; i++)
 		{
-			string unhookedLink = unhookedLinks[i];
-			//parsedLinks[i] = new List<NewDialogueLink>();
+			string[] splitLink = unparsedLinks[i].Split("->");
 
-			//break up hooks to find
-			List<string[]> splitUnparsedLinks = new List<string[]>();
+			DialogueLink matchingLink =
+				currentNode.Links.FirstOrDefault(
+					link => link.Link == splitLink[1]);
 
-			List<string> unparsedLinks = GetRemovedSpecialText(unhookedLink, "[[", "]]");
-			for (int unparsedLinkCounter = 0; unparsedLinkCounter < unparsedLinks.Count; unparsedLinkCounter++)
-			{
-				string unparsedLink = unparsedLinks[unparsedLinkCounter];
-				splitUnparsedLinks.Add(unparsedLink.Split("->"));
-
-				DialogueLink matchingLink = 
-					currentNode.Links.FirstOrDefault(
-						link => link.Link == splitUnparsedLinks[unparsedLinkCounter][1]);
-
-				matchingLink.Flags.AddRange(flags[i]);
-			}
+			matchingLink.Flags.AddRange(flags[i]);
 		}
 
 		//UNDER CONSTRUCTION, PARSE HOOKS INTO LINKS
@@ -112,8 +104,9 @@ public class TwineParser
 	private static void AddNewChangeFlags(DialogueNode currentNode)
 	{
 		//Get the string to parse
-		List<string> stringToParse = 
-			GetNodeRemovedSpecialText(currentNode, "\n(set: ", ")");
+		List<string> stringToParse =
+			//GetNodeRemovedSpecialText(currentNode, "(set: ", ")");
+			GetRemovedSpecialText(currentNode, "(set: ", ")");
 		//If it doesn't have (set:) return
 		if (stringToParse.Count == 0) return;
 
@@ -121,7 +114,6 @@ public class TwineParser
 		//twine set command only edits one variable, we can assume ExtractFlag's
 		//return list has only one element
 		currentNode.FlagsToChange.AddRange(ExtractFlags(stringToParse)[0]);
-		string test = currentNode.FlagsToChange[0].Name;
 	}
 
 	/// <summary>
@@ -129,7 +121,7 @@ public class TwineParser
 	/// </summary>
 	/// <param name="stringsToParse">List of extracted set flag statements</param>
 	/// <returns></returns>
-	private static List<List<DialogueFlag>> ExtractFlags (List<string> stringsToParse)
+	private static List<List<DialogueFlag>> ExtractFlags(List<string> stringsToParse)
 	{
 		List<List<DialogueFlag>> result = new List<List<DialogueFlag>>();
 		foreach (string setFlag in stringsToParse)
@@ -167,81 +159,81 @@ public class TwineParser
 			//Differentiate between value and bool
 			//Bool flag
 			if (splitStringToParse[1] == "to" || splitStringToParse[1] == "is")
-            {
-                ParseBoolFlag(result, splitStringToParse, flagName);
-            }
+			{
+				ParseBoolFlag(result, splitStringToParse, flagName);
+			}
 
-            //Value flag
-            else
-            {
-                ParseValueFlag(result, splitStringToParse, flagName);
-            }
-        }
+			//Value flag
+			else
+			{
+				ParseValueFlag(result, splitStringToParse, flagName);
+			}
+		}
 		return result;
 
 		//Parse Bool Flags
-        static void ParseBoolFlag(
+		static void ParseBoolFlag(
 			List<DialogueFlag> result, string[] splitStringToParse, string flagName)
-        {
-            bool flagTruthness;
+		{
+			bool flagTruthness;
 
-            if (splitStringToParse[2] == "true")
-            {
-                flagTruthness = true;
-            }
-            else
-            {
-                flagTruthness = false;
-            }
+			if (splitStringToParse[2] == "true")
+			{
+				flagTruthness = true;
+			}
+			else
+			{
+				flagTruthness = false;
+			}
 
 			DialogueFlagBool test = new DialogueFlagBool(flagName, flagTruthness);
 			string testName = test.Name;
-            result.Add(new DialogueFlagBool(flagName, flagTruthness));
-        }
+			result.Add(new DialogueFlagBool(flagName, flagTruthness));
+		}
 
 		//Parse Value Flags
-        static void ParseValueFlag(
+		static void ParseValueFlag(
 			List<DialogueFlag> result, string[] splitStringToParse, string flagName)
-        {
-            int valueRightHandSide = int.Parse(splitStringToParse[2]);
+		{
+			int valueRightHandSide = int.Parse(splitStringToParse[2]);
 
-            //increment/decrement
-            switch (splitStringToParse[1])
-            {
-                //Increment/decrement
-                case "-=":
-                case "+=":
-                    result.Add(new DialogueFlagValue(valueRightHandSide, flagName));
-                    break;
-                //Direct setting
-                case "to":
-                    result.Add(new DialogueFlagValue(flagName, valueRightHandSide));
-                    break;
+			//increment/decrement
+			switch (splitStringToParse[1])
+			{
+				//Increment/decrement
+				case "-=":
+				case "+=":
+					result.Add(new DialogueFlagValue(valueRightHandSide, flagName));
+					break;
+				//Direct setting
+				case "to":
+					result.Add(new DialogueFlagValue(flagName, valueRightHandSide));
+					break;
 
-                //exclusively for comparison with ifs
-                //(if: $test > 5)
-                case "=":
+				//exclusively for comparison with ifs
+				//(if: $test > 5)
+				case "=":
 					result.Add(
 						new DialogueFlagValue(
 							flagName, valueRightHandSide, ValueRelation.Equal));
-                    break;
-                case ">":
+					break;
+				case ">":
 					result.Add(
 						new DialogueFlagValue(
 							flagName, valueRightHandSide, ValueRelation.Greater));
-                    break;
-                case "<":
+					break;
+				case "<":
 					result.Add(
 						new DialogueFlagValue(
 							flagName, valueRightHandSide, ValueRelation.Less));
-                    break;
-                default:
-                    throw new ArgumentException("Bad parse");
-            }
-        }
-    }
+					break;
+				default:
+					throw new ArgumentException("Bad parse");
+			}
+		}
+	}
 
-    #region String operations
+	#region String operations
 	/// <summary>
 	/// Returns list of removed text in node between delimiters.
 	/// </summary>
@@ -251,75 +243,12 @@ public class TwineParser
 	/// <returns>Returns list of removed text in node between 
 	/// delimiters.</returns>
 	private static List<string> GetRemovedSpecialText(
-		string inputString, string startDelimiter, string endDelimiter)
-	{
-		List<string> result = new List<string>();
-		foreach (
-			(string text, int) removedTextTuple in 
-			RemoveSpecialText(inputString, startDelimiter, endDelimiter))
-		{
-			result.Add(removedTextTuple.text);
-		};
-		return result;
-	}
-
-	/// <summary>
-    /// Removes text between two specified delimiters, along with the delimiters.
-    /// </summary>
-    /// <param name="inputString">Input you want to edit on.</param>
-    /// <param name="startDelimiter">Start delimiter to start deleting at.</param>
-    /// <param name="endDelimiter">End delimiter to end deletion at.</param>
-    /// <returns>List of tuples, containing the removed text (excluding delimiters)
-    /// and the starting index of that removed text (including delimiters)</returns>
-    private static List<(string specialText, int removedStartIndex)> RemoveSpecialText(
-		string inputString, string startDelimiter, string endDelimiter)
-	{
-		List<(string specialText, int removedStartIndex)> results = 
-			new List<(string specialText, int removedStartIndex)>();
-		int startDelimiterStartIndex = inputString.IndexOf(startDelimiter);
-		while (startDelimiterStartIndex != -1)
-		{
-			//Find first set of delimiters
-			int specialTextStartIndex = 
-				startDelimiterStartIndex + startDelimiter.Length;
-
-			int specialTextEndIndex = inputString.IndexOf(endDelimiter, specialTextStartIndex + 1);
-
-			int specialTextLength = specialTextEndIndex - specialTextStartIndex;
-
-			string specialText = inputString.Substring(
-				specialTextStartIndex, specialTextLength);
-			results.Add((specialText, startDelimiterStartIndex));
-
-			inputString = inputString.Remove(
-				specialTextStartIndex - startDelimiter.Length,
-				specialText.Length +
-				startDelimiter.Length +
-				endDelimiter.Length);
-
-			startDelimiterStartIndex = inputString.IndexOf(startDelimiter);
-		}
-		return results;
-	}
-
-	#endregion
-
-    #region Node operations
-    /// <summary>
-    /// Returns list of removed text in node between delimiters.
-    /// </summary>
-    /// <param name="node">Node to edit on.</param>
-    /// <param name="startDelimiter">Start delimiter to look for.</param>
-    /// <param name="endDelimiter">End delimiter to look for.</param>
-    /// <returns>Returns list of removed text in node between 
-    /// delimiters.</returns>
-    private static List<string> GetNodeRemovedSpecialText(
 		DialogueNode node, string startDelimiter, string endDelimiter)
 	{
 		List<string> result = new List<string>();
 		foreach (
-			(string text, int) removedTextTuple in 
-			RemoveNodeSpecialText(node, startDelimiter, endDelimiter))
+			(string text, int) removedTextTuple in
+			RemoveSpecialText(node, startDelimiter, endDelimiter))
 		{
 			result.Add(removedTextTuple.text);
 		};
@@ -327,23 +256,30 @@ public class TwineParser
 	}
 
 	/// <summary>
-	/// Removes text between two specified delimiters, along with the delimiters. Used with Nodes.
+	/// Removes node text between two specified delimiters, along with the delimiters.
 	/// </summary>
 	/// <param name="node">Node you want to edit on.</param>
 	/// <param name="startDelimiter">Start delimiter to start deleting at.</param>
 	/// <param name="endDelimiter">End delimiter to end deletion at.</param>
 	/// <returns>List of tuples, containing the removed text (excluding delimiters)
 	/// and the starting index of that removed text (including delimiters)</returns>
-	private static List<(string specialText, int removedStartIndex)> RemoveNodeSpecialText(
+	private static List<(string specialText, int removedStartIndex)> RemoveSpecialText(
 		DialogueNode node, string startDelimiter, string endDelimiter)
 	{
-		List<(string specialText, int removedStartIndex)> results = 
+		List<(string specialText, int removedStartIndex)> results =
 			new List<(string specialText, int removedStartIndex)>();
 		int startDelimiterStartIndex = node.Text.IndexOf(startDelimiter);
+
+		if (startDelimiterStartIndex > 0 && node.Text[startDelimiterStartIndex - 1] == '\n')
+		{
+			startDelimiterStartIndex--;
+			startDelimiter = startDelimiter.Insert(0, "\n");
+		}
+
 		while (startDelimiterStartIndex != -1)
 		{
 			//Find first set of delimiters
-			int specialTextStartIndex = 
+			int specialTextStartIndex =
 				startDelimiterStartIndex + startDelimiter.Length;
 
 			int specialTextEndIndex = node.Text.IndexOf(endDelimiter, specialTextStartIndex + 1);

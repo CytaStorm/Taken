@@ -1,23 +1,65 @@
-
-
 {
   "passages": [
     {
-      "text": "<b>SALLOS:</b> Hey, how are you holding up? \n(set: $talkedToSallos to true)\n[[I'm fine.->fine]]\n[[I'm beat!->beat]]",
+      "text": "<b>SALLOS: </b>I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.\n[[Continue.->parchment]]",
+      "links": [
+        {
+          "name": "Continue.",
+          "link": "parchment",
+          "pid": "46"
+        }
+      ],
+      "name": "\"What're you making?\"",
+      "pid": "1",
+      "position": {
+        "x": "1700",
+        "y": "600"
+      }
+    },
+    {
+      "text": "",
+      "name": "Finish eating.",
+      "pid": "2",
+      "position": {
+        "x": "2675",
+        "y": "1825"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "His ears perk up when he hears your reassurances, and he breathes a sigh of relief.\n[[Continue.->continueReally]]",
+      "links": [
+        {
+          "name": "Continue.",
+          "link": "continueReally",
+          "pid": "13"
+        }
+      ],
+      "name": "Really.",
+      "pid": "3",
+      "position": {
+        "x": "2725",
+        "y": "650"
+      }
+    },
+    {
+      "text": "<b>SALLOS:</b> Hey, how are you holding up? \n[[I'm fine.->fine]]\n[[I'm beat!->beat]]",
       "links": [
         {
           "name": "I'm fine.",
           "link": "fine",
-          "pid": "26"
+          "pid": "33"
         },
         {
           "name": "I'm beat!",
           "link": "beat",
-          "pid": "4"
+          "pid": "9"
         }
       ],
-      "name": "Sallos",
-      "pid": "1",
+      "name": "sallos",
+      "pid": "4",
       "position": {
         "x": "50",
         "y": "1075"
@@ -32,17 +74,17 @@
         {
           "name": "Present the firewood.",
           "link": "giveFirewood",
-          "pid": "31"
+          "pid": "36"
         },
         {
           "name": "Present the tinder.",
           "link": "giveTinder",
-          "pid": "32"
+          "pid": "37"
         },
         {
           "name": "I forgot what I needed to do.",
           "link": "forgot",
-          "pid": "28"
+          "pid": "34"
         },
         {
           "name": "I'm alright.",
@@ -51,7 +93,7 @@
         }
       ],
       "name": "SallosTalkedTo",
-      "pid": "2",
+      "pid": "5",
       "position": {
         "x": "350",
         "y": "1000"
@@ -61,133 +103,181 @@
       ]
     },
     {
-      "text": "Then, he adds in a few logs at a time, and before long, the flame is roaring, and the tent is now much warmer. \n\n[[Continue->startCooking]]",
+      "text": "A short Ifni gives a puzzled look back at you, his ears turning to the sounds around you: the howling winds and the crackling fire, and his tail swaying side to side. He continues to eat.\n[[Continue.->alright?]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "startCooking",
-          "pid": "61"
+          "name": "Continue.",
+          "link": "alright?",
+          "pid": "8"
         }
       ],
-      "name": "addWood",
-      "pid": "3",
+      "name": "Stare at him back.",
+      "pid": "6",
       "position": {
-        "x": "1325",
-        "y": "550"
+        "x": "2825",
+        "y": "1350"
       }
     },
     {
-      "text": "<b>SALLOS:</b> Awh, I'm sorry to hear that! But we just have a little bit more work to do.\n[[Continue->work]]",
+      "text": "<b>SALLOS: </b>That's great! Here, just do this one, and we'll be fine.\n[[Unwrap it.->unwrap]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Unwrap it.",
+          "link": "unwrap",
+          "pid": "62"
+        }
+      ],
+      "name": "agreeToHelp",
+      "pid": "7",
+      "position": {
+        "x": "2050",
+        "y": "700"
+      }
+    },
+    {
+      "text": "<b>SALLOS: </b>You alright? I know you love watching my tail, but you haven't eaten much at all.\n[[Ah! I just...->itsOk]]",
+      "links": [
+        {
+          "name": "Ah! I just...",
+          "link": "itsOk",
+          "pid": "43"
+        }
+      ],
+      "name": "alright?",
+      "pid": "8",
+      "position": {
+        "x": "2625",
+        "y": "1525"
+      }
+    },
+    {
+      "text": "<b>SALLOS:</b> Awh, I'm sorry to hear that! But we just have a little bit more work to do.\n[[Continue.->work]]",
+      "links": [
+        {
+          "name": "Continue.",
           "link": "work",
           "pid": "66"
         }
       ],
       "name": "beat",
-      "pid": "4",
+      "pid": "9",
       "position": {
-        "x": "100",
-        "y": "1350"
+        "x": "125",
+        "y": "1300"
       }
     },
     {
-      "text": "You take a bite, and it rips and crumbles a bit, like a very greasy cake. Slimy, almost.\n\n[[Continue->likeIt]]",
+      "text": "Slowly, gently, you lower the cube into the water. The portions under the rolling waves begin to shimmer and dissolve, staining the water with a deep brown. Once most of the stock is submerged, you release it, letting it fully sink. Sallos does the same, and soon, the stew begins to thicken and become fragrant.\n[[Continue.->timeToEat]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "likeIt",
-          "pid": "43"
-        }
-      ],
-      "name": "bite",
-      "pid": "5",
-      "position": {
-        "x": "2925",
-        "y": "575"
-      }
-    },
-    {
-      "text": "You blush. The boy has a way with words, even in his faraway dialect of Ghuzian. You can feel the beat of your heart more now.\n\n[[Continue->sleepSoon]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "sleepSoon",
+          "name": "Continue.",
+          "link": "timeToEat",
           "pid": "60"
         }
       ],
-      "name": "blush",
-      "pid": "6",
+      "name": "boil",
+      "pid": "10",
       "position": {
-        "x": "3650",
-        "y": "1250"
+        "x": "2125",
+        "y": "1000"
       }
     },
     {
-      "text": "You've already collect a fair amount of tinder. It'd probably be best for Sallos to take care of the firewood.\n[[Continue->exitDeadTree]]",
+      "text": "You've already collect a fair amount of tinder. It'd probably be best for Sallos to take care of the firewood.\n[[Leave.->exitDeadTree]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Leave.",
           "link": "exitDeadTree",
-          "pid": "14"
+          "pid": "20"
         }
       ],
       "name": "cannotCut",
-      "pid": "7",
+      "pid": "11",
       "position": {
         "x": "425",
         "y": "425"
       }
     },
     {
-      "text": "Your hands are already full of firewood. Best to let Sallos take care of these.\n[[Continue->exitGrabTinder]]",
+      "text": "Your hands are already full of firewood. Best to let Sallos take care of these.\n[[Leave.->exitGrabTinder]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Leave.",
           "link": "exitGrabTinder",
-          "pid": "15"
+          "pid": "21"
         }
       ],
       "name": "cannotGrabTinder",
-      "pid": "8",
+      "pid": "12",
       "position": {
-        "x": "500",
-        "y": "1050"
+        "x": "525",
+        "y": "1025"
       }
     },
     {
-      "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Continue->exitDeadTree]]\n(set: $hasWood to true)",
+      "text": "<b>SALLOS: </b>Thank you! \n[[Continue.->sallosEat]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Continue.",
+          "link": "sallosEat",
+          "pid": "53"
+        }
+      ],
+      "name": "continueReally",
+      "pid": "13",
+      "position": {
+        "x": "2925",
+        "y": "750"
+      }
+    },
+    {
+      "text": "<b>SALLOS: </b>Are you excited to reach the top? We've been waiting for years for this, haven't we?\n[[When do we get to the top?->whenTop]]",
+      "links": [
+        {
+          "name": "When do we get to the top?",
+          "link": "whenTop",
+          "pid": "65"
+        }
+      ],
+      "name": "continueUnwrap",
+      "pid": "14",
+      "position": {
+        "x": "2025",
+        "y": "900"
+      }
+    },
+    {
+      "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Leave.->exitDeadTree]]\n(set: $hasWood to true)",
+      "links": [
+        {
+          "name": "Leave.",
           "link": "exitDeadTree",
-          "pid": "14"
+          "pid": "20"
         }
       ],
       "name": "cut",
-      "pid": "9",
+      "pid": "15",
       "position": {
         "x": "725",
         "y": "400"
       }
     },
     {
-      "text": "The stove is quiet and depressing. Get it lit!\n\n(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]",
+      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]",
       "links": [
         {
           "name": "Place the logs down by the stove.",
           "link": "placeLogs",
-          "pid": "52"
+          "pid": "49"
         },
         {
           "name": "Place the kindling down by the stove.",
           "link": "placeKindling",
-          "pid": "51"
+          "pid": "48"
         }
       ],
       "name": "deadStove",
-      "pid": "10",
+      "pid": "16",
       "position": {
         "x": "975",
         "y": "75"
@@ -197,26 +287,26 @@
       ]
     },
     {
-      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n\n(if: $logQuest is true and $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]\n(if: $logQuest is true and $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]\n[[Leave->exitDeadTree]]",
+      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $talkedToSallos is true and $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]\n(if: $talkedToSallos is true and $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]\n[[Leave.->exitDeadTree]]",
       "links": [
         {
           "name": "Cut some logs",
           "link": "cut",
-          "pid": "9"
+          "pid": "15"
         },
         {
           "name": "Cut some logs",
           "link": "cannotCut",
-          "pid": "7"
+          "pid": "11"
         },
         {
-          "name": "Leave",
+          "name": "Leave.",
           "link": "exitDeadTree",
-          "pid": "14"
+          "pid": "20"
         }
       ],
       "name": "deadTree",
-      "pid": "11",
+      "pid": "17",
       "position": {
         "x": "400",
         "y": "175"
@@ -226,44 +316,41 @@
       ]
     },
     {
-      "text": "You close your eyes do your best to conjure up an image of the sharpest edge you can imagine in your mind. Your head begins to ache slightly, but as you open your eyes, you see that the hatchet's head has regained its sharpness, the edge gaining a shiny coating contrasting with the surrounding rust and abuse.\n[[Leave->exitHatchet]]",
+      "text": "<b>SALLOS: </b>...\n[[Continue.->salloshoveInMouth]]",
       "links": [
         {
-          "name": "Leave",
+          "name": "Continue.",
+          "link": "salloshoveInMouth",
+          "pid": "55"
+        }
+      ],
+      "name": "eatAnyways",
+      "pid": "18",
+      "position": {
+        "x": "2600",
+        "y": "1050"
+      }
+    },
+    {
+      "text": "You close your eyes do your best to conjure up an image of the sharpest edge you can imagine in your mind. Your head begins to ache slightly, but as you open your eyes, you see that the hatchet's head has regained its sharpness, the edge gaining a shiny coating contrasting with the surrounding rust and abuse.\n[[Leave.->exitHatchet]]",
+      "links": [
+        {
+          "name": "Leave.",
           "link": "exitHatchet",
-          "pid": "16"
+          "pid": "22"
         }
       ],
       "name": "edgeFormed",
-      "pid": "12",
+      "pid": "19",
       "position": {
         "x": "1475",
         "y": "1400"
       }
     },
     {
-      "text": "<b>SALLOS: </b>Alright! Let's get started! We've got everything we need to start cooking!\n[[Continue->setFire]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "setFire",
-          "pid": "56"
-        }
-      ],
-      "name": "enterSallos",
-      "pid": "13",
-      "position": {
-        "x": "900",
-        "y": "800"
-      },
-      "tags": [
-        "start"
-      ]
-    },
-    {
       "text": "",
       "name": "exitDeadTree",
-      "pid": "14",
+      "pid": "20",
       "position": {
         "x": "650",
         "y": "675"
@@ -275,10 +362,10 @@
     {
       "text": "",
       "name": "exitGrabTinder",
-      "pid": "15",
+      "pid": "21",
       "position": {
-        "x": "625",
-        "y": "1500"
+        "x": "675",
+        "y": "1350"
       },
       "tags": [
         "exit"
@@ -287,10 +374,34 @@
     {
       "text": "",
       "name": "exitHatchet",
-      "pid": "16",
+      "pid": "22",
       "position": {
-        "x": "1350",
-        "y": "1225"
+        "x": "1375",
+        "y": "1250"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "",
+      "name": "exitHelp",
+      "pid": "23",
+      "position": {
+        "x": "2125",
+        "y": "550"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "",
+      "name": "exitHelpRepeat",
+      "pid": "24",
+      "position": {
+        "x": "1850",
+        "y": "575"
       },
       "tags": [
         "exit"
@@ -299,7 +410,7 @@
     {
       "text": "",
       "name": "exitNoGrabPinecones",
-      "pid": "17",
+      "pid": "25",
       "position": {
         "x": "900",
         "y": "1325"
@@ -311,7 +422,7 @@
     {
       "text": "",
       "name": "exitPinecones",
-      "pid": "18",
+      "pid": "26",
       "position": {
         "x": "975",
         "y": "1475"
@@ -321,9 +432,9 @@
       ]
     },
     {
-      "text": "",
+      "text": "(set: $sallosWalkIn to true)",
       "name": "exitPlaceStove",
-      "pid": "19",
+      "pid": "27",
       "position": {
         "x": "1025",
         "y": "500"
@@ -333,21 +444,9 @@
       ]
     },
     {
-      "text": "",
-      "name": "exitPot",
-      "pid": "20",
-      "position": {
-        "x": "1300",
-        "y": "750"
-      },
-      "tags": [
-        "exit"
-      ]
-    },
-    {
-      "text": "",
+      "text": "(set: $talkedToSallos to true)",
       "name": "exitQuestGive",
-      "pid": "21",
+      "pid": "28",
       "position": {
         "x": "25",
         "y": "1775"
@@ -359,7 +458,7 @@
     {
       "text": "",
       "name": "exitSallosQuest",
-      "pid": "22",
+      "pid": "29",
       "position": {
         "x": "500",
         "y": "1675"
@@ -371,7 +470,7 @@
     {
       "text": "",
       "name": "exitScene",
-      "pid": "23",
+      "pid": "30",
       "position": {
         "x": "50",
         "y": "400"
@@ -381,60 +480,43 @@
       ]
     },
     {
-      "text": "",
-      "name": "exitSleep",
-      "pid": "24",
+      "text": "(set: $eatCutscene to true)",
+      "name": "exitTimeToEat",
+      "pid": "31",
       "position": {
-        "x": "2675",
-        "y": "1425"
-      },
-      "tags": [
-        "exit",
-        "end"
-      ]
-    },
-    {
-      "text": "",
-      "name": "exitTinder",
-      "pid": "25",
-      "position": {
-        "x": "775",
-        "y": "1150"
+        "x": "2100",
+        "y": "1350"
       },
       "tags": [
         "exit"
       ]
     },
     {
-      "text": "<b>SALLOS:</b> Glad to hear it! We still have some work to do, though.\n[[Continue->work]]",
+      "text": "",
+      "name": "exitTinder",
+      "pid": "32",
+      "position": {
+        "x": "925",
+        "y": "975"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "<b>SALLOS:</b> Glad to hear it! We still have some work to do, though.\n[[Continue.->work]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Continue.",
           "link": "work",
           "pid": "66"
         }
       ],
       "name": "fine",
-      "pid": "26",
+      "pid": "33",
       "position": {
-        "x": "25",
-        "y": "1425"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> Tonight we're having...\n\n[[Continue->lightup]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "lightup",
-          "pid": "42"
-        }
-      ],
-      "name": "foodTime",
-      "pid": "27",
-      "position": {
-        "x": "2675",
-        "y": "925"
+        "x": "0",
+        "y": "1325"
       }
     },
     {
@@ -447,39 +529,23 @@
         }
       ],
       "name": "forgot",
-      "pid": "28",
+      "pid": "34",
       "position": {
-        "x": "175",
-        "y": "1100"
+        "x": "200",
+        "y": "1075"
       }
     },
     {
-      "text": "<b>SALLOS:</b> It’s pretty funny thinking back, rescuing and then falling in love with you… and you still look exactly the same as the day we met.\n\n[[Continue->older]]",
+      "text": "Most of these are soaked through. Unsuitable for kindling.\n[[Continue.->exitPinecones]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "older",
-          "pid": "47"
-        }
-      ],
-      "name": "funny",
-      "pid": "29",
-      "position": {
-        "x": "3400",
-        "y": "625"
-      }
-    },
-    {
-      "text": "Upon closer inspection, most of these are soaked through. Unsuitable for kindling.\n[[Continue->exitPinecones]]",
-      "links": [
-        {
-          "name": "Continue",
+          "name": "Continue.",
           "link": "exitPinecones",
-          "pid": "18"
+          "pid": "26"
         }
       ],
       "name": "getPinecones",
-      "pid": "30",
+      "pid": "35",
       "position": {
         "x": "1100",
         "y": "1325"
@@ -491,11 +557,11 @@
         {
           "name": "Continue",
           "link": "exitSallosQuest",
-          "pid": "22"
+          "pid": "29"
         }
       ],
       "name": "giveFirewood",
-      "pid": "31",
+      "pid": "36",
       "position": {
         "x": "500",
         "y": "1450"
@@ -507,327 +573,202 @@
         {
           "name": "Continue",
           "link": "exitSallosQuest",
-          "pid": "22"
+          "pid": "29"
         }
       ],
       "name": "giveTinder",
-      "pid": "32",
+      "pid": "37",
       "position": {
         "x": "350",
         "y": "1600"
       }
     },
     {
-      "text": "You've gathered some tinder.\n(set: $hasTinder to true)\n[[Continue->exitGrabTinder]]",
+      "text": "You've gathered some tinder.\n(set: $hasTinder to true)\n[[Leave.->exitGrabTinder]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Leave.",
           "link": "exitGrabTinder",
-          "pid": "15"
+          "pid": "21"
         }
       ],
       "name": "grabTinder",
-      "pid": "33",
+      "pid": "38",
       "position": {
-        "x": "725",
-        "y": "1275"
+        "x": "775",
+        "y": "1225"
       }
     },
     {
-      "text": "<b>SALLOS</b>: Man, I really wish I could get a few more inches. It’s terrible how every other Ifni gets to be tall and strong, while I’m stuck down here. However—\n\n[[Continue->pinch]]",
+      "text": "The hatchet sits in on the ground quietly, resting after its long day of work.\n(if: $sharpendHatchet is false) [ [[Take a closer look.->hatchetLookCloser]] ]\n(if: $sharpendHatchet is true) [ [[Take a closer look.->sharpHatchetLookCloser]] ]\n[[Leave.->exitHatchet]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "pinch",
-          "pid": "49"
-        }
-      ],
-      "name": "grow",
-      "pid": "34",
-      "position": {
-        "x": "3275",
-        "y": "1125"
-      }
-    },
-    {
-      "text": "The hatchet sits in on the ground quietly, resting after its long day of work.\n(if: $sharpendHatchet is false) [ [[Take a closer look->hatchetLookCloser]] ]\n(if: $sharpendHatchet is true ) [ [[Take a closer look->sharpHatchetLookCloser]] ]\n[[Leave->exitHatchet]]",
-      "links": [
-        {
-          "name": "Take a closer look",
+          "name": "Take a closer look.",
           "link": "hatchetLookCloser",
-          "pid": "36"
+          "pid": "40"
         },
         {
-          "name": "Take a closer look",
+          "name": "Take a closer look.",
           "link": "sharpHatchetLookCloser",
-          "pid": "57"
+          "pid": "58"
         },
         {
-          "name": "Leave",
+          "name": "Leave.",
           "link": "exitHatchet",
-          "pid": "16"
+          "pid": "22"
         }
       ],
       "name": "hatchet",
-      "pid": "35",
+      "pid": "39",
       "position": {
-        "x": "1275",
-        "y": "1050"
+        "x": "1475",
+        "y": "950"
       },
       "tags": [
         "start"
       ]
     },
     {
-      "text": "You pick it up, and take a closer look at the head. It's been worn down after years of use. It's edge is chipped, and rust dots the surface. You could try to use some of your magic to reshape and restore it.\n[[Sharpen the hatchet->sharpen]]",
+      "text": "You pick it up, and take a closer look at the head. It's been worn down after years of use. It's edge is chipped, and rust dots the surface. You could try to use some of your magic to reshape and restore it.\n[[Sharpen the hatchet.->sharpen]]",
       "links": [
         {
-          "name": "Sharpen the hatchet",
+          "name": "Sharpen the hatchet.",
           "link": "sharpen",
-          "pid": "58"
-        }
-      ],
-      "name": "hatchetLookCloser",
-      "pid": "36",
-      "position": {
-        "x": "1650",
-        "y": "1175"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> It puts me at just the right height to look at you. Even if I can’t live as long as you, I’m happy that I can see you at the same level as me.\n\n[[Continue->blush]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "blush",
-          "pid": "6"
-        }
-      ],
-      "name": "height",
-      "pid": "37",
-      "position": {
-        "x": "3650",
-        "y": "1025"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> It's...\n\n[[Continue->pemmican]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "pemmican",
-          "pid": "48"
-        }
-      ],
-      "name": "itIs",
-      "pid": "38",
-      "position": {
-        "x": "2525",
-        "y": "1125"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> Well, get used to it then, it’s what we’ll be eating till we get to the top. I’m saving the best stuff for once we get up there.\n\n[[Continue->makeHoosh]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "makeHoosh",
-          "pid": "45"
-        }
-      ],
-      "name": "itsBad",
-      "pid": "39",
-      "position": {
-        "x": "2925",
-        "y": "800"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b>I guess that’s a successful experiment! I’m really happy that you like it!\n\n[[Continue->makeHoosh]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "makeHoosh",
-          "pid": "45"
-        }
-      ],
-      "name": "itsGood",
-      "pid": "40",
-      "position": {
-        "x": "2925",
-        "y": "1125"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> Whatever suits your tastes.\n\n[[Continue->look]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "look",
-          "pid": "44"
-        }
-      ],
-      "name": "justWater",
-      "pid": "41",
-      "position": {
-        "x": "3075",
-        "y": "1125"
-      }
-    },
-    {
-      "text": "Your eyes light up, and your stomach growls loudly.\n\n[[What is it?->whatIs]]",
-      "links": [
-        {
-          "name": "What is it?",
-          "link": "whatIs",
-          "pid": "65"
-        }
-      ],
-      "name": "lightup",
-      "pid": "42",
-      "position": {
-        "x": "2675",
-        "y": "675"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> Like it? I tried to make yours as tasty as possible without using meat stuff. How’d I do?\n\n[[It is good!->itsGood]]\n[[It is bad!->itsBad]]",
-      "links": [
-        {
-          "name": "It is good!",
-          "link": "itsGood",
-          "pid": "40"
-        },
-        {
-          "name": "It is bad!",
-          "link": "itsBad",
-          "pid": "39"
-        }
-      ],
-      "name": "likeIt",
-      "pid": "43",
-      "position": {
-        "x": "2800",
-        "y": "925"
-      }
-    },
-    {
-      "text": "Sallos looks listfully at you, and you, back at him. \n\n[[Continue->reminds]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "reminds",
-          "pid": "53"
-        }
-      ],
-      "name": "look",
-      "pid": "44",
-      "position": {
-        "x": "3150",
-        "y": "1000"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> If you’d like, you can also put your pemmican in the water to make some hoosh. I’ve still got some biscuits for that as well.\n\n[[I am alright, water is just fine.->justWater]]\n[[Sure!->makeIt]]",
-      "links": [
-        {
-          "name": "I am alright, water is just fine.",
-          "link": "justWater",
-          "pid": "41"
-        },
-        {
-          "name": "Sure!",
-          "link": "makeIt",
-          "pid": "46"
-        }
-      ],
-      "name": "makeHoosh",
-      "pid": "45",
-      "position": {
-        "x": "3000",
-        "y": "1000"
-      }
-    },
-    {
-      "text": "You drop the rest of your pemmican in the water, and Sallos puts in a biscuit. It slowly disintegrates, turning the water into a thin soup, the vegetables floating around lazily as they detach from the body of the block. \n\n[[Continue->look]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "look",
-          "pid": "44"
-        }
-      ],
-      "name": "makeIt",
-      "pid": "46",
-      "position": {
-        "x": "3025",
-        "y": "700"
-      }
-    },
-    {
-      "text": "He, however, doesn’t. In the years since you first met him, he’s gotten older, lost some of the roundness in his face and gained a few marks and nicks. Proof that he’s been alive, he’s always said. That being said, he’s not grown taller by much.\n\n[[I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!->sigh]]",
-      "links": [
-        {
-          "name": "I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!",
-          "link": "sigh",
           "pid": "59"
         }
       ],
-      "name": "older",
-      "pid": "47",
+      "name": "hatchetLookCloser",
+      "pid": "40",
       "position": {
-        "x": "3275",
-        "y": "800"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> Just some pemmican. I’ve got meat in mine, so be careful which one you eat. Here, take it.\n\n[[Take it.->takeIt]]",
-      "links": [
-        {
-          "name": "Take it.",
-          "link": "takeIt",
-          "pid": "62"
-        }
-      ],
-      "name": "pemmican",
-      "pid": "48",
-      "position": {
-        "x": "2675",
+        "x": "1600",
         "y": "1150"
       }
     },
     {
-      "text": "He reaches over to you and pinches your cheek.\n\n[[Continue->height]]",
+      "text": "<b>SALLOS: </b>I could use some help unpacking these though, if you'd like to help. They're on tight!\n[[Sure!->agreeToHelp]]\n[[I think I'll keep looking around a bit first.->exitHelp]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "height",
-          "pid": "37"
+          "name": "Sure!",
+          "link": "agreeToHelp",
+          "pid": "7"
+        },
+        {
+          "name": "I think I'll keep looking around a bit first.",
+          "link": "exitHelp",
+          "pid": "23"
         }
       ],
-      "name": "pinch",
-      "pid": "49",
+      "name": "help",
+      "pid": "41",
       "position": {
-        "x": "3600",
-        "y": "875"
+        "x": "1850",
+        "y": "725"
       }
     },
     {
-      "text": "Sallos did say that pine cones are good for kindling, right?\n\n(if: $tinderQuest is true)[ [[Gather a few->getPinecones]] ]\n[[Continue->exitNoGrabPinecones]]",
+      "text": "<b>SALLOS:</b>Yes! I'm really happy you like it!\n[[Continue.->sallosEat]]",
+      "links": [
+        {
+          "name": "Continue.",
+          "link": "sallosEat",
+          "pid": "53"
+        }
+      ],
+      "name": "itsGood",
+      "pid": "42",
+      "position": {
+        "x": "2625",
+        "y": "1375"
+      }
+    },
+    {
+      "text": "<b>SALLOS: </b>It's fine, I get it. But you probably should finish up soon. We need to get  to bed and ready for tomorrow! You're gonna need that energy!\n[[Finish eating.]]",
+      "links": [
+        {
+          "name": "Finish eating.",
+          "link": "Finish eating.",
+          "pid": "2"
+        }
+      ],
+      "name": "itsOk",
+      "pid": "43",
+      "position": {
+        "x": "2425",
+        "y": "1575"
+      }
+    },
+    {
+      "text": "<b>SALLOS:</b> Like it? I tried to make it as tasty as possible without using meat. How’d I do?\n[[It's good!->itsGood]]\n[[It's bad!->itsBad]]",
+      "links": [
+        {
+          "name": "It's good!",
+          "link": "itsGood",
+          "pid": "42"
+        },
+        {
+          "name": "It's bad!",
+          "link": "itsBad",
+          "pid": "67"
+        }
+      ],
+      "name": "likeIt",
+      "pid": "44",
+      "position": {
+        "x": "2325",
+        "y": "1450"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "He swallows, and picks up another spoonful.\n[[Stare at him back.]]",
+      "links": [
+        {
+          "name": "Stare at him back.",
+          "link": "Stare at him back.",
+          "pid": "6"
+        }
+      ],
+      "name": "lookAt",
+      "pid": "45",
+      "position": {
+        "x": "3150",
+        "y": "1350"
+      }
+    },
+    {
+      "text": "He pulls out a handful of parchment wrapped cubes, tied with pieces of string.\n[[Continue.->help]]",
+      "links": [
+        {
+          "name": "Continue.",
+          "link": "help",
+          "pid": "41"
+        }
+      ],
+      "name": "parchment",
+      "pid": "46",
+      "position": {
+        "x": "1700",
+        "y": "775"
+      }
+    },
+    {
+      "text": "The pinecones peek through the snow, their scales slighty ajar.\n(if: $talkedToSallos is true)[ [[Gather a few->getPinecones]] ]\n[[Leave.->exitNoGrabPinecones]]",
       "links": [
         {
           "name": "Gather a few",
           "link": "getPinecones",
-          "pid": "30"
+          "pid": "35"
         },
         {
-          "name": "Continue",
+          "name": "Leave.",
           "link": "exitNoGrabPinecones",
-          "pid": "17"
+          "pid": "25"
         }
       ],
       "name": "pinecones",
-      "pid": "50",
+      "pid": "47",
       "position": {
         "x": "975",
         "y": "1150"
@@ -837,51 +778,110 @@
       ]
     },
     {
-      "text": "You place the bundle of sticks by the stove.\n(set: $sallosWalkIn to true)\n\n[[Continue->exitPlaceStove]]",
+      "text": "You place the bundle of sticks by the stove.\n[[Continue.->exitPlaceStove]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Continue.",
           "link": "exitPlaceStove",
-          "pid": "19"
+          "pid": "27"
         }
       ],
       "name": "placeKindling",
-      "pid": "51",
+      "pid": "48",
       "position": {
         "x": "1075",
         "y": "275"
       }
     },
     {
-      "text": "You place the bundle of sticks by the stove.\n(set: $sallosWalkIn to true)\n\n[[Continue->exitPlaceStove]]",
+      "text": "You place the bundle of sticks by the stove.\n[[Continue.->exitPlaceStove]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Continue.",
           "link": "exitPlaceStove",
-          "pid": "19"
+          "pid": "27"
         }
       ],
       "name": "placeLogs",
-      "pid": "52",
+      "pid": "49",
       "position": {
         "x": "925",
         "y": "275"
       }
     },
     {
-      "text": "<b>SALLOS:</b> You know, eating like this reminds me a lot of when we first met all those years ago. We ate a meal just like this. Except it was just biscuits and water for you. Didn’t have the veggies back then!\n\n[[That really was awful… But you did save my life out there. And we met.->funny]]",
+      "text": "<b>SALLOS: </b>Really?\n[[Really.]]\n[[No.->eatAnyways]]",
       "links": [
         {
-          "name": "That really was awful… But you did save my life out there. And we met.",
-          "link": "funny",
-          "pid": "29"
+          "name": "Really.",
+          "link": "Really.",
+          "pid": "3"
+        },
+        {
+          "name": "No.",
+          "link": "eatAnyways",
+          "pid": "18"
         }
       ],
-      "name": "reminds",
+      "name": "reassure",
+      "pid": "50",
+      "position": {
+        "x": "2575",
+        "y": "800"
+      }
+    },
+    {
+      "text": "Sallos sits by the pot, watching the water slowly heat up.\n[[\"What're you making?\"]]",
+      "links": [
+        {
+          "name": "\"What're you making?\"",
+          "link": "\"What're you making?\"",
+          "pid": "1"
+        }
+      ],
+      "name": "sallosDiscussion",
+      "pid": "51",
+      "position": {
+        "x": "1700",
+        "y": "425"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "<b>SALLOS: </b>Would you like to help?\n[[Just a minute.->exitHelpRepeat]]",
+      "links": [
+        {
+          "name": "Just a minute.",
+          "link": "exitHelpRepeat",
+          "pid": "24"
+        }
+      ],
+      "name": "sallosDiscussionRepeat",
+      "pid": "52",
+      "position": {
+        "x": "1950",
+        "y": "425"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "Sallos puts a spoonful of stew into his mouth.\n[[Continue.->lookAt]]",
+      "links": [
+        {
+          "name": "Continue.",
+          "link": "lookAt",
+          "pid": "45"
+        }
+      ],
+      "name": "sallosEat",
       "pid": "53",
       "position": {
-        "x": "3200",
-        "y": "650"
+        "x": "2950",
+        "y": "975"
       }
     },
     {
@@ -897,16 +897,48 @@
       ]
     },
     {
-      "text": "Your legs are burning, and your breathing is labored. But you and Sallos have finished pitching the tent.\n\n[[Finally, we're done! The tent is all set up! I need a break!->wear]]",
+      "text": "Sallos shoves a spoonful of stew into his mouth.\n[[Continue.->lookAt]]",
       "links": [
         {
-          "name": "Finally, we're done! The tent is all set up! I need a break!",
+          "name": "Continue.",
+          "link": "lookAt",
+          "pid": "45"
+        }
+      ],
+      "name": "salloshoveInMouth",
+      "pid": "55",
+      "position": {
+        "x": "2750",
+        "y": "1200"
+      }
+    },
+    {
+      "text": "<b>SALLOS: </b>It's crazy to think that I had to save you up here when we first met. Remember that? We barely spoke each other's languages! Haha.\n[[Continue.->waterBoiling]]",
+      "links": [
+        {
+          "name": "Continue.",
+          "link": "waterBoiling",
+          "pid": "63"
+        }
+      ],
+      "name": "saveEulyss",
+      "pid": "56",
+      "position": {
+        "x": "2350",
+        "y": "925"
+      }
+    },
+    {
+      "text": "Your legs are burning, and your breathing is labored. But you and Sallos have finished pitching the tent.\n[[Finally, We're done! The tent is all set up!->wear]]",
+      "links": [
+        {
+          "name": "Finally, We're done! The tent is all set up!",
           "link": "wear",
           "pid": "64"
         }
       ],
       "name": "scene",
-      "pid": "55",
+      "pid": "57",
       "position": {
         "x": "100",
         "y": "50"
@@ -916,138 +948,74 @@
       ]
     },
     {
-      "text": "Sallos puts the sticks into the stove, and begins striking an iron rod to get a spark. After a few attempts, the kindling catches, and the tent lights up. The embers in the stove make a light crackle as they smoulder, giving off the barest of light and warmth.\n[[Continue->addWood]]",
+      "text": "Thanks to your efforts, the hatchet has been sharpened to a razor's edge.\n[[Leave.->exitHatchet]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "addWood",
-          "pid": "3"
-        }
-      ],
-      "name": "setFire",
-      "pid": "56",
-      "position": {
-        "x": "1125",
-        "y": "700"
-      }
-    },
-    {
-      "text": "Thanks to your efforts, the hatchet has been sharpened to a razor's edge.\n[[Leave->exitHatchet]]",
-      "links": [
-        {
-          "name": "Leave",
+          "name": "Leave.",
           "link": "exitHatchet",
-          "pid": "16"
+          "pid": "22"
         }
       ],
       "name": "sharpHatchetLookCloser",
-      "pid": "57",
+      "pid": "58",
       "position": {
-        "x": "1525",
+        "x": "1300",
         "y": "1050"
       }
     },
     {
-      "text": "You focus your mana, and touch the blade. You feel as is a wind is blowing across your arm, and the axe head begins to glow blue, and it begins to deform and almost melt.\n(set: $strength += 1)\n(set: $sharpenedHatchet to true)\n[[Continue->edgeFormed]]",
+      "text": "You focus your mana, and touch the blade. You feel as is a wind is blowing across your arm, and the axe head begins to glow blue, and it begins to deform and almost melt.\n(set: $strength += 1)\n(set: $sharpenedHatchet to true)\n[[Continue.->edgeFormed]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Continue.",
           "link": "edgeFormed",
-          "pid": "12"
+          "pid": "19"
         }
       ],
       "name": "sharpen",
-      "pid": "58",
-      "position": {
-        "x": "1800",
-        "y": "1300"
-      }
-    },
-    {
-      "text": "He lets out an exasperated sigh.\n\n[[Continue->grow]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "grow",
-          "pid": "34"
-        }
-      ],
-      "name": "sigh",
       "pid": "59",
       "position": {
-        "x": "3500",
-        "y": "750"
+        "x": "1650",
+        "y": "1325"
       }
     },
     {
-      "text": "SALLOS: Anyways, we should probably finish up soon. We should catch some rest as soon as possible. I want to catch the sunrise at the peak.\n\n[[Leave->exitSleep]]",
+      "text": "<b>SALLOS: </b>Alright! Time to grub!\n[[Leave.->exitTimeToEat]]",
       "links": [
         {
-          "name": "Leave",
-          "link": "exitSleep",
-          "pid": "24"
+          "name": "Leave.",
+          "link": "exitTimeToEat",
+          "pid": "31"
         }
       ],
-      "name": "sleepSoon",
+      "name": "timeToEat",
       "pid": "60",
       "position": {
-        "x": "2775",
-        "y": "1400"
+        "x": "2150",
+        "y": "1150"
       }
     },
     {
-      "text": "<b>SALLOS:</b> Now that that's settled, let's get cooking! (blackout->freeroam)\n[[Continue->exitPot]]",
+      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $talkedToSallos is true and $hasTinder is false and $hasWood is false)[ [[Forage for tinder.->grabTinder]] ]\n(if: $talkedToSallos is true and $hasTinder is false and $hasWood is true)[ [[Forage for tinder.->cannotGrabTinder]] ]\n[[Leave.->exitTinder]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "exitPot",
-          "pid": "20"
-        }
-      ],
-      "name": "startCooking",
-      "pid": "61",
-      "position": {
-        "x": "1500",
-        "y": "525"
-      }
-    },
-    {
-      "text": "The bar is waxy, and looks like a brick made of peas and dirt. Not very appetizing, however edible it is.\n\n[[Take a bite->bite]]",
-      "links": [
-        {
-          "name": "Take a bite",
-          "link": "bite",
-          "pid": "5"
-        }
-      ],
-      "name": "takeIt",
-      "pid": "62",
-      "position": {
-        "x": "2750",
-        "y": "750"
-      }
-    },
-    {
-      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $tinderQuest is true and $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $tinderQuest is true and $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
-      "links": [
-        {
-          "name": "Forage for tinder",
+          "name": "Forage for tinder.",
           "link": "grabTinder",
-          "pid": "33"
+          "pid": "38"
         },
         {
-          "name": "Forage for tinder",
+          "name": "Forage for tinder.",
           "link": "cannotGrabTinder",
-          "pid": "8"
+          "pid": "12"
         },
         {
-          "name": "Continue",
+          "name": "Leave.",
           "link": "exitTinder",
-          "pid": "25"
+          "pid": "32"
         }
       ],
       "name": "tinder",
-      "pid": "63",
+      "pid": "61",
       "position": {
         "x": "725",
         "y": "975"
@@ -1057,12 +1025,44 @@
       ]
     },
     {
-      "text": "Sallos doesn’t look any worse for wear, despite him outpacing you the whole trek up, and doing most of the heavy lifting setting up the tent.\n\n[[Continue->exitScene]]",
+      "text": "You begin to work through the knot, but it's a struggle to get a hold of each line of string.\n[[Continue.->continueUnwrap]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Continue.",
+          "link": "continueUnwrap",
+          "pid": "14"
+        }
+      ],
+      "name": "unwrap",
+      "pid": "62",
+      "position": {
+        "x": "1800",
+        "y": "925"
+      }
+    },
+    {
+      "text": "<b>SALLOS: </b>Look, the water's come to a full boil! You should put the stock cube in!\n[[Gingerly place the cube into the bubbling sea.->boil]]",
+      "links": [
+        {
+          "name": "Gingerly place the cube into the bubbling sea.",
+          "link": "boil",
+          "pid": "10"
+        }
+      ],
+      "name": "waterBoiling",
+      "pid": "63",
+      "position": {
+        "x": "2350",
+        "y": "1050"
+      }
+    },
+    {
+      "text": "Sallos doesn’t look any worse for wear, despite him outpacing you the whole trek up, and doing most of the heavy lifting setting up the tent.\n[[Continue.->exitScene]]",
+      "links": [
+        {
+          "name": "Continue.",
           "link": "exitScene",
-          "pid": "23"
+          "pid": "30"
         }
       ],
       "name": "wear",
@@ -1073,28 +1073,28 @@
       }
     },
     {
-      "text": "<b>EULYSS:</b> What is it?\n\n[[Continue->itIs]]",
+      "text": "<b>SALLOS: </b>Hmmm... we should be there by tomorrow afternoon. We'll make camp there and watch the sun set! I'm telling you, it'll be beautiful!\n[[I can't wait, either!->saveEulyss]]",
       "links": [
         {
-          "name": "Continue",
-          "link": "itIs",
-          "pid": "38"
+          "name": "I can't wait, either!",
+          "link": "saveEulyss",
+          "pid": "56"
         }
       ],
-      "name": "whatIs",
+      "name": "whenTop",
       "pid": "65",
       "position": {
-        "x": "2525",
-        "y": "875"
+        "x": "2250",
+        "y": "725"
       }
     },
     {
-      "text": "<b>SALLOS:</b> There's a few dead trees around here. You should help me cut some firewood. Or you can go look for tinder—pine needles or anything else that's tiny and dry will work.\n[[Continue->exitQuestGive]]",
+      "text": "<b>SALLOS:</b> There's a few dead trees around here. You should help me cut some firewood. Or you can go look for tinder—pine needles or anything else that's tiny and dry will work.\n[[Leave.->exitQuestGive]]",
       "links": [
         {
-          "name": "Continue",
+          "name": "Leave.",
           "link": "exitQuestGive",
-          "pid": "21"
+          "pid": "28"
         }
       ],
       "name": "work",
@@ -1105,141 +1105,30 @@
       }
     },
     {
-      "text": "Sallos sits by the pot, watching the water slowly come to a boil.\n[[\"What're you making?\"]]",
+      "text": "<b>SALLOS:</b> Awhh...\n\nHe looks down dejectedly.\n[[I'm just kidding!->reassure]]\n[[It's okay, I'll still eat it!->eatAnyways]]",
       "links": [
         {
-          "name": "\"What're you making?\"",
-          "link": "\"What're you making?\"",
-          "pid": "68"
-        }
-      ],
-      "name": "sallosDiscussion",
-      "pid": "67",
-      "position": {
-        "x": "1975",
-        "y": "425"
-      },
-      "tags": [
-        "start"
-      ]
-    },
-    {
-      "text": "<b>SALLOS: </b> I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.\n[[Continue->parchment]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "parchment",
-          "pid": "69"
-        }
-      ],
-      "name": "\"What're you making?\"",
-      "pid": "68",
-      "position": {
-        "x": "1850",
-        "y": "825"
-      }
-    },
-    {
-      "text": "He pulls out a handful of parchment wrapped cubes, tied with a piece of string.\n[[Continue->help]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "help",
-          "pid": "70"
-        }
-      ],
-      "name": "parchment",
-      "pid": "69",
-      "position": {
-        "x": "2075",
-        "y": "1000"
-      }
-    },
-    {
-      "text": "<b>SALLOS: </b>I could use some help unpacking these cubes though, if you'd like to help.\n[[Sure!->agreeToHelp]]\n[[I think I'll keep looking around a bit first.->exitHelp]]",
-      "links": [
-        {
-          "name": "Sure!",
-          "link": "agreeToHelp",
-          "pid": "71"
+          "name": "I'm just kidding!",
+          "link": "reassure",
+          "pid": "50"
         },
         {
-          "name": "I think I'll keep looking around a bit first.",
-          "link": "exitHelp",
-          "pid": "74"
+          "name": "It's okay, I'll still eat it!",
+          "link": "eatAnyways",
+          "pid": "18"
         }
       ],
-      "name": "help",
-      "pid": "70",
+      "name": "itsBad",
+      "pid": "67",
       "position": {
-        "x": "2000",
-        "y": "675"
+        "x": "2425",
+        "y": "1275"
       }
-    },
-    {
-      "text": "<b>SALLOS: </b>",
-      "name": "agreeToHelp",
-      "pid": "71",
-      "position": {
-        "x": "2225",
-        "y": "825"
-      }
-    },
-    {
-      "text": "<b>SALLOS: </b>Would you like to help?\n[[Just a minute.->exitHelp]]",
-      "links": [
-        {
-          "name": "Just a minute.",
-          "link": "exitHelp",
-          "pid": "74"
-        }
-      ],
-      "name": "sallosDiscussionRepeat",
-      "pid": "72",
-      "position": {
-        "x": "2250",
-        "y": "375"
-      },
-      "tags": [
-        "start"
-      ]
-    },
-    {
-      "text": "The hatchet sits in on the ground quietly, resting after its long day of work, it's blade freshly sharpened.\n[[Leave->exitHatchet]] ",
-      "links": [
-        {
-          "name": "Leave",
-          "link": "exitHatchet",
-          "pid": "16"
-        }
-      ],
-      "name": "hatchetSharpened",
-      "pid": "73",
-      "position": {
-        "x": "1625",
-        "y": "825"
-      },
-      "tags": [
-        "start"
-      ]
-    },
-    {
-      "text": "",
-      "name": "exitHelp",
-      "pid": "74",
-      "position": {
-        "x": "2350",
-        "y": "575"
-      },
-      "tags": [
-        "exit"
-      ]
     }
   ],
   "name": "Parsed Tent",
-  "startnode": "55",
+  "startnode": "57",
   "creator": "Twine",
   "creator-version": "2.10.0",
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870"
 }
-

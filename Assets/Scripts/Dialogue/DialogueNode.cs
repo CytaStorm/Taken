@@ -10,7 +10,7 @@ public class DialogueNode
     /// </summary>
     public string Name { get; set; }
     /// <summary>
-    /// Text inside node.
+    /// Text inside node. Returns reference.
     /// </summary>
     public string Text { get; set; }
     /// <summary>
@@ -28,6 +28,7 @@ public class DialogueNode
     /// If relativeChange is not null, then de/increment by relativechange
     /// </summary>
     public List<DialogueFlag> FlagsToChange = new List<DialogueFlag>();
+    private string text;
 
     public DialogueNode(string _name, string _text, List<JSONLinks> links, List<string> tags)
     {

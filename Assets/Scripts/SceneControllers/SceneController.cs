@@ -272,6 +272,10 @@ public class SceneController : MonoBehaviour
 		Traverser.SetNewGraph(interactScript.Graph);
 	}
 
+	/// <summary>
+	/// Matches dialogue flag to supplied flag.
+	/// </summary>
+	/// <param name="newFlag">Flag to copy value from.</param>
 	public void ChangeDialogueFlag (DialogueFlag newFlag)
 	{
 		foreach (DialogueFlag flag in DialogueFlags)
@@ -296,7 +300,16 @@ public class SceneController : MonoBehaviour
 		}
 	}
 
-	//private bool CheckNameListEquality()
+	/// <summary>
+	/// Changes interactable's graph.
+	/// </summary>
+	/// <param name="interactable">Interactable to change.</param>
+	/// <param name="graphName">Name of new graph.</param>
+	protected void ChangeGraph(InteractableScript interactable, string graphName)
+	{
+		interactable.Graph = _graphs.FirstOrDefault(
+			graph => graph.Name == graphName);
+	}
 
 	public void NextScene()
 	{
