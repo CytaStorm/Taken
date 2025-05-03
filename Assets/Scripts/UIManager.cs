@@ -273,7 +273,7 @@ public class UIManager : MonoBehaviour
 					linkedNode.Tags.Contains("exit"))
 				{
 					GameObject exitButton =
-						Instantiate(_exitButton, _buttonContainer.transform, true);
+						Instantiate(_dialogueChoiceButton, _buttonContainer.transform, true);
 					_buttons.Add(exitButton);
 					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = "<i>" + link.Name + "</i>";
 					Button exitButtonComponent = exitButton.GetComponent<Button>();
