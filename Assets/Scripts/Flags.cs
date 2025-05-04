@@ -19,6 +19,8 @@ public class Flags : MonoBehaviour
             Instance = this;
         }
         DialogueFlags = new List<DialogueFlag>();
+
+        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update

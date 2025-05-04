@@ -32,7 +32,7 @@ public class CutsceneController : SceneController
     {
         foreach (string name in _flagNames)
         {
-            foreach (DialogueFlag flag in DialogueFlags)
+            foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
             {
                 if (flag.Name != name) continue;
 
