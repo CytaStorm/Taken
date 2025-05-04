@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;  // Import the AI Navigation namespace
 
-public class InteractableScript : MonoBehaviour
+public abstract class InteractableScript : MonoBehaviour
 {
     [Header("References to other Gameobjects")]
     public DialogueGraph Graph;
@@ -40,12 +40,7 @@ public class InteractableScript : MonoBehaviour
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
     }
 
-    public virtual void Interact()
-    {
-		UIManager.UI.ChangeToDialogue();
-		InteractionCount++;
-		UpdateSceneGraph.Invoke(this);
-    }
+    public abstract void Interact();
 
     protected virtual void Update()
 	{

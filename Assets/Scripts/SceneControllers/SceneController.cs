@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
-    #region Dialogue Components
+    #region Interaction
     /// <summary>
     /// All graphs in scene.
     /// </summary>
@@ -45,6 +44,15 @@ public class SceneController : MonoBehaviour
 	/// Dialogue Traverser for traversing dialogue.
 	/// </summary>
 	public DialogueTraverser Traverser;
+	#endregion
+
+	#region Event Flags
+	// Names of flags that are events
+    protected List<string> _flagNames = new List<string>();
+
+    // Dialogue Flags that will raise events
+    protected List<DialogueFlag> _eventFlags = new List<DialogueFlag>();
+    protected double _timer = 0;
 	#endregion
 
 	#region Scene Changing
@@ -90,6 +98,8 @@ public class SceneController : MonoBehaviour
 	public event OnSceneChangeHandler onSceneChange;
 	#endregion
 
+	public static SceneController Instance;
+
 	[Space(10)] [SerializeField] protected Material _sallosMaterial;
 
 	[Header("DEBUG")] public bool DEBUG;
@@ -110,15 +120,25 @@ public class SceneController : MonoBehaviour
 		}
 	}
 
-
-
-	public bool IsDialogueAutoImplemented()
+	public bool IsDialogueAutoImplemented
 	{
-		return autoStartDialogue;
+		 get => autoStartDialogue;
 	}
 
-	// Start is called before the first frame update
-	protected void Start()
+    protected void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    // Start is called before the first frame update
+    protected void Start()
 	{
 		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 
@@ -183,6 +203,8 @@ public class SceneController : MonoBehaviour
 			}
 		}
 
+
+        _timer += Time.deltaTime;
 		#region Fades in/out
 		if (FadesIn)
 		{
@@ -224,7 +246,7 @@ public class SceneController : MonoBehaviour
          //   NewDialogueFlag match = DialogueFlags.FirstOrDefault(
          //   	matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
             DialogueFlag match = Flags.Instance.DialogueFlags.FirstOrDefault(
-				matchFlag => matchFlag.Equals(flag));
+				matchFlag => matchFlag.Name == flag.Name);
 
 			//skip if there is a match
             if (match != null) continue;
@@ -313,4 +335,22 @@ public class SceneController : MonoBehaviour
 	{
 		FadingOut = true;
 	}
+
+	/// <summary>
+    /// Identifies flags with dev added flag names and adds
+    /// them to the eventflags list.
+    /// </summary>
+    protected void CreateEventFlags()
+    {
+        foreach (string name in _flagNames)
+        {
+            foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
+            {
+                if (flag.Name != name) continue;
+
+                _eventFlags.Add(flag);
+            }
+        }
+    }
+
 }

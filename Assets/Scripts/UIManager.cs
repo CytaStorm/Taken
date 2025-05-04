@@ -21,7 +21,8 @@ public class UIManager : MonoBehaviour
 	public static UIManager UI { get; private set; }
 
 	[Header("Other GameObjects")]
-	[SerializeField] private SceneController _sceneController;
+	//[SerializeField] 
+	private SceneController _sceneController;
 	[SerializeField] private PlayerInput _input;
 
 	[Header("Audio")]
@@ -107,6 +108,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
 	{
+		_sceneController = SceneController.Instance;
         if (_sceneController.autoStartDialogue)
         {
             CurrentUIMode = UIMode.Dialogue;

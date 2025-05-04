@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneThreeController : CutsceneController
+public class SceneThreeController : SceneController
 {
     // Actors
     [SerializeField] private GameObject _sallos;

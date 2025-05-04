@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCScript : InteractableScript
+public class NPCScript : PropInteractableScript
 {
     [Header("Character")]
     [SerializeField] private NavMeshAgent _agent;
