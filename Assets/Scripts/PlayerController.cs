@@ -80,12 +80,16 @@ public class PlayerController : MonoBehaviour
 		Ray ray = cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;
 
-		//Only interact with UI objects
+		// Don't move character if UI is clicked
 		if (_UIManager.CurrentUIMode == UIMode.Dialogue) return;
+		if (!(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0)))
+		{
+			return;
+		}
 
-		//Player clicks in game
-		// if ray hits Interactable
-		if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
+        //Player clicks in game
+        // if ray hits Interactable
+        if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
 		{
 			InteractableScript interactable = hit.collider.GetComponent<InteractableScript>();
 			if (interactable != null)

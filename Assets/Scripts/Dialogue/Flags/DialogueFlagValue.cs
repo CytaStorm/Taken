@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering;
@@ -25,10 +28,17 @@ public class DialogueFlagValue : DialogueFlag
 	/// </summary>
 	public override event EventHandler OnValueChange;
 
+	private int _value;
 	/// <summary>
 	/// Used for setting values directly
 	/// </summary>
-	public int Value = 0;
+	public int Value { 
+		get => _value;
+		set { 
+			_value = value;
+			OnValueChange?.Invoke(this, EventArgs.Empty);
+		}
+	}
 
 	/// <summary>
 	/// Exclusively used for parsing (set: ... += ... ) or (set: ... -= ...)
@@ -51,8 +61,9 @@ public class DialogueFlagValue : DialogueFlag
 	public DialogueFlagValue(string name, int value, ValueRelation relation)
 	{
 		Name = name;
-		Value = value;
+		_value = value;
 		Relation = relation;
+		OnValueChange += UIManager.UI.UpdateStats;
 	}
 
 	/// <summary>
@@ -86,29 +97,16 @@ public class DialogueFlagValue : DialogueFlag
 	}
 
 	/// <summary>
-	/// Add to value of original flag.
+	/// Copy constructor.
 	/// </summary>
-	/// <param name="original">Original flag.</param>
-	/// <param name="change">Amount to add.</param>
-	/// <returns>New value.</returns>
-	public static int operator +(DialogueFlagValue original, int change)
+	/// <param name="other">ValueFlag to copy.</param>
+	public DialogueFlagValue(DialogueFlagValue other)
 	{
-		original.Value += change;
-		original.OnValueChange?.Invoke(original, EventArgs.Empty);
-		return original.Value;
-	}
-
-	/// <summary>
-	/// Subtract from value of original flag.
-	/// </summary>
-	/// <param name="original">Original flag.</param>
-	/// <param name="change">Amount to subtract.</param>
-	/// <returns>New value.</returns>
-	public static int operator -(DialogueFlagValue original, int change)
-	{
-		original.Value -= change;
-		original.OnValueChange?.Invoke(original, EventArgs.Empty);
-		return original.Value;
+		Name = other.Name;
+		_value = other.Value;
+		Relation = other.Relation;
+		RelativeChange= other.RelativeChange;
+		OnValueChange = other.OnValueChange;
 	}
 
 	public override string ToString()
