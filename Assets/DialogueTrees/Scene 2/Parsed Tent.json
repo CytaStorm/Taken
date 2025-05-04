@@ -260,7 +260,7 @@
       }
     },
     {
-      "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Continue->exitDeadTree]]\n(set: $hasWood to true)\n(set: $strength += 1)",
+      "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Continue->exitDeadTree]]\n(set: $hasWood to true and $strength += 1)",
       "links": [
         {
           "name": "Continue",
@@ -626,7 +626,7 @@
       }
     },
     {
-      "text": "You've gathered some tinder.\n(set: $hasTinder to true)\n(set: $intellligence += 1)\n[[Continue->exitGrabTinder]]",
+      "text": "You've gathered some tinder.\n(set: $hasTinder to true and $intelligence += 1)\n[[Continue->exitGrabTinder]]",
       "links": [
         {
           "name": "Continue",
@@ -1262,7 +1262,7 @@
       "pid": "76",
       "position": {
         "x": "725",
-        "y": "975"
+        "y": "900"
       },
       "tags": [
         "start"

@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
-    #region Dialogue Components
+    #region Interaction
     /// <summary>
     /// All graphs in scene.
     /// </summary>
@@ -45,6 +44,15 @@ public class SceneController : MonoBehaviour
 	/// Dialogue Traverser for traversing dialogue.
 	/// </summary>
 	public DialogueTraverser Traverser;
+	#endregion
+
+	#region Event Flags
+	// Names of flags that are events
+    protected List<string> _flagNames = new List<string>();
+
+    // Dialogue Flags that will raise events
+    protected List<DialogueFlag> _eventFlags = new List<DialogueFlag>();
+    protected double _timer = 0;
 	#endregion
 
 	#region Scene Changing
@@ -90,6 +98,8 @@ public class SceneController : MonoBehaviour
 	public event OnSceneChangeHandler onSceneChange;
 	#endregion
 
+	public static SceneController Instance;
+
 	[Space(10)] [SerializeField] protected Material _sallosMaterial;
 
 	[Header("DEBUG")] public bool DEBUG;
@@ -110,22 +120,31 @@ public class SceneController : MonoBehaviour
 		}
 	}
 
-
-
-	public bool IsDialogueAutoImplemented()
+	public bool IsDialogueAutoImplemented
 	{
-		return autoStartDialogue;
+		 get => autoStartDialogue;
 	}
 
-	// Start is called before the first frame update
-	protected void Start()
+    protected void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    // Start is called before the first frame update
+    protected void Start()
 	{
 		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 
 		//Setup graphs
 		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
 		_graphs = jsonGraph.CreateGraphs();
-		//Flags.Instance.DialogueFlags = new List<DialogueFlag>();
 		Traverser = new DialogueTraverser(this, UIManager.UI);
 		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 
@@ -164,6 +183,7 @@ public class SceneController : MonoBehaviour
 			if (flag.Name.Contains("end"))
 			{
 				flag.OnValueChange += delegate 
+		//ExtractFlags returns a list of list of newdialogue flags, but because each
 				{
 					print("here");
 					FadingOut = true;
@@ -184,6 +204,8 @@ public class SceneController : MonoBehaviour
 			}
 		}
 
+
+        _timer += Time.deltaTime;
 		#region Fades in/out
 		if (FadesIn)
 		{
@@ -292,7 +314,19 @@ public class SceneController : MonoBehaviour
 				//Value flag
 				if (flag is DialogueFlagValue)
 				{
-					((DialogueFlagValue)flag).Value = ((DialogueFlagValue)flag).Value;
+					DialogueFlagValue newValueFlag = (DialogueFlagValue)newFlag;
+					DialogueFlagValue valueFlag = (DialogueFlagValue)flag;
+
+					//Relative change 
+					if (newValueFlag.RelativeChange != null)
+					{
+						valueFlag.Value += (int)newValueFlag.RelativeChange;
+					}
+					//absolute change
+					else
+					{
+						valueFlag.Value = newValueFlag.Value;
+					}
 					continue;
 				}
 			}
@@ -314,4 +348,22 @@ public class SceneController : MonoBehaviour
 	{
 		FadingOut = true;
 	}
+
+	/// <summary>
+    /// Identifies flags with dev added flag names and adds
+    /// them to the eventflags list.
+    /// </summary>
+    protected void CreateEventFlags()
+    {
+        foreach (string name in _flagNames)
+        {
+            foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
+            {
+                if (flag.Name != name) continue;
+
+                _eventFlags.Add(flag);
+            }
+        }
+    }
+
 }

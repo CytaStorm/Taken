@@ -149,8 +149,9 @@ GameObject:
   - component: {fileID: 935625161201085016}
   - component: {fileID: 4127143577064803349}
   - component: {fileID: 1403553843963320533}
+  - component: {fileID: 4396303981794516323}
   m_Layer: 7
-  m_Name: interactable
+  m_Name: Scene Change Interactable
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,9 +186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bb42e9c32f87409dc3c69833d969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasLimitedInteractions: 0
-  interactionCount: 0
+  Interactable: 1
+  HasLimitedInteractions: 0
+  InteractionCount: 0
   InteractionPoint: {fileID: 1631020855432542737}
+  InteractionPivot: {fileID: 5793175739943287436}
   _materialList: []
 --- !u!136 &4127143577064803349
 CapsuleCollider:
@@ -228,6 +231,25 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &4396303981794516323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4403017764328130464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8386f47110a9448bdce2c1f06cc98a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactable: 1
+  HasLimitedInteractions: 0
+  InteractionCount: 0
+  InteractionPoint: {fileID: 1631020855432542737}
+  InteractionPivot: {fileID: 5793175739943287436}
+  _materialList: []
+  changeToSceneName: 
 --- !u!1 &5793175739943287436
 GameObject:
   m_ObjectHideFlags: 0

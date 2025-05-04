@@ -5,7 +5,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneTwoController : CutsceneController
+public class SceneTwoController : SceneController
 {
 	// Actors
 	[SerializeField] private GameObject _sallos;

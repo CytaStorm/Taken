@@ -6,11 +6,16 @@ using UnityEngine.UIElements;
 public class ScreenDimmer : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _canvasGroup;
-	[SerializeField] private SceneController _sceneController;
+	//[SerializeField] 
+    private SceneController _sceneController;
 
+    private void Awake()
+    {
+    }
     // Start is called before the first frame update
     void Start()
     {
+        _sceneController = SceneController.Instance;
         if (_sceneController.FadesIn)
         {
             _canvasGroup.alpha = 1;
