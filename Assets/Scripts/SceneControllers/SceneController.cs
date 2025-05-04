@@ -225,7 +225,7 @@ public class SceneController : MonoBehaviour
          //   NewDialogueFlag match = DialogueFlags.FirstOrDefault(
          //   	matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
             DialogueFlag match = Flags.Instance.DialogueFlags.FirstOrDefault(
-				matchFlag => matchFlag.Equals(flag));
+				matchFlag => matchFlag.Name == flag.Name);
 
 			//skip if there is a match
             if (match != null) continue;

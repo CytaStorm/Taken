@@ -1403,6 +1403,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8313989442157834247, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8796724078259730672, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -18831,7 +18835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857048cb05b070c46ba1697867507cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _twineJson: {fileID: 4900000, guid: 416411e7ec1d637488d5364cbe0baecb, type: 3}
+  _twineJson: {fileID: 4900000, guid: ea5ebe6f0d2f2d241be7938615730d1e, type: 3}
   autoStartDialogue: 1
   _destinationScene: Scene 3
   _fadeOutTime: 5
@@ -18839,7 +18843,7 @@ MonoBehaviour:
   _fadeInTime: 3
   FadesIn: 1
   _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
-  DEBUG: 0
+  DEBUG: 1
   _sallos: {fileID: 1995761731}
   _deadTree: {fileID: 1316866498}
   _kindling: {fileID: 887832376}
