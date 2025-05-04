@@ -55,14 +55,14 @@ public class NPCScript : InteractableScript
         _prevFaceDirection = Mesh.transform.rotation;
 
         // Face player position
-        Vector3 destination = PlayerController.PlayerControl.transform.position;
+        Vector3 destination = InteractionPoint.transform.position;
         if (destination != null)
         {
             //Mesh.transform.LookAt(destination);
             StartCoroutine(
                 RotateMeshToFaceDirection(
                     Quaternion.LookRotation(
-                        PlayerController.PlayerControl.transform.position - Mesh.transform.position),
+                        InteractionPoint.transform.position - Mesh.transform.position),
                     150));
         }
     }

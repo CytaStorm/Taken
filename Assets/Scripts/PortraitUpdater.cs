@@ -17,7 +17,7 @@ public class PortraitUpdater : MonoBehaviour
     
     private GameObject _portraitObject;
     private List<Transform> _portraitSiblingTransforms;
-    private NewDialogueNode _currentNode;
+    private DialogueNode _currentNode;
     private string _speakerName; // make public for debugging only!
 
     // Start is called before the first frame update
