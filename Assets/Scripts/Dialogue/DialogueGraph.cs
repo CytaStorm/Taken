@@ -44,4 +44,9 @@ public class DialogueGraph
         newStart.Name = "newIntro";
         StartNode = newStart;
     }
+
+    public override string ToString()
+    {
+        return $"{Name}";
+    }
 }
