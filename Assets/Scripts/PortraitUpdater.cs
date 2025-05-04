@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PortraitUpdater : MonoBehaviour
 {
-    [SerializeField] SceneController _sceneController;
+    SceneController _sceneController;
     [SerializeField] UIManager _uiManager;
 
     [SerializeField] Image _portrait;
@@ -23,6 +23,7 @@ public class PortraitUpdater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _sceneController = SceneController.Instance;
         // Initialize global variables
         _portraitObject = _portrait.gameObject;
 

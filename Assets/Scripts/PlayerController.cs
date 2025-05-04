@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private UIManager _UIManager;
+	private UIManager _UIManager;
 
 	[SerializeField] private PlayerInput playerInput;
 
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		_UIManager = UIManager.UI;
 	}
 
 	// Update is called once per frame

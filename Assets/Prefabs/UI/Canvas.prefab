@@ -410,7 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 2118183152943534580}
-  _sceneController: {fileID: 0}
 --- !u!1 &1555788808321572498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,8 +2047,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentUIMode: 0
-  _sceneController: {fileID: 0}
   _input: {fileID: 0}
+  _profileUpdater: {fileID: 419956001179246047}
   audioSource: {fileID: 4257148423929475218}
   audioClip: {fileID: 8300000, guid: 9792a6b6339cef540868a5123ade8642, type: 3}
   _dialogueUI: {fileID: 8844153028613754052}
