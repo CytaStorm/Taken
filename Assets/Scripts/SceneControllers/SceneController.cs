@@ -35,7 +35,6 @@ public class SceneController : MonoBehaviour
 	/// <summary>
 	/// All dialogue flags in scene.
 	/// </summary>
-	public List<DialogueFlag> DialogueFlags;
 
     /// <summary>
     /// All interactables in scene
@@ -126,7 +125,7 @@ public class SceneController : MonoBehaviour
 		//Setup graphs
 		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
 		_graphs = jsonGraph.CreateGraphs();
-		DialogueFlags = new List<DialogueFlag>();
+		Flags.Instance.DialogueFlags = new List<DialogueFlag>();
 		Traverser = new DialogueTraverser(this, UIManager.UI);
 		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 
@@ -160,7 +159,7 @@ public class SceneController : MonoBehaviour
 
 		//Scene changing
 		onSceneChange += UIManager.UI.PauseAllButtons;
-		foreach (DialogueFlag flag in DialogueFlags)
+		foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 		{
 			if (flag.Name.Contains("end"))
 			{
@@ -179,7 +178,7 @@ public class SceneController : MonoBehaviour
 	{
 		if (DEBUG)
 		{
-			foreach (DialogueFlag flag in DialogueFlags)
+			foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 			{
 				print(flag);
 			}
@@ -225,7 +224,7 @@ public class SceneController : MonoBehaviour
         {
          //   NewDialogueFlag match = DialogueFlags.FirstOrDefault(
          //   	matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
-            DialogueFlag match = DialogueFlags.FirstOrDefault(
+            DialogueFlag match = Flags.Instance.DialogueFlags.FirstOrDefault(
 				matchFlag => matchFlag.Equals(flag));
 
 			//skip if there is a match
@@ -234,11 +233,11 @@ public class SceneController : MonoBehaviour
 			//Differentiate between bool and value
 			if (flag is DialogueFlagBool)
 			{
-				DialogueFlags.Add(new DialogueFlagBool(flag.Name));
+				Flags.Instance.DialogueFlags.Add(new DialogueFlagBool(flag.Name));
 			}
 			else if (flag is DialogueFlagValue)
 			{
-				DialogueFlags.Add(new DialogueFlagValue(flag.Name));
+				Flags.Instance.DialogueFlags.Add(new DialogueFlagValue(flag.Name));
 			}
 			else
 			{
@@ -278,7 +277,7 @@ public class SceneController : MonoBehaviour
 	/// <param name="newFlag">Flag to copy value from.</param>
 	public void ChangeDialogueFlag (DialogueFlag newFlag)
 	{
-		foreach (DialogueFlag flag in DialogueFlags)
+		foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 		{
 			//matching flag
 			if (flag.Name == newFlag.Name)
