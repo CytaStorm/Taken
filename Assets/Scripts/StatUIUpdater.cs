@@ -18,8 +18,8 @@ public class StatUIUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
+
     public void UpdateStats()
     {
         int strength = flags.Strength == null ? 0 : flags.Strength.Value;
