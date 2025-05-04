@@ -125,7 +125,7 @@ public class SceneController : MonoBehaviour
 		//Setup graphs
 		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
 		_graphs = jsonGraph.CreateGraphs();
-		Flags.Instance.DialogueFlags = new List<DialogueFlag>();
+		//Flags.Instance.DialogueFlags = new List<DialogueFlag>();
 		Traverser = new DialogueTraverser(this, UIManager.UI);
 		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 

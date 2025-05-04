@@ -101,7 +101,7 @@ public class DialogueTraverser
 		// Then, check if any of these nodes don't match. Return false if so.
 		foreach (DialogueFlag destinationFlag in flagsToCheck) 
 		{
-			if (!SceneController.DialogueFlags.Contains(destinationFlag))
+			if (!Flags.Instance.DialogueFlags.Contains(destinationFlag))
 			{
 				return false;
 			}
