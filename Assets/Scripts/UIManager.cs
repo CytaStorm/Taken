@@ -21,9 +21,9 @@ public class UIManager : MonoBehaviour
 	public static UIManager UI { get; private set; }
 
 	[Header("Other GameObjects")]
-	//[SerializeField] 
 	private SceneController _sceneController;
 	[SerializeField] private PlayerInput _input;
+	[SerializeField] private StatUIUpdater _profileUpdater;
 
 	[Header("Audio")]
 	[SerializeField] private AudioSource audioSource;
@@ -43,7 +43,6 @@ public class UIManager : MonoBehaviour
 
 	//Most recent textbox
 	private Transform _mostRecentTextContainer;
-
 
 	#region Buttons
 	[Header("Buttons")]
@@ -100,7 +99,8 @@ public class UIManager : MonoBehaviour
 		if (UI != null && UI != this)
 		{
 			Destroy(UI);
-		} else
+		}
+		else
 		{
 			UI = this;
 		}
@@ -275,7 +275,7 @@ public class UIManager : MonoBehaviour
 					linkedNode.Tags.Contains("exit"))
 				{
 					GameObject exitButton =
-						Instantiate(_exitButton, _buttonContainer.transform, true);
+						Instantiate(_dialogueChoiceButton, _buttonContainer.transform, true);
 					_buttons.Add(exitButton);
 					exitButton.GetComponent<DialogueChoiceScript>().ButtonText.text = "<i>" + link.Name + "</i>";
 					Button exitButtonComponent = exitButton.GetComponent<Button>();
@@ -397,4 +397,12 @@ public class UIManager : MonoBehaviour
             button.SetActive(true);
         }
     }
+
+	/// <summary>
+	/// Updates the profile menu with updated game stats.
+	/// </summary>
+	public void UpdateStats(object sender, EventArgs e)
+	{
+		_profileUpdater.UpdateStats();
+	}
 }

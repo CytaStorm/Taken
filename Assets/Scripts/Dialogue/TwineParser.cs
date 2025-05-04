@@ -110,9 +110,8 @@ public class TwineParser
 		//If it doesn't have (set:) return
 		if (stringToParse.Count == 0) return;
 
-		//ExtractFlags returns a list of list of newdialogue flags, but because each
-		//twine set command only edits one variable, we can assume ExtractFlag's
-		//return list has only one element
+		//Only use first element for set, because only one set should be used per node.
+		//see extract flags method header.
 		currentNode.FlagsToChange.AddRange(ExtractFlags(stringToParse)[0]);
 	}
 
@@ -120,7 +119,8 @@ public class TwineParser
 	/// Parses extracts set flag text.
 	/// </summary>
 	/// <param name="stringsToParse">List of extracted set flag statements</param>
-	/// <returns></returns>
+	/// <returns>A list of list of dialogue flag. Each list is are the flags
+	/// in one set/if statement</returns>
 	private static List<List<DialogueFlag>> ExtractFlags(List<string> stringsToParse)
 	{
 		List<List<DialogueFlag>> result = new List<List<DialogueFlag>>();

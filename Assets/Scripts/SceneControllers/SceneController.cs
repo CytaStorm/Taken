@@ -183,6 +183,7 @@ public class SceneController : MonoBehaviour
 			if (flag.Name.Contains("end"))
 			{
 				flag.OnValueChange += delegate 
+		//ExtractFlags returns a list of list of newdialogue flags, but because each
 				{
 					print("here");
 					FadingOut = true;
@@ -313,7 +314,19 @@ public class SceneController : MonoBehaviour
 				//Value flag
 				if (flag is DialogueFlagValue)
 				{
-					((DialogueFlagValue)flag).Value = ((DialogueFlagValue)flag).Value;
+					DialogueFlagValue newValueFlag = (DialogueFlagValue)newFlag;
+					DialogueFlagValue valueFlag = (DialogueFlagValue)flag;
+
+					//Relative change 
+					if (newValueFlag.RelativeChange != null)
+					{
+						valueFlag.Value += (int)newValueFlag.RelativeChange;
+					}
+					//absolute change
+					else
+					{
+						valueFlag.Value = newValueFlag.Value;
+					}
 					continue;
 				}
 			}
