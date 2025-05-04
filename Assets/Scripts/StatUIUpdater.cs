@@ -12,15 +12,20 @@ public class StatUIUpdater : MonoBehaviour
     private void Start()
     {
         flags = Flags.Instance;
+        UpdateStats();
     }
 
     // Update is called once per frame
     void Update()
     {
-        int strength = flags.Strength.Value;
-        int magic = flags.Magic.Value;
-        int intelligence = flags.Intelligence.Value;
-        int faith = flags.Faith.Value;
+        
+    }
+    public void UpdateStats()
+    {
+        int strength = flags.Strength == null ? 0 : flags.Strength.Value;
+        int magic = flags.Magic == null ? 0 : flags.Magic.Value;
+        int intelligence = flags.Intelligence == null ? 0 : flags.Intelligence.Value;
+        int faith = flags.Faith == null ? 0 : flags.Faith.Value;
 
         // Create and stylize stat text
         string textData = "";

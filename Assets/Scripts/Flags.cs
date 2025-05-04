@@ -25,7 +25,16 @@ public class Flags : MonoBehaviour
         DialogueFlags = new List<DialogueFlag>();
 
         DontDestroyOnLoad(this);
+    }
 
+    private void OnEnable()
+    {
+       
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         // Create flags for stat values
         Strength = new DialogueFlagValue("strength", 0);
         DialogueFlags.Add(Strength);
@@ -35,12 +44,6 @@ public class Flags : MonoBehaviour
         DialogueFlags.Add(Intelligence);
         Faith = new DialogueFlagValue("faith", 0);
         DialogueFlags.Add(Faith);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
