@@ -1566,7 +1566,7 @@ MonoBehaviour:
   _dialogueChoiceButton: {fileID: 6694033511536594137, guid: 25279a6a5aab75b49a6ebda5a213a0fa, type: 3}
   _buttonContainer: {fileID: 8590943804063653380}
   _buttons: []
-  _exitButton: {fileID: 6694033511536594137, guid: f70c5a92133e3b5469d528ad12a41a64, type: 3}
+  _exitButton: {fileID: 6694033511536594137, guid: 348625eed45ef3e4ea781e8a0ce0d51c, type: 3}
   _prevTextColor: {r: 0.4153118, g: 0.45629293, b: 0.52201253, a: 1}
   _animationSpeed: 10
 --- !u!114 &2738910716026719855
