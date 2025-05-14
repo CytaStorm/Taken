@@ -5,7 +5,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneTwoController : CutsceneController
+public class SceneTwoController : SceneController
 {
 	// Actors
 	[SerializeField] private GameObject _sallos;
@@ -32,20 +32,21 @@ public class SceneTwoController : CutsceneController
 		sallosMesh = _sallosScript.Mesh.transform;
 
 		//Hook up events
-		_flagNames.Add("logQuest");
-		_flagNames.Add("kindlingQuest");
-		_flagNames.Add("turnToFacePlayer");
-
+		_flagNames.Add("talkedToSallos");
 		CreateEventFlags();
 
-		_eventFlags[0].onValueChange += delegate { SallosGoToKindling(); };
-		_eventFlags[1].onValueChange += delegate { SallosGoToLog(); };
-		_eventFlags[2].onValueChange += delegate {
-			if (_eventFlags[2].IsTrue)
-			{
-				_sallosScript.LookAtPlayer();
-			}
+		_eventFlags[0].OnValueChange += delegate 
+		{
+			print("talkedToSallos");
+			ChangeGraph(_sallosScript, "SallosTalkedTo");
 		};
+		//_eventFlags[1].OnValueChange += delegate { SallosGoToLog(); };
+		//_eventFlags[2].OnValueChange += delegate {
+		//	if (_eventFlags[2].IsTrue true)
+		//	{
+		//		_sallosScript.LookAtPlayer();
+		//	}
+		//};
 	}
 
 	// Update is called once per frame

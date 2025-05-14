@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
-    #region Dialogue Components
+    #region Interaction
     /// <summary>
     /// All graphs in scene.
     /// </summary>
     [Header("Dialogue Components")]
-	protected List<NewDialogueGraph> _graphs;
+	protected List<DialogueGraph> _graphs;
 
 	/// <summary>
 	///	Twine json to read from.
@@ -28,12 +29,11 @@ public class SceneController : MonoBehaviour
     /// <summary>
     /// Graph used for scene as a whole.
     /// </summary>
-    protected NewDialogueGraph _sceneGraph;
+    protected DialogueGraph _sceneGraph;
 
 	/// <summary>
 	/// All dialogue flags in scene.
 	/// </summary>
-	public List<NewDialogueFlag> DialogueFlags;
 
     /// <summary>
     /// All interactables in scene
@@ -44,6 +44,15 @@ public class SceneController : MonoBehaviour
 	/// Dialogue Traverser for traversing dialogue.
 	/// </summary>
 	public DialogueTraverser Traverser;
+	#endregion
+
+	#region Event Flags
+	// Names of flags that are events
+    protected List<string> _flagNames = new List<string>();
+
+    // Dialogue Flags that will raise events
+    protected List<DialogueFlag> _eventFlags = new List<DialogueFlag>();
+    protected double _timer = 0;
 	#endregion
 
 	#region Scene Changing
@@ -89,6 +98,8 @@ public class SceneController : MonoBehaviour
 	public event OnSceneChangeHandler onSceneChange;
 	#endregion
 
+	public static SceneController Instance;
+
 	[Space(10)] [SerializeField] protected Material _sallosMaterial;
 
 	[Header("DEBUG")] public bool DEBUG;
@@ -109,22 +120,31 @@ public class SceneController : MonoBehaviour
 		}
 	}
 
-
-
-	public bool IsDialogueAutoImplemented()
+	public bool IsDialogueAutoImplemented
 	{
-		return autoStartDialogue;
+		 get => autoStartDialogue;
 	}
 
-	// Start is called before the first frame update
-	protected void Start()
+    protected void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    // Start is called before the first frame update
+    protected void Start()
 	{
 		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 
 		//Setup graphs
 		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
 		_graphs = jsonGraph.CreateGraphs();
-		DialogueFlags = new List<NewDialogueFlag>();
 		Traverser = new DialogueTraverser(this, UIManager.UI);
 		_sceneGraph = _graphs.FirstOrDefault(graph => graph.Name == "scene");
 
@@ -140,9 +160,9 @@ public class SceneController : MonoBehaviour
 			interactScript.UpdateSceneGraph.AddListener(UpdateCurrentGraph);
 		}
 
-		foreach (NewDialogueGraph graph in _graphs)
+		foreach (DialogueGraph graph in _graphs)
 		{
-			foreach (NewDialogueNode node in graph.Nodes)
+			foreach (DialogueNode node in graph.Nodes)
 			{
 				CreateDialogueFlags(node);
 			}
@@ -158,11 +178,12 @@ public class SceneController : MonoBehaviour
 
 		//Scene changing
 		onSceneChange += UIManager.UI.PauseAllButtons;
-		foreach (NewDialogueFlag flag in DialogueFlags)
+		foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 		{
-			if (flag.Names.Contains("end"))
+			if (flag.Name.Contains("end"))
 			{
-				flag.onValueChange += delegate 
+				flag.OnValueChange += delegate 
+		//ExtractFlags returns a list of list of newdialogue flags, but because each
 				{
 					print("here");
 					FadingOut = true;
@@ -177,12 +198,14 @@ public class SceneController : MonoBehaviour
 	{
 		if (DEBUG)
 		{
-			foreach (NewDialogueFlag flag in DialogueFlags)
+			foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 			{
 				print(flag);
 			}
 		}
 
+
+        _timer += Time.deltaTime;
 		#region Fades in/out
 		if (FadesIn)
 		{
@@ -214,20 +237,34 @@ public class SceneController : MonoBehaviour
 
     /// <summary>
     /// Populates list of dialogue flags with every flag in every dialogue graph
-    /// in the scene
+    /// in the scene. Important to note that these flags are new and default.
     /// </summary>
 	/// <param name="graph">Graph to add flags from</param>
-    protected void CreateDialogueFlags(NewDialogueNode node)
+    protected void CreateDialogueFlags(DialogueNode node)
 	{
-		foreach (NewDialogueFlag flag in node.FlagsToChange)
+		foreach (DialogueFlag flag in node.FlagsToChange)
         {
-            NewDialogueFlag match = DialogueFlags.FirstOrDefault(
-        		matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
+         //   NewDialogueFlag match = DialogueFlags.FirstOrDefault(
+         //   	matchFlag => matchFlag.Names.SequenceEqual(flag.Names));
+            DialogueFlag match = Flags.Instance.DialogueFlags.FirstOrDefault(
+				matchFlag => matchFlag.Name == flag.Name);
 
 			//skip if there is a match
             if (match != null) continue;
 
-            DialogueFlags.Add(new NewDialogueFlag(flag.Names));
+			//Differentiate between bool and value
+			if (flag is DialogueFlagBool)
+			{
+				Flags.Instance.DialogueFlags.Add(new DialogueFlagBool(flag.Name));
+			}
+			else if (flag is DialogueFlagValue)
+			{
+				Flags.Instance.DialogueFlags.Add(new DialogueFlagValue(flag.Name));
+			}
+			else
+			{
+				throw new ArgumentException("Flag failed to parse");
+			}
         }
 	}
 
@@ -241,7 +278,7 @@ public class SceneController : MonoBehaviour
 		Traverser.GoToNode(choice);
 	}
 
-	public bool CheckTraversal(List<NewDialogueFlag> flagsToCheck)
+	public bool CheckTraversal(List<DialogueFlag> flagsToCheck)
 	{
 		return Traverser.CheckTraversal(flagsToCheck);
 	}
@@ -256,23 +293,77 @@ public class SceneController : MonoBehaviour
 		Traverser.SetNewGraph(interactScript.Graph);
 	}
 
-	public void ChangeDialogueFlag (NewDialogueFlag newFlag)
+	/// <summary>
+	/// Matches dialogue flag to supplied flag.
+	/// </summary>
+	/// <param name="newFlag">Flag to copy value from.</param>
+	public void ChangeDialogueFlag (DialogueFlag newFlag)
 	{
-		foreach (NewDialogueFlag flag in DialogueFlags)
+		foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 		{
-			if (flag.Names.SequenceEqual(newFlag.Names)) 
+			//matching flag
+			if (flag.Name == newFlag.Name)
 			{
-				flag.IsTrue = newFlag.IsTrue;
-				//print(flag);
+				//bool flag
+				if (flag is DialogueFlagBool)
+				{
+					((DialogueFlagBool)flag).IsTrue = ((DialogueFlagBool)newFlag).IsTrue;
+					continue;
+				}
+
+				//Value flag
+				if (flag is DialogueFlagValue)
+				{
+					DialogueFlagValue newValueFlag = (DialogueFlagValue)newFlag;
+					DialogueFlagValue valueFlag = (DialogueFlagValue)flag;
+
+					//Relative change 
+					if (newValueFlag.RelativeChange != null)
+					{
+						valueFlag.Value += (int)newValueFlag.RelativeChange;
+					}
+					//absolute change
+					else
+					{
+						valueFlag.Value = newValueFlag.Value;
+					}
+					continue;
+				}
 			}
 		}
-
 	}
 
-	//private bool CheckNameListEquality()
+	/// <summary>
+	/// Changes interactable's graph.
+	/// </summary>
+	/// <param name="interactable">Interactable to change.</param>
+	/// <param name="graphName">Name of new graph.</param>
+	protected void ChangeGraph(InteractableScript interactable, string graphName)
+	{
+		interactable.Graph = _graphs.FirstOrDefault(
+			graph => graph.Name == graphName);
+	}
 
 	public void NextScene()
 	{
 		FadingOut = true;
 	}
+
+	/// <summary>
+    /// Identifies flags with dev added flag names and adds
+    /// them to the eventflags list.
+    /// </summary>
+    protected void CreateEventFlags()
+    {
+        foreach (string name in _flagNames)
+        {
+            foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
+            {
+                if (flag.Name != name) continue;
+
+                _eventFlags.Add(flag);
+            }
+        }
+    }
+
 }

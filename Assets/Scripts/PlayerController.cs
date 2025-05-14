@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private UIManager _UIManager;
+	private UIManager _UIManager;
 
 	[SerializeField] private PlayerInput playerInput;
 
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		_UIManager = UIManager.UI;
 	}
 
 	// Update is called once per frame
@@ -80,12 +81,16 @@ public class PlayerController : MonoBehaviour
 		Ray ray = cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;
 
-		//Only interact with UI objects
+		// Don't move character if UI is clicked
 		if (_UIManager.CurrentUIMode == UIMode.Dialogue) return;
+		if (!(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0)))
+		{
+			return;
+		}
 
-		//Player clicks in game
-		// if ray hits Interactable
-		if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
+        //Player clicks in game
+        // if ray hits Interactable
+        if (Physics.Raycast(ray, out hit, raycastRange, interactableMask))
 		{
 			InteractableScript interactable = hit.collider.GetComponent<InteractableScript>();
 			if (interactable != null)

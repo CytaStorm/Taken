@@ -1,0 +1,137 @@
+using System.Collections.Generic;
+using UnityEditor.UI;
+using UnityEngine;
+
+public class DialogueTraverser
+{
+	//FIELDS
+	//objects
+	public SceneController SceneController;
+	public UIManager _UIManager;
+	public DialogueGraph CurrentGraph;
+	public DialogueNode CurrentNode;
+	/*
+	[SerializeField] GameObject buttonPrefab;
+	[SerializeField] GameObject parentOfButton;
+	*/
+
+	//Other values
+	/*
+	[SerializeField] private Vector2 buttonCenter;
+	*/
+
+	/// <summary>
+	/// Creates a new DialogueGraph traverser
+	/// </summary>
+	/// <param name="graph"></param>
+	public DialogueTraverser (SceneController sceneManager, UIManager _UIManager)
+	{
+		this.SceneController = sceneManager;
+		this._UIManager = _UIManager;
+	}
+
+	/// <summary>
+	/// Given a graph in a gameobject, sets it as the current graph and
+	/// sets the graph's starting node to be the current node
+	/// </summary>
+	/// <param name="graph"></param>
+	public void SetNewGraph(DialogueGraph graph)
+	{
+		//Reassign start node
+		//this.graph = graph;
+		//if (graph.traversed == false)
+		//{
+		//    graph.traversed = true;
+		//}
+		//else
+		//{
+		//    graph.ReassignStart();
+		//}
+		CurrentGraph = graph;
+		CurrentNode = graph.StartNode;
+		_UIManager.NewDialogueNode(CurrentNode);
+		GoToSelf();
+	}
+
+	/// <summary>
+	/// Used to check flags to change on starting node of graph.
+	/// </summary>
+	private void GoToSelf()
+	{
+		UpdateFlags();
+	}
+
+	/// <summary>
+	/// Sets currentNode to a new node based on player input. If choice is -1,
+	/// go to current node.
+	/// </summary>
+	/// <param name="choice"></param>
+	public void GoToNode(int choice)
+    {
+        DialogueLink selectedLink = CurrentNode.Links[choice];
+        CurrentNode = selectedLink.ConnectedNode;
+
+        UpdateFlags();
+
+        //Send currentNode info to UI Manager
+        _UIManager.NewDialogueLink(selectedLink);
+    }
+
+	/// <summary>
+	/// Updates flags based on current node.
+	/// </summary>
+    private void UpdateFlags()
+    {
+        foreach (DialogueFlag newFlag in CurrentNode.FlagsToChange)
+        {
+            SceneController.ChangeDialogueFlag(newFlag);
+        }
+    }
+
+    /// <summary>
+    /// Checks if the destination node has a conditional that would stop traversal
+    /// </summary>
+    /// <param name="destinationNode">Node that is to be traveled to</param>
+    /// <param name="flags">List of all possible conditionals in the scene</param>
+    /// <returns>True if all conditionals are met, false otheriwse</returns>
+    public bool CheckTraversal(List<DialogueFlag> flagsToCheck)
+	{        
+		// First, find every conditional in the scene's list of dialogueFlags that corresponds
+		// to a conditional in the distination node
+		// Then, check if any of these nodes don't match. Return false if so.
+		foreach (DialogueFlag destinationFlag in flagsToCheck) 
+		{
+			if (!Flags.Instance.DialogueFlags.Contains(destinationFlag))
+			{
+				return false;
+			}
+		}
+
+		// Otherwise return true
+		//Debug.Log("Successful traversal!");
+		return true;        
+	}
+
+	/*
+	/// <summary>
+	/// Sets up the first dialogue options in the encounter
+	/// </summary>
+	public void StartDialogue()
+	{
+		//Get the number of buttons that we need to spawn
+		int numOfButtons = graph.StartNode.Links.Count;
+		float startingY = buttonCenter.y - numOfButtons * 100 / 2;
+
+		//Instantiate them
+		for(int i = 0; i < numOfButtons; i++)
+		{
+			GameObject button = Instantiate(
+				buttonPrefab, 
+				new Vector2(0, startingY + 100 * i), 
+				Quaternion.identity, 
+				parentOfButton.transform);
+			button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, startingY + 100 * i);
+		}
+	}
+	*/
+}
