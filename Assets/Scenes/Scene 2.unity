@@ -6828,7 +6828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4403017764328130464, guid: 8db95ced89954aa46916a67538918c36, type: 3}
       propertyPath: m_Name
-      value: sallos
+      value: Sallos
       objectReference: {fileID: 0}
     - target: {fileID: 5916161910065205699, guid: 8db95ced89954aa46916a67538918c36, type: 3}
       propertyPath: Mesh

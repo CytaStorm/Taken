@@ -1,3 +1,5 @@
+
+
 {
   "passages": [
     {
@@ -55,11 +57,11 @@
           "pid": "9"
         }
       ],
-      "name": "sallos",
+      "name": "Sallos",
       "pid": "4",
       "position": {
-        "x": "50",
-        "y": "1075"
+        "x": "100",
+        "y": "925"
       },
       "tags": [
         "start"
@@ -127,8 +129,8 @@
       "name": "agreeToHelp",
       "pid": "7",
       "position": {
-        "x": "2050",
-        "y": "700"
+        "x": "2025",
+        "y": "775"
       }
     },
     {
@@ -255,12 +257,12 @@
       "name": "continueUnwrap",
       "pid": "15",
       "position": {
-        "x": "2025",
-        "y": "900"
+        "x": "2075",
+        "y": "850"
       }
     },
     {
-      "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Continue->exitDeadTree]]\n(set: $hasWood to true and $strength += 1)",
+      "text": "After some effort, you manage to get together a small bundle of logs. Enough to last the night, you reckon.\n[[Continue->exitDeadTree]]\n(set: $hasWood to true)",
       "links": [
         {
           "name": "Continue",
@@ -300,7 +302,7 @@
       ]
     },
     {
-      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $talkedToSallos is true and $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]\n(if: $talkedToSallos is true and $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]\n[[Leave->exitDeadTree]]",
+      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]\n(if: $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]\n[[Leave->exitDeadTree]]",
       "links": [
         {
           "name": "Cut some logs",
@@ -497,8 +499,8 @@
       "name": "exitSleep",
       "pid": "32",
       "position": {
-        "x": "3425",
-        "y": "1425"
+        "x": "3350",
+        "y": "1250"
       },
       "tags": [
         "exit",
@@ -523,7 +525,7 @@
       "pid": "34",
       "position": {
         "x": "875",
-        "y": "1000"
+        "y": "875"
       },
       "tags": [
         "exit"
@@ -626,7 +628,7 @@
       }
     },
     {
-      "text": "You've gathered some tinder.\n(set: $hasTinder to true and $intelligence += 1)\n[[Continue->exitGrabTinder]]",
+      "text": "You've gathered some tinder.\n(set: $hasTinder to true)\n[[Continue->exitGrabTinder]]",
       "links": [
         {
           "name": "Continue",
@@ -714,8 +716,8 @@
       "name": "height",
       "pid": "45",
       "position": {
-        "x": "3775",
-        "y": "1100"
+        "x": "3875",
+        "y": "1125"
       }
     },
     {
@@ -913,8 +915,8 @@
       "name": "older",
       "pid": "56",
       "position": {
-        "x": "3475",
-        "y": "950"
+        "x": "3525",
+        "y": "925"
       }
     },
     {
@@ -945,12 +947,12 @@
       "name": "pinch",
       "pid": "58",
       "position": {
-        "x": "3725",
+        "x": "3800",
         "y": "925"
       }
     },
     {
-      "text": "Sallos did say that pine cones are good for kindling, right?\n\n[[Gather a few->getPinecones]]\n[[Continue->exitNoGrabPinecones]]",
+      "text": "Sallos did say that pine cones are good for kindling, right?\n\n(if: $hasTinder is false)[ [[Gather a few->getPinecones]] ]\n[[Continue->exitNoGrabPinecones]]",
       "links": [
         {
           "name": "Gather a few",
@@ -1203,8 +1205,8 @@
       "name": "sigh",
       "pid": "73",
       "position": {
-        "x": "3550",
-        "y": "825"
+        "x": "3750",
+        "y": "850"
       }
     },
     {
@@ -1219,8 +1221,8 @@
       "name": "sleepSoon",
       "pid": "74",
       "position": {
-        "x": "3550",
-        "y": "1300"
+        "x": "3675",
+        "y": "1225"
       }
     },
     {
@@ -1240,7 +1242,7 @@
       }
     },
     {
-      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $talkedToSallos is true $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $talkedToSallos is true $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
+      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
       "links": [
         {
           "name": "Forage for tinder",
@@ -1262,7 +1264,7 @@
       "pid": "76",
       "position": {
         "x": "725",
-        "y": "900"
+        "y": "1000"
       },
       "tags": [
         "start"
@@ -1352,6 +1354,7 @@
   "name": "Parsed Tent",
   "startnode": "70",
   "creator": "Twine",
-  "creator-version": "2.10.0",
+  "creator-version": "2.9.0",
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870"
 }
+
