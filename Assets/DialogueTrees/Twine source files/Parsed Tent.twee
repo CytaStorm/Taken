@@ -53,7 +53,7 @@ A short Ifni gives a puzzled look back at you, his ears turning to the sounds ar
 [[Continue->alright?]]
 
 
-:: agreeToHelp {"position":"2050,700","size":"100,100"}
+:: agreeToHelp {"position":"2025,775","size":"100,100"}
 <b>SALLOS: </b>That's great! Here, just do this one, and we'll be fine.
 [[Unwrap it->unwrap]]
 
@@ -91,10 +91,10 @@ Your hands are already full of firewood. Best to let Sallos take care of these.
 
 :: continueReally {"position":"2925,750","size":"100,100"}
 <b>SALLOS: </b>Thank you! 
-[[Continue->sallosEat]] 
+[[Continue->sallosEat]]
 
 
-:: continueUnwrap {"position":"2025,900","size":"100,100"}
+:: continueUnwrap {"position":"2075,850","size":"100,100"}
 <b>SALLOS: </b>Are you excited to reach the top? We've been waiting for years for this, haven't we?
 [[When do we get to the top?->whenTop]]
 
@@ -114,8 +114,8 @@ The stove is quiet and depressing. Get it lit!
 
 :: deadTree [start] {"position":"400,175","size":"100,100"}
 The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.
-(if: $logQuest is true and $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]
-(if: $logQuest is true and $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]
+(if: $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]
+(if: $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]
 [[Leave->exitDeadTree]]
 
 
@@ -181,7 +181,7 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 (set: $eatCutscene to true)
 
 
-:: exitTinder [exit] {"position":"875,1000","size":"100,100"}
+:: exitTinder [exit] {"position":"875,875","size":"100,100"}
 
 
 
@@ -240,7 +240,7 @@ You pick it up, and take a closer look at the head. It's been worn down after ye
 [[Sharpen the hatchet->sharpen]]
 
 
-:: height {"position":"3775,1100","size":"100,100"}
+:: height {"position":"3875,1125","size":"100,100"}
 <b>SALLOS:</b> It puts me at just the right height to look at you. Even if I can’t live as long as you, I’m happy that I can see you at the same level as me.
 
 [[Continue->blush]]
@@ -306,7 +306,7 @@ You drop the rest of your pemmican in the water, and Sallos puts in a biscuit. I
 [[Continue->look]]
 
 
-:: older {"position":"3475,950","size":"100,100"}
+:: older {"position":"3525,925","size":"100,100"}
 He, however, doesn’t. In the years since you first met him, he’s gotten older, lost some of the roundness in his face and gained a few marks and nicks. Proof that he’s been alive, he’s always said. That being said, he’s not grown taller by much.
 
 [[I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!->sigh]]
@@ -317,7 +317,7 @@ He pulls out a handful of parchment wrapped cubes, tied with pieces of string.
 [[Continue->help]]
 
 
-:: pinch {"position":"3725,925","size":"100,100"}
+:: pinch {"position":"3800,925","size":"100,100"}
 He reaches over to you and pinches your cheek.
 
 [[Continue->height]]
@@ -326,7 +326,7 @@ He reaches over to you and pinches your cheek.
 :: pinecones [start] {"position":"975,1150","size":"100,100"}
 Sallos did say that pine cones are good for kindling, right?
 
-(if: $tinderQuest is true)[ [[Gather a few->getPinecones]] ]
+(if: $hasTinder is false)[ [[Gather a few->getPinecones]] ]
 [[Continue->exitNoGrabPinecones]]
 
 
@@ -399,7 +399,7 @@ You focus your mana, and touch the blade. You feel as is a wind is blowing acros
 [[Continue->edgeFormed]]
 
 
-:: sigh {"position":"3550,825","size":"100,100"}
+:: sigh {"position":"3750,850","size":"100,100"}
 He lets out an exasperated sigh.
 
 [[Continue->grow]]
@@ -416,18 +416,16 @@ SALLOS: Anyways, we should probably finish up soon. We should catch some rest as
 [[Leave->exitTimeToEat]]
 
 
-:: tinder [start] {"position":"725,975","size":"100,100"}
+:: tinder [start] {"position":"725,1000","size":"100,100"}
 Ther is a pile of pine branches and needles on the ground before you.
-(if: $tinderQuest is true and $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]
-(if: $tinderQuest is true and $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]
+(if: $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]
+(if: $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]
 [[Continue->exitTinder]]
 
 
 :: unwrap {"position":"1800,925","size":"100,100"}
 You begin to work through the knot, but it's a struggle to get a hold of each line of string.
 [[Continue->continueUnwrap]]
-
-
 
 
 :: waterBoiling {"position":"2350,1050","size":"100,100"}
