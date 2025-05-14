@@ -1653,7 +1653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4396303981794516323, guid: 89dc815a686b26f468a606c9831d01c4, type: 3}
       propertyPath: changeToSceneName
-      value: InteriorTent
+      value: Tent
       objectReference: {fileID: 0}
     - target: {fileID: 4403017764328130464, guid: 89dc815a686b26f468a606c9831d01c4, type: 3}
       propertyPath: m_Name
