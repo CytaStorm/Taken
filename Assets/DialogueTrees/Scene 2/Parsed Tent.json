@@ -3,7 +3,7 @@
 {
   "passages": [
     {
-      "text": "<b>SALLOS: </b>I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.\n[[Continue->parchment]]",
+      "text": "<b>SALLOS:</b> \"I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.\"\n[[Continue->parchment]]",
       "links": [
         {
           "name": "Continue",
@@ -25,7 +25,11 @@
       "position": {
         "x": "3150",
         "y": "1850"
-      }
+      },
+      "tags": [
+        "end",
+        "exit"
+      ]
     },
     {
       "text": "His ears perk up when he hears your reassurances, and he breathes a sigh of relief.\n[[Continue->continueReally]]",
@@ -44,7 +48,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> Hey, how are you holding up? \n(set: $talkedToSallos to true)\n[[I'm fine.->fine]]\n[[I'm beat!->beat]]",
+      "text": "<b>SALLOS:</b> \"Hey, how are you holding up?\"\n(set: $talkedToSallos to true)\n[[I'm fine.->fine]]\n[[I'm beat!->beat]]",
       "links": [
         {
           "name": "I'm fine.",
@@ -68,7 +72,7 @@
       ]
     },
     {
-      "text": "<b>SALLOS:</b> Hey, what's up? Need anything?\n(if: $hasWood is true)[ [[Present the firewood.->giveFirewood]] ]\n(if: $hasTinder is true)[ [[Present the tinder.->giveTinder]] ]\n(if: $hasWood is false and $hasTinder is false)[ [[I forgot what I needed to do.->forgot]] ]\n[[I'm alright.->sallosTalkedToExit]]",
+      "text": "<b>SALLOS:</b> \"Hey, what's up? Need anything?\"\n(if: $hasWood is true)[ [[Present the firewood.->giveFirewood]] ]\n(if: $hasTinder is true)[ [[Present the tinder.->giveTinder]] ]\n(if: $hasWood is false and $hasTinder is false)[ [[I forgot what I needed to do.->forgot]] ]\n[[I'm alright.->sallosTalkedToExit]]",
       "links": [
         {
           "name": "Present the firewood.",
@@ -94,8 +98,8 @@
       "name": "SallosTalkedTo",
       "pid": "5",
       "position": {
-        "x": "350",
-        "y": "1000"
+        "x": "400",
+        "y": "975"
       },
       "tags": [
         "start"
@@ -118,7 +122,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>That's great! Here, just do this one, and we'll be fine.\n[[Unwrap it->unwrap]]",
+      "text": "<b>SALLOS:</b> \"That's great! Here, just do this one, and we'll be fine.\"\n[[Unwrap it->unwrap]]",
       "links": [
         {
           "name": "Unwrap it",
@@ -130,11 +134,11 @@
       "pid": "7",
       "position": {
         "x": "2025",
-        "y": "775"
+        "y": "725"
       }
     },
     {
-      "text": "<b>SALLOS: </b>You alright? I know you love watching my tail, but you haven't eaten much at all.\n[[Ah! I just...->itsOk]]",
+      "text": "<b>SALLOS:</b> \"You alright? I know you love watching my tail, but you haven't eaten much at all.\"\n[[Ah! I just...->itsOk]]",
       "links": [
         {
           "name": "Ah! I just...",
@@ -150,7 +154,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> Awh, I'm sorry to hear that! But we just have a little bit more work to do.\n[[Continue->work]]",
+      "text": "<b>SALLOS:</b> \"Awh, I'm sorry to hear that! But we just have a little bit more work to do.\"\n[[Continue->work]]",
       "links": [
         {
           "name": "Continue",
@@ -225,12 +229,12 @@
       "name": "cannotGrabTinder",
       "pid": "13",
       "position": {
-        "x": "500",
-        "y": "1050"
+        "x": "550",
+        "y": "1025"
       }
     },
     {
-      "text": "<b>SALLOS: </b>Thank you! \n[[Continue->sallosEat]]",
+      "text": "<b>SALLOS:</b> \"Thank you!\" \n[[Continue->sallosEat]]",
       "links": [
         {
           "name": "Continue",
@@ -246,7 +250,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>Are you excited to reach the top? We've been waiting for years for this, haven't we?\n[[When do we get to the top?->whenTop]]",
+      "text": "<b>SALLOS:</b> \"Are you excited to reach the top? We've been waiting for years for this, haven't we?\"\n[[When do we get to the top?->whenTop]]",
       "links": [
         {
           "name": "When do we get to the top?",
@@ -278,7 +282,7 @@
       }
     },
     {
-      "text": "The stove is quiet and depressing. Get it lit!\n\n(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]",
+      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]",
       "links": [
         {
           "name": "Place the logs down by the stove.",
@@ -302,7 +306,7 @@
       ]
     },
     {
-      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]\n(if: $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]\n[[Leave->exitDeadTree]]",
+      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $hasWood is false and $hasTinder is false and $questFinished is false)[ [[Cut some logs->cut]] ]\n(if: $hasWood is false and $hasTinder is true and $questFinished is false)[ [[Cut some logs->cannotCut]] ]\n[[Continue->exitDeadTree]]",
       "links": [
         {
           "name": "Cut some logs",
@@ -315,7 +319,7 @@
           "pid": "12"
         },
         {
-          "name": "Leave",
+          "name": "Continue",
           "link": "exitDeadTree",
           "pid": "21"
         }
@@ -331,7 +335,7 @@
       ]
     },
     {
-      "text": "<b>SALLOS: </b>...\n[[Continue->salloshoveInMouth]]",
+      "text": "<b>SALLOS:</b> \"...\"\n[[Continue->salloshoveInMouth]]",
       "links": [
         {
           "name": "Continue",
@@ -368,7 +372,7 @@
       "pid": "21",
       "position": {
         "x": "650",
-        "y": "675"
+        "y": "650"
       },
       "tags": [
         "exit"
@@ -451,7 +455,7 @@
       "name": "exitPlaceStove",
       "pid": "28",
       "position": {
-        "x": "1025",
+        "x": "1050",
         "y": "500"
       },
       "tags": [
@@ -471,7 +475,7 @@
       ]
     },
     {
-      "text": "",
+      "text": "(set: $questFinished to true)",
       "name": "exitSallosQuest",
       "pid": "30",
       "position": {
@@ -532,7 +536,7 @@
       ]
     },
     {
-      "text": "<b>SALLOS:</b> Glad to hear it! We still have some work to do, though.\n[[Continue->work]]",
+      "text": "<b>SALLOS:</b> \"Glad to hear it! We still have some work to do, though.\"\n[[Continue->work]]",
       "links": [
         {
           "name": "Continue",
@@ -548,7 +552,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> Oh! You just need to get some firewood or tinder for me. There's a hatchet by the deadwood over there, and I think I saw good spot for foraging tinder a bit further past that.\n[[Thank you.->sallosTalkedToExit]]",
+      "text": "<b>SALLOS:</b> \"Oh! You just need to get some firewood or tinder for me. There's a hatchet by the deadwood over there, and I think I saw good spot for foraging tinder a bit further past that.\"\n[[Thank you.->sallosTalkedToExit]]",
       "links": [
         {
           "name": "Thank you.",
@@ -559,8 +563,8 @@
       "name": "forgot",
       "pid": "36",
       "position": {
-        "x": "175",
-        "y": "1100"
+        "x": "250",
+        "y": "1025"
       }
     },
     {
@@ -596,7 +600,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> Amazing! I already got the tinder and some kindling as well. Let's go inside the tent, and get the fire started!\n[[Continue->exitSallosQuest]]",
+      "text": "<b>SALLOS:</b> \"Amazing! I already got the tinder and some kindling as well. Let's go inside the tent, and get the fire started!\"\n[[Continue->exitSallosQuest]]",
       "links": [
         {
           "name": "Continue",
@@ -612,7 +616,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> Amazing! I already got the firewood and some kindling as well. Let's go inside the tent, and get the fire started!\n[[Continue->exitSallosQuest]]",
+      "text": "<b>SALLOS:</b> \"Amazing! I already got the firewood and some kindling as well. Let's go inside the tent, and get the fire started!\"\n[[Continue->exitSallosQuest]]",
       "links": [
         {
           "name": "Continue",
@@ -721,7 +725,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>I could use some help unpacking these though, if you'd like to help. They're on tight!\n[[Sure!->agreeToHelp]]\n[[I think I'll keep looking around a bit first.->exitHelp]]",
+      "text": "<b>SALLOS:</b> \"I could use some help unpacking these though, if you'd like to help. They're on tight!\"\n[[Sure!->agreeToHelp]]\n[[I think I'll keep looking around a bit first.->exitHelp]]",
       "links": [
         {
           "name": "Sure!",
@@ -742,7 +746,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> Awhh...\n\nHe looks down dejectedly.\n[[I'm just kidding!->reassure]]\n[[It's okay, I'll still eat it!->eatAnyways]]",
+      "text": "<b>SALLOS:</b> \"Awhh...\"\nHe looks down dejectedly.\n[[I'm just kidding!->reassure]]\n[[It's okay, I'll still eat it!->eatAnyways]]",
       "links": [
         {
           "name": "I'm just kidding!",
@@ -779,7 +783,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>It's fine, I get it. But you probably should finish up soon. We need to get  to bed and ready for tomorrow! You're gonna need that energy!\n[[Finish eating.]]",
+      "text": "<b>SALLOS:</b> \"It's fine, I get it. But you probably should finish up soon. We need to get  to bed and ready for tomorrow! You're gonna need that energy!\"\n[[Finish eating.]]",
       "links": [
         {
           "name": "Finish eating.",
@@ -811,7 +815,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> Like it? I tried to make it as tasty as possible without using meat stuff. How’d I do?\n[[It's good!->itsGood]]\n[[It's bad!->itsBad]]",
+      "text": "<b>SALLOS:</b> \"Like it? I tried to make it as tasty as possible without using meat stuff. How’d I do?\"\n[[It's good!->itsGood]]\n[[It's bad!->itsBad]]",
       "links": [
         {
           "name": "It's good!",
@@ -952,7 +956,7 @@
       }
     },
     {
-      "text": "Sallos did say that pine cones are good for kindling, right?\n\n(if: $hasTinder is false)[ [[Gather a few->getPinecones]] ]\n[[Continue->exitNoGrabPinecones]]",
+      "text": "Sallos did say that pine cones are good for kindling, right?\n(if: $hasTinder is false and $questFinished is false)[ [[Gather a few->getPinecones]] ]\n[[Continue->exitNoGrabPinecones]]",
       "links": [
         {
           "name": "Gather a few",
@@ -1008,7 +1012,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>Really?\n[[Really.]]\n[[No.->eatAnyways]]",
+      "text": "<b>SALLOS:</b> \"Really?\"\n[[Really.]]\n[[No.->eatAnyways]]",
       "links": [
         {
           "name": "Really.",
@@ -1064,7 +1068,7 @@
       ]
     },
     {
-      "text": "<b>SALLOS: </b>Would you like to help?\n[[Just a minute.->exitHelpRepeat]]",
+      "text": "<b>SALLOS:</b> \"Would you like to help?\"\n[[Just a minute.->exitHelpRepeat]]",
       "links": [
         {
           "name": "Just a minute.",
@@ -1127,7 +1131,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>It's crazy to think that I had to save you up here when we first met. Remember that? We barely spoke each other's languages! Haha.\n[[Continue->waterBoiling]]",
+      "text": "<b>SALLOS:</b> \"It's crazy to think that I had to save you up here when we first met. Remember that? We barely spoke each other's languages! Haha.\"\n[[Continue->waterBoiling]]",
       "links": [
         {
           "name": "Continue",
@@ -1226,7 +1230,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>Alright! Time to grub!\n[[Leave->exitTimeToEat]]",
+      "text": "<b>SALLOS:</b> \"Alright! Time to grub!\"\n[[Leave->exitTimeToEat]]",
       "links": [
         {
           "name": "Leave",
@@ -1242,7 +1246,7 @@
       }
     },
     {
-      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
+      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $hasTinder is false and $hasWood is false and $questFinished is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $hasTinder is false and $hasWood is true and $questFinished is false)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
       "links": [
         {
           "name": "Forage for tinder",
@@ -1287,7 +1291,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>Look, the water's come to a full boil! You should put the stock cube in!\n[[Gingerly place the cube into the bubbling sea->boil]]",
+      "text": "<b>SALLOS:</b> \"Look, the water's come to a full boil! You should put the stock cube in!\"\n[[Gingerly place the cube into the bubbling sea->boil]]",
       "links": [
         {
           "name": "Gingerly place the cube into the bubbling sea",
@@ -1319,7 +1323,7 @@
       }
     },
     {
-      "text": "<b>SALLOS: </b>Hmmm... we should be there by tomorrow afternoon. We'll make camp there and watch the sun set! I'm telling you, it'll be beautiful!\n[[I can't wait, either!->saveEulyss]]",
+      "text": "<b>SALLOS:</b> \"Hmmm... we should be there by tomorrow afternoon. We'll make camp there and watch the sun set! I'm telling you, it'll be beautiful!\"\n[[I can't wait, either!->saveEulyss]]",
       "links": [
         {
           "name": "I can't wait, either!",
@@ -1335,7 +1339,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> There's a few dead trees around here. You should help me cut some firewood. Or you can go look for tinder—pine needles or anything else that's tiny and dry will work.\n[[Continue->exitQuestGive]]",
+      "text": "<b>SALLOS:</b> \"There's a few dead trees around here. You should help me cut some firewood. Or you can go look for tinder—pine needles or anything else that's tiny and dry will work.\"\n[[Continue->exitQuestGive]]",
       "links": [
         {
           "name": "Continue",
