@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PortraitUpdater : MonoBehaviour
 {
-    [SerializeField] SceneController _sceneController;
+    SceneController _sceneController;
     [SerializeField] UIManager _uiManager;
 
     [SerializeField] Image _portrait;
@@ -17,12 +17,13 @@ public class PortraitUpdater : MonoBehaviour
     
     private GameObject _portraitObject;
     private List<Transform> _portraitSiblingTransforms;
-    private NewDialogueNode _currentNode;
+    private DialogueNode _currentNode;
     private string _speakerName; // make public for debugging only!
 
     // Start is called before the first frame update
     void Start()
     {
+        _sceneController = SceneController.Instance;
         // Initialize global variables
         _portraitObject = _portrait.gameObject;
 

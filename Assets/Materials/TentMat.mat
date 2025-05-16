@@ -113,5 +113,5 @@ Material:
     - _Base_Color: {r: 0.6603774, g: 0.62433255, b: 0.5762727, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 0.033564992, g: 1, b: 1, a: 1}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

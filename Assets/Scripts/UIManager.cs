@@ -21,8 +21,9 @@ public class UIManager : MonoBehaviour
 	public static UIManager UI { get; private set; }
 
 	[Header("Other GameObjects")]
-	[SerializeField] private SceneController _sceneController;
+	private SceneController _sceneController;
 	[SerializeField] private PlayerInput _input;
+	[SerializeField] private StatUIUpdater _profileUpdater;
 
 	[Header("Audio")]
 	[SerializeField] private AudioSource audioSource;
@@ -42,7 +43,6 @@ public class UIManager : MonoBehaviour
 
 	//Most recent textbox
 	private Transform _mostRecentTextContainer;
-
 
 	#region Buttons
 	[Header("Buttons")]
@@ -99,7 +99,8 @@ public class UIManager : MonoBehaviour
 		if (UI != null && UI != this)
 		{
 			Destroy(UI);
-		} else
+		}
+		else
 		{
 			UI = this;
 		}
@@ -107,6 +108,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
 	{
+		_sceneController = SceneController.Instance;
         if (_sceneController.autoStartDialogue)
         {
             CurrentUIMode = UIMode.Dialogue;
@@ -142,7 +144,7 @@ public class UIManager : MonoBehaviour
 		_dialogueUI.SetActive(true);
 	}
 
-	public void NewDialogueLink(NewDialogueLink dialogueLink)
+	public void NewDialogueLink(DialogueLink dialogueLink)
 	{
 		if (dialogueLink.Name != "Continue" && dialogueLink.Name != "Leave")
 		{
@@ -186,7 +188,7 @@ public class UIManager : MonoBehaviour
 	}
 
 	//Player traversed to a new Dialogue node
-	public void NewDialogueNode(NewDialogueNode dialogueNode)
+	public void NewDialogueNode(DialogueNode dialogueNode)
 	{
 		//If there is a previous textBox, change its color to gray
 		if (_mostRecentTextContainer != null)
@@ -252,13 +254,13 @@ public class UIManager : MonoBehaviour
 		CreateButtons(dialogueNode);
 	}
 
-	private void CreateButtons(NewDialogueNode dialogueNode)
+	private void CreateButtons(DialogueNode dialogueNode)
 	{
 		//Check links
 		for (int i = 0; i < dialogueNode.Links.Count; i++)
 		{
-			NewDialogueLink link = dialogueNode.Links[i];
-			NewDialogueNode linkedNode = link.ConnectedNode;
+			DialogueLink link = dialogueNode.Links[i];
+			DialogueNode linkedNode = link.ConnectedNode;
 
 			if (_sceneController.CheckTraversal(link.Flags))
 			{
@@ -283,10 +285,10 @@ public class UIManager : MonoBehaviour
 					exitButtonComponent.onClick.AddListener(
 						delegate
 						{
-							if (PlayerController.PlayerControl.Focus != null &&
-							PlayerController.PlayerControl.Focus is NPCScript)
+							if (PlayerController.Instance.Focus != null &&
+							PlayerController.Instance.Focus is NPCScript)
 							{
-								((NPCScript)PlayerController.PlayerControl.Focus).ExitDialogue();
+								((NPCScript)PlayerController.Instance.Focus).ExitDialogue();
 							}
 						}
 					);
@@ -346,7 +348,7 @@ public class UIManager : MonoBehaviour
 		//Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
-		PlayerController.PlayerControl.RemoveFocus();
+		PlayerController.Instance.RemoveFocus();
 	}
 
 	public void UnPause()
@@ -395,4 +397,12 @@ public class UIManager : MonoBehaviour
             button.SetActive(true);
         }
     }
+
+	/// <summary>
+	/// Updates the profile menu with updated game stats.
+	/// </summary>
+	public void UpdateStats(object sender, EventArgs e)
+	{
+		_profileUpdater.UpdateStats();
+	}
 }

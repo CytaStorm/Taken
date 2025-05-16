@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SceneThreeController : CutsceneController
+public class SceneThreeController : SceneController
 {
     // Actors
     [SerializeField] private GameObject _sallos;
@@ -47,13 +47,13 @@ public class SceneThreeController : CutsceneController
         CreateEventFlags();
 
         // Assign all event methods to OnClick() events for all buttons
-        _eventFlags[0].onValueChange += delegate { WalkLeft(); };
-        _eventFlags[1].onValueChange += delegate { EnterAkif(); };
-        _eventFlags[2].onValueChange += delegate { EnterGoon(); };
-        _eventFlags[3].onValueChange += delegate { WalkCloser(); };
-        _eventFlags[4].onValueChange += delegate { Stab(); };
-        _eventFlags[5].onValueChange += delegate { Disappear(); };
-        _eventFlags[6].onValueChange += delegate { Reach(); };
+        _eventFlags[0].OnValueChange += delegate { WalkLeft(); };
+        _eventFlags[1].OnValueChange += delegate { EnterAkif(); };
+        _eventFlags[2].OnValueChange += delegate { EnterGoon(); };
+        _eventFlags[3].OnValueChange += delegate { WalkCloser(); };
+        _eventFlags[4].OnValueChange += delegate { Stab(); };
+        _eventFlags[5].OnValueChange += delegate { Disappear(); };
+        _eventFlags[6].OnValueChange += delegate { Reach(); };
 
         // Get component data for all actors
         _sallosAgent = _sallos.GetComponent<NavMeshAgent>();
