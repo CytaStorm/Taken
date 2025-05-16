@@ -20,7 +20,7 @@ public abstract class InteractableScript : MonoBehaviour
     public int InteractionCount = 0;
     public bool isFocus { 
         get { 
-            return PlayerController.PlayerControl.Focus == this; 
+            return PlayerController.Instance.Focus == this; 
         } 
     }
 
@@ -63,7 +63,7 @@ public abstract class InteractableScript : MonoBehaviour
 		}
 
 		float distance = Vector3.Distance(
-			PlayerController.PlayerControl.gameObject.transform.position,
+			PlayerController.Instance.gameObject.transform.position,
 			InteractionPoint.transform.position);
 
 		// If its able to be interacted with, Interact

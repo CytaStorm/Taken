@@ -70,10 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0283e180c20d9409506e6c241aed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _UIManager: {fileID: 0}
   playerInput: {fileID: 8178595822778452173}
   cam: {fileID: 0}
-  _agent: {fileID: 2268569142787013776}
+  Agent: {fileID: 2268569142787013776}
   raycastRange: 100
   movementMask:
     serializedVersion: 2
@@ -83,6 +82,8 @@ MonoBehaviour:
     m_Bits: 128
   inDialogue: 0
   _animator: {fileID: 2436593191187250129}
+  rotationDistance: 0
+  Focus: {fileID: 0}
 --- !u!114 &8178595822778452173
 MonoBehaviour:
   m_ObjectHideFlags: 0

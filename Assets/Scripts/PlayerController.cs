@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
 
 	[SerializeField] private PlayerInput playerInput;
 
-	[SerializeField] private Camera cam;
-	[SerializeField] private NavMeshAgent _agent;
+	public Camera Cam;
+	public NavMeshAgent Agent;
 	[SerializeField] private int raycastRange = 100;
 	[SerializeField] private LayerMask movementMask;
 	[SerializeField] private LayerMask interactableMask;
@@ -31,20 +31,20 @@ public class PlayerController : MonoBehaviour
 	}
 
 	//Singleton stuff
-	public static PlayerController PlayerControl
+	public static PlayerController Instance
 	{
 		get; private set;
 	}
 
 	private void Awake()
 	{
-		if (PlayerControl != null && PlayerControl != this)
+		if (Instance != null && Instance != this)
 		{
 			Destroy(gameObject);
 		}
 		else
 		{
-			PlayerControl = this;
+			Instance = this;
 		}
 	}
 
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Focus != null)
 		{
-			_agent.SetDestination(Focus.InteractionPoint.transform.position);
+			Agent.SetDestination(Focus.InteractionPoint.transform.position);
 
 			//casted to ints to prevent floating point imprecision
 			if ((int)Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) == (int)rotationDistance)
@@ -71,14 +71,14 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		//Control eulyss walking anim
-		_animator.SetFloat("VelocityPercent", _agent.velocity.magnitude / _agent.speed);
+		_animator.SetFloat("VelocityPercent", Agent.velocity.magnitude / Agent.speed);
 	}
 
     public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{
 		if (!ctx.performed) return;
 		Vector3 mousePos = Mouse.current.position.ReadValue();
-		Ray ray = cam.ScreenPointToRay(mousePos);
+		Ray ray = Cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;
 
 		// Don't move character if UI is clicked
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 		// if the ray hits something walkable move the player towards it
 		else if (Physics.Raycast(ray, out hit, raycastRange, movementMask))
 		{
-			_agent.SetDestination(hit.point);
+			Agent.SetDestination(hit.point);
 			RemoveFocus();
 		}
 	}
@@ -125,6 +125,6 @@ public class PlayerController : MonoBehaviour
 
 	public Vector3 GetDestination()
 	{
-		return _agent.destination;
+		return Agent.destination;
 	}
 }

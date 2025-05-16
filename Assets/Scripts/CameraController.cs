@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour
             //MOVEMENT STATE during typical gameplay - ie moving around 
             case CameraState.Movement:
                 //Change to ZoomingIn --> Dialogue
-                if (PlayerController.PlayerControl.InDialogue)
+                if (PlayerController.Instance.InDialogue)
                 {
                     //Switch the camera state
                     camState = CameraState.ZoomingIn;
@@ -57,7 +57,7 @@ public class CameraController : MonoBehaviour
 
             //DIALOGUE STATE (be ready to switch back to zoom out)
             case CameraState.Dialogue:
-                if (PlayerController.PlayerControl.InDialogue == false)
+                if (PlayerController.Instance.InDialogue == false)
                 {
                     //Vector3 newPos = target.position - (offset * zoom);
                     //distanceToNewPos = newPos - transform.position;

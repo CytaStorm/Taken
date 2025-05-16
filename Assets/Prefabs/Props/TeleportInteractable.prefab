@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 1403553843963320533}
   - component: {fileID: 4396303981794516323}
   m_Layer: 7
-  m_Name: Scene Change Interactable
+  m_Name: TeleportInteractable
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

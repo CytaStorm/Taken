@@ -285,10 +285,10 @@ public class UIManager : MonoBehaviour
 					exitButtonComponent.onClick.AddListener(
 						delegate
 						{
-							if (PlayerController.PlayerControl.Focus != null &&
-							PlayerController.PlayerControl.Focus is NPCScript)
+							if (PlayerController.Instance.Focus != null &&
+							PlayerController.Instance.Focus is NPCScript)
 							{
-								((NPCScript)PlayerController.PlayerControl.Focus).ExitDialogue();
+								((NPCScript)PlayerController.Instance.Focus).ExitDialogue();
 							}
 						}
 					);
@@ -348,7 +348,7 @@ public class UIManager : MonoBehaviour
 		//Debug.Log("Changed to gameplay buton");
 		CurrentUIMode = UIMode.Gameplay;
 		_dialogueUI.SetActive(false);
-		PlayerController.PlayerControl.RemoveFocus();
+		PlayerController.Instance.RemoveFocus();
 	}
 
 	public void UnPause()
