@@ -48,7 +48,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> \"Hey, how are you holding up?\"\n(set: $talkedToSallos to true)\n[[I'm fine.->fine]]\n[[I'm beat!->beat]]",
+      "text": "<b>SALLOS:</b> \"Hey, how are you holding up?\"\n[[I'm fine.->fine]]\n[[I'm beat!->beat]]",
       "links": [
         {
           "name": "I'm fine.",
@@ -61,7 +61,7 @@
           "pid": "9"
         }
       ],
-      "name": "Sallos",
+      "name": "sallos",
       "pid": "4",
       "position": {
         "x": "100",
@@ -95,11 +95,11 @@
           "pid": "67"
         }
       ],
-      "name": "SallosTalkedTo",
+      "name": "sallosTalkedTo",
       "pid": "5",
       "position": {
-        "x": "400",
-        "y": "975"
+        "x": "325",
+        "y": "925"
       },
       "tags": [
         "start"
@@ -229,8 +229,8 @@
       "name": "cannotGrabTinder",
       "pid": "13",
       "position": {
-        "x": "550",
-        "y": "1025"
+        "x": "800",
+        "y": "1100"
       }
     },
     {
@@ -282,17 +282,22 @@
       }
     },
     {
-      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]",
+      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true) [ [[Place the logs down by the stove->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove->placeKindling]] ]\n[[Leave->exitDeadStove]]",
       "links": [
         {
-          "name": "Place the logs down by the stove.",
+          "name": "Place the logs down by the stove",
           "link": "placeLogs",
           "pid": "61"
         },
         {
-          "name": "Place the kindling down by the stove.",
+          "name": "Place the kindling down by the stove",
           "link": "placeKindling",
           "pid": "60"
+        },
+        {
+          "name": "Leave",
+          "link": "exitDeadStove",
+          "pid": "82"
         }
       ],
       "name": "deadStove",
@@ -306,7 +311,7 @@
       ]
     },
     {
-      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $hasWood is false and $hasTinder is false and $questFinished is false)[ [[Cut some logs->cut]] ]\n(if: $hasWood is false and $hasTinder is true and $questFinished is false)[ [[Cut some logs->cannotCut]] ]\n[[Continue->exitDeadTree]]",
+      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]\n(if: $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]\n[[Continue->exitDeadTree]]",
       "links": [
         {
           "name": "Cut some logs",
@@ -383,8 +388,8 @@
       "name": "exitGrabTinder",
       "pid": "22",
       "position": {
-        "x": "625",
-        "y": "1500"
+        "x": "800",
+        "y": "1475"
       },
       "tags": [
         "exit"
@@ -431,8 +436,8 @@
       "name": "exitNoGrabPinecones",
       "pid": "26",
       "position": {
-        "x": "900",
-        "y": "1325"
+        "x": "1050",
+        "y": "1225"
       },
       "tags": [
         "exit"
@@ -443,8 +448,8 @@
       "name": "exitPinecones",
       "pid": "27",
       "position": {
-        "x": "975",
-        "y": "1475"
+        "x": "1125",
+        "y": "1375"
       },
       "tags": [
         "exit"
@@ -463,23 +468,23 @@
       ]
     },
     {
-      "text": "",
+      "text": "(set: $talkedToSallos to true)",
       "name": "exitQuestGive",
       "pid": "29",
       "position": {
-        "x": "25",
-        "y": "1775"
+        "x": "150",
+        "y": "1675"
       },
       "tags": [
         "exit"
       ]
     },
     {
-      "text": "(set: $questFinished to true)",
-      "name": "exitSallosQuest",
+      "text": "(set: $finishedTinderQuest to true)",
+      "name": "exitSallosQuestTinder",
       "pid": "30",
       "position": {
-        "x": "500",
+        "x": "350",
         "y": "1675"
       },
       "tags": [
@@ -528,8 +533,8 @@
       "name": "exitTinder",
       "pid": "34",
       "position": {
-        "x": "875",
-        "y": "875"
+        "x": "1050",
+        "y": "850"
       },
       "tags": [
         "exit"
@@ -563,8 +568,8 @@
       "name": "forgot",
       "pid": "36",
       "position": {
-        "x": "250",
-        "y": "1025"
+        "x": "225",
+        "y": "1100"
       }
     },
     {
@@ -595,32 +600,32 @@
       "name": "getPinecones",
       "pid": "38",
       "position": {
-        "x": "1100",
-        "y": "1325"
+        "x": "1250",
+        "y": "1225"
       }
     },
     {
-      "text": "<b>SALLOS:</b> \"Amazing! I already got the tinder and some kindling as well. Let's go inside the tent, and get the fire started!\"\n[[Continue->exitSallosQuest]]",
+      "text": "<b>SALLOS:</b> \"Amazing! I already got the tinder and some kindling as well. Let's go inside the tent, and get the fire started!\"\n[[Continue->exitSallosQuestFireWood]]",
       "links": [
         {
           "name": "Continue",
-          "link": "exitSallosQuest",
-          "pid": "30"
+          "link": "exitSallosQuestFireWood",
+          "pid": "83"
         }
       ],
       "name": "giveFirewood",
       "pid": "39",
       "position": {
-        "x": "500",
-        "y": "1450"
+        "x": "475",
+        "y": "1500"
       }
     },
     {
-      "text": "<b>SALLOS:</b> \"Amazing! I already got the firewood and some kindling as well. Let's go inside the tent, and get the fire started!\"\n[[Continue->exitSallosQuest]]",
+      "text": "<b>SALLOS:</b> \"Amazing! I already got the firewood and some kindling as well. Let's go inside the tent, and get the fire started!\"\n[[Continue->exitSallosQuestTinder]]",
       "links": [
         {
           "name": "Continue",
-          "link": "exitSallosQuest",
+          "link": "exitSallosQuestTinder",
           "pid": "30"
         }
       ],
@@ -628,7 +633,7 @@
       "pid": "40",
       "position": {
         "x": "350",
-        "y": "1600"
+        "y": "1525"
       }
     },
     {
@@ -643,8 +648,8 @@
       "name": "grabTinder",
       "pid": "41",
       "position": {
-        "x": "725",
-        "y": "1275"
+        "x": "900",
+        "y": "1250"
       }
     },
     {
@@ -972,8 +977,8 @@
       "name": "pinecones",
       "pid": "59",
       "position": {
-        "x": "975",
-        "y": "1150"
+        "x": "1125",
+        "y": "1050"
       },
       "tags": [
         "start"
@@ -1007,7 +1012,7 @@
       "name": "placeLogs",
       "pid": "61",
       "position": {
-        "x": "925",
+        "x": "875",
         "y": "275"
       }
     },
@@ -1107,8 +1112,8 @@
       "name": "sallosTalkedToExit",
       "pid": "67",
       "position": {
-        "x": "250",
-        "y": "1400"
+        "x": "325",
+        "y": "1225"
       },
       "tags": [
         "exit"
@@ -1246,7 +1251,7 @@
       }
     },
     {
-      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $hasTinder is false and $hasWood is false and $questFinished is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $hasTinder is false and $hasWood is true and $questFinished is false)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
+      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
       "links": [
         {
           "name": "Forage for tinder",
@@ -1267,7 +1272,7 @@
       "name": "tinder",
       "pid": "76",
       "position": {
-        "x": "725",
+        "x": "950",
         "y": "1000"
       },
       "tags": [
@@ -1350,9 +1355,127 @@
       "name": "work",
       "pid": "81",
       "position": {
-        "x": "75",
-        "y": "1525"
+        "x": "50",
+        "y": "1550"
       }
+    },
+    {
+      "text": "",
+      "name": "exitDeadStove",
+      "pid": "82",
+      "position": {
+        "x": "725",
+        "y": "100"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "(set: $finishedFirewoodQuest to true)",
+      "name": "exitSallosQuestFireWood",
+      "pid": "83",
+      "position": {
+        "x": "475",
+        "y": "1650"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "Sallos is busy chopping away at the dead tree.\n[[Continue->sallosTree]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "sallosTree",
+          "pid": "86"
+        }
+      ],
+      "name": "sallosAtDeadTree",
+      "pid": "84",
+      "position": {
+        "x": "425",
+        "y": "775"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "He slowly picks away at the pile of twigs.\n[[Continue->sallosTinder]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "sallosTinder",
+          "pid": "87"
+        }
+      ],
+      "name": "sallosAtTinder",
+      "pid": "85",
+      "position": {
+        "x": "600",
+        "y": "775"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "<b>SALLOS:</b> \"Oh hey. Why don't you head in first and drop off the kindling? I'll be here for a litte bit.\"\n[[Leave->exitSallosTree]]",
+      "links": [
+        {
+          "name": "Leave",
+          "link": "exitSallosTree",
+          "pid": "88"
+        }
+      ],
+      "name": "sallosTree",
+      "pid": "86",
+      "position": {
+        "x": "475",
+        "y": "900"
+      }
+    },
+    {
+      "text": "<b>SALLOS:</b> \"Oh hey. Why don't you head in first and drop off the firewood? I'll be here for a litte bit.\"\n[[Continue->exitSallosTinder]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "exitSallosTinder",
+          "pid": "89"
+        }
+      ],
+      "name": "sallosTinder",
+      "pid": "87",
+      "position": {
+        "x": "600",
+        "y": "925"
+      }
+    },
+    {
+      "text": "",
+      "name": "exitSallosTree",
+      "pid": "88",
+      "position": {
+        "x": "500",
+        "y": "1050"
+      },
+      "tags": [
+        "exit"
+      ]
+    },
+    {
+      "text": "",
+      "name": "exitSallosTinder",
+      "pid": "89",
+      "position": {
+        "x": "625",
+        "y": "1075"
+      },
+      "tags": [
+        "exit"
+      ]
     }
   ],
   "name": "Parsed Tent",

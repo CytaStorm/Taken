@@ -23,7 +23,7 @@ public class ScreenDimmer : MonoBehaviour
         else
         {
             _canvasGroup.alpha = 0;
-            print("not fade in");
+            //print("not fade in");
         }
     }
 

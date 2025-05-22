@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 			{
 				Vector3 direction = Focus.transform.position - transform.position;
 				Quaternion targetRotation = Quaternion.LookRotation(direction);
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 150 * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 250 * Time.deltaTime);
 			}
 		}
 		//Control eulyss walking anim
