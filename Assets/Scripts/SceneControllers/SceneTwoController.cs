@@ -25,6 +25,8 @@ public class SceneTwoController : SceneController
 	private InteractableScript _tinderScript;
 	[SerializeField] private GameObject _stove;
 	private InteractableScript _stoveScript;
+	[SerializeField] private GameObject _hatchet;
+	private InteractableScript _hatchetScript;
 
 	//props
 	[SerializeField] private GameObject _stoveLogs;
@@ -38,6 +40,7 @@ public class SceneTwoController : SceneController
 		_deadTreeScript = _deadTree.GetComponent<InteractableScript>();
 		_tinderScript = _tinder.GetComponent<InteractableScript>();
 		_stoveScript = _stove.GetComponent<InteractableScript>();
+		_hatchetScript = _hatchet.GetComponent<InteractableScript>();
 
 		_sallosScript = _sallos.GetComponent<NPCScript>();
 		_sallosAgent = _sallos.GetComponent<NavMeshAgent>();
@@ -51,6 +54,8 @@ public class SceneTwoController : SceneController
 		_flagNames.Add("placeStoveLogs");
 		_flagNames.Add("placeStoveTinder");
 		_flagNames.Add("sallosWalkIn");
+		_flagNames.Add("sallosDiscussionRepeat");
+		_flagNames.Add("sharpenedHatchet");
 		CreateEventFlags();
 
 		_eventFlags[0].OnValueChange += delegate
@@ -73,7 +78,22 @@ public class SceneTwoController : SceneController
 
 		//Sallos walk in
 		_eventFlags[5].OnValueChange += delegate { 
-			StartCoroutine(SallosWalkIntoTent()); };
+			StartCoroutine(SallosWalkIntoTent(5)); };
+
+		//Sallos discussion repeat
+		_eventFlags[6].OnValueChange += delegate
+		{
+			_sallosScript.Graph.StartNode = 
+				_sallosScript.Graph.Nodes.FirstOrDefault(
+					newNode => newNode.Name == "sallosDiscussionRepeat");
+		};
+
+		_eventFlags[7].OnValueChange += delegate
+		{
+			_sallosScript.Graph.StartNode =
+				_sallosScript.Graph.Nodes.FirstOrDefault(
+					newNode => newNode.Name == "timeToEat");
+		};
 	}
 
 	// Update is called once per frame
@@ -98,21 +118,26 @@ public class SceneTwoController : SceneController
 		_tinderScript.Interactable = false;
 	}
 
-	private IEnumerator SallosWalkIntoTent()
+	private IEnumerator SallosWalkIntoTent(float fadeTime)
 	{
-		Fade();
-		//Teleport sallos to edge of tent
-		yield return new WaitForSeconds(5f);
-		PlayerController.Instance.Agent.Warp(new Vector3(-51, 2.17f, 174));
-		Quaternion.RotateTowards(
-			PlayerController.Instance.transform.rotation,
-			_stove.transform.rotation, 360);
-		_sallosAgent.Warp(new Vector3(-52, 2.17f, 179));
+		StartCoroutine(Fade(fadeTime));
+		yield return new WaitForSeconds(fadeTime);
+		//Disable stove interaction
+		_stoveScript.Interactable = false;
 
+		//teleport player
+		PlayerController.Instance.Agent.Warp(new Vector3(-51, 2.17f, 174));
+		PlayerController.Instance.gameObject.transform.forward =
+			(_stove.transform.position -
+			PlayerController.Instance.transform.position);
+
+		//Teleport sallos to edge of tent
+		_sallosAgent.Warp(new Vector3(-52, 2.17f, 179));
 		_sallosScript.InteractionPivot.transform.rotation =
 			Quaternion.Euler(0, 90, 0);
 		_sallosAgent.speed = 1.5f;
 		_sallosAgent.SetDestination(_stoveScript.InteractionPoint.transform.position);
+		_hatchet.SetActive(true);
 		StartCoroutine(GoToLocation(_stove.transform.position, "sallosDiscussion"));
 	}
 

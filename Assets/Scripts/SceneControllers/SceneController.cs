@@ -66,7 +66,7 @@ public class SceneController : MonoBehaviour
 	/// Time in seconds, to fade out
 	/// </summary>
 	[Tooltip("Time, in seconds, that it takes to fade out of scene.")]
-	[SerializeField] protected float _fadeOutTime;
+	public float FadeOutTime;
 
 	/// <summary>
 	/// Is the scene currently fading out?
@@ -82,7 +82,8 @@ public class SceneController : MonoBehaviour
 	/// Time, in seconds, to fade in.
 	/// </summary>
 	[Space(10)]
-	[Tooltip("Time, in seconds, to fade in.")][SerializeField] protected float _fadeInTime;
+	[Tooltip("Time, in seconds, to fade in.")]
+	public float FadeInTime;
 
 	/// <summary>
 	/// Does the scene fade in?
@@ -110,7 +111,7 @@ public class SceneController : MonoBehaviour
 	{
 		get
 		{
-			return (_fadeOutTimer / (_fadeOutTime - 1.5f));
+			return (_fadeOutTimer / (FadeOutTime - 1.5f));
 		}
 	}
 
@@ -118,7 +119,7 @@ public class SceneController : MonoBehaviour
 	{
 		get
 		{  
-			return (_fadeInTimer / (_fadeInTime - 1.5f));
+			return (_fadeInTimer / (FadeInTime - 1.5f));
 		}
 	}
 
@@ -212,9 +213,9 @@ public class SceneController : MonoBehaviour
 		#region Fades in/out
 		if (FadesIn)
 		{
-			_fadeInTimer = Mathf.Clamp(_fadeInTimer + Time.deltaTime, 0, _fadeInTime);
+			_fadeInTimer = Mathf.Clamp(_fadeInTimer + Time.deltaTime, 0, FadeInTime);
 		}
-		if (_fadeInTimer == _fadeInTime)
+		if (_fadeInTimer == FadeInTime)
 		{
 			FadesIn = false;
 		}
@@ -223,12 +224,12 @@ public class SceneController : MonoBehaviour
 		if (FadingOut)
 		{
 			_fadeOutTimer += Time.deltaTime;
-			if (_fadeOutTimer > _fadeOutTime && newScene)
+			if (_fadeOutTimer > FadeOutTime && newScene)
 			{
 				SceneManager.LoadScene(_destinationScene);
 			}
 		}
-		if (_fadeOutTimer > _fadeOutTime)
+		if (_fadeOutTimer > FadeOutTime)
 		{
 			FadingOut = false;
 			FadesIn = true;
@@ -369,10 +370,21 @@ public class SceneController : MonoBehaviour
         }
     }
 
-	protected void Fade()
+	protected IEnumerator Fade(float seconds)
 	{
+        float oldFadeInTime = Instance.FadeInTime;
+        float oldFadeOutTime = Instance.FadeOutTime;
+
+        Instance.FadeInTime = seconds;
+        Instance.FadeOutTime = seconds;
+
 		_fadeInTimer = 0;
 		_fadeOutTimer = 0;
 		FadingOut = true;
+
+		yield return new WaitForSeconds(seconds);
+
+        Instance.FadeInTime = oldFadeInTime;
+        Instance.FadeOutTime = oldFadeOutTime;
 	}
 }
