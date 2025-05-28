@@ -96,6 +96,8 @@ public class SceneController : MonoBehaviour
 
 	public delegate IEnumerator OnSceneChangeHandler(float seconds);
 	public event OnSceneChangeHandler onSceneChange;
+
+	private bool newScene = false;
 	#endregion
 
 	public static SceneController Instance;
@@ -183,10 +185,11 @@ public class SceneController : MonoBehaviour
 			if (flag.Name.Contains("end"))
 			{
 				flag.OnValueChange += delegate 
-		//ExtractFlags returns a list of list of newdialogue flags, but because each
+					//ExtractFlags returns a list of list of newdialogue flags, but because each
 				{
 					print("here");
 					FadingOut = true;
+					newScene = true;
 					onSceneChange(5);
 				};
 			}
@@ -220,10 +223,15 @@ public class SceneController : MonoBehaviour
 		if (FadingOut)
 		{
 			_fadeOutTimer += Time.deltaTime;
-			if (_fadeOutTimer > _fadeOutTime)
+			if (_fadeOutTimer > _fadeOutTime && newScene)
 			{
 				SceneManager.LoadScene(_destinationScene);
 			}
+		}
+		if (_fadeOutTimer > _fadeOutTime)
+		{
+			FadingOut = false;
+			FadesIn = true;
 		}
 		#endregion
 	}
@@ -344,11 +352,6 @@ public class SceneController : MonoBehaviour
 			graph => graph.Name == graphName);
 	}
 
-	public void NextScene()
-	{
-		FadingOut = true;
-	}
-
 	/// <summary>
     /// Identifies flags with dev added flag names and adds
     /// them to the eventflags list.
@@ -366,4 +369,10 @@ public class SceneController : MonoBehaviour
         }
     }
 
+	protected void Fade()
+	{
+		_fadeInTimer = 0;
+		_fadeOutTimer = 0;
+		FadingOut = true;
+	}
 }

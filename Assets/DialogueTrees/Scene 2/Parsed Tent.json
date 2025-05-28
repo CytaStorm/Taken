@@ -282,7 +282,7 @@
       }
     },
     {
-      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true) [ [[Place the logs down by the stove->placeLogs]] ]\n(if: $hasKindling is true) [ [[Place the kindling down by the stove->placeKindling]] ]\n[[Leave->exitDeadStove]]",
+      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true and $finishedFirewoodQuest is true) [ [[Place the logs down by the stove->placeLogs]] ]\n(if: $hasKindling is true and $finishedTinderQuest is true) [ [[Place the kindling down by the stove->placeKindling]] ]\n[[Leave->exitDeadStove]]",
       "links": [
         {
           "name": "Place the logs down by the stove",
@@ -485,7 +485,7 @@
       "pid": "30",
       "position": {
         "x": "350",
-        "y": "1675"
+        "y": "1600"
       },
       "tags": [
         "exit"
@@ -616,8 +616,8 @@
       "name": "giveFirewood",
       "pid": "39",
       "position": {
-        "x": "475",
-        "y": "1500"
+        "x": "550",
+        "y": "1475"
       }
     },
     {
@@ -633,7 +633,7 @@
       "pid": "40",
       "position": {
         "x": "350",
-        "y": "1525"
+        "y": "1425"
       }
     },
     {
@@ -985,7 +985,7 @@
       ]
     },
     {
-      "text": "You place the bundle of sticks by the stove.\n[[Continue->exitPlaceStove]]",
+      "text": "You place the bundle of sticks by the stove.\n(set: $placeStoveTinder to true)\n[[Continue->exitPlaceStove]]",
       "links": [
         {
           "name": "Continue",
@@ -1001,7 +1001,7 @@
       }
     },
     {
-      "text": "You place the bundle of sticks by the stove.\n[[Continue->exitPlaceStove]]",
+      "text": "You place the bundle of sticks by the stove.\n(set: $placeStoveLogs to true)\n[[Continue->exitPlaceStove]]",
       "links": [
         {
           "name": "Continue",
