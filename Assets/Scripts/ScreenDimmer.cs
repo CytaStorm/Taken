@@ -11,12 +11,14 @@ public class ScreenDimmer : MonoBehaviour
 
     private void Awake()
     {
+
     }
+
     // Start is called before the first frame update
     void Start()
     {
         _sceneController = SceneController.Instance;
-        if (_sceneController.FadesIn)
+        if (_sceneController.FadingIn)
         {
             _canvasGroup.alpha = 1;
         }
@@ -30,7 +32,7 @@ public class ScreenDimmer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_sceneController.FadesIn)
+        if (_sceneController.FadingIn)
         {
             _canvasGroup.alpha = 1 - _sceneController.FadeInTimerPercent;
         }

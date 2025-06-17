@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Animator _animator;
 
 	[SerializeField] private float rotationDistance;
+	public bool CanMove = true;
 
 	public InteractableScript Focus;
 
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveInteract(InputAction.CallbackContext ctx)
 	{
-		if (!ctx.performed) return;
+		if (!ctx.performed || !CanMove) return;
 		Vector3 mousePos = Mouse.current.position.ReadValue();
 		Ray ray = Cam.ScreenPointToRay(mousePos);
 		RaycastHit hit;

@@ -57,16 +57,30 @@ public class SceneController : MonoBehaviour
 
 	#region Scene Changing
 	/// <summary>
+	/// Latest fade coroutine started, defined to allow stopping fades early
+	/// </summary>
+	public Coroutine LatestFade;
+	/// <summary>
 	/// Destination scene.
 	/// </summary>
 	[Header("Scene Changing")]
 	[Tooltip("Destination Scene")][SerializeField] protected string _destinationScene;
 
 	/// <summary>
-	/// Time in seconds, to fade out
+	/// Current time it takes to fade in
 	/// </summary>
-	[Tooltip("Time, in seconds, that it takes to fade out of scene.")]
-	public float FadeOutTime;
+	private float _currentFadeInTime;
+
+	/// <summary>
+	/// Current time it takes to fade out
+	/// </summary>
+	private float _currentFadeOutTime;
+
+	/// <summary>
+	/// Time, in seconds, that it takes to fade out of scene into a different scene.
+	/// </summary>
+	[Tooltip("Time, in seconds, that it takes to fade out of scene into a different scene.")]
+	public float SceneFadeOutTime;
 
 	/// <summary>
 	/// Is the scene currently fading out?
@@ -79,16 +93,15 @@ public class SceneController : MonoBehaviour
     protected float _fadeOutTimer = 0f;
 
 	/// <summary>
-	/// Time, in seconds, to fade in.
+	/// Time, in seconds, for the scene to fade in from a different scene.
 	/// </summary>
-	[Space(10)]
-	[Tooltip("Time, in seconds, to fade in.")]
-	public float FadeInTime;
+	[Tooltip("Time, in seconds, for the scene to fade in from a different scene.")]
+	public float SceneFadeInTime;
 
 	/// <summary>
-	/// Does the scene fade in?
+	/// Is the scene currently fading in?
 	/// </summary>
-	public bool FadesIn = true;
+	public bool FadingIn = true;
 
     /// <summary>
     /// Current time of fadein.
@@ -99,19 +112,11 @@ public class SceneController : MonoBehaviour
 	public event OnSceneChangeHandler onSceneChange;
 
 	private bool newScene = false;
-	#endregion
-
-	public static SceneController Instance;
-
-	[Space(10)] [SerializeField] protected Material _sallosMaterial;
-
-	[Header("DEBUG")] public bool DEBUG;
-
 	public float FadeOutTimerPercent
 	{
 		get
 		{
-			return (_fadeOutTimer / (FadeOutTime - 1.5f));
+			return (_fadeOutTimer / (_currentFadeOutTime));
 		}
 	}
 
@@ -119,10 +124,19 @@ public class SceneController : MonoBehaviour
 	{
 		get
 		{  
-			return (_fadeInTimer / (FadeInTime - 1.5f));
+			return (_fadeInTimer / (_currentFadeInTime));
 		}
 	}
 
+	#endregion
+
+	/// <summary>
+	/// Singleton
+	/// </summary>
+	public static SceneController Instance;
+
+	[Header("DEBUG")] public bool DEBUG;
+	
 	public bool IsDialogueAutoImplemented
 	{
 		 get => autoStartDialogue;
@@ -143,8 +157,6 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
 	{
-		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
-
 		//Setup graphs
 		JSONGraph jsonGraph = JsonUtility.FromJson<JSONGraph>(_twineJson.text);
 		_graphs = jsonGraph.CreateGraphs();
@@ -180,6 +192,9 @@ public class SceneController : MonoBehaviour
 		}
 
 		//Scene changing
+		_currentFadeInTime = SceneFadeInTime;
+		_currentFadeOutTime = SceneFadeOutTime;
+
 		onSceneChange += UIManager.UI.PauseAllButtons;
 		foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 		{
@@ -211,28 +226,28 @@ public class SceneController : MonoBehaviour
 
         _timer += Time.deltaTime;
 		#region Fades in/out
-		if (FadesIn)
+		if (FadingIn)
 		{
-			_fadeInTimer = Mathf.Clamp(_fadeInTimer + Time.deltaTime, 0, FadeInTime);
+			_fadeInTimer = Mathf.Clamp(_fadeInTimer + Time.deltaTime, 0, _currentFadeInTime);
 		}
-		if (_fadeInTimer == FadeInTime)
+		if (_fadeInTimer == _currentFadeInTime)
 		{
-			FadesIn = false;
+			FadingIn = false;
 		}
 		
 
 		if (FadingOut)
 		{
-			_fadeOutTimer += Time.deltaTime;
-			if (_fadeOutTimer > FadeOutTime && newScene)
+			_fadeOutTimer = Mathf.Clamp(_fadeOutTimer + Time.deltaTime, 0, _currentFadeOutTime);
+			if (_fadeOutTimer > _currentFadeOutTime && newScene)
 			{
 				SceneManager.LoadScene(_destinationScene);
 			}
 		}
-		if (_fadeOutTimer > FadeOutTime)
+		if (_fadeOutTimer == _currentFadeOutTime)
 		{
 			FadingOut = false;
-			FadesIn = true;
+			FadingIn = true;
 		}
 		#endregion
 	}
@@ -370,21 +385,100 @@ public class SceneController : MonoBehaviour
         }
     }
 
-	protected IEnumerator Fade(float seconds)
+	/// <summary>
+	/// Fades in and out, used for in place transitions
+	/// </summary>
+	/// <param name="seconds">Fade in and out time, in seconds</param>
+	public void Fade(float seconds)
 	{
-        float oldFadeInTime = Instance.FadeInTime;
-        float oldFadeOutTime = Instance.FadeOutTime;
+		LatestFade = StartCoroutine(FadeInternal(seconds));
+	}
 
-        Instance.FadeInTime = seconds;
-        Instance.FadeOutTime = seconds;
+	public void FadeBackOut(float newFadeInSeconds)
+	{
+		LatestFade = StartCoroutine(FadeBackOutInternal(newFadeInSeconds));
+	}
+
+	private IEnumerator FadeInternal(float seconds)
+	{
+        _currentFadeInTime = seconds;
+        _currentFadeOutTime = seconds;
 
 		_fadeInTimer = 0;
 		_fadeOutTimer = 0;
 		FadingOut = true;
 
+		//disable player input
+		PlayerController.Instance.CanMove = false;
+
+		yield return new WaitForSeconds(seconds);
+		
+		//enable player input
+		PlayerController.Instance.CanMove = true;
+
+		//fade back in
 		yield return new WaitForSeconds(seconds);
 
-        Instance.FadeInTime = oldFadeInTime;
-        Instance.FadeOutTime = oldFadeOutTime;
+		//reset fade times
+		FadingIn = false;
+		FadingOut = false;
+		_fadeInTimer = 0;
+		_fadeOutTimer = 0;
+        _currentFadeInTime = SceneFadeInTime;
+		_currentFadeOutTime = SceneFadeOutTime;
+
+		yield return null;
 	}
+
+	private IEnumerator FadeBackOutInternal(float newFadeInSeconds)
+	{
+		//stop fading in
+		FadingIn = false;
+
+		//how much time is remaining on fade in
+		float fadeInTimeLeft = TimeRemainingOnFadeIn();
+
+		//Begin fade out from remaining fade in time progress
+		_fadeOutTimer = _fadeInTimer;
+        _currentFadeOutTime = _currentFadeInTime;
+
+		//Reset fade in time for next fade in
+		_fadeInTimer = 0;
+		_currentFadeInTime = newFadeInSeconds;
+
+		//Begin fading out
+		FadingOut = true;
+
+		//disable player input
+		PlayerController.Instance.CanMove = false;
+
+		yield return new WaitForSeconds(fadeInTimeLeft);
+
+		//enable player input
+		PlayerController.Instance.CanMove = true;
+
+		//fade in again
+		yield return new WaitForSeconds(newFadeInSeconds);
+
+		//Reset fades
+		FadingIn = false;
+		FadingOut = false;
+		_fadeInTimer = 0;
+		_fadeOutTimer = 0;
+        _currentFadeInTime = SceneFadeInTime;
+		_currentFadeOutTime = SceneFadeOutTime;
+
+		yield return null;
+	}
+
+	public float TimeRemainingOnFadeIn()
+	{
+		return (1 - FadeInTimerPercent) * _currentFadeInTime;
+	}
+
+	public float TimeRemainingOnFadeOut()
+	{
+		return (1 - FadeOutTimerPercent) * _currentFadeOutTime;
+	}
+
 }

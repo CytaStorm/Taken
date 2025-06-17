@@ -27,12 +27,16 @@ public class SceneThreeController : SceneController
     private NavMeshAgent _goonAgent;
     private Animator _goonAnimator;
 
+    //Materials
+	[Space(10)] [SerializeField] protected Material _sallosMaterial;
 
     // Start is called before the first frame update
     // MAKE SURE EXECUTION ORDER IS SET TO LAST FOR THIS TO WORK
     new void Start()
     {
         base.Start();
+
+		_sallosMaterial.SetFloat("_Dissolve_Effect", 0);
 
         //Add flags
         _flagNames.Add("walkLeft");

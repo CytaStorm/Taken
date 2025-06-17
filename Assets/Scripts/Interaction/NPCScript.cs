@@ -94,14 +94,15 @@ public class NPCScript : PropInteractableScript
         }
     }
 
-	public override void Interact()
+	public override IEnumerator Interact()
 	{
         //Save prev rotation
         if (FacePlayerWhileTalking)
         {
 		    LookAtPlayer();
         }
-        base.Interact();
+        StartCoroutine(base.Interact());
+        yield return null;
 	}
 
     /// <summary>

@@ -40,7 +40,7 @@ public abstract class InteractableScript : MonoBehaviour
         //Debug.Log(gameObject.name + " " + UpdateSceneGraph);
     }
 
-    public abstract void Interact();
+    public abstract IEnumerator Interact();
 
     protected virtual void Update()
 	{
@@ -67,7 +67,8 @@ public abstract class InteractableScript : MonoBehaviour
 			InteractionPoint.transform.position);
 
 		// If its able to be interacted with, Interact
-		if (distance < 0.2 && isFocus && UIManager.UI.CurrentUIMode == UIMode.Gameplay)
+		if (distance < 0.2 && isFocus && 
+            UIManager.UI.CurrentUIMode == UIMode.Gameplay)
 		{
 			if (HasLimitedInteractions)
 			{
@@ -75,7 +76,8 @@ public abstract class InteractableScript : MonoBehaviour
 				else {InteractionCount++; }
 			}
             //hasInteracted = true;
-            Interact();
+            PlayerController.Instance.RemoveFocus();
+            StartCoroutine(Interact());
 		}
     }
 

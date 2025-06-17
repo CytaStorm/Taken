@@ -1998,6 +1998,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 744759558}
   m_LocalEulerAnglesHint: {x: 80.422, y: -101.222, z: -209.173}
+--- !u!1 &354978369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4403017764328130464, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
+  m_PrefabInstance: {fileID: 1112026226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &368054135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4aa0d52c68f754e4d9c764875842a2fe, type: 3}
@@ -13980,7 +13985,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1631020855432542737, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756081899164315855, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2239648708641970165, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
       propertyPath: m_LocalScale.x
@@ -14034,9 +14043,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -27.603
       objectReference: {fileID: 0}
+    - target: {fileID: 3344957256549127141, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344957256549127141, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344957256549127141, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 4403017764328130464, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
       propertyPath: m_Name
-      value: axe
+      value: hatchet
       objectReference: {fileID: 0}
     - target: {fileID: 7612011664264392258, guid: b080a97c06e287447b91da3a9f2dadbe, type: 3}
       propertyPath: m_IsActive
@@ -19064,7 +19085,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 20000
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 7.5, z: 5, w: -8}
+  m_BoundingSphereOverride: {x: 4.9e-44, y: 6e-45, z: 1.3e-44, w: 3.4567348e+31}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -20543,16 +20564,16 @@ MonoBehaviour:
   _twineJson: {fileID: 4900000, guid: ea5ebe6f0d2f2d241be7938615730d1e, type: 3}
   autoStartDialogue: 1
   _destinationScene: Scene 3
-  _fadeOutTime: 5
+  SceneFadeOutTime: 3
   FadingOut: 0
-  _fadeInTime: 3
-  FadesIn: 1
-  _sallosMaterial: {fileID: 2100000, guid: f2fd0c4b90e2b6a4ebf641af05596114, type: 2}
+  SceneFadeInTime: 3
+  FadingIn: 1
   DEBUG: 1
   _sallos: {fileID: 1995761731}
   _deadTree: {fileID: 1316866498}
   _tinder: {fileID: 887832376}
   _stove: {fileID: 73276447}
+  _hatchet: {fileID: 354978369}
   _stoveLogs: {fileID: 559565449}
   _stoveTinder: {fileID: 82454999}
 --- !u!1 &1781750174

@@ -120,8 +120,9 @@ public class SceneTwoController : SceneController
 
 	private IEnumerator SallosWalkIntoTent(float fadeTime)
 	{
-		StartCoroutine(Fade(fadeTime));
+		Fade(fadeTime);
 		yield return new WaitForSeconds(fadeTime);
+
 		//Disable stove interaction
 		_stoveScript.Interactable = false;
 
@@ -139,6 +140,7 @@ public class SceneTwoController : SceneController
 		_sallosAgent.SetDestination(_stoveScript.InteractionPoint.transform.position);
 		_hatchet.SetActive(true);
 		StartCoroutine(GoToLocation(_stove.transform.position, "sallosDiscussion"));
+		yield return null;
 	}
 
 
