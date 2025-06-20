@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		_UIManager = UIManager.UI;
+		Agent.stoppingDistance = 0.15f;
 	}
 
 	// Update is called once per frame
@@ -61,10 +62,9 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Focus != null)
 		{
-			Agent.SetDestination(Focus.InteractionPoint.transform.position);
-
 			//casted to ints to prevent floating point imprecision
-			if ((int)Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) == (int)rotationDistance)
+			//if ((int)Vector3.Distance(transform.position, Focus.InteractionPoint.transform.position) == (int)rotationDistance)
+			if (Agent.remainingDistance <= Agent.stoppingDistance)
 			{
 				Vector3 direction = Focus.transform.position - transform.position;
 				Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 			if (interactable != null)
 			{
 				SetFocus(interactable);
-				//agent.SetDestination(hit.point);
+				Agent.SetDestination(interactable.InteractionPoint.transform.position);
 			}
 		}
 

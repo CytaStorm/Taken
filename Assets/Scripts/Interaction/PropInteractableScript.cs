@@ -11,4 +11,8 @@ public class PropInteractableScript : InteractableScript
         UpdateSceneGraph.Invoke(this);
         yield return null;
     }
+
+	public override void ExitDialogue()
+	{
+	}
 }

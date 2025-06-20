@@ -8,18 +8,18 @@
         {
           "name": "Continue",
           "link": "parchment",
-          "pid": "57"
+          "pid": "47"
         }
       ],
       "name": "\"What're you making?\"",
       "pid": "1",
       "position": {
-        "x": "1700",
-        "y": "600"
+        "x": "1525",
+        "y": "650"
       }
     },
     {
-      "text": "",
+      "text": "(set: $sceneTwoEnd to true)",
       "name": "Finish eating.",
       "pid": "2",
       "position": {
@@ -37,7 +37,7 @@
         {
           "name": "Continue",
           "link": "continueReally",
-          "pid": "14"
+          "pid": "13"
         }
       ],
       "name": "Really.",
@@ -53,7 +53,7 @@
         {
           "name": "I'm fine.",
           "link": "fine",
-          "pid": "35"
+          "pid": "33"
         },
         {
           "name": "I'm beat!",
@@ -77,22 +77,22 @@
         {
           "name": "Present the firewood.",
           "link": "giveFirewood",
-          "pid": "39"
+          "pid": "36"
         },
         {
           "name": "Present the tinder.",
           "link": "giveTinder",
-          "pid": "40"
+          "pid": "37"
         },
         {
           "name": "I forgot what I needed to do.",
           "link": "forgot",
-          "pid": "36"
+          "pid": "34"
         },
         {
           "name": "I'm alright.",
           "link": "sallosTalkedToExit",
-          "pid": "67"
+          "pid": "55"
         }
       ],
       "name": "sallosTalkedTo",
@@ -127,14 +127,14 @@
         {
           "name": "Unwrap it",
           "link": "unwrap",
-          "pid": "77"
+          "pid": "63"
         }
       ],
       "name": "agreeToHelp",
       "pid": "7",
       "position": {
-        "x": "2025",
-        "y": "725"
+        "x": "1900",
+        "y": "650"
       }
     },
     {
@@ -143,7 +143,7 @@
         {
           "name": "Ah! I just...",
           "link": "itsOk",
-          "pid": "49"
+          "pid": "44"
         }
       ],
       "name": "alright?",
@@ -159,7 +159,7 @@
         {
           "name": "Continue",
           "link": "work",
-          "pid": "81"
+          "pid": "67"
         }
       ],
       "name": "beat",
@@ -170,34 +170,18 @@
       }
     },
     {
-      "text": "You blush. The boy has a way with words, even in his faraway dialect of Ghuzian. You can feel the beat of your heart more now.\n\n[[Continue->sleepSoon]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "sleepSoon",
-          "pid": "74"
-        }
-      ],
-      "name": "blush",
-      "pid": "10",
-      "position": {
-        "x": "3800",
-        "y": "1300"
-      }
-    },
-    {
       "text": "Slowly, gently, you lower the cube into the water. The portions under the rolling waves begin to shimmer and dissolve, staining the water with a deep brown. Once most of the stock is submerged, you release it, letting it fully sink. Sallos does the same, and soon, the stew begins to thicken and become fragrant.\n[[Continue->timeToEat]]",
       "links": [
         {
           "name": "Continue",
           "link": "timeToEat",
-          "pid": "75"
+          "pid": "61"
         }
       ],
       "name": "boil",
-      "pid": "11",
+      "pid": "10",
       "position": {
-        "x": "2125",
+        "x": "2025",
         "y": "1000"
       }
     },
@@ -207,11 +191,11 @@
         {
           "name": "Continue",
           "link": "exitDeadTree",
-          "pid": "21"
+          "pid": "20"
         }
       ],
       "name": "cannotCut",
-      "pid": "12",
+      "pid": "11",
       "position": {
         "x": "425",
         "y": "425"
@@ -223,11 +207,11 @@
         {
           "name": "Continue",
           "link": "exitGrabTinder",
-          "pid": "22"
+          "pid": "21"
         }
       ],
       "name": "cannotGrabTinder",
-      "pid": "13",
+      "pid": "12",
       "position": {
         "x": "800",
         "y": "1100"
@@ -239,11 +223,11 @@
         {
           "name": "Continue",
           "link": "sallosEat",
-          "pid": "66"
+          "pid": "54"
         }
       ],
       "name": "continueReally",
-      "pid": "14",
+      "pid": "13",
       "position": {
         "x": "2925",
         "y": "750"
@@ -255,11 +239,11 @@
         {
           "name": "When do we get to the top?",
           "link": "whenTop",
-          "pid": "80"
+          "pid": "66"
         }
       ],
       "name": "continueUnwrap",
-      "pid": "15",
+      "pid": "14",
       "position": {
         "x": "2075",
         "y": "850"
@@ -271,37 +255,37 @@
         {
           "name": "Continue",
           "link": "exitDeadTree",
-          "pid": "21"
+          "pid": "20"
         }
       ],
       "name": "cut",
-      "pid": "16",
+      "pid": "15",
       "position": {
         "x": "725",
         "y": "400"
       }
     },
     {
-      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true and $finishedFirewoodQuest is true) [ [[Place the logs down by the stove->placeLogs]] ]\n(if: $hasKindling is true and $finishedTinderQuest is true) [ [[Place the kindling down by the stove->placeKindling]] ]\n[[Leave->exitDeadStove]]",
+      "text": "The stove is quiet and depressing. Get it lit!\n(if: $hasWood is true and $finishedFirewoodQuest is true) [ [[Place the logs down by the stove->placeLogs]] ]\n(if: $hasTinder is true and $finishedTinderQuest is true) [ [[Place the kindling down by the stove->placeKindling]] ]\n[[Leave->exitDeadStove]]",
       "links": [
         {
           "name": "Place the logs down by the stove",
           "link": "placeLogs",
-          "pid": "61"
+          "pid": "50"
         },
         {
           "name": "Place the kindling down by the stove",
           "link": "placeKindling",
-          "pid": "60"
+          "pid": "49"
         },
         {
           "name": "Leave",
           "link": "exitDeadStove",
-          "pid": "82"
+          "pid": "68"
         }
       ],
       "name": "deadStove",
-      "pid": "17",
+      "pid": "16",
       "position": {
         "x": "975",
         "y": "75"
@@ -311,26 +295,26 @@
       ]
     },
     {
-      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]\n(if: $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]\n[[Continue->exitDeadTree]]",
+      "text": "The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.\n(if: $hasWood is false and $hasTinder is false and $talkedToSallos is true)[ [[Cut some logs->cut]] ]\n(if: $hasWood is false and $hasTinder is true and $talkedToSallos is true)[ [[Cut some logs->cannotCut]] ]\n[[Continue->exitDeadTree]]",
       "links": [
         {
           "name": "Cut some logs",
           "link": "cut",
-          "pid": "16"
+          "pid": "15"
         },
         {
           "name": "Cut some logs",
           "link": "cannotCut",
-          "pid": "12"
+          "pid": "11"
         },
         {
           "name": "Continue",
           "link": "exitDeadTree",
-          "pid": "21"
+          "pid": "20"
         }
       ],
       "name": "deadTree",
-      "pid": "18",
+      "pid": "17",
       "position": {
         "x": "400",
         "y": "175"
@@ -345,11 +329,11 @@
         {
           "name": "Continue",
           "link": "salloshoveInMouth",
-          "pid": "68"
+          "pid": "56"
         }
       ],
       "name": "eatAnyways",
-      "pid": "19",
+      "pid": "18",
       "position": {
         "x": "2600",
         "y": "1050"
@@ -361,20 +345,20 @@
         {
           "name": "Leave",
           "link": "exitHatchet",
-          "pid": "23"
+          "pid": "22"
         }
       ],
       "name": "edgeFormed",
-      "pid": "20",
+      "pid": "19",
       "position": {
-        "x": "1600",
-        "y": "1350"
+        "x": "1625",
+        "y": "1475"
       }
     },
     {
       "text": "",
       "name": "exitDeadTree",
-      "pid": "21",
+      "pid": "20",
       "position": {
         "x": "650",
         "y": "650"
@@ -386,7 +370,7 @@
     {
       "text": "",
       "name": "exitGrabTinder",
-      "pid": "22",
+      "pid": "21",
       "position": {
         "x": "800",
         "y": "1475"
@@ -398,7 +382,7 @@
     {
       "text": "",
       "name": "exitHatchet",
-      "pid": "23",
+      "pid": "22",
       "position": {
         "x": "1450",
         "y": "1500"
@@ -410,10 +394,10 @@
     {
       "text": "(set: $sallosDiscussionRepeat to true)",
       "name": "exitHelp",
-      "pid": "24",
+      "pid": "23",
       "position": {
-        "x": "2125",
-        "y": "550"
+        "x": "1725",
+        "y": "475"
       },
       "tags": [
         "exit"
@@ -422,10 +406,10 @@
     {
       "text": "",
       "name": "exitHelpRepeat",
-      "pid": "25",
+      "pid": "24",
       "position": {
-        "x": "1900",
-        "y": "450"
+        "x": "1825",
+        "y": "300"
       },
       "tags": [
         "exit"
@@ -434,7 +418,7 @@
     {
       "text": "",
       "name": "exitNoGrabPinecones",
-      "pid": "26",
+      "pid": "25",
       "position": {
         "x": "1050",
         "y": "1225"
@@ -446,7 +430,7 @@
     {
       "text": "",
       "name": "exitPinecones",
-      "pid": "27",
+      "pid": "26",
       "position": {
         "x": "1125",
         "y": "1375"
@@ -458,7 +442,7 @@
     {
       "text": "(set: $sallosWalkIn to true)",
       "name": "exitPlaceStove",
-      "pid": "28",
+      "pid": "27",
       "position": {
         "x": "1050",
         "y": "500"
@@ -470,7 +454,7 @@
     {
       "text": "(set: $talkedToSallos to true)",
       "name": "exitQuestGive",
-      "pid": "29",
+      "pid": "28",
       "position": {
         "x": "150",
         "y": "1675"
@@ -482,7 +466,7 @@
     {
       "text": "(set: $finishedTinderQuest to true)",
       "name": "exitSallosQuestTinder",
-      "pid": "30",
+      "pid": "29",
       "position": {
         "x": "350",
         "y": "1600"
@@ -494,7 +478,7 @@
     {
       "text": "",
       "name": "exitScene",
-      "pid": "31",
+      "pid": "30",
       "position": {
         "x": "50",
         "y": "400"
@@ -504,22 +488,9 @@
       ]
     },
     {
-      "text": "",
-      "name": "exitSleep",
-      "pid": "32",
-      "position": {
-        "x": "3350",
-        "y": "1250"
-      },
-      "tags": [
-        "exit",
-        "end"
-      ]
-    },
-    {
       "text": "(set: $eatCutscene to true)",
       "name": "exitTimeToEat",
-      "pid": "33",
+      "pid": "31",
       "position": {
         "x": "2100",
         "y": "1350"
@@ -531,7 +502,7 @@
     {
       "text": "",
       "name": "exitTinder",
-      "pid": "34",
+      "pid": "32",
       "position": {
         "x": "1050",
         "y": "850"
@@ -546,11 +517,11 @@
         {
           "name": "Continue",
           "link": "work",
-          "pid": "81"
+          "pid": "67"
         }
       ],
       "name": "fine",
-      "pid": "35",
+      "pid": "33",
       "position": {
         "x": "0",
         "y": "1325"
@@ -562,30 +533,14 @@
         {
           "name": "Thank you.",
           "link": "sallosTalkedToExit",
-          "pid": "67"
+          "pid": "55"
         }
       ],
       "name": "forgot",
-      "pid": "36",
+      "pid": "34",
       "position": {
-        "x": "225",
-        "y": "1100"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> It’s pretty funny thinking back, rescuing and then falling in love with you… and you still look exactly the same as the day we met.\n\n[[Continue->older]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "older",
-          "pid": "56"
-        }
-      ],
-      "name": "funny",
-      "pid": "37",
-      "position": {
-        "x": "3475",
-        "y": "700"
+        "x": "175",
+        "y": "950"
       }
     },
     {
@@ -594,11 +549,11 @@
         {
           "name": "Continue",
           "link": "exitPinecones",
-          "pid": "27"
+          "pid": "26"
         }
       ],
       "name": "getPinecones",
-      "pid": "38",
+      "pid": "35",
       "position": {
         "x": "1250",
         "y": "1225"
@@ -610,11 +565,11 @@
         {
           "name": "Continue",
           "link": "exitSallosQuestFireWood",
-          "pid": "83"
+          "pid": "69"
         }
       ],
       "name": "giveFirewood",
-      "pid": "39",
+      "pid": "36",
       "position": {
         "x": "550",
         "y": "1475"
@@ -626,11 +581,11 @@
         {
           "name": "Continue",
           "link": "exitSallosQuestTinder",
-          "pid": "30"
+          "pid": "29"
         }
       ],
       "name": "giveTinder",
-      "pid": "40",
+      "pid": "37",
       "position": {
         "x": "350",
         "y": "1425"
@@ -642,30 +597,14 @@
         {
           "name": "Continue",
           "link": "exitGrabTinder",
-          "pid": "22"
+          "pid": "21"
         }
       ],
       "name": "grabTinder",
-      "pid": "41",
+      "pid": "38",
       "position": {
         "x": "900",
         "y": "1250"
-      }
-    },
-    {
-      "text": "<b>SALLOS</b>: Man, I really wish I could get a few more inches. It’s terrible how every other Ifni gets to be tall and strong, while I’m stuck down here. However—\n\n[[Continue->pinch]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "pinch",
-          "pid": "58"
-        }
-      ],
-      "name": "grow",
-      "pid": "42",
-      "position": {
-        "x": "3600",
-        "y": "1050"
       }
     },
     {
@@ -674,23 +613,23 @@
         {
           "name": "Take a closer look",
           "link": "hatchetLookCloser",
-          "pid": "44"
+          "pid": "40"
         },
         {
           "name": "Take a closer look",
           "link": "sharpHatchetLookCloser",
-          "pid": "71"
+          "pid": "59"
         },
         {
           "name": "Leave",
           "link": "exitHatchet",
-          "pid": "23"
+          "pid": "22"
         }
       ],
       "name": "hatchet",
-      "pid": "43",
+      "pid": "39",
       "position": {
-        "x": "1550",
+        "x": "1500",
         "y": "950"
       },
       "tags": [
@@ -698,35 +637,24 @@
       ]
     },
     {
-      "text": "You pick it up, and take a closer look at the head. It's been worn down after years of use. It's edge is chipped, and rust dots the surface. You could try to use some of your magic to reshape and restore it.\n[[Sharpen the hatchet->sharpen]]",
+      "text": "You pick it up, and take a closer look at the head. It's been worn down after years of use. It's edge is chipped, and rust dots the surface. You could try to use some of your magic to reshape and restore it.\n(if: $sallosDiscussionRepeat is true) [ [[Sharpen the hatchet->sharpen]] ]\n[[Leave->exitHatchet]] ",
       "links": [
         {
           "name": "Sharpen the hatchet",
           "link": "sharpen",
-          "pid": "72"
+          "pid": "60"
+        },
+        {
+          "name": "Leave",
+          "link": "exitHatchet",
+          "pid": "22"
         }
       ],
       "name": "hatchetLookCloser",
-      "pid": "44",
+      "pid": "40",
       "position": {
-        "x": "1700",
-        "y": "1150"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> It puts me at just the right height to look at you. Even if I can’t live as long as you, I’m happy that I can see you at the same level as me.\n\n[[Continue->blush]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "blush",
-          "pid": "10"
-        }
-      ],
-      "name": "height",
-      "pid": "45",
-      "position": {
-        "x": "3875",
-        "y": "1125"
+        "x": "1650",
+        "y": "1175"
       }
     },
     {
@@ -740,14 +668,14 @@
         {
           "name": "I think I'll keep looking around a bit first.",
           "link": "exitHelp",
-          "pid": "24"
+          "pid": "23"
         }
       ],
       "name": "help",
-      "pid": "46",
+      "pid": "41",
       "position": {
-        "x": "1850",
-        "y": "725"
+        "x": "1725",
+        "y": "650"
       }
     },
     {
@@ -756,16 +684,16 @@
         {
           "name": "I'm just kidding!",
           "link": "reassure",
-          "pid": "62"
+          "pid": "51"
         },
         {
           "name": "It's okay, I'll still eat it!",
           "link": "eatAnyways",
-          "pid": "19"
+          "pid": "18"
         }
       ],
       "name": "itsBad",
-      "pid": "47",
+      "pid": "42",
       "position": {
         "x": "2425",
         "y": "1275"
@@ -777,18 +705,18 @@
         {
           "name": "Continue",
           "link": "sallosEat",
-          "pid": "66"
+          "pid": "54"
         }
       ],
       "name": "itsGood",
-      "pid": "48",
+      "pid": "43",
       "position": {
         "x": "2775",
         "y": "1500"
       }
     },
     {
-      "text": "<b>SALLOS:</b> \"It's fine, I get it. But you probably should finish up soon. We need to get  to bed and ready for tomorrow! You're gonna need that energy!\"\n[[Finish eating.]]",
+      "text": "<b>SALLOS:</b> \"It's fine, I get it. But you probably should finish up soon. We need to get to bed and ready for tomorrow! You're gonna need that energy!\"\n[[Finish eating.]]",
       "links": [
         {
           "name": "Finish eating.",
@@ -797,26 +725,10 @@
         }
       ],
       "name": "itsOk",
-      "pid": "49",
+      "pid": "44",
       "position": {
         "x": "3150",
         "y": "1725"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> Whatever suits your tastes.\n\n[[Continue->look]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "look",
-          "pid": "52"
-        }
-      ],
-      "name": "justWater",
-      "pid": "50",
-      "position": {
-        "x": "3350",
-        "y": "1075"
       }
     },
     {
@@ -825,16 +737,16 @@
         {
           "name": "It's good!",
           "link": "itsGood",
-          "pid": "48"
+          "pid": "43"
         },
         {
           "name": "It's bad!",
           "link": "itsBad",
-          "pid": "47"
+          "pid": "42"
         }
       ],
       "name": "likeIt",
-      "pid": "51",
+      "pid": "45",
       "position": {
         "x": "2325",
         "y": "1450"
@@ -842,22 +754,6 @@
       "tags": [
         "start"
       ]
-    },
-    {
-      "text": "Sallos looks listfully at you, and you, back at him. \n\n[[Continue->reminds]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "reminds",
-          "pid": "63"
-        }
-      ],
-      "name": "look",
-      "pid": "52",
-      "position": {
-        "x": "3400",
-        "y": "950"
-      }
     },
     {
       "text": "He swallows, and picks up another spoonful.\n[[Stare at him back.]]",
@@ -869,63 +765,10 @@
         }
       ],
       "name": "lookAt",
-      "pid": "53",
+      "pid": "46",
       "position": {
         "x": "3150",
         "y": "1350"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> If you’d like, you can also put your pemmican in the water to make some hoosh. I’ve still got some biscuits for that as well.\n\n[[I am alright, water is just fine.->justWater]]\n[[Sure!->makeIt]]",
-      "links": [
-        {
-          "name": "I am alright, water is just fine.",
-          "link": "justWater",
-          "pid": "50"
-        },
-        {
-          "name": "Sure!",
-          "link": "makeIt",
-          "pid": "55"
-        }
-      ],
-      "name": "makeHoosh",
-      "pid": "54",
-      "position": {
-        "x": "3175",
-        "y": "925"
-      }
-    },
-    {
-      "text": "You drop the rest of your pemmican in the water, and Sallos puts in a biscuit. It slowly disintegrates, turning the water into a thin soup, the vegetables floating around lazily as they detach from the body of the block. \n\n[[Continue->look]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "look",
-          "pid": "52"
-        }
-      ],
-      "name": "makeIt",
-      "pid": "55",
-      "position": {
-        "x": "3150",
-        "y": "700"
-      }
-    },
-    {
-      "text": "He, however, doesn’t. In the years since you first met him, he’s gotten older, lost some of the roundness in his face and gained a few marks and nicks. Proof that he’s been alive, he’s always said. That being said, he’s not grown taller by much.\n\n[[I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!->sigh]]",
-      "links": [
-        {
-          "name": "I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!",
-          "link": "sigh",
-          "pid": "73"
-        }
-      ],
-      "name": "older",
-      "pid": "56",
-      "position": {
-        "x": "3525",
-        "y": "925"
       }
     },
     {
@@ -934,30 +777,14 @@
         {
           "name": "Continue",
           "link": "help",
-          "pid": "46"
+          "pid": "41"
         }
       ],
       "name": "parchment",
-      "pid": "57",
+      "pid": "47",
       "position": {
-        "x": "1700",
-        "y": "775"
-      }
-    },
-    {
-      "text": "He reaches over to you and pinches your cheek.\n\n[[Continue->height]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "height",
-          "pid": "45"
-        }
-      ],
-      "name": "pinch",
-      "pid": "58",
-      "position": {
-        "x": "3800",
-        "y": "925"
+        "x": "1625",
+        "y": "800"
       }
     },
     {
@@ -966,16 +793,16 @@
         {
           "name": "Gather a few",
           "link": "getPinecones",
-          "pid": "38"
+          "pid": "35"
         },
         {
           "name": "Continue",
           "link": "exitNoGrabPinecones",
-          "pid": "26"
+          "pid": "25"
         }
       ],
       "name": "pinecones",
-      "pid": "59",
+      "pid": "48",
       "position": {
         "x": "1125",
         "y": "1050"
@@ -990,11 +817,11 @@
         {
           "name": "Continue",
           "link": "exitPlaceStove",
-          "pid": "28"
+          "pid": "27"
         }
       ],
       "name": "placeKindling",
-      "pid": "60",
+      "pid": "49",
       "position": {
         "x": "1075",
         "y": "275"
@@ -1006,11 +833,11 @@
         {
           "name": "Continue",
           "link": "exitPlaceStove",
-          "pid": "28"
+          "pid": "27"
         }
       ],
       "name": "placeLogs",
-      "pid": "61",
+      "pid": "50",
       "position": {
         "x": "875",
         "y": "275"
@@ -1027,30 +854,14 @@
         {
           "name": "No.",
           "link": "eatAnyways",
-          "pid": "19"
+          "pid": "18"
         }
       ],
       "name": "reassure",
-      "pid": "62",
+      "pid": "51",
       "position": {
         "x": "2575",
         "y": "800"
-      }
-    },
-    {
-      "text": "<b>SALLOS:</b> You know, eating like this reminds me a lot of when we first met all those years ago. We ate a meal just like this. Except it was just biscuits and water for you. Didn’t have the veggies back then!\n\n[[That really was awful… But you did save my life out there. And we met.->funny]]",
-      "links": [
-        {
-          "name": "That really was awful… But you did save my life out there. And we met.",
-          "link": "funny",
-          "pid": "37"
-        }
-      ],
-      "name": "reminds",
-      "pid": "63",
-      "position": {
-        "x": "3350",
-        "y": "725"
       }
     },
     {
@@ -1063,10 +874,10 @@
         }
       ],
       "name": "sallosDiscussion",
-      "pid": "64",
+      "pid": "52",
       "position": {
-        "x": "1700",
-        "y": "425"
+        "x": "1450",
+        "y": "450"
       },
       "tags": [
         "start"
@@ -1078,7 +889,7 @@
         {
           "name": "Just a minute.",
           "link": "exitHelpRepeat",
-          "pid": "25"
+          "pid": "24"
         },
         {
           "name": "Sure!",
@@ -1087,10 +898,10 @@
         }
       ],
       "name": "sallosDiscussionRepeat",
-      "pid": "65",
+      "pid": "53",
       "position": {
-        "x": "2125",
-        "y": "375"
+        "x": "2025",
+        "y": "350"
       },
       "tags": [
         "start"
@@ -1102,11 +913,11 @@
         {
           "name": "Continue",
           "link": "lookAt",
-          "pid": "53"
+          "pid": "46"
         }
       ],
       "name": "sallosEat",
-      "pid": "66",
+      "pid": "54",
       "position": {
         "x": "2950",
         "y": "975"
@@ -1115,10 +926,10 @@
     {
       "text": "",
       "name": "sallosTalkedToExit",
-      "pid": "67",
+      "pid": "55",
       "position": {
-        "x": "325",
-        "y": "1225"
+        "x": "275",
+        "y": "1200"
       },
       "tags": [
         "exit"
@@ -1130,11 +941,11 @@
         {
           "name": "Continue",
           "link": "lookAt",
-          "pid": "53"
+          "pid": "46"
         }
       ],
       "name": "salloshoveInMouth",
-      "pid": "68",
+      "pid": "56",
       "position": {
         "x": "2750",
         "y": "1200"
@@ -1146,11 +957,11 @@
         {
           "name": "Continue",
           "link": "waterBoiling",
-          "pid": "78"
+          "pid": "64"
         }
       ],
       "name": "saveEulyss",
-      "pid": "69",
+      "pid": "57",
       "position": {
         "x": "2350",
         "y": "925"
@@ -1162,11 +973,11 @@
         {
           "name": "Finally, we're done! The tent is all set up! I need a break!",
           "link": "wear",
-          "pid": "79"
+          "pid": "65"
         }
       ],
       "name": "scene",
-      "pid": "70",
+      "pid": "58",
       "position": {
         "x": "100",
         "y": "50"
@@ -1181,11 +992,11 @@
         {
           "name": "Leave",
           "link": "exitHatchet",
-          "pid": "23"
+          "pid": "22"
         }
       ],
       "name": "sharpHatchetLookCloser",
-      "pid": "71",
+      "pid": "59",
       "position": {
         "x": "1325",
         "y": "1025"
@@ -1197,46 +1008,14 @@
         {
           "name": "Continue",
           "link": "edgeFormed",
-          "pid": "20"
+          "pid": "19"
         }
       ],
       "name": "sharpen",
-      "pid": "72",
+      "pid": "60",
       "position": {
-        "x": "1750",
-        "y": "1350"
-      }
-    },
-    {
-      "text": "He lets out an exasperated sigh.\n\n[[Continue->grow]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "grow",
-          "pid": "42"
-        }
-      ],
-      "name": "sigh",
-      "pid": "73",
-      "position": {
-        "x": "3750",
-        "y": "850"
-      }
-    },
-    {
-      "text": "SALLOS: Anyways, we should probably finish up soon. We should catch some rest as soon as possible. I want to catch the sunrise at the peak.\n\n[[Leave->exitSleep]]",
-      "links": [
-        {
-          "name": "Leave",
-          "link": "exitSleep",
-          "pid": "32"
-        }
-      ],
-      "name": "sleepSoon",
-      "pid": "74",
-      "position": {
-        "x": "3675",
-        "y": "1225"
+        "x": "1775",
+        "y": "1375"
       }
     },
     {
@@ -1245,37 +1024,37 @@
         {
           "name": "Leave",
           "link": "exitTimeToEat",
-          "pid": "33"
+          "pid": "31"
         }
       ],
       "name": "timeToEat",
-      "pid": "75",
+      "pid": "61",
       "position": {
-        "x": "2150",
-        "y": "1150"
+        "x": "1975",
+        "y": "1200"
       }
     },
     {
-      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]\n(if: $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
+      "text": "Ther is a pile of pine branches and needles on the ground before you.\n(if: $hasTinder is false and $hasWood is false and $talkedToSallos is true)[ [[Forage for tinder->grabTinder]] ]\n(if: $hasTinder is false and $hasWood is true and $talkedToSallos is true)[ [[Forage for tinder->cannotGrabTinder]] ]\n[[Continue->exitTinder]]",
       "links": [
         {
           "name": "Forage for tinder",
           "link": "grabTinder",
-          "pid": "41"
+          "pid": "38"
         },
         {
           "name": "Forage for tinder",
           "link": "cannotGrabTinder",
-          "pid": "13"
+          "pid": "12"
         },
         {
           "name": "Continue",
           "link": "exitTinder",
-          "pid": "34"
+          "pid": "32"
         }
       ],
       "name": "tinder",
-      "pid": "76",
+      "pid": "62",
       "position": {
         "x": "950",
         "y": "1000"
@@ -1290,11 +1069,11 @@
         {
           "name": "Continue",
           "link": "continueUnwrap",
-          "pid": "15"
+          "pid": "14"
         }
       ],
       "name": "unwrap",
-      "pid": "77",
+      "pid": "63",
       "position": {
         "x": "1800",
         "y": "925"
@@ -1306,14 +1085,14 @@
         {
           "name": "Gingerly place the cube into the bubbling sea",
           "link": "boil",
-          "pid": "11"
+          "pid": "10"
         }
       ],
       "name": "waterBoiling",
-      "pid": "78",
+      "pid": "64",
       "position": {
-        "x": "2350",
-        "y": "1050"
+        "x": "2225",
+        "y": "1075"
       }
     },
     {
@@ -1322,11 +1101,11 @@
         {
           "name": "Continue",
           "link": "exitScene",
-          "pid": "31"
+          "pid": "30"
         }
       ],
       "name": "wear",
-      "pid": "79",
+      "pid": "65",
       "position": {
         "x": "100",
         "y": "225"
@@ -1338,11 +1117,11 @@
         {
           "name": "I can't wait, either!",
           "link": "saveEulyss",
-          "pid": "69"
+          "pid": "57"
         }
       ],
       "name": "whenTop",
-      "pid": "80",
+      "pid": "66",
       "position": {
         "x": "2250",
         "y": "725"
@@ -1354,11 +1133,11 @@
         {
           "name": "Continue",
           "link": "exitQuestGive",
-          "pid": "29"
+          "pid": "28"
         }
       ],
       "name": "work",
-      "pid": "81",
+      "pid": "67",
       "position": {
         "x": "50",
         "y": "1550"
@@ -1367,7 +1146,7 @@
     {
       "text": "",
       "name": "exitDeadStove",
-      "pid": "82",
+      "pid": "68",
       "position": {
         "x": "725",
         "y": "100"
@@ -1379,7 +1158,7 @@
     {
       "text": "(set: $finishedFirewoodQuest to true)",
       "name": "exitSallosQuestFireWood",
-      "pid": "83",
+      "pid": "69",
       "position": {
         "x": "475",
         "y": "1650"
@@ -1394,11 +1173,11 @@
         {
           "name": "Continue",
           "link": "sallosTree",
-          "pid": "86"
+          "pid": "72"
         }
       ],
       "name": "sallosAtDeadTree",
-      "pid": "84",
+      "pid": "70",
       "position": {
         "x": "425",
         "y": "775"
@@ -1413,11 +1192,11 @@
         {
           "name": "Continue",
           "link": "sallosTinder",
-          "pid": "87"
+          "pid": "73"
         }
       ],
       "name": "sallosAtTinder",
-      "pid": "85",
+      "pid": "71",
       "position": {
         "x": "600",
         "y": "775"
@@ -1427,18 +1206,18 @@
       ]
     },
     {
-      "text": "<b>SALLOS:</b> \"Oh hey. Why don't you head in first and drop off the kindling? I'll be here for a litte bit.\"\n[[Leave->exitSallosTree]]",
+      "text": "<b>SALLOS:</b> \"Oh hey. Why don't you head in first and drop off the tinder? I'll be here for a litte bit.\"\n[[Leave->exitSallosTree]]",
       "links": [
         {
           "name": "Leave",
           "link": "exitSallosTree",
-          "pid": "88"
+          "pid": "74"
         }
       ],
       "name": "sallosTree",
-      "pid": "86",
+      "pid": "72",
       "position": {
-        "x": "475",
+        "x": "450",
         "y": "900"
       }
     },
@@ -1448,11 +1227,11 @@
         {
           "name": "Continue",
           "link": "exitSallosTinder",
-          "pid": "89"
+          "pid": "75"
         }
       ],
       "name": "sallosTinder",
-      "pid": "87",
+      "pid": "73",
       "position": {
         "x": "600",
         "y": "925"
@@ -1461,7 +1240,7 @@
     {
       "text": "",
       "name": "exitSallosTree",
-      "pid": "88",
+      "pid": "74",
       "position": {
         "x": "500",
         "y": "1050"
@@ -1473,7 +1252,7 @@
     {
       "text": "",
       "name": "exitSallosTinder",
-      "pid": "89",
+      "pid": "75",
       "position": {
         "x": "625",
         "y": "1075"
@@ -1484,7 +1263,7 @@
     }
   ],
   "name": "Parsed Tent",
-  "startnode": "70",
+  "startnode": "58",
   "creator": "Twine",
   "creator-version": "2.9.0",
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870"

@@ -285,10 +285,10 @@ public class UIManager : MonoBehaviour
 					exitButtonComponent.onClick.AddListener(
 						delegate
 						{
-							if (PlayerController.Instance.Focus != null &&
-							PlayerController.Instance.Focus is NPCScript)
+							if (PlayerController.Instance.Focus != null)
 							{
-								((NPCScript)PlayerController.Instance.Focus).ExitDialogue();
+								PlayerController.Instance.Focus.Interacting = false;
+								PlayerController.Instance.Focus.ExitDialogue();
 							}
 						}
 					);

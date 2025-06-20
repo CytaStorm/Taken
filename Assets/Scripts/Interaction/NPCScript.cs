@@ -137,7 +137,7 @@ public class NPCScript : PropInteractableScript
         Interactable = true;
     }
 
-	public void ExitDialogue()
+	public override void ExitDialogue()
 	{
         if (FacePlayerWhileTalking)
         {

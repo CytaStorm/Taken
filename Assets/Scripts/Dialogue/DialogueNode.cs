@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueNode
@@ -28,7 +30,6 @@ public class DialogueNode
     /// If relativeChange is not null, then de/increment by relativechange
     /// </summary>
     public List<DialogueFlag> FlagsToChange = new List<DialogueFlag>();
-    private string text;
 
     public DialogueNode(string _name, string _text, List<JSONLinks> links, List<string> tags)
     {
@@ -56,7 +57,7 @@ public class DialogueNode
         // the node links
         //Links = new List<DialogueNode>(); 
         //Flags = new List<DialogueFlag>();
-		//FlagsToChange = new List<DialogueFlag>();
+        //FlagsToChange = new List<DialogueFlag>();
     }
 
     public override string ToString()
@@ -64,7 +65,7 @@ public class DialogueNode
         return $"Node: {Name} || Info: {Text} || Links: {PrintLinks()}";
     }
 
-    private string PrintLinks()
+	private string PrintLinks()
     {
         string output = "";
         foreach (DialogueLink link in Links) 

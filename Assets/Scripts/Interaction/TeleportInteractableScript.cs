@@ -34,11 +34,16 @@ public class TeleportInteractableScript : InteractableScript
 			yield return new WaitForSeconds(1);
 		}
 
-		PlayerController.Instance.Agent.isStopped = true;
-		PlayerController.Instance.Agent.ResetPath();
+		this.Interacting = false;
+		//PlayerController.Instance.Agent.isStopped = true;
 		PlayerController.Instance.Agent.Warp(_teleportTo.transform.position);
 		PlayerController.Instance.Cam.gameObject.
 			GetComponent<CameraController>().offset = _newCameraOffset;
+		PlayerController.Instance.Agent.ResetPath();
+		PlayerController.Instance.Agent.SetDestination(
+			PlayerController.Instance.transform.position);
 		yield return null;
 	}
+
+	public override void ExitDialogue() { }
 }

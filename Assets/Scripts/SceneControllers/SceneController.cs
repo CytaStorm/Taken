@@ -198,7 +198,7 @@ public class SceneController : MonoBehaviour
 		onSceneChange += UIManager.UI.PauseAllButtons;
 		foreach (DialogueFlag flag in Flags.Instance.DialogueFlags)
 		{
-			if (flag.Name.Contains("end"))
+			if (flag.Name.Contains("End"))
 			{
 				flag.OnValueChange += delegate 
 					//ExtractFlags returns a list of list of newdialogue flags, but because each
@@ -239,7 +239,7 @@ public class SceneController : MonoBehaviour
 		if (FadingOut)
 		{
 			_fadeOutTimer = Mathf.Clamp(_fadeOutTimer + Time.deltaTime, 0, _currentFadeOutTime);
-			if (_fadeOutTimer > _currentFadeOutTime && newScene)
+			if (_fadeOutTimer >= _currentFadeOutTime && newScene)
 			{
 				SceneManager.LoadScene(_destinationScene);
 			}

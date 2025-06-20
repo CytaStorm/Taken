@@ -16,8 +16,6 @@ public class SceneTwoController : SceneController
 	private NavMeshAgent _sallosAgent;
 	private Animator _sallosAnimator;
 
-	Transform sallosMesh;
-
 	//Interactable
 	[SerializeField] private GameObject _deadTree;
 	private InteractableScript _deadTreeScript;
@@ -45,17 +43,17 @@ public class SceneTwoController : SceneController
 		_sallosScript = _sallos.GetComponent<NPCScript>();
 		_sallosAgent = _sallos.GetComponent<NavMeshAgent>();
 		_sallosAnimator = _sallos.GetComponent<Animator>();
-		sallosMesh = _sallosScript.Mesh.transform;
 
 		//Hook up events
-		_flagNames.Add("talkedToSallos");
-		_flagNames.Add("finishedTinderQuest");
-		_flagNames.Add("finishedFirewoodQuest");
-		_flagNames.Add("placeStoveLogs");
-		_flagNames.Add("placeStoveTinder");
-		_flagNames.Add("sallosWalkIn");
-		_flagNames.Add("sallosDiscussionRepeat");
-		_flagNames.Add("sharpenedHatchet");
+		_flagNames.Add("talkedToSallos"); //0
+		_flagNames.Add("finishedTinderQuest"); //1
+		_flagNames.Add("finishedFirewoodQuest"); //2
+		_flagNames.Add("placeStoveLogs"); //3
+		_flagNames.Add("placeStoveTinder"); //4
+		_flagNames.Add("sallosWalkIn"); //5
+		_flagNames.Add("sallosDiscussionRepeat"); //6
+		_flagNames.Add("sharpenedHatchet"); //7
+		_flagNames.Add("eatCutscene"); //8
 		CreateEventFlags();
 
 		_eventFlags[0].OnValueChange += delegate
@@ -71,28 +69,35 @@ public class SceneTwoController : SceneController
 		_eventFlags[2].OnValueChange += delegate { SallosGoToTinder(); };
 
 		//place firewood
-		_eventFlags[3].OnValueChange += delegate { _stoveLogs.SetActive(true);  };
+		_eventFlags[3].OnValueChange += delegate { _stoveLogs.SetActive(true); };
 
 		//place tinder
 		_eventFlags[4].OnValueChange += delegate { _stoveTinder.SetActive(true); };
 
 		//Sallos walk in
-		_eventFlags[5].OnValueChange += delegate { 
-			StartCoroutine(SallosWalkIntoTent(5)); };
+		_eventFlags[5].OnValueChange += delegate {
+			StartCoroutine(SallosWalkIntoTent(2)); };
 
 		//Sallos discussion repeat
 		_eventFlags[6].OnValueChange += delegate
 		{
-			_sallosScript.Graph.StartNode = 
+			_sallosScript.Graph.StartNode =
 				_sallosScript.Graph.Nodes.FirstOrDefault(
 					newNode => newNode.Name == "sallosDiscussionRepeat");
 		};
 
+		//Sharpen hatchet
 		_eventFlags[7].OnValueChange += delegate
 		{
 			_sallosScript.Graph.StartNode =
 				_sallosScript.Graph.Nodes.FirstOrDefault(
 					newNode => newNode.Name == "timeToEat");
+		};
+
+		//Start talking with Sallos while eating.
+		_eventFlags[8].OnValueChange += delegate
+		{
+			StartCoroutine(EatCutscene(3f));
 		};
 	}
 
@@ -108,6 +113,8 @@ public class SceneTwoController : SceneController
 		_sallosAgent.SetDestination(_deadTreeScript.InteractionPoint.transform.position);
 		StartCoroutine(GoToLocation(_deadTree.transform.position, "sallosAtDeadTree"));
 		_deadTreeScript.Interactable = false;
+		_sallosScript.InteractionPivot.transform.rotation = 
+			Quaternion.Euler(0, 250, 0);
 	}
 
 	private void SallosGoToTinder()
@@ -127,51 +134,83 @@ public class SceneTwoController : SceneController
 		_stoveScript.Interactable = false;
 
 		//teleport player
-		PlayerController.Instance.Agent.Warp(new Vector3(-51, 2.17f, 174));
+		PlayerController.Instance.Agent.Warp(new Vector3(-51, 2.17f, 175));
 		PlayerController.Instance.gameObject.transform.forward =
 			(_stove.transform.position -
 			PlayerController.Instance.transform.position);
 
 		//Teleport sallos to edge of tent
-		_sallosAgent.Warp(new Vector3(-52, 2.17f, 179));
+		_sallosAgent.Warp(_stoveScript.InteractionPoint.transform.position);
+		_sallosAgent.transform.forward = _stove.transform.position;
 		_sallosScript.InteractionPivot.transform.rotation =
 			Quaternion.Euler(0, 90, 0);
-		_sallosAgent.speed = 1.5f;
-		_sallosAgent.SetDestination(_stoveScript.InteractionPoint.transform.position);
 		_hatchet.SetActive(true);
-		StartCoroutine(GoToLocation(_stove.transform.position, "sallosDiscussion"));
+		ChangeGraph(_sallosScript, "sallosDiscussion");
 		yield return null;
 	}
 
+	private IEnumerator EatCutscene(float fadeTime)
+	{
+		Fade(fadeTime);
+		yield return new WaitForSeconds(fadeTime);
+
+		//Teleport sallos and eulyss to eating pose
+		_sallosAgent.Warp(new Vector3(-51, 2.17f, 175));
+		_sallosAgent.transform.forward = 
+			new Vector3(-52, 2.17f, 176.3f) -
+			_sallosAgent.transform.position;
+
+		PlayerController.Instance.Agent.Warp(new Vector3(-53, 2.17f, 176));
+		PlayerController.Instance.gameObject.transform.forward = 
+			new Vector3(-52, -2.17f, 176.3f) - 
+			PlayerController.Instance.transform.position;
+
+		//Interact with sallos
+		Traverser.SetNewGraph(
+			_graphs.FirstOrDefault(graph => graph.Name == "likeIt"));
+	}
 
 	private IEnumerator GoToLocation(
 		Vector3 destination, string newGraphName)
 	{
-		while (Quaternion.Angle(
-			_sallos.transform.rotation, Quaternion.identity) > 0)
-		{
-			_sallos.transform.rotation = Quaternion.RotateTowards(
-				_sallos.transform.rotation,
-				Quaternion.identity,
-				250 * Time.deltaTime);
-			yield return null;
-		}
+		_sallosAgent.stoppingDistance = 0.15f;
+		//while (Quaternion.Angle(
+		//	_sallos.transform.rotation, Quaternion.identity) > 0)
+		//{
+		//	_sallos.transform.rotation = Quaternion.RotateTowards(
+		//		_sallos.transform.rotation,
+		//		Quaternion.identity,
+		//		250 * Time.deltaTime);
+		//	yield return null;
+		//}
 
 		_sallosScript.Interactable = false;
-		while (Vector3.Distance(sallosMesh.position, _sallosAgent.destination) > 0.1f)
+
+		//while (Vector3.Distance(sallosMesh.position, _sallosAgent.destination) > 0.1f)
+		//{
+		//	yield return null;
+		//}
+
+		while (_sallosAgent.pathPending ||
+			_sallosAgent.remainingDistance > _sallosAgent.stoppingDistance ||
+			_sallosAgent.velocity.sqrMagnitude != 0f)
 		{
 			yield return null;
 		}
 
 		_sallosAgent.isStopped = true;
 
-		Quaternion q = Quaternion.LookRotation(
-			destination - sallosMesh.transform.position);
+		//Quaternion q = Quaternion.LookRotation(
+		//	destination - sallosMesh.transform.position);
 
-		while (Quaternion.Angle(sallosMesh.transform.rotation, q) > 0)
+		Quaternion q = Quaternion.LookRotation(
+			destination - _sallos.transform.position);
+
+		while (Quaternion.Angle(_sallos.transform.rotation, q) > 0)
 		{
-			sallosMesh.transform.rotation =
-				Quaternion.RotateTowards(sallosMesh.transform.rotation, q, 250 * Time.deltaTime);
+			_sallos.transform.rotation =
+				Quaternion.RotateTowards(
+					_sallos.transform.rotation, q, 250 * Time.deltaTime);
 			yield return null;
 		}
 
@@ -179,6 +218,11 @@ public class SceneTwoController : SceneController
 		_sallosScript.Interactable = true;
 		ChangeGraph(_sallosScript, newGraphName);
 		_sallosScript.FacePlayerWhileTalking = false;
+	}
+
+	private void OnDrawGizmos()
+	{
+		//Gizmos.DrawRay(sallosMesh.transform.position, );
 	}
 }
 

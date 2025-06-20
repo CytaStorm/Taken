@@ -18,6 +18,7 @@ public abstract class InteractableScript : MonoBehaviour
     public bool Interactable = true;    
     public bool HasLimitedInteractions = false;
     public int InteractionCount = 0;
+    public bool Interacting;
     public bool isFocus { 
         get { 
             return PlayerController.Instance.Focus == this; 
@@ -67,7 +68,7 @@ public abstract class InteractableScript : MonoBehaviour
 			InteractionPoint.transform.position);
 
 		// If its able to be interacted with, Interact
-		if (distance < 0.2 && isFocus && 
+		if (distance < 0.2 && isFocus && !Interacting &&
             UIManager.UI.CurrentUIMode == UIMode.Gameplay)
 		{
 			if (HasLimitedInteractions)
@@ -76,7 +77,7 @@ public abstract class InteractableScript : MonoBehaviour
 				else {InteractionCount++; }
 			}
             //hasInteracted = true;
-            PlayerController.Instance.RemoveFocus();
+            Interacting = true;
             StartCoroutine(Interact());
 		}
     }
@@ -98,6 +99,8 @@ public abstract class InteractableScript : MonoBehaviour
 		}
         isHighlighted = false;
     }
+
+    public abstract void ExitDialogue();
 
     //private void OnDrawGizmosSelected()
     //{
