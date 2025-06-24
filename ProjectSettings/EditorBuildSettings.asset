@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tent.unity
     guid: 5666506bce0d31c4d826448f9f5fb852
+  - enabled: 1
+    path: Assets/Scenes/Scene 3.unity
+    guid: 970adf79b84b8d0488fd2a84b65402c2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8cace2abe7388974e998206423d6d27b, type: 2}
