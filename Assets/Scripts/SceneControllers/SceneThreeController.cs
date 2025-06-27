@@ -16,12 +16,15 @@ public class SceneThreeController : SceneController
     
     // Actor components
     private NavMeshAgent _sallosAgent;
+    [SerializeField] private GameObject _sallosMesh;
     private Animator _sallosAnimator;
 
     private NavMeshAgent _eulyssAgent;
+    [SerializeField] private GameObject _playerMesh;
     private Animator _eulyssAnimator;
 
     private NavMeshAgent _akifAgent;
+    [SerializeField] private GameObject _akifMesh;
     private Animator _akifAnimator;
 
     private NavMeshAgent _goonAgent;
@@ -61,13 +64,13 @@ public class SceneThreeController : SceneController
 
         // Get component data for all actors
         _sallosAgent = _sallos.GetComponent<NavMeshAgent>();
-        _sallosAnimator = _sallos.GetComponent<Animator>();
+        _sallosAnimator = _sallosMesh.GetComponent<Animator>();
 
         _eulyssAgent = _eulyss.GetComponent<NavMeshAgent>();
-        _eulyssAnimator = _eulyss.GetComponent<Animator>();
+        _eulyssAnimator = _playerMesh.GetComponent<Animator>();
 
         _akifAgent = _akif.GetComponent<NavMeshAgent>();
-        _akifAnimator = _akif.GetComponent<Animator>();
+        _akifAnimator = _akifMesh.GetComponent<Animator>();
 
         _goonAgent = _goon.GetComponent<NavMeshAgent>();
         _goonAnimator = _goon.GetComponent<Animator>();
