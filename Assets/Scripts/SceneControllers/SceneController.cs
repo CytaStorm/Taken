@@ -480,5 +480,4 @@ public class SceneController : MonoBehaviour
 	{
 		return (1 - FadeOutTimerPercent) * _currentFadeOutTime;
 	}
-
 }

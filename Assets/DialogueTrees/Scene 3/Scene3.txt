@@ -35,12 +35,12 @@
       }
     },
     {
-      "text": "d\n(set: $end to true)",
+      "text": "(set: $sceneThreeEnd to true)",
       "name": "End",
       "pid": "3",
       "position": {
-        "x": "75",
-        "y": "750"
+        "x": "0",
+        "y": "800"
       },
       "tags": [
         "exit",
@@ -96,7 +96,7 @@
       }
     },
     {
-      "text": "Reach for him.\n(set: $reach to true)\n\n[[Continue->fade]]",
+      "text": "(set: $reach to true)\n\n[[Continue->fade]]",
       "links": [
         {
           "name": "Continue",
