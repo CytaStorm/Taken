@@ -1074,6 +1074,10 @@ PrefabInstance:
       value: 483
       objectReference: {fileID: 0}
     - target: {fileID: 1468127464243165128, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 068b13322a58d0e49be390240f01e3e7, type: 3}
+    - target: {fileID: 1468127464243165128, guid: 79e36eac0e9bda14e95c0b86c0e1a423, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -9394,7 +9398,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 10340
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-44, z: 1.8201e-41, w: 7.181894e+22}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 3e-45, z: 7.85e-43, w: 2.3265605e-35}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
