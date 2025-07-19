@@ -122,7 +122,7 @@
       }
     },
     {
-      "text": "<b>SALLOS:</b> \"That's great! Here, just do this one, and we'll be fine.\"\n[[Unwrap it->unwrap]]",
+      "text": "<b>SALLOS:</b> \"That's great! Here, just do this one, and we'll be fine.\"\n(set: $faith += 1)\n[[Unwrap it->unwrap]]",
       "links": [
         {
           "name": "Unwrap it",

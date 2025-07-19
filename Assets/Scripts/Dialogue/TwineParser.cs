@@ -297,6 +297,11 @@ public class TwineParser
 				endDelimiter.Length);
 
 			startDelimiterStartIndex = node.Text.IndexOf(startDelimiter);
+			//Added to test for delimiters where \n was added (line 273)
+			if (startDelimiterStartIndex == -1)
+			{
+				startDelimiterStartIndex = node.Text.IndexOf(startDelimiter.Substring(1));
+			}
 		}
 		return results;
 	}

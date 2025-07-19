@@ -8,15 +8,24 @@ using UnityEngine.AI;
 
 public class SceneTwoController : SceneController
 {
+	//Material
+	[SerializeField] private Material _sallosMaterial;
 	// Actors
+	[Header("Actors")]
 	[SerializeField] private GameObject _sallos;
+	[SerializeField] private GameObject _player;
 
 	// Actor Components
 	private NPCScript _sallosScript;
 	private NavMeshAgent _sallosAgent;
-	private Animator _sallosAnimator;
+	[SerializeField] private Animator _sallosAnimator;
+
+	private NPCScript _playerScript;
+	private NavMeshAgent _playerAgent;
+	[SerializeField] private Animator _playerAnimator;
 
 	//Interactable
+	[Header("Objects")]
 	[SerializeField] private GameObject _deadTree;
 	private InteractableScript _deadTreeScript;
 	[SerializeField] private GameObject _tinder;
@@ -35,6 +44,9 @@ public class SceneTwoController : SceneController
 	new void Start()
 	{
 		base.Start();
+		//Reset sallos's material
+        _sallosMaterial.SetFloat("_Dissolve_Effect", 0);
+
 		_deadTreeScript = _deadTree.GetComponent<InteractableScript>();
 		_tinderScript = _tinder.GetComponent<InteractableScript>();
 		_stoveScript = _stove.GetComponent<InteractableScript>();
@@ -42,7 +54,10 @@ public class SceneTwoController : SceneController
 
 		_sallosScript = _sallos.GetComponent<NPCScript>();
 		_sallosAgent = _sallos.GetComponent<NavMeshAgent>();
-		_sallosAnimator = _sallos.GetComponent<Animator>();
+
+		_playerScript = _player.GetComponent<NPCScript>();
+		_playerAgent = _player.GetComponent<NavMeshAgent>();
+
 
 		//Hook up events
 		_flagNames.Add("talkedToSallos"); //0
@@ -69,10 +84,14 @@ public class SceneTwoController : SceneController
 		_eventFlags[2].OnValueChange += delegate { SallosGoToTinder(); };
 
 		//place firewood
-		_eventFlags[3].OnValueChange += delegate { _stoveLogs.SetActive(true); };
+		_eventFlags[3].OnValueChange += delegate {
+			_playerAnimator.SetTrigger("Place");
+			_stoveLogs.SetActive(true); };
 
 		//place tinder
-		_eventFlags[4].OnValueChange += delegate { _stoveTinder.SetActive(true); };
+		_eventFlags[4].OnValueChange += delegate { 
+			_playerAnimator.SetTrigger("Place");
+			_stoveTinder.SetActive(true); };
 
 		//Sallos walk in
 		_eventFlags[5].OnValueChange += delegate {

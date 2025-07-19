@@ -39,8 +39,8 @@
       "name": "End",
       "pid": "3",
       "position": {
-        "x": "0",
-        "y": "800"
+        "x": "725",
+        "y": "1200"
       },
       "tags": [
         "exit",
@@ -251,17 +251,22 @@
       "name": "continue 6",
       "pid": "16",
       "position": {
-        "x": "675",
+        "x": "625",
         "y": "700"
       }
     },
     {
-      "text": "Sallos begins to glow, and he fades away into a pale yellow mist.\n(set: $disappear to true)\n\n[[Continue->End]]",
+      "text": "Sallos begins to glow, and he fades away into a pale yellow mist.\n(set: $disappear to true)\n\n(if: $faith > 0)[ [[Continue->faithEnding]] ]\n(if: $strength > 0)[ [[Continue->strengthEnding]] ]",
       "links": [
         {
           "name": "Continue",
-          "link": "End",
-          "pid": "3"
+          "link": "faithEnding",
+          "pid": "26"
+        },
+        {
+          "name": "Continue",
+          "link": "strengthEnding",
+          "pid": "27"
         }
       ],
       "name": "fade",
@@ -350,8 +355,8 @@
       "name": "whatDo",
       "pid": "22",
       "position": {
-        "x": "825",
-        "y": "725"
+        "x": "775",
+        "y": "750"
       }
     },
     {
@@ -400,6 +405,86 @@
       "position": {
         "x": "900",
         "y": "450"
+      }
+    },
+    {
+      "text": "You fall to your knees, unable to speak.\n[[Continue->faithEnding1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "faithEnding1",
+          "pid": "28"
+        }
+      ],
+      "name": "faithEnding",
+      "pid": "26",
+      "position": {
+        "x": "50",
+        "y": "925"
+      }
+    },
+    {
+      "text": "The world turns red, then black.\n\n[[Continue->strengthEnding1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "strengthEnding1",
+          "pid": "30"
+        }
+      ],
+      "name": "strengthEnding",
+      "pid": "27",
+      "position": {
+        "x": "225",
+        "y": "1000"
+      }
+    },
+    {
+      "text": "\"JAWNI\": \"We've got what we came for.\"\n[[Continue->faithEnding2]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "faithEnding2",
+          "pid": "29"
+        }
+      ],
+      "name": "faithEnding1",
+      "pid": "28",
+      "position": {
+        "x": "50",
+        "y": "1050"
+      }
+    },
+    {
+      "text": "The two walk away, leaving you alone. Truly alone.\n[[Continue->End]] ",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "End",
+          "pid": "3"
+        }
+      ],
+      "name": "faithEnding2",
+      "pid": "29",
+      "position": {
+        "x": "50",
+        "y": "1175"
+      }
+    },
+    {
+      "text": "The last things you remember hearing were two thumps, and breaths slowly fading.\n[[End]] ",
+      "links": [
+        {
+          "name": "End",
+          "link": "End",
+          "pid": "3"
+        }
+      ],
+      "name": "strengthEnding1",
+      "pid": "30",
+      "position": {
+        "x": "475",
+        "y": "1025"
       }
     }
   ],
