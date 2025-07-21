@@ -132,9 +132,8 @@ public class DialogueFlagValue : DialogueFlag
 			return false;
 		}
 
-		switch (Relation)
+		switch (other.Relation)
 		{
-			case ValueRelation.None:
 			case ValueRelation.Equal:
 				return Value == other.Value;
 			case ValueRelation.Greater:

@@ -96,7 +96,7 @@
       }
     },
     {
-      "text": "(set: $reach to true)\n\n[[Continue->fade]]",
+      "text": "(set: $reach to true)\n[[Continue->fade]]",
       "links": [
         {
           "name": "Continue",
@@ -256,7 +256,7 @@
       }
     },
     {
-      "text": "Sallos begins to glow, and he fades away into a pale yellow mist.\n(set: $disappear to true)\n\n(if: $faith > 0)[ [[Continue->faithEnding]] ]\n(if: $strength > 0)[ [[Continue->strengthEnding]] ]",
+      "text": "Sallos begins to glow, and he fades away into a pale yellow mist.\n(set: $disappear to true)\n(if: $faith > 0)[ [[Continue->faithEnding]] ]\n(if: $strength > 0)[ [[Continue->strengthEnding]] ]",
       "links": [
         {
           "name": "Continue",
@@ -424,7 +424,7 @@
       }
     },
     {
-      "text": "The world turns red, then black.\n\n[[Continue->strengthEnding1]]",
+      "text": "The world turns red, then black.\n(set: $redBlack to true)\n\n[[Continue->strengthEnding1]]",
       "links": [
         {
           "name": "Continue",

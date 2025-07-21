@@ -8,6 +8,10 @@ using UnityEngine.AI;
 
 public class SceneThreeController : SceneController
 {
+    //Red screen dim
+    [SerializeField] private UnityEngine.UI.Image _redDim;
+    [SerializeField] private UnityEngine.UI.Image _blackDim;
+
     // Actors
     [SerializeField] private GameObject _sallos;
     [SerializeField] private GameObject _eulyss;
@@ -50,6 +54,9 @@ public class SceneThreeController : SceneController
         _flagNames.Add("disappear");
         _flagNames.Add("reach");
 
+        //strength ending;
+        _flagNames.Add("redBlack");
+
         //Create eventFlags list based on string list flagNames
         CreateEventFlags();
 
@@ -61,6 +68,10 @@ public class SceneThreeController : SceneController
         _eventFlags[4].OnValueChange += delegate { Stab(); };
         _eventFlags[5].OnValueChange += delegate { Disappear(); };
         _eventFlags[6].OnValueChange += delegate { Reach(); };
+        _eventFlags[7].OnValueChange += delegate {
+            //
+            StartCoroutine(FadeRed());
+        };
 
         // Get component data for all actors
         _sallosAgent = _sallos.GetComponent<NavMeshAgent>();
@@ -88,6 +99,28 @@ public class SceneThreeController : SceneController
     {
         base.Update(); // Update timer each frame
     }
+
+    private IEnumerator FadeRed()
+    {
+        _blackDim.color = new Color(0, 0, 0, 0);
+        //Inital red splash
+		for (float i = 0; i <= 0.7; i += Time.deltaTime)
+		{
+			// set color with i as alpha
+			_redDim.color = new Color(157, 0, 0, 0.7f/i);
+			yield return null;
+		}
+
+        _blackDim.color = new Color(0, 0, 0, 1);
+
+        for (float i = 1; i >= 0; i -= Time.deltaTime)
+        {
+            // set color with i as alpha
+            _redDim.color = new Color(157, 0, 0, i);
+            yield return null;
+        }
+        StartCoroutine(UIManager.UI.PauseAllButtons(2f));
+	}
 
     private void WalkLeft()
     {
