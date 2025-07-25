@@ -8,6 +8,9 @@
         },
         {
             "m_Id": "de7e5f06148f49629514f731c2ba4d52"
+        },
+        {
+            "m_Id": "ad2371bb9573430ba4477f6da9a86b77"
         }
     ],
     "m_Keywords": [],
@@ -62,6 +65,9 @@
         },
         {
             "m_Id": "6301a97308ee4deea6c12b93dfc11365"
+        },
+        {
+            "m_Id": "42f57f9f1810486b8773671363d0d902"
         }
     ],
     "m_GroupDatas": [],
@@ -79,6 +85,20 @@
                     "m_Id": "6301a97308ee4deea6c12b93dfc11365"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "42f57f9f1810486b8773671363d0d902"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "b422ee2abe944caeb83339057c88f41b"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -126,8 +146,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 0.0
+            "x": 87.50003814697266,
+            "y": -161.00001525878907
         },
         "m_Blocks": [
             {
@@ -240,8 +260,8 @@
     "m_StageCapability": 2,
     "m_Value": {
         "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+        "y": 355.54351806640627,
+        "z": 766.9961547851563
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -558,6 +578,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "42f57f9f1810486b8773671363d0d902",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -292.0000305175781,
+            "y": 453.5,
+            "width": 153.49998474121095,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "fe419a743eaf463a8b6af230bb2c4b81"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "ad2371bb9573430ba4477f6da9a86b77"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.Rendering.HighDefinition.ShaderGraph.BuiltinData",
     "m_ObjectId": "455731e33355431b9a7f3cbec008a9bc",
     "m_Distortion": false,
@@ -803,6 +859,9 @@
         },
         {
             "m_Id": "de7e5f06148f49629514f731c2ba4d52"
+        },
+        {
+            "m_Id": "ad2371bb9573430ba4477f6da9a86b77"
         }
     ]
 }
@@ -871,7 +930,7 @@
     "m_TessellationBackFaceCullEpsilon": -0.25,
     "m_TessellationMaxDisplacement": 0.009999999776482582,
     "m_Version": 1,
-    "inspectorFoldoutMask": 0
+    "inspectorFoldoutMask": 9
 }
 
 {
@@ -1057,6 +1116,36 @@
     "m_Property": {
         "m_Id": "5434dc2e6af14c79bdd4dd177621874e"
     }
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "ad2371bb9573430ba4477f6da9a86b77",
+    "m_Guid": {
+        "m_GuidSerialized": "d97a7bb1-8493-4d2b-9c3a-75c9c96aa00e"
+    },
+    "m_Name": "Emissive Color",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Emissive Color",
+    "m_DefaultReferenceName": "_Emissive_Color",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 0.0,
+        "g": 1234.2232666015625,
+        "b": 1367.1202392578125,
+        "a": 0.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 1
 }
 
 {
@@ -1486,5 +1575,30 @@
     },
     "m_Labels": [],
     "m_Space": 3
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "fe419a743eaf463a8b6af230bb2c4b81",
+    "m_Id": 0,
+    "m_DisplayName": "Emissive Color",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
 }
 

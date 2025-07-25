@@ -100,6 +100,7 @@ Material:
     - _Base_Color: {r: 0.509434, g: 0.36769918, b: 0.18022427, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Emissive_Color: {r: 0, g: 0.6762077, b: 0.7490195, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5634349670721854551

@@ -32,8 +32,14 @@ public class SceneTwoController : SceneController
 	private InteractableScript _tinderScript;
 	[SerializeField] private GameObject _stove;
 	private InteractableScript _stoveScript;
+
+	[Header("Hatchet")]
 	[SerializeField] private GameObject _hatchet;
-	private InteractableScript _hatchetScript;
+	[SerializeField] private Material _hatchetMat;
+	[SerializeField] private Texture _dullHatchetTexture;
+	[SerializeField] private Texture _sharpHatchetTexture;
+	[SerializeField] private Light _hatchetGlow;
+	[Space(10)]
 
 	//props
 	[SerializeField] private GameObject _stoveLogs;
@@ -44,13 +50,15 @@ public class SceneTwoController : SceneController
 	new void Start()
 	{
 		base.Start();
-		//Reset sallos's material
+		//Reset materials
         _sallosMaterial.SetFloat("_Dissolve_Effect", 0);
+		_hatchetMat.SetColor("_Emissive_Color", Color.black);
+		_hatchetMat.SetTexture("_Texture", _dullHatchetTexture);
+		_hatchetGlow.intensity = 0;
 
 		_deadTreeScript = _deadTree.GetComponent<InteractableScript>();
 		_tinderScript = _tinder.GetComponent<InteractableScript>();
 		_stoveScript = _stove.GetComponent<InteractableScript>();
-		_hatchetScript = _hatchet.GetComponent<InteractableScript>();
 
 		_sallosScript = _sallos.GetComponent<NPCScript>();
 		_sallosAgent = _sallos.GetComponent<NavMeshAgent>();
@@ -69,6 +77,10 @@ public class SceneTwoController : SceneController
 		_flagNames.Add("sallosDiscussionRepeat"); //6
 		_flagNames.Add("sharpenedHatchet"); //7
 		_flagNames.Add("eatCutscene"); //8
+		_flagNames.Add("raiseArm");
+		_flagNames.Add("focus");
+		_flagNames.Add("lowerHand");
+		_flagNames.Add("getUp");
 		CreateEventFlags();
 
 		_eventFlags[0].OnValueChange += delegate
@@ -117,6 +129,27 @@ public class SceneTwoController : SceneController
 		_eventFlags[8].OnValueChange += delegate
 		{
 			StartCoroutine(EatCutscene(3f));
+		};
+
+		_eventFlags[9].OnValueChange += delegate {
+			_playerAnimator.SetTrigger("RaiseArm");
+		};
+
+		_eventFlags[10].OnValueChange += delegate
+		{
+			_playerAnimator.SetTrigger("Focus");
+			StartCoroutine(HatchetGlow(5f));
+		};
+
+		_eventFlags[11].OnValueChange += delegate
+		{
+			_playerAnimator.SetTrigger("LowerArm");
+			StartCoroutine(HatchetUnglow(5f));
+		};
+
+		_eventFlags[12].OnValueChange += delegate 
+		{
+			_playerAnimator.SetTrigger("getUp");
 		};
 	}
 
@@ -237,6 +270,37 @@ public class SceneTwoController : SceneController
 		_sallosScript.Interactable = true;
 		ChangeGraph(_sallosScript, newGraphName);
 		_sallosScript.FacePlayerWhileTalking = false;
+	}
+
+	private IEnumerator HatchetGlow(float durationSeconds)
+	{
+		for (float i = 0; i < durationSeconds; i += Time.deltaTime)
+		{
+			_hatchetMat.SetColor(
+				"_Emissive_Color", 
+				new Color(0, 173, 191) * Mathf.Lerp(0, 10, i / durationSeconds));
+
+			_hatchetGlow.intensity = Mathf.Lerp(0, 40000, i / durationSeconds);
+			yield return null;
+		}
+		yield return null;	
+	}
+	private IEnumerator HatchetUnglow(float durationSeconds)
+	{
+		_hatchetMat.SetTexture("_Texture", _sharpHatchetTexture);
+		for (float i = durationSeconds; i >= 0 ; i -= Time.deltaTime)
+		{
+			_hatchetMat.SetColor(
+				"_Emissive_Color", 
+				new Color(0, 173, 191) * Mathf.Lerp(-10, 10, i / durationSeconds));
+			_hatchetGlow.intensity = Mathf.Lerp(0, 40000, i / durationSeconds);
+			yield return null;
+		}
+
+		_hatchetMat.SetColor("_Emissive_Color", Color.black);
+		_hatchetGlow.intensity = 0;
+
+		yield return null;	
 	}
 
 	private void OnDrawGizmos()

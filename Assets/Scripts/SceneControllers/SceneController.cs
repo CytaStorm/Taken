@@ -480,4 +480,14 @@ public class SceneController : MonoBehaviour
 	{
 		return (1 - FadeOutTimerPercent) * _currentFadeOutTime;
 	}
+
+	public void GoToNextScene()
+	{
+		SceneManager.LoadScene(_destinationScene);
+	}
+
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }
