@@ -44,6 +44,7 @@ public class SceneTwoController : SceneController
 	//props
 	[SerializeField] private GameObject _stoveLogs;
 	[SerializeField] private GameObject _stoveTinder;
+	[SerializeField] private GameObject _stoveLight;
 
 
 	// Start is called before the first frame update
@@ -55,6 +56,7 @@ public class SceneTwoController : SceneController
 		_hatchetMat.SetColor("_Emissive_Color", Color.black);
 		_hatchetMat.SetTexture("_Texture", _dullHatchetTexture);
 		_hatchetGlow.intensity = 0;
+		_stoveLight.SetActive(false);
 
 		_deadTreeScript = _deadTree.GetComponent<InteractableScript>();
 		_tinderScript = _tinder.GetComponent<InteractableScript>();
@@ -107,7 +109,8 @@ public class SceneTwoController : SceneController
 
 		//Sallos walk in
 		_eventFlags[5].OnValueChange += delegate {
-			StartCoroutine(SallosWalkIntoTent(2)); };
+			StartCoroutine(SallosWalkIntoTent(2));
+		};
 
 		//Sallos discussion repeat
 		_eventFlags[6].OnValueChange += delegate
@@ -198,6 +201,7 @@ public class SceneTwoController : SceneController
 			Quaternion.Euler(0, 90, 0);
 		_hatchet.SetActive(true);
 		ChangeGraph(_sallosScript, "sallosDiscussion");
+		_stoveLight.SetActive(true);
 		yield return null;
 	}
 
