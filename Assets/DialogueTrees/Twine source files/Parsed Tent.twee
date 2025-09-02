@@ -5,8 +5,8 @@ Parsed Tent
 :: StoryData
 {
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
-  "format": "Harlowe",
-  "format-version": "3.3.9",
+  "format": "Twison",
+  "format-version": "0.0.1",
   "start": "scene",
   "tag-colors": {
     "exit": "red",
@@ -19,13 +19,13 @@ Parsed Tent
 }
 
 
-:: "What're you making?" {"position":"1700,600","size":"100,100"}
-<b>SALLOS: </b>I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry.
+:: "What're you making?" {"position":"1525,650","size":"100,100"}
+<b>SALLOS:</b> "I'm putting together a stew with some stock cubes I brought along with me—there's no meat in here, don't worry."
 [[Continue->parchment]]
 
 
-:: Finish eating. {"position":"3150,1850","size":"100,100"}
-
+:: Finish eating. [end exit] {"position":"3150,1850","size":"100,100"}
+(set: $sceneTwoEnd to true)
 
 
 :: Really. {"position":"2725,650","size":"100,100"}
@@ -33,48 +33,28 @@ His ears perk up when he hears your reassurances, and he breathes a sigh of reli
 [[Continue->continueReally]]
 
 
-:: Sallos [start] {"position":"50,1075","size":"100,100"}
-<b>SALLOS:</b> Hey, how are you holding up? 
-(set: $talkedToSallos to true)
-[[I'm fine.->fine]]
-[[I'm beat!->beat]]
-
-
-:: SallosTalkedTo [start] {"position":"350,1000","size":"100,100"}
-<b>SALLOS:</b> Hey, what's up? Need anything?
-(if: $hasWood is true)[ [[Present the firewood.->giveFirewood]] ]
-(if: $hasTinder is true)[ [[Present the tinder.->giveTinder]] ]
-(if: $hasWood is false and $hasTinder is false)[ [[I forgot what I needed to do.->forgot]] ]
-[[I'm alright.->sallosTalkedToExit]]
-
-
 :: Stare at him back. {"position":"3150,1475","size":"100,100"}
 A short Ifni gives a puzzled look back at you, his ears turning to the sounds around you: the howling winds and the crackling fire, and his tail swaying side to side. He continues to eat.
 [[Continue->alright?]]
 
 
-:: agreeToHelp {"position":"2025,775","size":"100,100"}
-<b>SALLOS: </b>That's great! Here, just do this one, and we'll be fine.
+:: agreeToHelp {"position":"1900,650","size":"100,100"}
+<b>SALLOS:</b> "That's great! Here, just do this one, and we'll be fine."
+(set: $faith += 1)
 [[Unwrap it->unwrap]]
 
 
 :: alright? {"position":"3150,1600","size":"100,100"}
-<b>SALLOS: </b>You alright? I know you love watching my tail, but you haven't eaten much at all.
+<b>SALLOS:</b> "You alright? I know you love watching my tail, but you haven't eaten much at all."
 [[Ah! I just...->itsOk]]
 
 
-:: beat {"position":"100,1350","size":"100,100"}
-<b>SALLOS:</b> Awh, I'm sorry to hear that! But we just have a little bit more work to do.
+:: beat {"position":"150,1300","size":"100,100"}
+<b>SALLOS:</b> "Awh, I'm sorry to hear that! But we just have a little bit more work to do."
 [[Continue->work]]
 
 
-:: blush {"position":"3800,1300","size":"100,100"}
-You blush. The boy has a way with words, even in his faraway dialect of Ghuzian. You can feel the beat of your heart more now.
-
-[[Continue->sleepSoon]]
-
-
-:: boil {"position":"2125,1000","size":"100,100"}
+:: boil {"position":"2025,1000","size":"100,100"}
 Slowly, gently, you lower the cube into the water. The portions under the rolling waves begin to shimmer and dissolve, staining the water with a deep brown. Once most of the stock is submerged, you release it, letting it fully sink. Sallos does the same, and soon, the stew begins to thicken and become fragrant.
 [[Continue->timeToEat]]
 
@@ -84,18 +64,18 @@ You've already collect a fair amount of tinder. It'd probably be best for Sallos
 [[Continue->exitDeadTree]]
 
 
-:: cannotGrabTinder {"position":"500,1050","size":"100,100"}
+:: cannotGrabTinder {"position":"800,1100","size":"100,100"}
 Your hands are already full of firewood. Best to let Sallos take care of these.
 [[Continue->exitGrabTinder]]
 
 
 :: continueReally {"position":"2925,750","size":"100,100"}
-<b>SALLOS: </b>Thank you! 
+<b>SALLOS:</b> "Thank you!" 
 [[Continue->sallosEat]]
 
 
 :: continueUnwrap {"position":"2075,850","size":"100,100"}
-<b>SALLOS: </b>Are you excited to reach the top? We've been waiting for years for this, haven't we?
+<b>SALLOS:</b> "Are you excited to reach the top? We've been waiting for years for this, haven't we?"
 [[When do we get to the top?->whenTop]]
 
 
@@ -107,65 +87,82 @@ After some effort, you manage to get together a small bundle of logs. Enough to 
 
 :: deadStove [start] {"position":"975,75","size":"100,100"}
 The stove is quiet and depressing. Get it lit!
-
-(if: $hasWood is true) [ [[Place the logs down by the stove.->placeLogs]] ]
-(if: $hasKindling is true) [ [[Place the kindling down by the stove.->placeKindling]] ]
+(if: $hasWood is true and $finishedFirewoodQuest is true) [ [[Place the logs down by the stove->placeLogs]] ]
+(if: $hasTinder is true and $finishedTinderQuest is true) [ [[Place the kindling down by the stove->placeKindling]] ]
+[[Leave->exitDeadStove]]
 
 
 :: deadTree [start] {"position":"400,175","size":"100,100"}
 The fallen tree collects snow. It seems to have fallen recently, judging by how little snow is atop the trunk. Did you hear it fall? The sound was probably drowned out by the wind.
-(if: $hasWood is false and $hasTinder is false)[ [[Cut some logs->cut]] ]
-(if: $hasWood is false and $hasTinder is true)[ [[Cut some logs->cannotCut]] ]
-[[Leave->exitDeadTree]]
+(if: $hasWood is false and $hasTinder is false and $talkedToSallos is true)[ [[Cut some logs->cut]] ]
+(if: $hasWood is false and $hasTinder is true and $talkedToSallos is true)[ [[Cut some logs->cannotCut]] ]
+[[Continue->exitDeadTree]]
 
 
 :: eatAnyways {"position":"2600,1050","size":"100,100"}
-<b>SALLOS: </b>...
+<b>SALLOS:</b> "..."
 [[Continue->salloshoveInMouth]]
 
 
-:: edgeFormed {"position":"1475,1400","size":"100,100"}
-You close your eyes do your best to conjure up an image of the sharpest edge you can imagine in your mind. Your head begins to ache slightly, but as you open your eyes, you see that the hatchet's head has regained its sharpness, the edge gaining a shiny coating contrasting with the surrounding rust and abuse.
-[[Leave->exitHatchet]]
-
-
-:: exitDeadTree [exit] {"position":"650,675","size":"100,100"}
+:: edgeFormed {"position":"1725,1675","size":"100,100"}
+You close your eyes do your best to conjure up an image of the sharpest edge you can imagine in your mind. Your head begins to ache slightly.
+[[Open your eyes->openEyes]]
 
 
 
-:: exitGrabTinder [exit] {"position":"625,1500","size":"100,100"}
+:: exitDeadStove [exit] {"position":"725,100","size":"100,100"}
 
 
 
-:: exitHatchet [exit] {"position":"1375,1250","size":"100,100"}
+:: exitDeadTree [exit] {"position":"650,650","size":"100,100"}
 
 
 
-:: exitHelp [exit] {"position":"2125,550","size":"100,100"}
+:: exitGrabTinder [exit] {"position":"800,1475","size":"100,100"}
 
 
 
-:: exitHelpRepeat [exit] {"position":"1850,575","size":"100,100"}
+:: exitHatchet [exit] {"position":"1300,1550","size":"100,100"}
+(set: $getUp to true)
+
+
+:: exitHelp [exit] {"position":"1725,475","size":"100,100"}
+(set: $sallosDiscussionRepeat to true)
+
+
+:: exitHelpRepeat [exit] {"position":"1825,300","size":"100,100"}
 
 
 
-:: exitNoGrabPinecones [exit] {"position":"900,1325","size":"100,100"}
+:: exitNoGrabPinecones [exit] {"position":"975,1200","size":"100,100"}
 
 
 
-:: exitPinecones [exit] {"position":"975,1475","size":"100,100"}
+:: exitPinecones [exit] {"position":"1125,1375","size":"100,100"}
 
 
 
-:: exitPlaceStove [exit] {"position":"1025,500","size":"100,100"}
+:: exitPlaceStove [exit] {"position":"1050,500","size":"100,100"}
 (set: $sallosWalkIn to true)
 
 
-:: exitQuestGive [exit] {"position":"25,1775","size":"100,100"}
+:: exitQuestGive [exit] {"position":"150,1675","size":"100,100"}
+(set: $talkedToSallos to true)
+
+
+:: exitSallosQuestFireWood [exit] {"position":"475,1650","size":"100,100"}
+(set: $finishedFirewoodQuest to true)
+
+
+:: exitSallosQuestTinder [exit] {"position":"350,1600","size":"100,100"}
+(set: $finishedTinderQuest to true)
+
+
+:: exitSallosTinder [exit] {"position":"625,1075","size":"100,100"}
 
 
 
-:: exitSallosQuest [exit] {"position":"500,1675","size":"100,100"}
+:: exitSallosTree [exit] {"position":"500,1050","size":"100,100"}
 
 
 
@@ -173,88 +170,72 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 
 
 
-:: exitSleep [exit end] {"position":"3350,1250","size":"100,100"}
-
-
-
 :: exitTimeToEat [exit] {"position":"2100,1350","size":"100,100"}
 (set: $eatCutscene to true)
 
 
-:: exitTinder [exit] {"position":"875,875","size":"100,100"}
+:: exitTinder [exit] {"position":"1050,850","size":"100,100"}
 
 
 
 :: fine {"position":"0,1325","size":"100,100"}
-<b>SALLOS:</b> Glad to hear it! We still have some work to do, though.
+<b>SALLOS:</b> "Glad to hear it! We still have some work to do, though."
 [[Continue->work]]
 
 
-:: forgot {"position":"175,1100","size":"100,100"}
-<b>SALLOS:</b> Oh! You just need to get some firewood or tinder for me. There's a hatchet by the deadwood over there, and I think I saw good spot for foraging tinder a bit further past that.
+:: focus {"position":"1775,1500","size":"100,100"}
+You feel as is a wind is blowing across your arm, and the axe head begins to glow blue, and it begins to deform and almost melt.
+(set: $strength += 1 and $sharpenedHatchet to true and $focus to true)
+[[Continue->edgeFormed]]
+
+
+:: forgot {"position":"175,950","size":"100,100"}
+<b>SALLOS:</b> "Oh! You just need to get some firewood or tinder for me. There's a hatchet by the deadwood over there, and I think I saw good spot for foraging tinder a bit further past that."
 [[Thank you.->sallosTalkedToExit]]
 
 
-:: funny {"position":"3475,700","size":"100,100"}
-<b>SALLOS:</b> It’s pretty funny thinking back, rescuing and then falling in love with you… and you still look exactly the same as the day we met.
-
-[[Continue->older]]
-
-
-:: getPinecones {"position":"1100,1325","size":"100,100"}
+:: getPinecones {"position":"1150,1200","size":"100,100"}
 Upon closer inspection, most of these are soaked through. Unsuitable for kindling.
 [[Continue->exitPinecones]]
 
 
-:: giveFirewood {"position":"500,1450","size":"100,100"}
-<b>SALLOS:</b> Amazing! I already got the tinder and some kindling as well. Let's go inside the tent, and get the fire started!
-[[Continue->exitSallosQuest]]
+:: giveFirewood {"position":"550,1475","size":"100,100"}
+<b>SALLOS:</b> "Amazing! I already got the tinder and some kindling as well. Let's go inside the tent, and get the fire started!"
+[[Continue->exitSallosQuestFireWood]]
 
 
-:: giveTinder {"position":"350,1600","size":"100,100"}
-<b>SALLOS:</b> Amazing! I already got the firewood and some kindling as well. Let's go inside the tent, and get the fire started!
-[[Continue->exitSallosQuest]]
+:: giveTinder {"position":"350,1425","size":"100,100"}
+<b>SALLOS:</b> "Amazing! I already got the firewood and some kindling as well. Let's go inside the tent, and get the fire started!"
+[[Continue->exitSallosQuestTinder]]
 
 
-:: grabTinder {"position":"725,1275","size":"100,100"}
+:: grabTinder {"position":"900,1250","size":"100,100"}
 You've gathered some tinder.
 (set: $hasTinder to true)
 [[Continue->exitGrabTinder]]
 
 
-:: grow {"position":"3600,1050","size":"100,100"}
-<b>SALLOS</b>: Man, I really wish I could get a few more inches. It’s terrible how every other Ifni gets to be tall and strong, while I’m stuck down here. However—
-
-[[Continue->pinch]]
-
-
-:: hatchet [start] {"position":"1475,950","size":"100,100"}
+:: hatchet [start] {"position":"1500,950","size":"100,100"}
 The hatchet sits in on the ground quietly, resting after its long day of work.
-(if: $sharpendHatchet is false) [ [[Take a closer look->hatchetLookCloser]] ]
-(if: $sharpendHatchet is true ) [ [[Take a closer look->sharpHatchetLookCloser]] ]
+(if: $sharpenedHatchet is false) [ [[Take a closer look->hatchetLookCloser]] ]
+(if: $sharpenedHatchet is true) [ [[Take a closer look->sharpHatchetLookCloser]] ]
 [[Leave->exitHatchet]]
 
 
-:: hatchetLookCloser {"position":"1575,1150","size":"100,100"}
+:: hatchetLookCloser {"position":"1650,1175","size":"100,100"}
 You pick it up, and take a closer look at the head. It's been worn down after years of use. It's edge is chipped, and rust dots the surface. You could try to use some of your magic to reshape and restore it.
-[[Sharpen the hatchet->sharpen]]
+(if: $sallosDiscussionRepeat is true) [ [[Sharpen the hatchet->sharpen]] ]
+[[Leave->exitHatchet]] 
 
 
-:: height {"position":"3875,1125","size":"100,100"}
-<b>SALLOS:</b> It puts me at just the right height to look at you. Even if I can’t live as long as you, I’m happy that I can see you at the same level as me.
-
-[[Continue->blush]]
-
-
-:: help {"position":"1850,725","size":"100,100"}
-<b>SALLOS: </b>I could use some help unpacking these though, if you'd like to help. They're on tight!
+:: help {"position":"1725,650","size":"100,100"}
+<b>SALLOS:</b> "I could use some help unpacking these though, if you'd like to help. They're on tight!"
 [[Sure!->agreeToHelp]]
 [[I think I'll keep looking around a bit first.->exitHelp]]
 
 
 :: itsBad {"position":"2425,1275","size":"100,100"}
-<b>SALLOS:</b> Awhh...
-
+<b>SALLOS:</b> "Awhh..."
 He looks down dejectedly.
 [[I'm just kidding!->reassure]]
 [[It's okay, I'll still eat it!->eatAnyways]]
@@ -266,26 +247,14 @@ He looks down dejectedly.
 
 
 :: itsOk {"position":"3150,1725","size":"100,100"}
-<b>SALLOS: </b>It's fine, I get it. But you probably should finish up soon. We need to get  to bed and ready for tomorrow! You're gonna need that energy!
+<b>SALLOS:</b> "It's fine, I get it. But you probably should finish up soon. We need to get to bed and ready for tomorrow! You're gonna need that energy!"
 [[Finish eating.]]
 
 
-:: justWater {"position":"3350,1075","size":"100,100"}
-<b>SALLOS:</b> Whatever suits your tastes.
-
-[[Continue->look]]
-
-
 :: likeIt [start] {"position":"2325,1450","size":"100,100"}
-<b>SALLOS:</b> Like it? I tried to make it as tasty as possible without using meat stuff. How’d I do?
+<b>SALLOS:</b> "Like it? I tried to make it as tasty as possible without using meat stuff. How’d I do?"
 [[It's good!->itsGood]]
 [[It's bad!->itsBad]]
-
-
-:: look {"position":"3400,950","size":"100,100"}
-Sallos looks listfully at you, and you, back at him. 
-
-[[Continue->reminds]]
 
 
 :: lookAt {"position":"3150,1350","size":"100,100"}
@@ -293,73 +262,66 @@ He swallows, and picks up another spoonful.
 [[Stare at him back.]]
 
 
-:: makeHoosh {"position":"3175,925","size":"100,100"}
-<b>SALLOS:</b> If you’d like, you can also put your pemmican in the water to make some hoosh. I’ve still got some biscuits for that as well.
-
-[[I am alright, water is just fine.->justWater]]
-[[Sure!->makeIt]]
-
-
-:: makeIt {"position":"3150,700","size":"100,100"}
-You drop the rest of your pemmican in the water, and Sallos puts in a biscuit. It slowly disintegrates, turning the water into a thin soup, the vegetables floating around lazily as they detach from the body of the block. 
-
-[[Continue->look]]
+:: openEyes {"position":"1500,1675","size":"100,100"}
+The blade of the hatchet has regained its sharp edge, a stark contrast from its rusty, brown color before.
+(set: $lowerHand to true)
+[[Leave->exitHatchet]]
 
 
-:: older {"position":"3525,925","size":"100,100"}
-He, however, doesn’t. In the years since you first met him, he’s gotten older, lost some of the roundness in his face and gained a few marks and nicks. Proof that he’s been alive, he’s always said. That being said, he’s not grown taller by much.
-
-[[I've changed my hair! And what about you? You've not grown an inch, either! Watch out, or soon enough, I'll be taller than you!->sigh]]
-
-
-:: parchment {"position":"1700,775","size":"100,100"}
+:: parchment {"position":"1625,800","size":"100,100"}
 He pulls out a handful of parchment wrapped cubes, tied with pieces of string.
 [[Continue->help]]
 
 
-:: pinch {"position":"3800,925","size":"100,100"}
-He reaches over to you and pinches your cheek.
-
-[[Continue->height]]
-
-
-:: pinecones [start] {"position":"975,1150","size":"100,100"}
+:: pinecones [start] {"position":"1125,1050","size":"100,100"}
 Sallos did say that pine cones are good for kindling, right?
-
-(if: $hasTinder is false)[ [[Gather a few->getPinecones]] ]
+(if: $hasTinder is false and $questFinished is false)[ [[Gather a few->getPinecones]] ]
 [[Continue->exitNoGrabPinecones]]
 
 
 :: placeKindling {"position":"1075,275","size":"100,100"}
 You place the bundle of sticks by the stove.
+(set: $placeStoveTinder to true)
 [[Continue->exitPlaceStove]]
 
 
-:: placeLogs {"position":"925,275","size":"100,100"}
+:: placeLogs {"position":"875,275","size":"100,100"}
 You place the bundle of sticks by the stove.
+(set: $placeStoveLogs to true)
 [[Continue->exitPlaceStove]]
 
 
 :: reassure {"position":"2575,800","size":"100,100"}
-<b>SALLOS: </b>Really?
+<b>SALLOS:</b> "Really?"
 [[Really.]]
 [[No.->eatAnyways]]
 
 
-:: reminds {"position":"3350,725","size":"100,100"}
-<b>SALLOS:</b> You know, eating like this reminds me a lot of when we first met all those years ago. We ate a meal just like this. Except it was just biscuits and water for you. Didn’t have the veggies back then!
+:: sallos [start] {"position":"50,1025","size":"100,100"}
+<b>SALLOS:</b> "Hey, how are you holding up?"
+[[I'm fine.->fine]]
+[[I'm beat!->beat]]
 
-[[That really was awful… But you did save my life out there. And we met.->funny]]
+
+:: sallosAtDeadTree [start] {"position":"425,775","size":"100,100"}
+Sallos is busy chopping away at the dead tree.
+[[Continue->sallosTree]]
 
 
-:: sallosDiscussion [start] {"position":"1700,425","size":"100,100"}
+:: sallosAtTinder [start] {"position":"600,775","size":"100,100"}
+He slowly picks away at the pile of twigs.
+[[Continue->sallosTinder]]
+
+
+:: sallosDiscussion [start] {"position":"1450,450","size":"100,100"}
 Sallos sits by the pot, watching the water slowly heat up.
 [["What're you making?"]]
 
 
-:: sallosDiscussionRepeat [start] {"position":"1950,425","size":"100,100"}
-<b>SALLOS: </b>Would you like to help?
+:: sallosDiscussionRepeat [start] {"position":"2025,350","size":"100,100"}
+<b>SALLOS:</b> "Would you like to help?"
 [[Just a minute.->exitHelpRepeat]]
+[[Sure!->agreeToHelp]]
 
 
 :: sallosEat {"position":"2950,975","size":"100,100"}
@@ -367,8 +329,26 @@ Sallos puts a spoonful of stew into his mouth.
 [[Continue->lookAt]]
 
 
-:: sallosTalkedToExit [exit] {"position":"250,1400","size":"100,100"}
+:: sallosTalkedTo [start] {"position":"325,925","size":"100,100"}
+<b>SALLOS:</b> "Hey, what's up? Need anything?"
+(if: $hasWood is true)[ [[Present the firewood.->giveFirewood]] ]
+(if: $hasTinder is true)[ [[Present the tinder.->giveTinder]] ]
+(if: $hasWood is false and $hasTinder is false)[ [[I forgot what I needed to do.->forgot]] ]
+[[I'm alright.->sallosTalkedToExit]]
 
+
+:: sallosTalkedToExit [exit] {"position":"275,1200","size":"100,100"}
+
+
+
+:: sallosTinder {"position":"600,925","size":"100,100"}
+<b>SALLOS:</b> "Oh hey. Why don't you head in first and drop off the firewood? I'll be here for a litte bit."
+[[Continue->exitSallosTinder]]
+
+
+:: sallosTree {"position":"450,900","size":"100,100"}
+<b>SALLOS:</b> "Oh hey. Why don't you head in first and drop off the tinder? I'll be here for a litte bit."
+[[Leave->exitSallosTree]]
 
 
 :: salloshoveInMouth {"position":"2750,1200","size":"100,100"}
@@ -377,7 +357,7 @@ Sallos shoves a spoonful of stew into his mouth.
 
 
 :: saveEulyss {"position":"2350,925","size":"100,100"}
-<b>SALLOS: </b>It's crazy to think that I had to save you up here when we first met. Remember that? We barely spoke each other's languages! Haha.
+<b>SALLOS:</b> "It's crazy to think that I had to save you up here when we first met. Remember that? We barely spoke each other's languages! Haha."
 [[Continue->waterBoiling]]
 
 
@@ -387,39 +367,26 @@ Your legs are burning, and your breathing is labored. But you and Sallos have fi
 [[Finally, we're done! The tent is all set up! I need a break!->wear]]
 
 
-:: sharpHatchetLookCloser {"position":"1300,1050","size":"100,100"}
+:: sharpHatchetLookCloser {"position":"1325,1025","size":"100,100"}
 Thanks to your efforts, the hatchet has been sharpened to a razor's edge.
 [[Leave->exitHatchet]]
 
 
-:: sharpen {"position":"1650,1325","size":"100,100"}
-You focus your mana, and touch the blade. You feel as is a wind is blowing across your arm, and the axe head begins to glow blue, and it begins to deform and almost melt.
-(set: $strength += 1)
-(set: $sharpenedHatchet to true)
-[[Continue->edgeFormed]]
+:: sharpen {"position":"1775,1375","size":"100,100"}
+You focus your mana, and hold your arm out.
+(set: $raiseArm to true)
+[[Continue->focus]]
 
 
-:: sigh {"position":"3750,850","size":"100,100"}
-He lets out an exasperated sigh.
-
-[[Continue->grow]]
-
-
-:: sleepSoon {"position":"3675,1225","size":"100,100"}
-SALLOS: Anyways, we should probably finish up soon. We should catch some rest as soon as possible. I want to catch the sunrise at the peak.
-
-[[Leave->exitSleep]]
-
-
-:: timeToEat {"position":"2150,1150","size":"100,100"}
-<b>SALLOS: </b>Alright! Time to grub!
+:: timeToEat {"position":"1975,1200","size":"100,100"}
+<b>SALLOS:</b> "Alright! Time to grub!"
 [[Leave->exitTimeToEat]]
 
 
-:: tinder [start] {"position":"725,1000","size":"100,100"}
+:: tinder [start] {"position":"950,1000","size":"100,100"}
 Ther is a pile of pine branches and needles on the ground before you.
-(if: $hasTinder is false and $hasWood is false)[ [[Forage for tinder->grabTinder]] ]
-(if: $hasTinder is false and $hasWood is true)[ [[Forage for tinder->cannotGrabTinder]] ]
+(if: $hasTinder is false and $hasWood is false and $talkedToSallos is true)[ [[Forage for tinder->grabTinder]] ]
+(if: $hasTinder is false and $hasWood is true and $talkedToSallos is true)[ [[Forage for tinder->cannotGrabTinder]] ]
 [[Continue->exitTinder]]
 
 
@@ -428,8 +395,8 @@ You begin to work through the knot, but it's a struggle to get a hold of each li
 [[Continue->continueUnwrap]]
 
 
-:: waterBoiling {"position":"2350,1050","size":"100,100"}
-<b>SALLOS: </b>Look, the water's come to a full boil! You should put the stock cube in!
+:: waterBoiling {"position":"2225,1075","size":"100,100"}
+<b>SALLOS:</b> "Look, the water's come to a full boil! You should put the stock cube in!"
 [[Gingerly place the cube into the bubbling sea->boil]]
 
 
@@ -439,10 +406,10 @@ Sallos doesn’t look any worse for wear, despite him outpacing you the whole tr
 
 
 :: whenTop {"position":"2250,725","size":"100,100"}
-<b>SALLOS: </b>Hmmm... we should be there by tomorrow afternoon. We'll make camp there and watch the sun set! I'm telling you, it'll be beautiful!
+<b>SALLOS:</b> "Hmmm... we should be there by tomorrow afternoon. We'll make camp there and watch the sun set! I'm telling you, it'll be beautiful!"
 [[I can't wait, either!->saveEulyss]]
 
 
-:: work {"position":"75,1525","size":"100,100"}
-<b>SALLOS:</b> There's a few dead trees around here. You should help me cut some firewood. Or you can go look for tinder—pine needles or anything else that's tiny and dry will work.
+:: work {"position":"50,1550","size":"100,100"}
+<b>SALLOS:</b> "There's a few dead trees around here. You should help me cut some firewood. Or you can go look for tinder—pine needles or anything else that's tiny and dry will work."
 [[Continue->exitQuestGive]]

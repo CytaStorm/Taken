@@ -13,7 +13,7 @@ Scene 3
     "exit": "red",
     "end": "purple"
   },
-  "zoom": 1
+  "zoom": 0.6
 }
 
 
@@ -29,9 +29,8 @@ Scene 3
 [[Continue->people]]
 
 
-:: End [exit end] {"position":"75,750","size":"100,100"}
-d
-(set: $end to true)
+:: End [exit end] {"position":"725,1200","size":"100,100"}
+(set: $sceneThreeEnd to true)
 
 
 :: I {"position":"625,575","size":"100,100"}
@@ -59,9 +58,7 @@ There is no blood on the other side of the blade.
 
 
 :: Reach for him. {"position":"375,775","size":"100,100"}
-Reach for him.
 (set: $reach to true)
-
 [[Continue->fade]]
 
 
@@ -89,7 +86,7 @@ The Jawni clears his throat.
 [[Whisper. <i>"What is he talking about?"</i>->whisper]]
 
 
-:: continue 1 {"position":"275,575","size":"100,100"}
+:: continue 1 {"position":"225,575","size":"100,100"}
 The two of you have gotten up early to continue on your trek up The Heights. Sallos looks as bright as ever.
 
 You, on the other hand, couldn't sleep well. Sleeping outside was definitely something you weren't used to.
@@ -100,7 +97,7 @@ You, on the other hand, couldn't sleep well. Sleeping outside was definitely som
 :: continue 2 {"position":"75,450","size":"100,100"}
 Sallos steps ahead of you.
 
-The path is clear and the day seems ready for you to tackle.
+The path is clear and the day is ready for you to tackle.
 
 [[Start walking.]]
 
@@ -129,7 +126,7 @@ His voice is deep, like a large drum, every vowel another beat.
 [[Stand closer to Sallos.]]
 
 
-:: continue 6 {"position":"675,700","size":"100,100"}
+:: continue 6 {"position":"625,700","size":"100,100"}
 The two men walk closer, and the Jawni draws his sword.
 
 ''SALLOS'': "Woah, woah, there's no need for that, we surr—"
@@ -140,8 +137,23 @@ The two men walk closer, and the Jawni draws his sword.
 :: fade {"position":"225,725","size":"100,100"}
 Sallos begins to glow, and he fades away into a pale yellow mist.
 (set: $disappear to true)
+(if: $faith > 0)[ [[Continue->faithEnding]] ]
+(if: $strength > 0)[ [[Continue->strengthEnding]] ]
 
-[[Continue->End]]
+
+:: faithEnding {"position":"50,925","size":"100,100"}
+You fall to your knees, unable to speak.
+[[Continue->faithEnding1]]
+
+
+:: faithEnding1 {"position":"50,1050","size":"100,100"}
+"JAWNI": "We've got what we came for."
+[[Continue->faithEnding2]]
+
+
+:: faithEnding2 {"position":"50,1175","size":"100,100"}
+The two walk away, leaving you alone. Truly alone.
+[[Continue->End]] 
 
 
 :: no {"position":"375,350","size":"100,100"}
@@ -171,21 +183,25 @@ He carries a large sword, and walks with a swagger that does not feel entirely u
 [["Do you know him?"]]
 
 
-:: scene [start] {"position":"100,625","size":"100,100"}
+:: scene [start] {"position":"25,600","size":"100,100"}
 ''SALLOS'': "All packed up! Let's get out of here."
-(set: $end to false)
-(set: $disappear to false)
-(set: $reach to false)
-(set: $stab to false)
-(set: $walkCloser to false)
-(set: $enterGoon to false)
-(set: $enterAkif to false)
-(set: $walkLeft to false)
 
 [[Continue->continue 1]]
 
 
-:: whatDo {"position":"825,725","size":"100,100"}
+:: strengthEnding {"position":"225,1000","size":"100,100"}
+The world turns red, then black.
+(set: $redBlack to true)
+
+[[Continue->strengthEnding1]]
+
+
+:: strengthEnding1 {"position":"475,1025","size":"100,100"}
+The last things you remember hearing were two thumps, and breaths slowly fading.
+[[End]] 
+
+
+:: whatDo {"position":"775,750","size":"100,100"}
 ''EULYSS'': <i>"What did you do!?"<i>
 
 [[Continue->I]]
