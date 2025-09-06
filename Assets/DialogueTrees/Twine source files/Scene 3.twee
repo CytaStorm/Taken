@@ -1,227 +1,497 @@
-:: StoryTitle
-Scene 3
 
 
-:: StoryData
 {
-  "ifid": "425F063A-E7C8-472E-82C0-BE97A87B46A6",
-  "format": "Twison",
-  "format-version": "0.0.1",
-  "start": "scene",
-  "tag-colors": {
-    "start": "green",
-    "exit": "red",
-    "end": "purple"
-  },
-  "zoom": 0.6
+  "passages": [
+    {
+      "text": "''EULYSS'': \"Do you know him?\"\n\n[[Continue->no]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "no",
+          "pid": "21"
+        }
+      ],
+      "name": "\"Do you know him?\"",
+      "pid": "1",
+      "position": {
+        "x": "200",
+        "y": "325"
+      }
+    },
+    {
+      "text": "''EULYSS'': \"Is something wrong, Sallos?\"\n\n[[Continue->people]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "people",
+          "pid": "23"
+        }
+      ],
+      "name": "\"Is something wrong, Sallos?\"",
+      "pid": "2",
+      "position": {
+        "x": "150",
+        "y": "175"
+      }
+    },
+    {
+      "text": "(set: $sceneThreeEnd to true)",
+      "name": "End",
+      "pid": "3",
+      "position": {
+        "x": "725",
+        "y": "1200"
+      },
+      "tags": [
+        "exit",
+        "end"
+      ]
+    },
+    {
+      "text": "''SALLOS'': <i>\"I- I- All I did was take people across these mountains! But now's not the time to talk. We need to move.\"</i>\n\nThe two men certainly don't look the type to be able to be talked down. Especially not while armed.\n\n[[Continue->continue 6]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "continue 6",
+          "pid": "16"
+        }
+      ],
+      "name": "I",
+      "pid": "4",
+      "position": {
+        "x": "625",
+        "y": "575"
+      }
+    },
+    {
+      "text": "You turn to see a Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.\n(set: $enterGoon to true)\n\n[[Continue->continue 4]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "continue 4",
+          "pid": "14"
+        }
+      ],
+      "name": "Look.",
+      "pid": "5",
+      "position": {
+        "x": "650",
+        "y": "225"
+      }
+    },
+    {
+      "text": "The blade is thrust into Sallos.\n(set: $stab to true)\n\nThere is no blood on the other side of the blade.\n\n[[Reach for him.]]",
+      "links": [
+        {
+          "name": "Reach for him.",
+          "link": "Reach for him.",
+          "pid": "7"
+        }
+      ],
+      "name": "Next",
+      "pid": "6",
+      "position": {
+        "x": "500",
+        "y": "725"
+      }
+    },
+    {
+      "text": "(set: $reach to true)\n[[Continue->fade]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "fade",
+          "pid": "17"
+        }
+      ],
+      "name": "Reach for him.",
+      "pid": "7",
+      "position": {
+        "x": "375",
+        "y": "775"
+      }
+    },
+    {
+      "text": "''SALLOS'': \"And what business do you have with him?\"\n\nThe two men step closer.\n(set: $walkCloser to true)\n\n[[Continue->Step back.]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "Step back.",
+          "pid": "10"
+        }
+      ],
+      "name": "Stand closer to Sallos.",
+      "pid": "8",
+      "position": {
+        "x": "850",
+        "y": "225"
+      }
+    },
+    {
+      "text": "Sallos suddenly freezes. The fur on his neck stands up straight. Something's wrong.\n(set: $walkLeft to true)\n\n[[\"Is something wrong, Sallos?\"]]",
+      "links": [
+        {
+          "name": "\"Is something wrong, Sallos?\"",
+          "link": "\"Is something wrong, Sallos?\"",
+          "pid": "2"
+        }
+      ],
+      "name": "Start walking.",
+      "pid": "9",
+      "position": {
+        "x": "25",
+        "y": "300"
+      }
+    },
+    {
+      "text": "The Jawni clears his throat.\n\n''JAWNI'': \"You are under arrest, for the transportation of fugitives from the lands of God.\"\n\n[[Whisper. <i>\"What is he talking about?\"</i>->whisper]]",
+      "links": [
+        {
+          "name": "Whisper. <i>\"What is he talking about?\"</i>",
+          "link": "whisper",
+          "pid": "28"
+        }
+      ],
+      "name": "Step back.",
+      "pid": "10",
+      "position": {
+        "x": "1075",
+        "y": "275"
+      }
+    },
+    {
+      "text": "The two of you have gotten up early to continue on your trek up The Heights. Sallos looks as bright as ever.\n\nYou, on the other hand, couldn't sleep well. Sleeping outside was definitely something you weren't used to.\n\n[[Continue->continue 2]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "continue 2",
+          "pid": "12"
+        }
+      ],
+      "name": "continue 1",
+      "pid": "11",
+      "position": {
+        "x": "225",
+        "y": "575"
+      }
+    },
+    {
+      "text": "Sallos steps ahead of you.\n\nThe path is clear and the day is ready for you to tackle.\n\n[[Start walking.]]",
+      "links": [
+        {
+          "name": "Start walking.",
+          "link": "Start walking.",
+          "pid": "9"
+        }
+      ],
+      "name": "continue 2",
+      "pid": "12",
+      "position": {
+        "x": "75",
+        "y": "450"
+      }
+    },
+    {
+      "text": "You hear crunching snow to your left now.\n\n[[Look.]]",
+      "links": [
+        {
+          "name": "Look.",
+          "link": "Look.",
+          "pid": "5"
+        }
+      ],
+      "name": "continue 3",
+      "pid": "13",
+      "position": {
+        "x": "475",
+        "y": "200"
+      }
+    },
+    {
+      "text": "''SALLOS'': \"WHO ARE YOU?\"\n\nYou've never heard him raise his voice like this.\n\n[[Continue->continue 5]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "continue 5",
+          "pid": "15"
+        }
+      ],
+      "name": "continue 4",
+      "pid": "14",
+      "position": {
+        "x": "550",
+        "y": "450"
+      }
+    },
+    {
+      "text": "The Jawni speaks in a low, ringing accent.\n\n''JAWNI'': \"You are Sallos Minan?\"\n\nHis voice is deep, like a large drum, every vowel another beat.\n\n[[Stand closer to Sallos.]]",
+      "links": [
+        {
+          "name": "Stand closer to Sallos.",
+          "link": "Stand closer to Sallos.",
+          "pid": "8"
+        }
+      ],
+      "name": "continue 5",
+      "pid": "15",
+      "position": {
+        "x": "725",
+        "y": "400"
+      }
+    },
+    {
+      "text": "The two men walk closer, and the Jawni draws his sword.\n\n''SALLOS'': \"Woah, woah, there's no need for that, we surr—\"\n\n[[Continue->Next]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "Next",
+          "pid": "6"
+        }
+      ],
+      "name": "continue 6",
+      "pid": "16",
+      "position": {
+        "x": "625",
+        "y": "700"
+      }
+    },
+    {
+      "text": "Sallos begins to glow, and he fades away into a pale yellow mist.\n(set: $disappear to true)\n(if: $faith > 0)[ [[Continue->faithEnding]] ]\n(if: $strength > 0)[ [[Continue->strengthEnding]] ]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "faithEnding",
+          "pid": "18"
+        },
+        {
+          "name": "Continue",
+          "link": "strengthEnding",
+          "pid": "25"
+        }
+      ],
+      "name": "fade",
+      "pid": "17",
+      "position": {
+        "x": "225",
+        "y": "725"
+      }
+    },
+    {
+      "text": "You fall to your knees, unable to speak.\n[[Continue->faithEnding1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "faithEnding1",
+          "pid": "19"
+        }
+      ],
+      "name": "faithEnding",
+      "pid": "18",
+      "position": {
+        "x": "50",
+        "y": "925"
+      }
+    },
+    {
+      "text": "\"JAWNI\": \"We've got what we came for.\"\n[[Continue->faithEnding2]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "faithEnding2",
+          "pid": "20"
+        }
+      ],
+      "name": "faithEnding1",
+      "pid": "19",
+      "position": {
+        "x": "50",
+        "y": "1050"
+      }
+    },
+    {
+      "text": "The two walk away, leaving you alone. Truly alone.\n[[Continue->End]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "End",
+          "pid": "3"
+        }
+      ],
+      "name": "faithEnding2",
+      "pid": "20",
+      "position": {
+        "x": "50",
+        "y": "1175"
+      }
+    },
+    {
+      "text": "''SALLOS'': \"No, not at all.\"\n\n[[Continue->continue 3]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "continue 3",
+          "pid": "13"
+        }
+      ],
+      "name": "no",
+      "pid": "21",
+      "position": {
+        "x": "375",
+        "y": "350"
+      }
+    },
+    {
+      "text": "Sallos whispers back.\n\n''SALLOS'': <i>\"I have no idea-\"</i>\n\nHe pauses, and thinks again.\n\n[[<i>\"Yes...?\"</i>->yes]]",
+      "links": [
+        {
+          "name": "<i>\"Yes...?\"</i>",
+          "link": "yes",
+          "pid": "30"
+        }
+      ],
+      "name": "noIdea",
+      "pid": "22",
+      "position": {
+        "x": "1100",
+        "y": "525"
+      }
+    },
+    {
+      "text": "''SALLOS'': \"There's people here.\"\n(set: $enterAkif to true)\n\nSuddenly someone appears on the right. A Jawni man, towering over both you and Sallos, even while hunched over. \n\nHe carries a large sword, and walks with a swagger that does not feel entirely unearned.\n\n[[\"Do you know him?\"]]",
+      "links": [
+        {
+          "name": "\"Do you know him?\"",
+          "link": "\"Do you know him?\"",
+          "pid": "1"
+        }
+      ],
+      "name": "people",
+      "pid": "23",
+      "position": {
+        "x": "325",
+        "y": "150"
+      }
+    },
+    {
+      "text": "''SALLOS'': \"All packed up! Let's get out of here.\"\n\n[[Continue->continue 1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "continue 1",
+          "pid": "11"
+        }
+      ],
+      "name": "scene",
+      "pid": "24",
+      "position": {
+        "x": "25",
+        "y": "600"
+      },
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "text": "The world turns red, then black.\n(set: $redBlack to true)\n\n[[Continue->strengthEnding1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "strengthEnding1",
+          "pid": "26"
+        }
+      ],
+      "name": "strengthEnding",
+      "pid": "25",
+      "position": {
+        "x": "225",
+        "y": "1000"
+      }
+    },
+    {
+      "text": "The last things you remember hearing were two thumps, and breaths slowly fading.\n[[End]]",
+      "links": [
+        {
+          "name": "End",
+          "link": "End",
+          "pid": "3"
+        }
+      ],
+      "name": "strengthEnding1",
+      "pid": "26",
+      "position": {
+        "x": "475",
+        "y": "1025"
+      }
+    },
+    {
+      "text": "''EULYSS'': <i>\"What did you do!?\"<i>\n\n[[Continue->I]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "I",
+          "pid": "4"
+        }
+      ],
+      "name": "whatDo",
+      "pid": "27",
+      "position": {
+        "x": "775",
+        "y": "750"
+      }
+    },
+    {
+      "text": "''EULYSS'': Whisper. <i>\"What is he talking about?\"</i>\n\n[[Continue->noIdea]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "noIdea",
+          "pid": "22"
+        }
+      ],
+      "name": "whisper",
+      "pid": "28",
+      "position": {
+        "x": "1100",
+        "y": "400"
+      }
+    },
+    {
+      "text": "His eyes widen.\n\n''SALLOS'': \"<i><b>Fuck.</b>Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money...\"</i>\n\n[[<i>\"What did you do!?\"<i>->whatDo]]",
+      "links": [
+        {
+          "name": "<i>\"What did you do!?\"<i>",
+          "link": "whatDo",
+          "pid": "27"
+        }
+      ],
+      "name": "widenEyes",
+      "pid": "29",
+      "position": {
+        "x": "925",
+        "y": "625"
+      }
+    },
+    {
+      "text": "''EULYSS'': <i>\"Yes...?\"</i>\n\n[[Continue->widenEyes]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "widenEyes",
+          "pid": "29"
+        }
+      ],
+      "name": "yes",
+      "pid": "30",
+      "position": {
+        "x": "900",
+        "y": "450"
+      }
+    }
+  ],
+  "name": "Scene 3",
+  "startnode": "24",
+  "creator": "Twine",
+  "creator-version": "2.10.0",
+  "ifid": "425F063A-E7C8-472E-82C0-BE97A87B46A6"
 }
 
-
-:: "Do you know him?" {"position":"200,325","size":"100,100"}
-''EULYSS'': "Do you know him?"
-
-[[Continue->no]]
-
-
-:: "Is something wrong, Sallos?" {"position":"150,175","size":"100,100"}
-''EULYSS'': "Is something wrong, Sallos?"
-
-[[Continue->people]]
-
-
-:: End [exit end] {"position":"725,1200","size":"100,100"}
-(set: $sceneThreeEnd to true)
-
-
-:: I {"position":"625,575","size":"100,100"}
-''SALLOS'': <i>"I- I- All I did was take people across these mountains! But now's not the time to talk. We need to move."</i>
-
-The two men certainly don't look the type to be able to be talked down. Especially not while armed.
-
-[[Continue->continue 6]]
-
-
-:: Look. {"position":"650,225","size":"100,100"}
-You turn to see a Nari man appears from the left side of the fork. He has beady eyes, and his face is like misshapen clay, broken by a mustache in the middle. He bears a stern scowl as he approaches.
-(set: $enterGoon to true)
-
-[[Continue->continue 4]]
-
-
-:: Next {"position":"500,725","size":"100,100"}
-The blade is thrust into Sallos.
-(set: $stab to true)
-
-There is no blood on the other side of the blade.
-
-[[Reach for him.]]
-
-
-:: Reach for him. {"position":"375,775","size":"100,100"}
-(set: $reach to true)
-[[Continue->fade]]
-
-
-:: Stand closer to Sallos. {"position":"850,225","size":"100,100"}
-''SALLOS'': "And what business do you have with him?"
-
-The two men step closer.
-(set: $walkCloser to true)
-
-[[Continue->Step back.]]
-
-
-:: Start walking. {"position":"25,300","size":"100,100"}
-Sallos suddenly freezes. The fur on his neck stands up straight. Something's wrong.
-(set: $walkLeft to true)
-
-[["Is something wrong, Sallos?"]]
-
-
-:: Step back. {"position":"1075,275","size":"100,100"}
-The Jawni clears his throat.
-
-''JAWNI'': "You are under arrest, for the transportation of fugitives from the lands of God."
-
-[[Whisper. <i>"What is he talking about?"</i>->whisper]]
-
-
-:: continue 1 {"position":"225,575","size":"100,100"}
-The two of you have gotten up early to continue on your trek up The Heights. Sallos looks as bright as ever.
-
-You, on the other hand, couldn't sleep well. Sleeping outside was definitely something you weren't used to.
-
-[[Continue->continue 2]]
-
-
-:: continue 2 {"position":"75,450","size":"100,100"}
-Sallos steps ahead of you.
-
-The path is clear and the day is ready for you to tackle.
-
-[[Start walking.]]
-
-
-:: continue 3 {"position":"475,200","size":"100,100"}
-You hear crunching snow to your left now.
-
-[[Look.]]
-
-
-:: continue 4 {"position":"550,450","size":"100,100"}
-''SALLOS'': "WHO ARE YOU?"
-
-You've never heard him raise his voice like this.
-
-[[Continue->continue 5]]
-
-
-:: continue 5 {"position":"725,400","size":"100,100"}
-The Jawni speaks in a low, ringing accent.
-
-''JAWNI'': "You are Sallos Minan?"
-
-His voice is deep, like a large drum, every vowel another beat.
-
-[[Stand closer to Sallos.]]
-
-
-:: continue 6 {"position":"625,700","size":"100,100"}
-The two men walk closer, and the Jawni draws his sword.
-
-''SALLOS'': "Woah, woah, there's no need for that, we surr—"
-
-[[Continue->Next]]
-
-
-:: fade {"position":"225,725","size":"100,100"}
-Sallos begins to glow, and he fades away into a pale yellow mist.
-(set: $disappear to true)
-(if: $faith > 0)[ [[Continue->faithEnding]] ]
-(if: $strength > 0)[ [[Continue->strengthEnding]] ]
-
-
-:: faithEnding {"position":"50,925","size":"100,100"}
-You fall to your knees, unable to speak.
-[[Continue->faithEnding1]]
-
-
-:: faithEnding1 {"position":"50,1050","size":"100,100"}
-"JAWNI": "We've got what we came for."
-[[Continue->faithEnding2]]
-
-
-:: faithEnding2 {"position":"50,1175","size":"100,100"}
-The two walk away, leaving you alone. Truly alone.
-[[Continue->End]] 
-
-
-:: no {"position":"375,350","size":"100,100"}
-''SALLOS'': "No, not at all."
-
-[[Continue->continue 3]]
-
-
-:: noIdea {"position":"1100,525","size":"100,100"}
-Sallos whispers back.
-
-''SALLOS'': <i>"I have no idea-"</i>
-
-He pauses, and thinks again.
-
-[[<i>"Yes...?"</i>->yes]]
-
-
-:: people {"position":"325,150","size":"100,100"}
-''SALLOS'': "There's people here."
-(set: $enterAkif to true)
-
-Suddenly someone appears on the right. A Jawni man, towering over both you and Sallos, even while hunched over. 
-
-He carries a large sword, and walks with a swagger that does not feel entirely unearned.
-
-[["Do you know him?"]]
-
-
-:: scene [start] {"position":"25,600","size":"100,100"}
-''SALLOS'': "All packed up! Let's get out of here."
-
-[[Continue->continue 1]]
-
-
-:: strengthEnding {"position":"225,1000","size":"100,100"}
-The world turns red, then black.
-(set: $redBlack to true)
-
-[[Continue->strengthEnding1]]
-
-
-:: strengthEnding1 {"position":"475,1025","size":"100,100"}
-The last things you remember hearing were two thumps, and breaths slowly fading.
-[[End]] 
-
-
-:: whatDo {"position":"775,750","size":"100,100"}
-''EULYSS'': <i>"What did you do!?"<i>
-
-[[Continue->I]]
-
-
-:: whisper {"position":"1100,400","size":"100,100"}
-''EULYSS'': Whisper. <i>"What is he talking about?"</i>
-
-[[Continue->noIdea]]
-
-
-:: widenEyes {"position":"925,625","size":"100,100"}
-His eyes widen.
-
-''SALLOS'': "<i><b>Fuck.</b>Was it those two I took? I should've known something was up. They way they showed up out of the blue and with that much money..."</i>
-
-[[<i>"What did you do!?"<i>->whatDo]]
-
-
-:: yes {"position":"900,450","size":"100,100"}
-''EULYSS'': <i>"Yes...?"</i>
-
-[[Continue->widenEyes]]
