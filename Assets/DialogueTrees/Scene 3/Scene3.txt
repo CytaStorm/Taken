@@ -8,7 +8,7 @@
         {
           "name": "Continue",
           "link": "no",
-          "pid": "18"
+          "pid": "21"
         }
       ],
       "name": "\"Do you know him?\"",
@@ -24,7 +24,7 @@
         {
           "name": "Continue",
           "link": "people",
-          "pid": "20"
+          "pid": "23"
         }
       ],
       "name": "\"Is something wrong, Sallos?\"",
@@ -149,7 +149,7 @@
         {
           "name": "Whisper. <i>\"What is he talking about?\"</i>",
           "link": "whisper",
-          "pid": "23"
+          "pid": "28"
         }
       ],
       "name": "Step back.",
@@ -261,12 +261,12 @@
         {
           "name": "Continue",
           "link": "faithEnding",
-          "pid": "26"
+          "pid": "18"
         },
         {
           "name": "Continue",
           "link": "strengthEnding",
-          "pid": "27"
+          "pid": "25"
         }
       ],
       "name": "fade",
@@ -274,6 +274,54 @@
       "position": {
         "x": "225",
         "y": "725"
+      }
+    },
+    {
+      "text": "You fall to your knees, unable to speak.\n[[Continue->faithEnding1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "faithEnding1",
+          "pid": "19"
+        }
+      ],
+      "name": "faithEnding",
+      "pid": "18",
+      "position": {
+        "x": "50",
+        "y": "925"
+      }
+    },
+    {
+      "text": "\"JAWNI\": \"We've got what we came for.\"\n[[Continue->faithEnding2]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "faithEnding2",
+          "pid": "20"
+        }
+      ],
+      "name": "faithEnding1",
+      "pid": "19",
+      "position": {
+        "x": "50",
+        "y": "1050"
+      }
+    },
+    {
+      "text": "The two walk away, leaving you alone. Truly alone.\n[[Continue->End]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "End",
+          "pid": "3"
+        }
+      ],
+      "name": "faithEnding2",
+      "pid": "20",
+      "position": {
+        "x": "50",
+        "y": "1175"
       }
     },
     {
@@ -286,7 +334,7 @@
         }
       ],
       "name": "no",
-      "pid": "18",
+      "pid": "21",
       "position": {
         "x": "375",
         "y": "350"
@@ -298,11 +346,11 @@
         {
           "name": "<i>\"Yes...?\"</i>",
           "link": "yes",
-          "pid": "25"
+          "pid": "30"
         }
       ],
       "name": "noIdea",
-      "pid": "19",
+      "pid": "22",
       "position": {
         "x": "1100",
         "y": "525"
@@ -318,7 +366,7 @@
         }
       ],
       "name": "people",
-      "pid": "20",
+      "pid": "23",
       "position": {
         "x": "325",
         "y": "150"
@@ -334,7 +382,7 @@
         }
       ],
       "name": "scene",
-      "pid": "21",
+      "pid": "24",
       "position": {
         "x": "25",
         "y": "600"
@@ -342,6 +390,38 @@
       "tags": [
         "start"
       ]
+    },
+    {
+      "text": "The world turns red, then black.\n(set: $redBlack to true)\n\n[[Continue->strengthEnding1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "strengthEnding1",
+          "pid": "26"
+        }
+      ],
+      "name": "strengthEnding",
+      "pid": "25",
+      "position": {
+        "x": "225",
+        "y": "1000"
+      }
+    },
+    {
+      "text": "The last things you remember hearing were two thumps, and breaths slowly fading.\n[[End]]",
+      "links": [
+        {
+          "name": "End",
+          "link": "End",
+          "pid": "3"
+        }
+      ],
+      "name": "strengthEnding1",
+      "pid": "26",
+      "position": {
+        "x": "475",
+        "y": "1025"
+      }
     },
     {
       "text": "''EULYSS'': <i>\"What did you do!?\"<i>\n\n[[Continue->I]]",
@@ -353,7 +433,7 @@
         }
       ],
       "name": "whatDo",
-      "pid": "22",
+      "pid": "27",
       "position": {
         "x": "775",
         "y": "750"
@@ -365,11 +445,11 @@
         {
           "name": "Continue",
           "link": "noIdea",
-          "pid": "19"
+          "pid": "22"
         }
       ],
       "name": "whisper",
-      "pid": "23",
+      "pid": "28",
       "position": {
         "x": "1100",
         "y": "400"
@@ -381,11 +461,11 @@
         {
           "name": "<i>\"What did you do!?\"<i>",
           "link": "whatDo",
-          "pid": "22"
+          "pid": "27"
         }
       ],
       "name": "widenEyes",
-      "pid": "24",
+      "pid": "29",
       "position": {
         "x": "925",
         "y": "625"
@@ -397,101 +477,21 @@
         {
           "name": "Continue",
           "link": "widenEyes",
-          "pid": "24"
+          "pid": "29"
         }
       ],
       "name": "yes",
-      "pid": "25",
+      "pid": "30",
       "position": {
         "x": "900",
         "y": "450"
       }
-    },
-    {
-      "text": "You fall to your knees, unable to speak.\n[[Continue->faithEnding1]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "faithEnding1",
-          "pid": "28"
-        }
-      ],
-      "name": "faithEnding",
-      "pid": "26",
-      "position": {
-        "x": "50",
-        "y": "925"
-      }
-    },
-    {
-      "text": "The world turns red, then black.\n(set: $redBlack to true)\n\n[[Continue->strengthEnding1]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "strengthEnding1",
-          "pid": "30"
-        }
-      ],
-      "name": "strengthEnding",
-      "pid": "27",
-      "position": {
-        "x": "225",
-        "y": "1000"
-      }
-    },
-    {
-      "text": "\"JAWNI\": \"We've got what we came for.\"\n[[Continue->faithEnding2]]",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "faithEnding2",
-          "pid": "29"
-        }
-      ],
-      "name": "faithEnding1",
-      "pid": "28",
-      "position": {
-        "x": "50",
-        "y": "1050"
-      }
-    },
-    {
-      "text": "The two walk away, leaving you alone. Truly alone.\n[[Continue->End]] ",
-      "links": [
-        {
-          "name": "Continue",
-          "link": "End",
-          "pid": "3"
-        }
-      ],
-      "name": "faithEnding2",
-      "pid": "29",
-      "position": {
-        "x": "50",
-        "y": "1175"
-      }
-    },
-    {
-      "text": "The last things you remember hearing were two thumps, and breaths slowly fading.\n[[End]] ",
-      "links": [
-        {
-          "name": "End",
-          "link": "End",
-          "pid": "3"
-        }
-      ],
-      "name": "strengthEnding1",
-      "pid": "30",
-      "position": {
-        "x": "475",
-        "y": "1025"
-      }
     }
   ],
   "name": "Scene 3",
-  "startnode": "21",
+  "startnode": "24",
   "creator": "Twine",
-  "creator-version": "2.9.0",
+  "creator-version": "2.10.0",
   "ifid": "425F063A-E7C8-472E-82C0-BE97A87B46A6"
 }
 
