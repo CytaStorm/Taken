@@ -5,8 +5,8 @@ Parsed Tent
 :: StoryData
 {
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
-  "format": "Twison",
-  "format-version": "0.0.1",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
   "start": "scene",
   "tag-colors": {
     "exit": "red",
@@ -24,8 +24,20 @@ Parsed Tent
 [[Continue->parchment]]
 
 
-:: Finish eating. [end exit] {"position":"3150,1850","size":"100,100"}
+:: Finish eating. [exit] {"position":"2775,1925","size":"100,100"}
 (set: $sceneTwoEnd to true)
+
+
+:: Gently nudge him {"position":"2050,2375","size":"100,100"}
+Sallos stirs, and rolls over on his side.
+
+[[Poke him again->pokeAgain]]
+
+
+:: Go out {"position":"2800,2500","size":"100,100"}
+The air is crisp and cold, but refreshing. A fresh start to the day.
+
+Continue
 
 
 :: Really. {"position":"2725,650","size":"100,100"}
@@ -36,6 +48,27 @@ His ears perk up when he hears your reassurances, and he breathes a sigh of reli
 :: Stare at him back. {"position":"3150,1475","size":"100,100"}
 A short Ifni gives a puzzled look back at you, his ears turning to the sounds around you: the howling winds and the crackling fire, and his tail swaying side to side. He continues to eat.
 [[Continue->alright?]]
+
+
+:: Step out for some air. {"position":"2525,2200","size":"100,100"}
+(set: $strength +=1 and $stepOutside to true)
+You gently wiggle out of the sleeping bag, careful not to wake Sallos up.
+[[Continue->soloStepOut]]
+
+
+:: Violently shake him {"position":"2275,2275","size":"100,100"}
+<b>SALLOS:<b>"AHHH!!!"
+
+[[Continue->wakeUpScared]]
+
+
+:: Wake him up. {"position":"2225,2150","size":"100,100"}
+You reach over to him and
+[[Violently shake him]]
+[[Gently nudge him]]
+(set: $faith += 1)
+
+
 
 
 :: agreeToHelp {"position":"1900,650","size":"100,100"}
@@ -64,7 +97,7 @@ You've already collect a fair amount of tinder. It'd probably be best for Sallos
 [[Continue->exitDeadTree]]
 
 
-:: cannotGrabTinder {"position":"800,1100","size":"100,100"}
+:: cannotGrabTinder {"position":"775,1075","size":"100,100"}
 Your hands are already full of firewood. Best to let Sallos take care of these.
 [[Continue->exitGrabTinder]]
 
@@ -208,7 +241,7 @@ Upon closer inspection, most of these are soaked through. Unsuitable for kindlin
 [[Continue->exitSallosQuestTinder]]
 
 
-:: grabTinder {"position":"900,1250","size":"100,100"}
+:: grabTinder {"position":"875,1300","size":"100,100"}
 You've gathered some tinder.
 (set: $hasTinder to true)
 [[Continue->exitGrabTinder]]
@@ -288,6 +321,12 @@ You place the bundle of sticks by the stove.
 You place the bundle of sticks by the stove.
 (set: $placeStoveLogs to true)
 [[Continue->exitPlaceStove]]
+
+
+:: pokeAgain {"position":"2225,2700","size":"100,100"}
+<b>SALLOS:</b> "Good morningggg..."
+(set: $stepOutside to true)
+[[Continue->Go out]]
 
 
 :: reassure {"position":"2575,800","size":"100,100"}
@@ -377,6 +416,10 @@ You focus your mana, and hold your arm out.
 [[Continue->focus]]
 
 
+:: soloStepOut {"position":"2700,2300","size":"100,100"}
+The sun blinds your eyes as you step out into the wilderness again, breaking
+
+
 :: timeToEat {"position":"1975,1200","size":"100,100"}
 <b>SALLOS:</b> "Alright! Time to grub!"
 [[Leave->exitTimeToEat]]
@@ -392,6 +435,25 @@ Ther is a pile of pine branches and needles on the ground before you.
 :: unwrap {"position":"1800,925","size":"100,100"}
 You begin to work through the knot, but it's a struggle to get a hold of each line of string.
 [[Continue->continueUnwrap]]
+
+
+:: wake0 {"position":"2225,1950","size":"100,100"}
+ Your eyes flutter open.
+ 
+ [[Continue->wake1]]
+
+
+:: wake1 {"position":"2425,2050","size":"100,100"}
+It's dark in the tent. Sallos is is still sleeping.
+
+[[Wake him up.]]
+[[Step out for some air.]]
+
+
+:: wakeUpScared {"position":"2275,2550","size":"100,100"}
+<B>SALLOS:</b>"Now what'd you do that for?"
+(set: $stepOutside to true)
+[[Continue->Go out]]
 
 
 :: waterBoiling {"position":"2225,1075","size":"100,100"}

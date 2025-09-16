@@ -19,15 +19,14 @@
       }
     },
     {
-      "text": "(set: $sceneTwoEnd to true)",
+      "text": "",
       "name": "Finish eating.",
       "pid": "2",
       "position": {
-        "x": "3150",
-        "y": "1850"
+        "x": "2775",
+        "y": "1925"
       },
       "tags": [
-        "end",
         "exit"
       ]
     },
@@ -112,7 +111,7 @@
       }
     },
     {
-      "text": "Slowly, gently, you lower the cube into the water. The portions under the rolling waves begin to shimmer and dissolve, staining the water with a deep brown. Once most of the stock is submerged, you release it, letting it fully sink. Sallos does the same, and soon, the stew begins to thicken and become fragrant.\n[[Continue->timeToEat]]",
+      "text": "Slowly, gently, you lower the cube into the water, staining the water with a deep brown. The stew begins to thicken and become fragrant.\n[[Continue->timeToEat]]",
       "links": [
         {
           "name": "Continue",
@@ -155,8 +154,8 @@
       "name": "cannotGrabTinder",
       "pid": "10",
       "position": {
-        "x": "800",
-        "y": "1100"
+        "x": "775",
+        "y": "1075"
       }
     },
     {
@@ -609,8 +608,8 @@
       "name": "grabTinder",
       "pid": "41",
       "position": {
-        "x": "900",
-        "y": "1250"
+        "x": "875",
+        "y": "1300"
       }
     },
     {
@@ -1292,6 +1291,188 @@
         "x": "50",
         "y": "1550"
       }
+    },
+    {
+      "text": " Your eyes flutter open.\n \n [[Continue->wake1]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "wake1",
+          "pid": "79"
+        }
+      ],
+      "name": "wake0",
+      "pid": "78",
+      "position": {
+        "x": "2225",
+        "y": "1950"
+      }
+    },
+    {
+      "text": "It's dark in the tent. Sallos is is still sleeping.\n\n[[Wake him up.]]\n[[Step out for some air.]]",
+      "links": [
+        {
+          "name": "Wake him up.",
+          "link": "Wake him up.",
+          "pid": "80"
+        },
+        {
+          "name": "Step out for some air.",
+          "link": "Step out for some air.",
+          "pid": "81"
+        }
+      ],
+      "name": "wake1",
+      "pid": "79",
+      "position": {
+        "x": "2350",
+        "y": "2050"
+      }
+    },
+    {
+      "text": "You reach over to him and\n[[Violently shake him]]\n[[Gently nudge him]]\n(set: $faith += 1)\n\n",
+      "links": [
+        {
+          "name": "Violently shake him",
+          "link": "Violently shake him",
+          "pid": "82"
+        },
+        {
+          "name": "Gently nudge him",
+          "link": "Gently nudge him",
+          "pid": "83"
+        }
+      ],
+      "name": "Wake him up.",
+      "pid": "80",
+      "position": {
+        "x": "2225",
+        "y": "2150"
+      }
+    },
+    {
+      "text": "(set: $strength +=1 and $stepOutside to true)\nYou gently wiggle out of the sleeping bag, careful not to wake Sallos up.\n[[Continue->soloStepOut]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "soloStepOut",
+          "pid": "86"
+        }
+      ],
+      "name": "Step out for some air.",
+      "pid": "81",
+      "position": {
+        "x": "2525",
+        "y": "2200"
+      }
+    },
+    {
+      "text": "<b>SALLOS:<b>\"AHHH!!!\"\n\nSallos jumps up out of the sleeping bag.\n\n[[Continue->wakeUpScared]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "wakeUpScared",
+          "pid": "85"
+        }
+      ],
+      "name": "Violently shake him",
+      "pid": "82",
+      "position": {
+        "x": "2250",
+        "y": "2350"
+      }
+    },
+    {
+      "text": "Sallos stirs, and rolls over on his side.\n\n[[Poke him again->pokeAgain]]",
+      "links": [
+        {
+          "name": "Poke him again",
+          "link": "pokeAgain",
+          "pid": "84"
+        }
+      ],
+      "name": "Gently nudge him",
+      "pid": "83",
+      "position": {
+        "x": "2050",
+        "y": "2375"
+      }
+    },
+    {
+      "text": "<b>SALLOS:</b> \"Good morningggg...\"\n(set: $stepOutside to true)\n[[Come on, sleepyhead!->letsGo]]",
+      "links": [
+        {
+          "name": "Come on, sleepyhead!",
+          "link": "letsGo",
+          "pid": "87"
+        }
+      ],
+      "name": "pokeAgain",
+      "pid": "84",
+      "position": {
+        "x": "2225",
+        "y": "2700"
+      }
+    },
+    {
+      "text": "<B>SALLOS:</b>\"Now what'd you do that for?\"\n(set: $stepOutside to true)\n[[We've got to get going! Get up!->letsGo]]",
+      "links": [
+        {
+          "name": "We've got to get going! Get up!",
+          "link": "letsGo",
+          "pid": "87"
+        }
+      ],
+      "name": "wakeUpScared",
+      "pid": "85",
+      "position": {
+        "x": "2375",
+        "y": "2525"
+      }
+    },
+    {
+      "text": "The sun blinds your eyes as you step out into the wilderness again. You shield your eyes, and slowly, they adjust to the light.\n\n[[Continue->exitScene2]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "exitScene2",
+          "pid": "88"
+        }
+      ],
+      "name": "soloStepOut",
+      "pid": "86",
+      "position": {
+        "x": "2650",
+        "y": "2325"
+      }
+    },
+    {
+      "text": "<b>SALLOS:</b> \"Yeah, yeah, just give me a second...\"\n\n[[Continue->exitScene2]]",
+      "links": [
+        {
+          "name": "Continue",
+          "link": "exitScene2",
+          "pid": "88"
+        }
+      ],
+      "name": "letsGo",
+      "pid": "87",
+      "position": {
+        "x": "2525",
+        "y": "2750"
+      }
+    },
+    {
+      "text": "(set: $sceneTwoEnd to true)",
+      "name": "exitScene2",
+      "pid": "88",
+      "position": {
+        "x": "2775",
+        "y": "2475"
+      },
+      "tags": [
+        "exit"
+      ]
     }
   ],
   "name": "Parsed Tent",
