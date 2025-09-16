@@ -5,8 +5,8 @@ Parsed Tent
 :: StoryData
 {
   "ifid": "abc104ff-b071-49f1-9520-2dac297b3870",
-  "format": "Harlowe",
-  "format-version": "3.3.9",
+  "format": "Twison",
+  "format-version": "0.0.1",
   "start": "scene",
   "tag-colors": {
     "exit": "red",
@@ -25,19 +25,13 @@ Parsed Tent
 
 
 :: Finish eating. [exit] {"position":"2775,1925","size":"100,100"}
-(set: $sceneTwoEnd to true)
+
 
 
 :: Gently nudge him {"position":"2050,2375","size":"100,100"}
 Sallos stirs, and rolls over on his side.
 
 [[Poke him again->pokeAgain]]
-
-
-:: Go out {"position":"2800,2500","size":"100,100"}
-The air is crisp and cold, but refreshing. A fresh start to the day.
-
-Continue
 
 
 :: Really. {"position":"2725,650","size":"100,100"}
@@ -56,8 +50,10 @@ You gently wiggle out of the sleeping bag, careful not to wake Sallos up.
 [[Continue->soloStepOut]]
 
 
-:: Violently shake him {"position":"2275,2275","size":"100,100"}
+:: Violently shake him {"position":"2250,2350","size":"100,100"}
 <b>SALLOS:<b>"AHHH!!!"
+
+Sallos jumps up out of the sleeping bag.
 
 [[Continue->wakeUpScared]]
 
@@ -88,7 +84,7 @@ You reach over to him and
 
 
 :: boil {"position":"2025,1000","size":"100,100"}
-Slowly, gently, you lower the cube into the water. The portions under the rolling waves begin to shimmer and dissolve, staining the water with a deep brown. Once most of the stock is submerged, you release it, letting it fully sink. Sallos does the same, and soon, the stew begins to thicken and become fragrant.
+Slowly, gently, you lower the cube into the water, staining the water with a deep brown. The stew begins to thicken and become fragrant.
 [[Continue->timeToEat]]
 
 
@@ -202,6 +198,10 @@ You close your eyes do your best to conjure up an image of the sharpest edge you
 
 
 
+:: exitScene2 [exit] {"position":"2775,2475","size":"100,100"}
+(set: $sceneTwoEnd to true)
+
+
 :: exitTimeToEat [exit] {"position":"2100,1350","size":"100,100"}
 (set: $eatCutscene to true)
 
@@ -283,6 +283,12 @@ He looks down dejectedly.
 [[Finish eating.]]
 
 
+:: letsGo {"position":"2525,2750","size":"100,100"}
+<b>SALLOS:</b> "Yeah, yeah, just give me a second..."
+
+[[Continue->exitScene2]]
+
+
 :: likeIt [start] {"position":"2325,1450","size":"100,100"}
 <b>SALLOS:</b> "Like it? I tried to make it as tasty as possible without using meat stuff. How’d I do?"
 [[It's good!->itsGood]]
@@ -326,7 +332,7 @@ You place the bundle of sticks by the stove.
 :: pokeAgain {"position":"2225,2700","size":"100,100"}
 <b>SALLOS:</b> "Good morningggg..."
 (set: $stepOutside to true)
-[[Continue->Go out]]
+[[Come on, sleepyhead!->letsGo]]
 
 
 :: reassure {"position":"2575,800","size":"100,100"}
@@ -416,8 +422,10 @@ You focus your mana, and hold your arm out.
 [[Continue->focus]]
 
 
-:: soloStepOut {"position":"2700,2300","size":"100,100"}
-The sun blinds your eyes as you step out into the wilderness again, breaking
+:: soloStepOut {"position":"2650,2325","size":"100,100"}
+The sun blinds your eyes as you step out into the wilderness again. You shield your eyes, and slowly, they adjust to the light.
+
+[[Continue->exitScene2]]
 
 
 :: timeToEat {"position":"1975,1200","size":"100,100"}
@@ -443,17 +451,17 @@ You begin to work through the knot, but it's a struggle to get a hold of each li
  [[Continue->wake1]]
 
 
-:: wake1 {"position":"2425,2050","size":"100,100"}
+:: wake1 {"position":"2350,2050","size":"100,100"}
 It's dark in the tent. Sallos is is still sleeping.
 
 [[Wake him up.]]
 [[Step out for some air.]]
 
 
-:: wakeUpScared {"position":"2275,2550","size":"100,100"}
+:: wakeUpScared {"position":"2375,2525","size":"100,100"}
 <B>SALLOS:</b>"Now what'd you do that for?"
 (set: $stepOutside to true)
-[[Continue->Go out]]
+[[We've got to get going! Get up!->letsGo]]
 
 
 :: waterBoiling {"position":"2225,1075","size":"100,100"}
